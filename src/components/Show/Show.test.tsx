@@ -4,10 +4,11 @@ import { Show } from './Show'
 
 import { useOnce } from '../../hooks'
 import { render } from '../../render'
+import { getHTML } from '../../utils'
 
-function getHTML () {
-  return document.body.innerHTML.replace('<!---->', '')
-}
+afterEach(() => {
+  document.body.innerHTML = ''
+})
 
 describe('Show', () => {
   it('should render with a state', () => {
@@ -17,7 +18,6 @@ describe('Show', () => {
     expect(getHTML()).toBe('')
     show.value = true
     expect(getHTML()).toBe('Shown')
-    document.body.innerHTML = ''
   })
 
   it('should render with a cache', () => {
@@ -36,7 +36,6 @@ describe('Show', () => {
     show2.value = true
 
     expect(getHTML()).toBe('Shown')
-    document.body.innerHTML = ''
   })
 
   it('should render with a function of state', () => {
@@ -49,7 +48,6 @@ describe('Show', () => {
     show.value = true
 
     expect(getHTML()).toBe('Shown')
-    document.body.innerHTML = ''
   })
 
   it('should destroy content', () => {
@@ -66,7 +64,6 @@ describe('Show', () => {
 
     show.value = false
     expect(fn).toHaveBeenCalled()
-    document.body.innerHTML = ''
   })
 
   it('should render fallback', () => {
@@ -79,6 +76,5 @@ describe('Show', () => {
     show.value = false
 
     expect(getHTML()).toBe('Hide')
-    document.body.innerHTML = ''
   })
 })

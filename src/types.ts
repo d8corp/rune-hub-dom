@@ -4,11 +4,11 @@ import type { Ref } from './utils'
 
 export type JSXType = Component | string | undefined
 export type JSXTypeProps<T extends JSXType> = T extends string ? Record<string, any> : T extends Component<infer P> ? P : never
-export type JSXElement = undefined | null | number | string | Rune | Child | JSXNode | Slot<JSXElement> | JSXElement[]
+export type JSXElement = undefined | void | null | number | string | Rune | Child | JSXNode | Slot<JSXElement> | JSXElement[]
 export type Props = Record<string, any>
 export type Component<P extends Props = any, R extends JSXElement = JSXElement> = (props: P) => R
 export type DomElement = HTMLElement | SVGElement
-export type Parent = DomElement | Comment
+export type Parent = DomElement | Comment | DocumentFragment
 export type Child = Parent | Text
 export type ObservableProp<T = unknown> = T | Rune<T> | Slot<T>
 
