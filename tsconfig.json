@@ -20,7 +20,10 @@
     "strict": true,
     "declaration": true,
     "jsx": "react-jsx",
-    "jsxImportSource": ".."
+    "jsxImportSource": "@",
+    "paths": {
+      "@/jsx-runtime": ["./src/jsx-runtime"]
+    }
   },
   "include": [
     "src"
