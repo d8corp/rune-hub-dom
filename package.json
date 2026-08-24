@@ -78,7 +78,8 @@
   },
   "dependencies": {
     "html-classes": "^2.0.2",
-    "rune-hub": "^1.0.1",
+    "rune-hub": "^1.0.2",
+    "sync-timer": "^1.0.1",
     "web-scroll": "^1.1.0"
   }
 }
