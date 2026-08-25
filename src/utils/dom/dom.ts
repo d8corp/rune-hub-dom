@@ -30,6 +30,10 @@ function virtualRemove (target: Child) {
   target._prev = target._next = target._parent = undefined
 }
 
+function getParentElement (target: Child): DocumentFragment | DomElement | undefined {
+  return target._parent && target._parent instanceof Content ? getParentElement(target._parent) : target._parent
+}
+
 function getPrevElement (target: Child): DomElement | Text | undefined {
   if (!target._prev) {
     return target._parent instanceof Content ? getPrevElement(target._parent) : undefined
@@ -40,6 +44,26 @@ function getPrevElement (target: Child): DomElement | Text | undefined {
   }
 
   return target._prev instanceof DocumentFragment ? undefined : target._prev
+}
+
+function getNextElement (target: Child): DomElement | Text | undefined {
+  if (!target._next) {
+    return target._parent instanceof Content ? getNextElement(target._parent) : undefined
+  }
+
+  if (target._next instanceof Content) {
+    if (target._next._first) {
+      if (target._next._first instanceof Content) {
+        return getNextElement(target._next._first)
+      } else {
+        return target._next._first instanceof DocumentFragment ? undefined : target._next._first
+      }
+    }
+
+    return getNextElement(target._next)
+  }
+
+  return target._next instanceof DocumentFragment ? undefined : target._next
 }
 
 function getElements (target: Content) {
@@ -92,17 +116,31 @@ export function append (parent: Parent, children: Parent) {
 
   parent._last = children
 
-  if (parent instanceof Content || children instanceof Content) {
-    const prev = getPrevElement(children)
+  if (parent instanceof Content) {
+    const next = getNextElement(parent)
 
-    if (!prev) return
+    if (!next) {
+      const parentElement = getParentElement(parent)
+
+      if (parentElement) {
+        if (children instanceof Content) {
+          parentElement.append(...getElements(children))
+        } else {
+          parentElement.append(children)
+        }
+      }
+
+      return
+    }
 
     if (children instanceof Content) {
-      prev.after(...getElements(children))
+      next.before(...getElements(children))
     } else {
-      prev.after(children)
+      next.before(children)
     }
+  } else if (children instanceof Content) {
+    parent.append(...getElements(children))
   } else {
-    parent.appendChild(children)
+    parent.append(children)
   }
 }

@@ -273,13 +273,13 @@ describe('Delay', () => {
     expect(document.body.innerHTML).toBe('')
   })
 
-  it('should have not comment for hide', async () => {
+  it('should have not Content for hide', async () => {
     render(
       <Delay hide={300}>
-        Content
+        <div id='foo' />
       </Delay>,
     )
 
-    expect(document.body.innerHTML).toBe('Content')
+    expect(document.getElementById('foo')?._parent).toBe(document.body)
   })
 })
