@@ -38,6 +38,7 @@ export default defineConfig([
     },
     rules: {
       'react/jsx-key': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
       'react/jsx-no-target-blank': 'off',
       'react/no-children-prop': 'off',
       '@typescript-eslint/no-namespace': 'off',

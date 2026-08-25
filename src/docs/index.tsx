@@ -25,5 +25,6 @@ render(
     <Show when={show}>
       <Counter />
     </Show>
+    {' '}👈 Click it!
   </div>,
 )

@@ -1,6 +1,6 @@
 import type { Rune, Slot } from 'rune-hub'
 
-import type { Ref } from './utils'
+import type { Content, Ref } from './utils'
 
 export type JSXType = Component | string | undefined
 export type JSXTypeProps<T extends JSXType> = T extends string ? Record<string, any> : T extends Component<infer P> ? P : never
@@ -8,9 +8,17 @@ export type JSXElement = undefined | void | null | number | string | Rune | Chil
 export type Props = Record<string, any>
 export type Component<P extends Props = any, R extends JSXElement = JSXElement> = (props: P) => R
 export type DomElement = HTMLElement | SVGElement
-export type Parent = DomElement | Comment | DocumentFragment
+export type Parent = DomElement | Content | DocumentFragment
 export type Child = Parent | Text
 export type ObservableProp<T = unknown> = T | Rune<T> | Slot<T>
+
+export interface IContent {
+  _parent?: Parent
+  _prev?: Child
+  _next?: Child
+  _first?: Child
+  _last?: Child
+}
 
 type CamelToKebabCase<S extends string> = S extends `${infer T}${infer U}` ?
   `${T extends Capitalize<T> ? '-' : ''}${Lowercase<T>}${CamelToKebabCase<U>}` :
@@ -54,4 +62,10 @@ export class JSXNode <T extends JSXType = JSXType> {
     public type: T,
     public props: JSXTypeProps<T>,
   ) {}
+}
+
+declare global {
+  interface Element extends IContent {}
+  interface Text extends IContent {}
+  interface DocumentFragment extends IContent {}
 }

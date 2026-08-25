@@ -4,56 +4,56 @@ import { parentContext } from './constants'
 import { useOnce } from './hooks'
 import type { HTMLProps, JSXElement } from './types'
 import { JSXNode } from './types'
-import { append, Context } from './utils'
+import { append, Content, Context, remove } from './utils'
 
 Context.render = render
 
-export function render (content: JSXElement) {
-  if (content === undefined) return
+export function render (target: JSXElement) {
+  if (target === undefined) return
 
-  if (Array.isArray(content)) {
-    content.forEach(render)
+  if (Array.isArray(target)) {
+    target.forEach(render)
 
     return
   }
 
-  if (content instanceof HTMLElement || content instanceof SVGElement || content instanceof Text || content instanceof Comment) {
-    append(parentContext.get(), content)
+  if (target instanceof HTMLElement || target instanceof SVGElement || target instanceof Text || target instanceof Content) {
+    append(parentContext.get(), target)
 
     useOnce('clear', () => {
-      content.remove()
+      remove(target)
     })
 
     return
   }
 
-  if (content instanceof Slot) {
-    const comment = document.createComment(content.rune.name)
+  if (target instanceof Slot) {
+    const content = new Content()
     const context = Context.nest()
-    parentContext.set(comment, context)
-    render(comment)
+    parentContext.set(content, context)
+    render(content)
 
     new Slot(Context.use(() => {
-      render(content.value)
+      render(target.value)
     }, context)).on()
 
     return
   }
 
-  if (content instanceof JSXNode) {
-    if (typeof content.type === 'string') {
-      const element = document.createElement(content.type)
+  if (target instanceof JSXNode) {
+    if (typeof target.type === 'string') {
+      const element = document.createElement(target.type)
 
       render(element)
 
-      for (const prop in content.props) {
+      for (const prop in target.props) {
         if (prop === 'children') continue
 
         if (prop.startsWith('on')) {
           // @ts-expect-error TODO: Check it
-          element[prop] = content.props[prop]
+          element[prop] = target.props[prop]
         } else {
-          const value = content.props[prop]
+          const value = target.props[prop]
 
           if (typeof value === 'function') {
             new Slot(() => {
@@ -73,36 +73,36 @@ export function render (content: JSXElement) {
         }
       }
 
-      if ('children' in content.props) {
+      if ('children' in target.props) {
         const context = Context.nest()
         parentContext.set(element, context)
-        Context.use(render, context)(content.props.children)
+        Context.use(render, context)(target.props.children)
       }
 
       return
     }
 
-    if (typeof content.type === 'function') {
-      render(content.type(content.props))
+    if (typeof target.type === 'function') {
+      render(target.type(target.props))
 
       return
     }
 
-    if (content.type === undefined && 'children' in content.props) {
-      render(content.props.children)
+    if (target.type === undefined && 'children' in target.props) {
+      render(target.props.children)
     }
 
     return
   }
 
-  if (typeof content === 'function') {
-    render(new Slot(content))
+  if (typeof target === 'function') {
+    render(new Slot(target))
 
     return
   }
 
-  if (typeof content === 'string' || typeof content === 'number') {
-    render(document.createTextNode(String(content)))
+  if (typeof target === 'string' || typeof target === 'number') {
+    render(document.createTextNode(String(target)))
   }
 }
 
@@ -111,7 +111,7 @@ declare global {
     type Element = JSXElement
 
     interface ElementChildrenAttribute {
-      // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+
       children: {}
     }
 

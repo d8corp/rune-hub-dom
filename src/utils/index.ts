@@ -1,6 +1,6 @@
-export * from './append'
 export * from './Context'
 export * from './createElement'
+export * from './dom'
 export * from './getHTML'
 export * from './inject'
 export * from './Ref'

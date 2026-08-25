@@ -5,7 +5,7 @@ import { parentContext } from '../../constants'
 import { useOnce } from '../../hooks'
 import { render } from '../../render'
 import type { Ref } from '../../utils'
-import { append, Context } from '../../utils'
+import { append, Content, Context, remove } from '../../utils'
 
 export const delayContext = new Context<undefined | Slot<boolean>>(undefined)
 
@@ -29,15 +29,15 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
 
   const context = Context.nest()
 
-  function useComment () {
-    const comment = document.createComment('Delay')
+  function useContent () {
+    const content = new Content()
     const parent = parentContext.get()
 
-    append(parent, comment)
-    parentContext.set(comment, context)
+    append(parent, content)
+    parentContext.set(content, context)
 
     useOnce('clear', () => {
-      comment.remove()
+      remove(content)
     })
   }
 
@@ -59,7 +59,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     })
 
     if (show > 0) {
-      useComment()
+      useContent()
 
       const timer = new Timer(() => {
         if (!hideState.raw) {
@@ -81,7 +81,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     const ctx = Hub.cur?.ctx
     const listener = ctx ? () => ctx.use(run) : run
     const timer = new Timer(listener, show)
-    useComment()
+    useContent()
 
     useOnce('clear', () => {
       timer.cancel()
