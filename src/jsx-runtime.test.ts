@@ -72,13 +72,13 @@ describe('jsx', () => {
 
       expect(document.body.innerHTML).toBe('')
       app.on()
-      expect(document.body.innerHTML).toBe('<div>Count: 0<!--count--></div>')
+      expect(document.body.innerHTML).toBe('<div>Count: 0</div>')
 
       count.value++
-      expect(document.body.innerHTML).toBe('<div>Count: 1<!--count--></div>')
+      expect(document.body.innerHTML).toBe('<div>Count: 1</div>')
 
       count.value++
-      expect(document.body.innerHTML).toBe('<div>Count: 2<!--count--></div>')
+      expect(document.body.innerHTML).toBe('<div>Count: 2</div>')
 
       app.off()
       expect(document.body.innerHTML).toBe('')

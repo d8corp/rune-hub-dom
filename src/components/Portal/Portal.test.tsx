@@ -4,7 +4,6 @@ import { Show } from '../Show'
 import { Portal } from './Portal'
 
 import { render } from '../../render'
-import { getHTML } from '../../utils'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -20,8 +19,8 @@ describe('Portal', () => {
       </Portal>,
     )
 
-    expect(getHTML()).toBe('')
-    expect(getHTML(div)).toBe('works')
+    expect(document.body.innerHTML).toBe('')
+    expect(div.innerHTML).toBe('works')
   })
 
   it('should work dynamic', () => {
@@ -36,17 +35,17 @@ describe('Portal', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('')
-    expect(getHTML(div)).toBe('works')
+    expect(document.body.innerHTML).toBe('')
+    expect(div.innerHTML).toBe('works')
 
     show.value = false
 
-    expect(getHTML()).toBe('')
-    expect(getHTML(div)).toBe('')
+    expect(document.body.innerHTML).toBe('')
+    expect(div.innerHTML).toBe('')
 
     show.value = true
 
-    expect(getHTML()).toBe('')
-    expect(getHTML(div)).toBe('works')
+    expect(document.body.innerHTML).toBe('')
+    expect(div.innerHTML).toBe('works')
   })
 })

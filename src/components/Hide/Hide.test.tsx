@@ -4,7 +4,6 @@ import { Hide } from './Hide'
 
 import { useOnce } from '../../hooks'
 import { render } from '../../render'
-import { getHTML } from '../../utils'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -20,11 +19,11 @@ describe('Hide', () => {
       </Hide>,
     )
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
 
     hide.value = true
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should render with a cache', () => {
@@ -38,15 +37,15 @@ describe('Hide', () => {
       </Hide>,
     )
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
 
     hide1.value = true
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
 
     hide2.value = true
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should render with a function of state', () => {
@@ -58,11 +57,11 @@ describe('Hide', () => {
       </Hide>,
     )
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
 
     hide.value = true
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should destroy content', () => {
@@ -97,10 +96,10 @@ describe('Hide', () => {
       </Hide>,
     )
 
-    expect(getHTML()).toBe('Show')
+    expect(document.body.innerHTML).toBe('Show')
 
     hide.value = true
 
-    expect(getHTML()).toBe('Hide')
+    expect(document.body.innerHTML).toBe('Hide')
   })
 })

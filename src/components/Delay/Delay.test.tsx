@@ -4,7 +4,7 @@ import { Show } from '../Show'
 
 import { render } from '../../render'
 import type { Component } from '../../types'
-import { getHTML, Ref } from '../../utils'
+import { Ref } from '../../utils'
 
 import { Delay, useHidden } from '.'
 
@@ -20,7 +20,7 @@ describe('Delay', () => {
       </Delay>,
     )
 
-    expect(getHTML()).toBe('works')
+    expect(document.body.innerHTML).toBe('works')
   })
 
   it('should work', async () => {
@@ -34,19 +34,19 @@ describe('Delay', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('works')
+    expect(document.body.innerHTML).toBe('works')
 
     show.value = false
 
-    expect(getHTML()).toBe('works')
+    expect(document.body.innerHTML).toBe('works')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should set elements to the right place', async () => {
@@ -60,11 +60,11 @@ describe('Delay', () => {
       </>,
     )
 
-    expect(getHTML()).toBe('beforeafter')
+    expect(document.body.innerHTML).toBe('beforeafter')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('beforeworksafter')
+    expect(document.body.innerHTML).toBe('beforeworksafter')
   })
 
   it('should set elements to the right place with hide', async () => {
@@ -80,19 +80,19 @@ describe('Delay', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('beforeafter')
+    expect(document.body.innerHTML).toBe('beforeafter')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('beforeworksafter')
+    expect(document.body.innerHTML).toBe('beforeworksafter')
 
     show.value = false
 
-    expect(getHTML()).toBe('works')
+    expect(document.body.innerHTML).toBe('works')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should work with context', async () => {
@@ -114,23 +114,23 @@ describe('Delay', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('<div class="shown"></div>')
+    expect(document.body.innerHTML).toBe('<div class="shown"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('<div class="shown"></div>')
+    expect(document.body.innerHTML).toBe('<div class="shown"></div>')
 
     show.value = false
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should work with context and show', async () => {
@@ -152,23 +152,23 @@ describe('Delay', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 105))
 
-    expect(getHTML()).toBe('<div class="shown"></div>')
+    expect(document.body.innerHTML).toBe('<div class="shown"></div>')
 
     show.value = false
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should work with ref', async () => {
@@ -190,19 +190,19 @@ describe('Delay', () => {
       </Show>,
     )
 
-    expect(getHTML()).toBe('<div class="shown"></div>')
+    expect(document.body.innerHTML).toBe('<div class="shown"></div>')
 
     show.value = false
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('<div class="hidden"></div>')
+    expect(document.body.innerHTML).toBe('<div class="hidden"></div>')
 
     await new Promise(resolve => setTimeout(resolve, 50))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should work deep', async () => {
@@ -213,15 +213,15 @@ describe('Delay', () => {
       </Delay>,
     )
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('Works')
+    expect(document.body.innerHTML).toBe('Works')
 
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(getHTML()).toBe('Worksfine!')
+    expect(document.body.innerHTML).toBe('Worksfine!')
   })
 
   it('should works inside each other', async () => {
@@ -250,27 +250,27 @@ describe('Delay', () => {
 
     render(<Test />)
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 150))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 150))
 
-    expect(getHTML()).toBe('hidden:false')
+    expect(document.body.innerHTML).toBe('hidden:false')
 
     show.value = false
 
-    expect(getHTML()).toBe('true')
+    expect(document.body.innerHTML).toBe('true')
 
     await new Promise(resolve => setTimeout(resolve, 150))
 
-    expect(getHTML()).toBe('true')
+    expect(document.body.innerHTML).toBe('true')
 
     await new Promise(resolve => setTimeout(resolve, 150))
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
   })
 
   it('should have not comment for hide', async () => {

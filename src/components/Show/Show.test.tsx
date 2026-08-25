@@ -4,7 +4,6 @@ import { Show } from './Show'
 
 import { useOnce } from '../../hooks'
 import { render } from '../../render'
-import { getHTML } from '../../utils'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -15,9 +14,9 @@ describe('Show', () => {
     const show = new Slot(() => false)
 
     render(<Show when={show}>Shown</Show>)
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
     show.value = true
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
   })
 
   it('should render with a cache', () => {
@@ -27,15 +26,15 @@ describe('Show', () => {
 
     render(<Show when={show}>Shown</Show>)
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     show1.value = true
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     show2.value = true
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
   })
 
   it('should render with a function of state', () => {
@@ -43,11 +42,11 @@ describe('Show', () => {
 
     render(<Show when={() => show.value}>Shown</Show>)
 
-    expect(getHTML()).toBe('')
+    expect(document.body.innerHTML).toBe('')
 
     show.value = true
 
-    expect(getHTML()).toBe('Shown')
+    expect(document.body.innerHTML).toBe('Shown')
   })
 
   it('should destroy content', () => {
@@ -71,10 +70,10 @@ describe('Show', () => {
 
     render(<Show when={show} fallback='Hide'>Show</Show>)
 
-    expect(getHTML()).toBe('Show')
+    expect(document.body.innerHTML).toBe('Show')
 
     show.value = false
 
-    expect(getHTML()).toBe('Hide')
+    expect(document.body.innerHTML).toBe('Hide')
   })
 })
