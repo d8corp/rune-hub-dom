@@ -65,7 +65,13 @@ function virtualRemove (target: Child) {
 }
 
 function getParentElement (target: Child): DocumentFragment | DomElement | undefined {
-  return target._parent && target._parent instanceof Content ? getParentElement(target._parent) : target._parent
+  let parent: Parent | undefined = target._parent
+
+  while (parent instanceof Content) {
+    parent = parent._parent
+  }
+
+  return parent
 }
 
 function getNextElement (target: Child): DomElement | Text | undefined {
