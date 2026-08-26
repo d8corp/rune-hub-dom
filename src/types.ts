@@ -10,7 +10,8 @@ export type Component<P extends Props = any, R extends JSXElement = JSXElement> 
 export type DomElement = HTMLElement | SVGElement
 export type Parent = DomElement | Content | DocumentFragment
 export type Child = Parent | Text
-export type ObservableProp<T = unknown> = T | Rune<T> | Slot<T>
+export type RuneProp<T = unknown> = T | Rune<T>
+export type ObservableProp<T = unknown> = RuneProp<T> | Slot<T>
 
 export interface IContent {
   _parent?: Parent
