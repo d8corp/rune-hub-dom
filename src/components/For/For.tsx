@@ -17,7 +17,9 @@ import {
   prepend,
 } from '../../utils'
 
+/** @experimental */
 export const forIndexContext = new Context<Slot<number> | undefined>(undefined)
+/** @experimental */
 export const forValueContext = new Context<Slot | undefined>(undefined)
 
 const watcherContext = new Context<Slot | undefined>(undefined)

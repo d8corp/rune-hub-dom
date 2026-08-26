@@ -52,8 +52,8 @@ export class Context<T = unknown> {
 
   constructor (public defaultValue: T) {}
 
-  get (context: ContextData = Context.current): T {
-    return this.key in context ? context[this.key] : this.defaultValue
+  get<R extends T> (context: ContextData = Context.current): R {
+    return this.key in context ? context[this.key] : this.defaultValue as R
   }
 
   set (value: T, context: ContextData = Context.current) {

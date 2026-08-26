@@ -3,9 +3,8 @@ import { Slot } from 'rune-hub'
 import { Delay } from '../Delay'
 
 import { render } from '../../render'
-import { use } from '../../utils'
 
-import { For } from '.'
+import { For, forIndexContext, forValueContext } from '.'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -144,7 +143,7 @@ describe('For', () => {
       render(
         <ul>
           <For of={people} key='id'>
-            {(value) => <li>{() => use(value).name}</li>}
+            {(value) => <li>{() => value.value.name}</li>}
           </For>
         </ul>,
       )
@@ -220,6 +219,31 @@ describe('For', () => {
       names.update()
 
       expect(document.body.innerHTML).toBe('<ul><li>#0: Alex</li><li>#1: Mike</li></ul>')
+    })
+
+    it('should work with context (experimental)', () => {
+      const names = new Slot(() => ['Mike', 'Alex', 'Dan'])
+
+      function User () {
+        const index = forIndexContext.get()
+        const value = forValueContext.get<Slot<string>>()
+
+        return <li>#{index}: {value}</li>
+      }
+
+      render(
+        <ul>
+          <For of={names}>
+            {() => <User />}
+          </For>
+        </ul>,
+      )
+
+      expect(document.body.innerHTML).toBe('<ul><li>#0: Mike</li><li>#1: Alex</li><li>#2: Dan</li></ul>')
+
+      names.value = ['Alex', 'Dan', 'Mike']
+
+      expect(document.body.innerHTML).toBe('<ul><li>#0: Alex</li><li>#1: Dan</li><li>#2: Mike</li></ul>')
     })
   })
 })
