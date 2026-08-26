@@ -9,14 +9,48 @@ export class Content implements IContent {
 }
 
 function virtualRemove (target: Child) {
-  if (target._parent) {
-    if (target._parent._first === target) {
-      target._parent._first = target._next
-    }
+  if (!target._parent) return
 
-    if (target._parent._last === target) {
-      target._parent._last = target._prev
+  if (target instanceof Content) {
+    let child = target._first
+
+    if (child) {
+      child._prev = target._prev
+
+      while (child) {
+        child._parent = target._parent
+
+        if (!child._next) {
+          child._next = target._next
+
+          if (target._next) {
+            target._next._prev = child
+          }
+
+          break
+        }
+
+        child = child._next
+      }
+
+      if (target._parent._first === target) {
+        target._parent._first = target._first
+      }
+
+      if (target._parent._last === target) {
+        target._parent._last = target._last
+      }
+
+      return
     }
+  }
+
+  if (target._parent._first === target) {
+    target._parent._first = target._next
+  }
+
+  if (target._parent._last === target) {
+    target._parent._last = target._prev
   }
 
   if (target._prev) {
@@ -32,18 +66,6 @@ function virtualRemove (target: Child) {
 
 function getParentElement (target: Child): DocumentFragment | DomElement | undefined {
   return target._parent && target._parent instanceof Content ? getParentElement(target._parent) : target._parent
-}
-
-function getPrevElement (target: Child): DomElement | Text | undefined {
-  if (!target._prev) {
-    return target._parent instanceof Content ? getPrevElement(target._parent) : undefined
-  }
-
-  if (target._prev instanceof Content) {
-    return getPrevElement(target._prev)
-  }
-
-  return target._prev instanceof DocumentFragment ? undefined : target._prev
 }
 
 function getNextElement (target: Child): DomElement | Text | undefined {
