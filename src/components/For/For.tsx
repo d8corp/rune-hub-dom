@@ -63,7 +63,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
   return () => {
     const values = ofProp()
     const childHandler = Context.current
-    const mainComment = parentContext.get(childHandler)!
+    const mainContent = parentContext.get(childHandler)!
 
     if (!useParentSlot()!.inited) {
       let index = 0
@@ -129,20 +129,20 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         })
 
         if (!keep) {
-          const comment = parentContext.get(deepHandler)
+          const content = parentContext.get(deepHandler)
 
           if (index) {
-            after(parentContext.get(handlersMap.get(keysList[index - 1])), comment)
+            after(parentContext.get(handlersMap.get(keysList[index - 1])), content)
           } else if (oldKeysList.length) {
-            before(parentContext.get(handlersMap.get(oldKeysList[0])), comment)
+            before(parentContext.get(handlersMap.get(oldKeysList[0])), content)
           } else {
-            prepend(mainComment, comment)
+            prepend(mainContent, content)
           }
         }
       } else {
-        const comment = new Content()
+        const content = new Content()
         const deepHandler = Object.create(childHandler)
-        parentContext.set(comment, deepHandler)
+        parentContext.set(content, deepHandler)
         const valueState = new Slot(() => value)
         const indexState = new Slot(() => index)
 
@@ -151,11 +151,11 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         handlersMap.set(valueKey, deepHandler)
 
         if (index) {
-          after(parentContext.get(handlersMap.get(keysList[index - 1])), comment)
+          after(parentContext.get(handlersMap.get(keysList[index - 1])), content)
         } else if (oldKeysList.length) {
-          before(parentContext.get(handlersMap.get(oldKeysList[0])), comment)
+          before(parentContext.get(handlersMap.get(oldKeysList[0])), content)
         } else {
-          prepend(mainComment, comment)
+          prepend(mainContent, content)
         }
 
         const deepRender = Context.use(render, deepHandler)
