@@ -5,7 +5,7 @@ import { parentContext } from '../../constants'
 import { useOnce } from '../../hooks'
 import { render } from '../../render'
 import type { Ref } from '../../utils'
-import { append, Content, Context, remove } from '../../utils'
+import { append, Content, Context, dissolve } from '../../utils'
 
 export const delayContext = new Context<undefined | Slot<boolean>>(undefined)
 
@@ -37,7 +37,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     parentContext.set(content, context)
 
     useOnce('clear', () => {
-      remove(content)
+      dissolve(content)
     })
   }
 

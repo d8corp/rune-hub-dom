@@ -11,46 +11,6 @@ export class Content implements IContent {
 function virtualRemove (target: Child) {
   if (!target._parent) return
 
-  if (target instanceof Content) {
-    let child = target._first
-
-    if (child) {
-      child._prev = target._prev
-
-      while (child) {
-        child._parent = target._parent
-
-        if (!child._next) {
-          child._next = target._next
-
-          if (target._next) {
-            target._next._prev = child
-          }
-
-          break
-        }
-
-        child = child._next
-      }
-
-      if (target._parent._first === target) {
-        target._parent._first = target._first
-      }
-
-      if (target._parent._last === target) {
-        target._parent._last = target._last
-      }
-
-      return
-    }
-  }
-
-  realRemove(target)
-}
-
-function realRemove (target: Child) {
-  if (!target._parent) return
-
   if (target._parent._first === target) {
     target._parent._first = target._next
   }
@@ -144,18 +104,54 @@ function getElements (target: Content) {
   return result
 }
 
-export function remove (target: Child) {
-  virtualRemove(target)
+export function dissolve (target: Content) {
+  if (!target._parent) return
 
-  if (!(target instanceof Content) && !(target instanceof DocumentFragment)) {
-    target.remove()
+  let child = target._first
+
+  if (child) {
+    child._prev = target._prev
+
+    while (child) {
+      child._parent = target._parent
+
+      if (!child._next) {
+        child._next = target._next
+
+        if (target._next) {
+          target._next._prev = child
+        }
+
+        break
+      }
+
+      child = child._next
+    }
+
+    if (target._parent._first === target) {
+      target._parent._first = target._first
+    }
+
+    if (target._parent._last === target) {
+      target._parent._last = target._last
+    }
+  }
+}
+
+export function remove (target: Child) {
+  if (target instanceof Content) {
+    dissolve(target)
+  } else {
+    virtualRemove(target)
+
+    if (!(target instanceof DocumentFragment)) {
+      target.remove()
+    }
   }
 }
 
 export function append (parent: Parent, target: Parent) {
-  if (target._parent) {
-    realRemove(target)
-  }
+  virtualRemove(target)
 
   target._parent = parent
 
@@ -200,9 +196,7 @@ export function append (parent: Parent, target: Parent) {
 }
 
 export function prepend (parent: Parent, target: Parent) {
-  if (target._parent) {
-    realRemove(target)
-  }
+  virtualRemove(target)
 
   target._parent = parent
 
@@ -247,9 +241,7 @@ export function prepend (parent: Parent, target: Parent) {
 }
 
 export function after (node: Child, target: Parent) {
-  if (target._parent) {
-    realRemove(target)
-  }
+  virtualRemove(target)
 
   target._parent = node._parent
 
@@ -273,9 +265,7 @@ export function after (node: Child, target: Parent) {
 }
 
 export function before (node: Child, target: Parent) {
-  if (target._parent) {
-    realRemove(target)
-  }
+  virtualRemove(target)
 
   target._parent = node._parent
 
