@@ -8,11 +8,13 @@ import type { ContextData } from '../../utils'
 import {
   after,
   append,
-  before, Content, Context,
+  before,
+  Content,
+  Context,
+  dissolve,
   lcs,
   observablePropToRuneProp,
   prepend,
-  remove,
 } from '../../utils'
 
 export const forIndexContext = new Context<Slot<number> | undefined>(undefined)
@@ -173,7 +175,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
     oldKeysSet.forEach(valueKey => {
       const deepHandler = handlersMap.get(valueKey)!
       handlersMap.delete(valueKey)
-      remove(parentContext.get(deepHandler))
+      dissolve(parentContext.get(deepHandler))
       watcherContext.get(deepHandler)!.destroy()
     })
   }
