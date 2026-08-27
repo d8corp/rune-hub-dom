@@ -1,6 +1,7 @@
 export * from './Delay'
 export * from './For'
 export * from './Hide'
+export * from './Lazy'
 export * from './Pipe'
 export * from './Portal'
 export * from './Show'
