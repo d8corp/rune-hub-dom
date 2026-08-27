@@ -35,7 +35,7 @@ export function Lazy<C extends Component = Component> ({
 
       currentComponent.then((component) => {
         loadedComponents.set(currentComponent, typeof component === 'function' ? component : component.default)
-        loading.value = false
+        loading.set(false)
       })
     }
   }).on()

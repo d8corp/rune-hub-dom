@@ -8,16 +8,16 @@ export interface HistoryState {
   steps: HistoryStep[]
 }
 
-export const historyState = new Slot(getHistoryStateRaw)
-
 export function getHistoryStateRaw (): HistoryState {
   return window.history.state ?? {
     steps: [],
   }
 }
 
+export const historyState = new Slot(() => getHistoryStateRaw())
+
 export function updateHistoryState () {
-  historyState.value = getHistoryStateRaw()
+  historyState.set(getHistoryStateRaw())
 }
 
 window.addEventListener('popstate', updateHistoryState)

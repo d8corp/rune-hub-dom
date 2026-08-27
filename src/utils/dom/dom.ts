@@ -127,15 +127,17 @@ export function dissolve (target: Content) {
 
       child = child._next
     }
-
-    if (target._parent._first === target) {
-      target._parent._first = target._first
-    }
-
-    if (target._parent._last === target) {
-      target._parent._last = target._last
-    }
   }
+
+  if (target._parent._first === target) {
+    target._parent._first = target._first
+  }
+
+  if (target._parent._last === target) {
+    target._parent._last = target._last
+  }
+
+  target._parent = undefined
 }
 
 export function remove (target: Child) {
