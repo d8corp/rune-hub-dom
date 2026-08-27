@@ -4,7 +4,7 @@ import { parentContext } from './constants'
 import { useOnce } from './hooks'
 import type { HTMLProps, JSXElement } from './types'
 import { JSXNode } from './types'
-import { append, Content, Context, remove } from './utils'
+import { append, Content, Context, remove, use } from './utils'
 
 Context.render = render
 
@@ -52,24 +52,27 @@ export function render (target: JSXElement) {
         if (prop.startsWith('on')) {
           // @ts-expect-error TODO: Check it
           element[prop] = target.props[prop]
-        } else {
-          const value = target.props[prop]
+          continue
+        }
 
-          if (typeof value === 'function') {
-            new Slot(() => {
-              element.setAttribute(prop, value())
-            }).on()
+        const value = target.props[prop]
 
-            continue
-          }
+        if (value instanceof Slot || typeof value === 'function') {
+          new Slot(() => {
+            const result = use(value)
 
-          if (value instanceof Slot) {
-            new Slot(() => {
-              element.setAttribute(prop, value.value)
-            }).on()
-          } else {
-            element.setAttribute(prop, String(value))
-          }
+            if (result === undefined || result === '') {
+              element.removeAttribute(prop)
+            } else {
+              element.setAttribute(prop, String(result))
+            }
+          }).on()
+
+          continue
+        }
+
+        if (value !== undefined && value !== '') {
+          element.setAttribute(prop, String(value))
         }
       }
 
