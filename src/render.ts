@@ -32,10 +32,7 @@ export function render (target: JSXElement) {
     const context = Context.nest()
     parentContext.set(content, context)
     render(content)
-
-    new Slot(Context.use(() => {
-      render(target.value)
-    }, context)).on()
+    new Slot(() => Context.use(() => render(target.value), context)).on()
 
     return
   }
@@ -79,7 +76,7 @@ export function render (target: JSXElement) {
       if ('children' in target.props) {
         const context = Context.nest()
         parentContext.set(element, context)
-        Context.use(render, context)(target.props.children)
+        Context.use(() => render(target.props.children), context)
       }
 
       return

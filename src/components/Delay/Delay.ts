@@ -41,7 +41,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     })
   }
 
-  const run = () => Context.use(render, context)(children)
+  const run = () => Context.use(() => render(children), context)
 
   if (hide > 0) {
     const hideState = new Slot(() => false)

@@ -11,5 +11,5 @@ export interface PortalProps {
 export function Portal ({ to = document.body, children }: PortalProps) {
   const context = Context.nest()
   parentContext.set(to, context)
-  Context.use(render, context)(children)
+  Context.use(() => render(children), context)
 }

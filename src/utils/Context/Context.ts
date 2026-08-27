@@ -1,3 +1,5 @@
+import type { Fn } from 'rune-hub'
+
 import type { JSXElement } from '../../types'
 
 type GetArray<T extends ReadonlyArray<Context>> = {
@@ -15,15 +17,13 @@ export interface ContextProviderProps<C extends Context | ReadonlyArray<Context>
 export class Context<T = unknown> {
   static current: ContextData = Object.create(null)
 
-  static use <F extends (...a: any[]) => any>(fn: F, context: ContextData = Context.current): F {
-    return function (...args: any[]) {
-      const prevParent = Context.current
-      Context.current = context
-      const result = fn(...args)
-      Context.current = prevParent
+  static use <A extends Fn<[]>>(fn: A, context: ContextData = Context.current): ReturnType<A> {
+    const prevParent = Context.current
+    Context.current = context
+    const result = fn()
+    Context.current = prevParent
 
-      return result
-    } as F
+    return result
   }
 
   static nest (): ContextData {
@@ -45,7 +45,7 @@ export class Context<T = unknown> {
       props.for.set(props.set, context)
     }
 
-    Context.use(Context.render, context)(props.children)
+    Context.use(() => Context.render(props.children), context)
   }
 
   key = Symbol('Context Key')
