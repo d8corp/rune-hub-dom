@@ -2,7 +2,7 @@ import { Slot } from 'rune-hub'
 
 import { Lazy } from './Lazy'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import { lazy } from '../../utils'
 
 afterEach(() => { document.body.innerHTML = '' })
@@ -12,13 +12,13 @@ const Bar = () => <div>Bar</div>
 
 describe('Lazy', () => {
   it('should render sync value', () => {
-    render(<Lazy component={() => Foo} />)
+    rundom(<Lazy component={() => Foo} />)
     expect(document.body.innerHTML).toBe('<div>Foo</div>')
   })
 
   it('should render dynamic value', () => {
     const slot = new Slot(() => Foo)
-    render(<Lazy component={slot} />)
+    rundom(<Lazy component={slot} />)
     expect(document.body.innerHTML).toBe('<div>Foo</div>')
 
     slot.set(Bar)
@@ -28,7 +28,7 @@ describe('Lazy', () => {
   it('should render async value', async () => {
     const promise = Promise.resolve({ default: Foo })
 
-    render(<Lazy component={() => promise} />)
+    rundom(<Lazy component={() => promise} />)
     expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 100))
@@ -36,7 +36,7 @@ describe('Lazy', () => {
   })
 
   it('should render lazy value', async () => {
-    render(<Lazy component={lazy(() => Promise.resolve({ default: Foo }))} />)
+    rundom(<Lazy component={lazy(() => Promise.resolve({ default: Foo }))} />)
     expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 100))
@@ -44,7 +44,7 @@ describe('Lazy', () => {
   })
 
   it('should render fallback value', async () => {
-    render(<Lazy fallback={<Bar />} component={lazy(() => Promise.resolve({ default: Foo }))} />)
+    rundom(<Lazy fallback={<Bar />} component={lazy(() => Promise.resolve({ default: Foo }))} />)
     expect(document.body.innerHTML).toBe('<div>Bar</div>')
 
     await new Promise(resolve => setTimeout(resolve, 100))
@@ -55,7 +55,7 @@ describe('Lazy', () => {
     const promise = Promise.resolve({ default: Foo })
     const slot = new Slot<any>(() => promise)
 
-    render(<Lazy component={slot} />)
+    rundom(<Lazy component={slot} />)
     expect(document.body.innerHTML).toBe('')
 
     await new Promise(resolve => setTimeout(resolve, 100))

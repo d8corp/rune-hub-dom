@@ -1,0 +1,11 @@
+.wrapper {
+  min-height: 100vh;
+}
+
+.content {
+  --scroll-top: var(--header-size);
+
+  &:empty {
+    margin-bottom: 9999px;
+  }
+}

@@ -1,9 +1,9 @@
 import type { Event, Listener } from 'rune-hub'
 
-import { useParentSlot } from '../useParentSlot'
+import { useCtx } from '../useCtx'
 
 export function useOnce (event: Event, listener: Listener) {
-  const stop = useParentSlot()?.on(event, () => {
+  const stop = useCtx()?.on(event, () => {
     stop?.()
     listener()
   })

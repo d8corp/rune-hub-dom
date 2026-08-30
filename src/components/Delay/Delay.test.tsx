@@ -2,7 +2,7 @@ import { Slot } from 'rune-hub'
 
 import { Show } from '../Show'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import type { Component } from '../../types'
 import { Ref } from '../../utils'
 
@@ -14,7 +14,7 @@ afterEach(() => {
 
 describe('Delay', () => {
   it('should work as is, without props', () => {
-    render(
+    rundom(
       <Delay>
         works
       </Delay>,
@@ -26,7 +26,7 @@ describe('Delay', () => {
   it('should work', async () => {
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         <Delay show={100} hide={100}>
           works
@@ -50,7 +50,7 @@ describe('Delay', () => {
   })
 
   it('should set elements to the right place', async () => {
-    render(
+    rundom(
       <>
         before
         <Delay show={100}>
@@ -70,7 +70,7 @@ describe('Delay', () => {
   it('should set elements to the right place with hide', async () => {
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         before
         <Delay show={100} hide={100}>
@@ -106,7 +106,7 @@ describe('Delay', () => {
 
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         <Delay hide={100}>
           <Component />
@@ -144,7 +144,7 @@ describe('Delay', () => {
 
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         <Delay show={100} hide={100}>
           <Component />
@@ -184,7 +184,7 @@ describe('Delay', () => {
 
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         <Component />
       </Show>,
@@ -206,7 +206,7 @@ describe('Delay', () => {
   })
 
   it('should work deep', async () => {
-    render(
+    rundom(
       <Delay show={100}>
         Works
         <Delay show={100}>fine!</Delay>
@@ -248,7 +248,7 @@ describe('Delay', () => {
       )
     }
 
-    render(<Test />)
+    rundom(<Test />)
 
     expect(document.body.innerHTML).toBe('')
 
@@ -274,7 +274,7 @@ describe('Delay', () => {
   })
 
   it('should have not Content for hide', async () => {
-    render(
+    rundom(
       <Delay hide={300}>
         <div id='foo' />
       </Delay>,

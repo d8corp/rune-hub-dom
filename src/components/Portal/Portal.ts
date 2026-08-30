@@ -1,5 +1,5 @@
 import { parentContext } from '../../constants'
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import type { JSXElement, Parent } from '../../types'
 import { Context } from '../../utils'
 
@@ -11,5 +11,5 @@ export interface PortalProps {
 export function Portal ({ to = document.body, children }: PortalProps) {
   const context = Context.nest()
   parentContext.set(to, context)
-  Context.use(() => render(children), context)
+  Context.use(() => rundom(children), context)
 }

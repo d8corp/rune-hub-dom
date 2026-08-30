@@ -52,6 +52,7 @@
   },
   "homepage": "https://github.com/d8corp/rune-hub-dom",
   "devDependencies": {
+    "@rune-hub/utils": "^1.0.0",
     "@textlint/ast-node-types": "^13.3.2",
     "@textlint/markdown-to-ast": "^13.3.2",
     "@types/jest": "^30.0.0",

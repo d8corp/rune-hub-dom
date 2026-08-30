@@ -1,8 +1,8 @@
 import { batch, Slot, unwatch } from 'rune-hub'
 
 import { parentContext } from '../../constants'
-import { useOnce, useParentSlot } from '../../hooks'
-import { render } from '../../render'
+import { useCtx, useOnce } from '../../hooks'
+import { rundom } from '../../rundom'
 import type { JSXElement, ObservableProp } from '../../types'
 import type { ContextData } from '../../utils'
 import {
@@ -65,7 +65,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
     const childHandler = Context.current
     const mainContent = parentContext.get(childHandler)!
 
-    if (!useParentSlot()!.inited) {
+    if (!useCtx()!.inited) {
       let index = 0
 
       for (const value of values) {
@@ -87,7 +87,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         forIndexContext.set(indexState, deepHandler)
         handlersMap.set(valueKey, deepHandler)
 
-        const deepRender = (children: JSXElement) => Context.use(() => render(children), deepHandler)
+        const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
           const result = new Slot(() => {
@@ -158,7 +158,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
           prepend(mainContent, content)
         }
 
-        const deepRender = (children: JSXElement) => Context.use(() => render(children), deepHandler)
+        const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
           const result = new Slot(() => {

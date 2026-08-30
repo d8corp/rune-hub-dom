@@ -1,30 +1,21 @@
-import { Slot } from 'rune-hub'
+import 'prismjs'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-json'
+import './styles/external.global.scss'
+import './styles/base.scss'
 
-import { Show } from '../components'
-import { render } from '../render'
+import { Router } from '../components'
+import { rundom } from '../rundom'
+import { removeLoading, scrollToHash } from './helpers'
+import { routing } from './routing'
+import { listenScrolling } from './state'
 
-function Counter () {
-  const count = new Slot(() => 0)
+removeLoading()
+scrollToHash()
+listenScrolling()
 
-  const handleClick = () => {
-    count.value++
-  }
-
-  return <button onclick={handleClick}>Count: {count}</button>
-}
-
-const show = new Slot(() => true)
-
-const toggleShow = () => {
-  show.value = !show.value
-}
-
-render(
-  <div>
-    <button onclick={toggleShow}>=</button>
-    <Show when={show}>
-      <Counter />
-    </Show>
-    {' '}👈 Click it!
-  </div>,
-)
+rundom(<Router routing={routing} />)

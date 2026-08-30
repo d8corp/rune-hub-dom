@@ -1,0 +1,14 @@
+.root {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-primary-light);
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+    outline: none;
+  }
+}

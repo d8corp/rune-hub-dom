@@ -1,6 +1,6 @@
 import { Link } from './Link'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import { pushHistory } from '../../utils'
 
 afterEach(() => {
@@ -10,20 +10,20 @@ afterEach(() => {
 
 describe('Link', () => {
   it('should work without props', async () => {
-    render(<Link>home</Link>)
+    rundom(<Link>home</Link>)
 
     expect(document.body.innerHTML).toBe('<a>home</a>')
   })
 
   it('should contain default props on external', async () => {
-    render(<Link href='https://cantinc.com'>CANT inc.</Link>)
+    rundom(<Link href='https://cantinc.com'>CANT inc.</Link>)
 
     expect(document.body.innerHTML)
       .toBe('<a href="https://cantinc.com" rel="noopener noreferrer nofollow" target="_blank">CANT inc.</a>')
   })
 
   it('should have self class', () => {
-    render(
+    rundom(
       <Link href='/' class='test'>
         CANT inc.
       </Link>,
@@ -33,7 +33,7 @@ describe('Link', () => {
   })
 
   it('should combine class prop', () => {
-    render(
+    rundom(
       <Link href='/' class={['test1', false, 0, 'test2']}>
         CANT inc.
       </Link>,
@@ -43,7 +43,7 @@ describe('Link', () => {
   })
 
   it('should have active class', async () => {
-    render(
+    rundom(
       <Link
         href='/'
         exact
@@ -65,7 +65,7 @@ describe('Link', () => {
   })
 
   it('should work with any search', async () => {
-    render(
+    rundom(
       <Link class={{ root: 'test', active: 'active' }} href='/test?phone=+7%20(999)%20999-99-99'>
         CANT inc.
       </Link>,

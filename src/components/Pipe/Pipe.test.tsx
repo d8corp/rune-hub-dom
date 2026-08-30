@@ -1,10 +1,10 @@
 import { Pipe } from './Pipe'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 
 describe('Pipe', () => {
   it('should work', () => {
-    render(
+    rundom(
       <Pipe>
         {(children, deep) => deep < 5 ? <div>{deep}{children}</div> : null}
       </Pipe>,

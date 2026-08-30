@@ -3,7 +3,7 @@ import { Slot } from 'rune-hub'
 import { Show } from '../Show'
 import { Portal } from './Portal'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -13,7 +13,7 @@ describe('Portal', () => {
   it('should work static', () => {
     const div = document.createElement('div')
 
-    render(
+    rundom(
       <Portal to={div}>
         works
       </Portal>,
@@ -27,7 +27,7 @@ describe('Portal', () => {
     const div = document.createElement('div')
     const show = new Slot(() => true)
 
-    render(
+    rundom(
       <Show when={show}>
         <Portal to={div}>
           works

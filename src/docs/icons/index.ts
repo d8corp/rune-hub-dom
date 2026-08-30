@@ -1,0 +1,6 @@
+export * from './AsideIcon'
+export * from './BurgerIcon'
+export * from './CopyIcon'
+export * from './LinkIcon'
+export * from './SideIcon'
+export * from './SuccessIcon'

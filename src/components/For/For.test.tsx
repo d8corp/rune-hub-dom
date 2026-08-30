@@ -2,7 +2,7 @@ import { Slot } from 'rune-hub'
 
 import { Delay } from '../Delay'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 
 import { For, forIndexContext, forValueContext } from '.'
 
@@ -13,7 +13,7 @@ afterEach(() => {
 describe('For', () => {
   describe('static', () => {
     it('should render without comments', () => {
-      render(
+      rundom(
         <ul>
           <For
             of={['Mike', 'Alex', 'Dan']}
@@ -26,7 +26,7 @@ describe('For', () => {
     })
 
     it('should render Set', () => {
-      render(
+      rundom(
         <ul>
           <For
             of={new Set(['Mike', 'Alex', 'Dan'])}
@@ -39,7 +39,7 @@ describe('For', () => {
     })
 
     it('should render Map', () => {
-      render(
+      rundom(
         <ul>
           <For
             of={new Map([[1, 'Mike'], [2, 'Alex'], [3, 'Dan']])}
@@ -56,7 +56,7 @@ describe('For', () => {
     it('should re-render', () => {
       const names = new Slot(() => ['Mike', 'Alex', 'Dan'])
 
-      render(
+      rundom(
         <ul>
           <For of={names}>
             {(value, index) => <li>#{index}: {value}</li>}
@@ -74,7 +74,7 @@ describe('For', () => {
     it('should re-render with a function value', () => {
       const names = new Slot(() => ['Mike', 'Alex', 'Dan'])
 
-      render(
+      rundom(
         <ul>
           <For of={() => names.value}>
             {(value, index) => <li>#{index}: {value}</li>}
@@ -92,7 +92,7 @@ describe('For', () => {
     it('should keep elements, if index in a function', () => {
       const names = new Slot(() => ['Mike', 'Alex', 'Dan'])
 
-      render(
+      rundom(
         <ul>
           <For of={names}>
             {(value, index) => <li>#{index}: {value}</li>}
@@ -114,7 +114,7 @@ describe('For', () => {
     it('should not keep elements, if element key is changed', () => {
       const names = new Slot(() => ['Mike', 'Alex', 'Dan'])
 
-      render(
+      rundom(
         <ul>
           <For of={names}>
             {(value) => <li>{value}</li>}
@@ -140,7 +140,7 @@ describe('For', () => {
         { id: 'dan', name: 'Dan' },
       ])
 
-      render(
+      rundom(
         <ul>
           <For of={people} key='id'>
             {(value) => <li>{() => value.value.name}</li>}
@@ -180,7 +180,7 @@ describe('For', () => {
         return result
       })
 
-      render(
+      rundom(
         <ul>
           <For of={data}>
             {(value) => <Delay hide={300}><li>{value}</li></Delay>}
@@ -201,7 +201,7 @@ describe('For', () => {
     it('should work with Set', () => {
       const names = new Slot(() => new Set(['Mike', 'Alex', 'Dan']))
 
-      render(
+      rundom(
         <ul>
           <For of={names}>
             {(value, index) => <li>#{index}: {value}</li>}
@@ -231,7 +231,7 @@ describe('For', () => {
         return <li>#{index}: {value}</li>
       }
 
-      render(
+      rundom(
         <ul>
           <For of={names}>
             {() => <User />}

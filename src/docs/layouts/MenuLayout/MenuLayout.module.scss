@@ -1,0 +1,64 @@
+.root {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.main {
+  order: 0;
+  min-width: 0;
+
+  &:empty {
+    margin-bottom: 9999px;
+  }
+}
+
+.buttons {
+  position: sticky;
+  bottom: 12px;
+  margin: 0 auto;
+  background: var(--color-bg-alpha);
+  backdrop-filter: blur(8px);
+  padding: 8px;
+  border-radius: 32px;
+  border: 1px solid var(--color-border);
+}
+
+.button {
+  font-size: 24px;
+  padding: 12px;
+}
+
+.button,
+.asideButton,
+.sideButton {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-bg-alpha);
+    color: var(--color-text);
+  }
+
+  &:active {
+    background: var(--color-border);
+  }
+}
+
+.asideButton {
+  right: 8px;
+}
+
+.asideButton,
+.sideButton {
+  position: fixed;
+  top: calc(var(--header-size) + 24px);
+  padding: 5px;
+}

@@ -3,7 +3,7 @@ import Timer from 'sync-timer'
 
 import { parentContext } from '../../constants'
 import { useOnce } from '../../hooks'
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import type { Ref } from '../../utils'
 import { append, Content, Context, dissolve } from '../../utils'
 
@@ -22,7 +22,7 @@ export interface DelayProps {
 
 export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
   if (show < 1 && hide < 1) {
-    render(children)
+    rundom(children)
 
     return
   }
@@ -41,7 +41,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     })
   }
 
-  const run = () => Context.use(() => render(children), context)
+  const run = () => Context.use(() => rundom(children), context)
 
   if (hide > 0) {
     const hideState = new Slot(() => false)

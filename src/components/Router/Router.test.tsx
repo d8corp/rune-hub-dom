@@ -2,7 +2,7 @@ import { Slot } from 'rune-hub'
 
 import { Router } from './Router'
 
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 import type { ChildrenProps, JSXElement } from '../../types'
 import { lazy, pushHistory } from '../../utils'
 
@@ -25,7 +25,7 @@ const MainLayout = (props: ChildrenProps) => <div>{props.children}</div>
 const SecondLayout = (props: ChildrenProps) => <span>{props.children}</span>
 
 const renderTest = (content: JSXElement) => {
-  return new Slot(() => render(content)).on()
+  return new Slot(() => rundom(content)).on()
 }
 
 describe('Router', () => {

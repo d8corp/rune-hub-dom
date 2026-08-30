@@ -1,0 +1,49 @@
+.root {
+  transform: scale(0.95);
+  transition: transform .2s;
+  transform-origin: left center;
+}
+
+.show {
+  transform: scale(1);
+}
+
+.hide {
+  transform: scale(1.1);
+}
+
+.subTitle {
+  color: var(--color-text-muted);
+  width: 100%;
+  font-size: 16px;
+  font-style: normal;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.withLink {
+  scroll-margin-top: calc(var(--scroll-top) + 16px);
+}
+
+.link {
+  margin-left: 6px;
+  margin-bottom: auto;
+  transition: opacity .2s;
+  opacity: 0;
+
+  .root:hover > & {
+    opacity: 1;
+  }
+
+  h1 > & {
+    margin-left: 16px;
+  }
+
+  h2 > & {
+    margin-left: 12px;
+  }
+
+  h3 > & {
+    margin-left: 10px;
+  }
+}

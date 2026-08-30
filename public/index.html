@@ -5,8 +5,34 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RuneHub DOM</title>
-    <script type="module" defer src="/rune-hub-dom/docs/index.js?v=%INNETJS_PACKAGE_VERSION%"></script>
+    <meta name="apple-mobile-web-app-title" content="Rundom" />
+    <title>Rundom</title>
+    <script type="module" defer src="/rundom/index.js?v=%INNETJS_PACKAGE_VERSION%"></script>
+    <style>
+        :root {
+            --color-bg: light-dark(#F8F7FC, #161626);
+        }
+        body {
+            padding: 0;
+            background: var(--color-bg);
+        }
+
+        #loading {
+            height: 9999px;
+            transition: opacity .2s;
+        }
+        #loading > img {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
 </head>
-<body></body>
+<body>
+<div id="loading"><img src="/rundom/loading.svg" /></div>
+<script>
+    document.body.style.colorScheme = localStorage.getItem('theme')
+</script>
+</body>
 </html>

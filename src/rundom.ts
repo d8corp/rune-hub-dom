@@ -4,15 +4,17 @@ import { parentContext } from './constants'
 import { useOnce } from './hooks'
 import type { HTMLProps, JSXElement } from './types'
 import { JSXNode } from './types'
-import { append, Content, Context, remove, use } from './utils'
+import { append, Content, Context, observablePropToRuneProp, remove, use } from './utils'
 
-Context.render = render
+Context.render = rundom
 
-export function render (target: JSXElement) {
+export const svgNamespaceContext = new Context<string>('')
+
+export function rundom (target: JSXElement) {
   if (target === undefined) return
 
   if (Array.isArray(target)) {
-    target.forEach(render)
+    target.forEach(rundom)
 
     return
   }
@@ -31,20 +33,30 @@ export function render (target: JSXElement) {
     const content = new Content()
     const context = Context.nest()
     parentContext.set(content, context)
-    render(content)
-    new Slot(() => Context.use(() => render(target.value), context)).on()
+    rundom(content)
+    new Slot(() => Context.use(() => rundom(target.value), context)).on()
 
     return
   }
 
   if (target instanceof JSXNode) {
     if (typeof target.type === 'string') {
-      const element = document.createElement(target.type)
+      const element = svgNamespaceContext.get() || target.type === 'svg'
+        ? document.createElementNS(svgNamespaceContext.get() || 'http://www.w3.org/2000/svg', target.type)
+        : document.createElement(target.type)
 
-      render(element)
+      rundom(element)
 
       for (const prop in target.props) {
         if (prop === 'children') continue
+
+        if (prop === 'ref') {
+          if (target.props.ref) {
+            target.props.ref.value = element
+          }
+
+          continue
+        }
 
         if (prop.startsWith('on')) {
           // @ts-expect-error TODO: Check it
@@ -53,6 +65,22 @@ export function render (target: JSXElement) {
         }
 
         const value = target.props[prop]
+
+        if (prop === 'style') {
+          for (const property in value) {
+            const rawValue = observablePropToRuneProp(value[property])
+
+            if (typeof rawValue === 'function') {
+              new Slot(() => {
+                element.style.setProperty(property, rawValue())
+              }).on()
+            } else {
+              element.style.setProperty(property, rawValue)
+            }
+          }
+
+          continue
+        }
 
         if (value instanceof Slot || typeof value === 'function') {
           new Slot(() => {
@@ -76,33 +104,38 @@ export function render (target: JSXElement) {
       if ('children' in target.props) {
         const context = Context.nest()
         parentContext.set(element, context)
-        Context.use(() => render(target.props.children), context)
+
+        if (target.type === 'svg') {
+          svgNamespaceContext.set('http://www.w3.org/2000/svg', context)
+        }
+
+        Context.use(() => rundom(target.props.children), context)
       }
 
       return
     }
 
     if (typeof target.type === 'function') {
-      render(target.type(target.props))
+      rundom(target.type(target.props))
 
       return
     }
 
     if (target.type === undefined && 'children' in target.props) {
-      render(target.props.children)
+      rundom(target.props.children)
     }
 
     return
   }
 
   if (typeof target === 'function') {
-    render(new Slot(target))
+    rundom(new Slot(target))
 
     return
   }
 
   if (typeof target === 'string' || typeof target === 'number') {
-    render(document.createTextNode(String(target)))
+    rundom(document.createTextNode(String(target)))
   }
 }
 

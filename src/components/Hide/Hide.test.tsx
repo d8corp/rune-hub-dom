@@ -3,7 +3,7 @@ import { Slot } from 'rune-hub'
 import { Hide } from './Hide'
 
 import { useOnce } from '../../hooks'
-import { render } from '../../render'
+import { rundom } from '../../rundom'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -13,7 +13,7 @@ describe('Hide', () => {
   it('should render with a state', () => {
     const hide = new Slot(() => false)
 
-    render(
+    rundom(
       <Hide when={hide}>
         Shown
       </Hide>,
@@ -31,7 +31,7 @@ describe('Hide', () => {
     const hide2 = new Slot(() => false)
     const hide = new Slot(() => hide1.value && hide2.value)
 
-    render(
+    rundom(
       <Hide when={hide}>
         Shown
       </Hide>,
@@ -51,7 +51,7 @@ describe('Hide', () => {
   it('should render with a function of state', () => {
     const hide = new Slot(() => false)
 
-    render(
+    rundom(
       <Hide when={() => hide.value}>
         Shown
       </Hide>,
@@ -74,7 +74,7 @@ describe('Hide', () => {
       return 'test'
     }
 
-    render(
+    rundom(
       <Hide when={hide}>
         <Test />
       </Hide>,
@@ -90,7 +90,7 @@ describe('Hide', () => {
   it('should render fallback', () => {
     const hide = new Slot(() => false)
 
-    render(
+    rundom(
       <Hide when={hide} fallback='Hide'>
         Show
       </Hide>,
