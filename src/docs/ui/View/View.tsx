@@ -10,7 +10,7 @@ import $styles from './View.module.scss'
 
 export type ViewProps = FlexProps<'div', typeof $styles>
 
-export function View (props: ViewProps) {
+export function View ({ title, ...props }: ViewProps) {
   const styles = useStyles($styles, props.class)
 
   return (
@@ -23,7 +23,7 @@ export function View (props: ViewProps) {
             <Dot color='success' />
           </Flex>
           <Typography flex>
-            <BaseMarkdown text={() => use(props.title) ?? ''} />
+            <BaseMarkdown text={() => use(title) ?? ''} />
           </Typography>
         </Flex>
       </Flex>

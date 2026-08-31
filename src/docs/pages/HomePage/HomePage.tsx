@@ -1,5 +1,5 @@
 import { Button, Code, DelayPage, Divider, Dot, Flex, Title } from '../../ui'
-import { CountExample, HelloWorldExample } from '../../widgets'
+import { CountExample, HelloWorldExample, JSXExample } from '../../widgets'
 import styles from './HomePage.scss'
 
 export default function HomePage () {
@@ -36,6 +36,8 @@ export default function HomePage () {
       </Flex>
       <Flex vertical gap={64} padding={[80, 24]} align='center' class={styles.section}>
         <HelloWorldExample />
+        <Divider />
+        <JSXExample />
         <Divider />
         <CountExample />
       </Flex>

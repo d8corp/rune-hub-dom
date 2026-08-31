@@ -65,7 +65,7 @@ Use the `StateProp<T>` type to allow a prop to receive either:
 
 - A **plain value** (e.g., `'red'`).
 - A **reactive getter function** (e.g., `() => state.value`).
-- A **reactive `Observable` object** (like `Slot` from `rune-hub`).
+- A **reactive `Slot` object**
 
 When you pass a reactive object into a DOM attribute (like `style`), `rundom` establishes a direct, fine-grained binding.
 When the state changes, `rundom` surgically updates only the specific DOM property, completely bypassing the component function.

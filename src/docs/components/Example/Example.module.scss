@@ -1,0 +1,49 @@
+@keyframes description {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes view {
+  from {
+    opacity: 0;
+    transform: translateX(50px) rotateY(-50deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(-30deg);
+  }
+}
+
+.root {
+  perspective: 900px;
+  max-width: 100%;
+}
+
+.description {
+  width: 480px;
+  max-width: 100%;
+  animation-timeline: view(block 100% 0);
+  animation-name: description;
+  animation-fill-mode: both;
+  animation-timing-function: ease;
+  animation-range: entry 100px entry 320px;
+}
+
+.view {
+  width: 320px;
+  max-width: 100%;
+  animation-timeline: view(block 80% 0);
+  animation-timing-function: ease;
+  animation-name: description;
+
+  @media (min-width: 1024px) {
+    animation-name: view;
+    transform: translateX(0) rotateY(-30deg);
+  }
+}

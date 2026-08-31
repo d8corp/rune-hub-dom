@@ -12,10 +12,10 @@ import { Router } from '../components'
 import { rundom } from '../rundom'
 import { removeLoading, scrollToHash } from './helpers'
 import { routing } from './routing'
-import { listenScrolling } from './state'
+// import { listenScrolling } from './state'
 
 removeLoading()
 scrollToHash()
-listenScrolling()
+// listenScrolling()
 
 rundom(<Router routing={routing} />)

@@ -1,10 +1,10 @@
-$foreground: #a3b7c6;
+$foreground: var(--color-text-muted);
 $comment: #808080;
 $selection: #214283;
 $lineHighlight: #323232;
 
 $orange: #cc7832;
-$yellow: #e8bf6a;
+$yellow: light-dark(#7C3AED, #e8bf6a);
 $brightYellow: #bbb529;
 $green: #6a8759;
 $brightGreen: #a5c261;

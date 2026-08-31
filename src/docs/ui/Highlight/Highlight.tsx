@@ -3,16 +3,24 @@ import Prism from 'prismjs'
 import { Slot } from 'rune-hub'
 
 import { Button } from '../Button'
-import { Dot } from '../Dot'
 import type { FlexElement, FlexProps } from '../Flex'
 import { Flex } from '../Flex'
 import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 import { Typography } from '../Typography'
 
 import { useEffect, useStyles } from '../../../hooks'
+import type { JSXElement } from '../../../types'
 import { inject, injectAll, Ref } from '../../../utils'
-import { CopyIcon, SuccessIcon } from '../../icons'
+import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'
+
+const icons = {
+  ts: <TypeScriptIcon />,
+  tsx: <TypeScriptIcon />,
+  shell: <TerminalIcon />,
+  html: <HtmlIcon />,
+  json: <JsonIcon />,
+} satisfies Record<string, JSXElement>
 
 export type HighlightProps<T extends FlexElement = 'div'> = FlexProps<T, typeof $styles> & {
   code: string
@@ -75,13 +83,9 @@ export function Highlight<T extends FlexElement = 'div'> ({
       return (
         <>
           <Flex vertical class={styles.header}>
-            <Flex padding={[12, 16]} class={styles.title} gap={12} align='center'>
-              <Flex gap={6}>
-                <Dot color='error' />
-                <Dot color='warning' />
-                <Dot color='success' />
-              </Flex>
-              <Typography flex>
+            <Flex padding={[12, 16]} class={styles.title} gap={8} align='center'>
+              {inject(lang, lang => icons[lang as keyof typeof icons])}
+              <Typography class={styles.titleText} flex>
                 <BaseMarkdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
               <Button size='s' view='secondary' onclick={copy}>

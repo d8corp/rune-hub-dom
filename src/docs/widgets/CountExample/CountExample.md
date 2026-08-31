@@ -1,6 +1,7 @@
-## Counter
+## Reactivity
 
-This is the simplest example of counter using rundom.
+Add reactive state without hooks, components or manual subscriptions. 
+Just update your value and the UI follows automatically, thanks to [rune-hub](https://github.com/d8corp/rune-hub).
 
 ```tsx
 //! Code

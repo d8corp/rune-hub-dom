@@ -39,3 +39,7 @@
   box-shadow: 0 0 8px var(--color-success);
   animation: pulse 2s ease-in-out infinite;
 }
+
+.disabled {
+  background: var(--color-text-dim);
+}

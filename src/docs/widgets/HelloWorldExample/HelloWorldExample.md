@@ -1,6 +1,7 @@
 ## Hello World
 
-This is the simplest example of rundom usage.
+Build single-page applications with less code and a clean, minimal API.
+Write less boilerplate, focus on your app.
 
 ```ts
 //! Code
