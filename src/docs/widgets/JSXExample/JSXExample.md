@@ -10,4 +10,4 @@ import { rundom } from 'rundom'
 rundom(<p>Hello World!</p>)
 ```
 
-More about JSX [here](https://www.typescriptlang.org/docs/handbook/jsx.html)
+To learn more, refer to the [JSX Documentation](https://www.typescriptlang.org/docs/handbook/jsx.html).

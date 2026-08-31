@@ -1,5 +1,8 @@
 ## Router
 
+Use the built-in routing system to easily manage client-side navigation and dynamic pages.
+See the [\<Router>](/router) documentation for a complete API overview.
+
 ```tsx
 //! index.tsx
 import { 

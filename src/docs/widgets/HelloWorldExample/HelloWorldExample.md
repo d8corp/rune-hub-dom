@@ -10,4 +10,4 @@ import { rundom } from 'rundom'
 rundom('Hello World!')
 ```
 
-Check [Quick Start](/quick-start) to setup environment.
+See the [Quick Start](/quick-start) guide to set up your environment.

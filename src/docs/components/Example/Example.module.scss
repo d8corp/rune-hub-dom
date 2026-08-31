@@ -29,6 +29,8 @@
   perspective-origin: right;
   position: sticky;
   top: calc(var(--header-size) + 20px);
+  width: 480px;
+  max-width: 100%;
 }
 
 .description {
@@ -42,13 +44,12 @@
 }
 
 .view {
-  width: 320px;
-  max-width: 100%;
   animation-timeline: view(block 80% 0);
   animation-timing-function: ease;
   animation-name: description;
 
   @media (min-width: 1024px) {
+    width: 320px;
     animation-name: view;
     transform: translateX(0) rotateY(-15deg);
   }

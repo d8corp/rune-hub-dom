@@ -1,5 +1,7 @@
 ## Control Flow
 
+Use built-in components like [\<For>](/for) and [\<Show>](/show) to manage conditional rendering, loops, and dynamic layouts natively in JSX.
+
 ```tsx
 //! index.tsx
 import { rundom, Show, For } from 'rundom'
