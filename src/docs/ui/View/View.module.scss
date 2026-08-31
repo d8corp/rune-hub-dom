@@ -3,17 +3,13 @@
   font-size: 14px;
 }
 
-.header {
-  background: var(--color-bg);
-  top: var(--header-size);
-}
-
 .title {
   font-size: 12px;
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
   background: light-dark(var(--color-bg-elevated), var(--color-bg-surface));
   border-radius: 16px 16px 0 0;
+  transition: all .2s;
 }
 
 .code {
@@ -22,4 +18,5 @@
   border-top: none;
   background: light-dark(var(--color-bg-contrast), var(--color-bg-deep));
   border-radius: 0 0 16px 16px;
+  transition: all .2s;
 }

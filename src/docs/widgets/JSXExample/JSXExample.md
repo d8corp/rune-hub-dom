@@ -4,8 +4,10 @@ Write your UI with familiar JSX syntax.
 No compiler setup or extra configuration required.
 
 ```tsx
-//! Code
+//! index.tsx
 import { rundom } from 'rundom'
 
-rundom(<b>Hello World!</b>)
+rundom(<p>Hello World!</p>)
 ```
+
+More about JSX [here](https://www.typescriptlang.org/docs/handbook/jsx.html)

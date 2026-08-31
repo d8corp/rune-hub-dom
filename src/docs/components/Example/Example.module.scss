@@ -12,17 +12,23 @@
 @keyframes view {
   from {
     opacity: 0;
-    transform: translateX(50px) rotateY(-50deg);
+    transform: translateX(150px) translateZ(-350px) rotateY(-20deg);
   }
   to {
     opacity: 1;
-    transform: translateX(0) rotateY(-30deg);
+    transform: translateX(0) translateZ(0) rotateY(-15deg);
   }
 }
 
 .root {
-  perspective: 900px;
   max-width: 100%;
+}
+
+.viewContainer {
+  perspective: 900px;
+  perspective-origin: right;
+  position: sticky;
+  top: calc(var(--header-size) + 20px);
 }
 
 .description {
@@ -44,6 +50,6 @@
 
   @media (min-width: 1024px) {
     animation-name: view;
-    transform: translateX(0) rotateY(-30deg);
+    transform: translateX(0) rotateY(-15deg);
   }
 }

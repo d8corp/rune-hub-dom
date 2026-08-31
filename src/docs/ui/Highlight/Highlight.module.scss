@@ -10,6 +10,7 @@
   top: calc(var(--header-size) - 2px);
   padding-top: 10px;
   margin-bottom: 56px;
+  transition: all .2s;
 }
 
 .title {
@@ -18,6 +19,7 @@
   border: 1px solid var(--color-border);
   background: light-dark(var(--color-bg-elevated), var(--color-bg-surface));
   border-radius: 16px 16px 0 0;
+  transition: all .2s;
 }
 
 .titleText {
@@ -31,6 +33,7 @@
   background: light-dark(var(--color-bg-contrast), var(--color-bg-deep));
   border-radius: 0 0 16px 16px;
   margin-top: -56px;
+  transition: all .2s;
 }
 
 .tabs {

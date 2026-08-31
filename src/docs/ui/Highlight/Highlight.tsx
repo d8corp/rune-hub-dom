@@ -10,7 +10,7 @@ import { Typography } from '../Typography'
 
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement } from '../../../types'
-import { inject, injectAll, Ref } from '../../../utils'
+import { inject, Ref } from '../../../utils'
 import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'
 
@@ -93,12 +93,14 @@ export function Highlight<T extends FlexElement = 'div'> ({
               </Button>
             </Flex>
           </Flex>
-          <pre
-            class={injectAll([styles.code, inject(lang, lang => `language-${lang}`)], classes)}
-            ref={ref}
-          >
-            {!hasLand && codeText}
-          </pre>
+          <div class={styles.code}>
+            <pre
+              class={inject(lang, lang => `language-${lang}`)}
+              ref={ref}
+            >
+              {!hasLand && codeText}
+            </pre>
+          </div>
         </>
       )
     }
@@ -147,7 +149,9 @@ export function Highlight<T extends FlexElement = 'div'> ({
             </Button>
           </Flex>
         </Flex>
-        <pre class={injectAll([styles.code, inject(lang, lang => `language-${lang}`)], classes)} ref={ref} />
+        <div class={styles.code}>
+          <pre class={inject(lang, lang => `language-${lang}`)} ref={ref} />
+        </div>
       </>
     )
   }

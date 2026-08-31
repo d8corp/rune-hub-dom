@@ -1,7 +1,7 @@
 import { Example } from '../../components'
-import text from './JSXExample.md'
+import text from './ComponentsExample.md'
 
-export function JSXExample () {
+export function ComponentsExample () {
   return (
     <Example description={text}>
       <p>Hello World!</p>

@@ -1,5 +1,12 @@
 import { Button, Code, DelayPage, Divider, Dot, Flex, Title } from '../../ui'
-import { CountExample, HelloWorldExample, JSXExample } from '../../widgets'
+import {
+  ComponentsExample,
+  ControlFlowExample,
+  CountExample,
+  HelloWorldExample,
+  JSXExample,
+  RouterExample,
+} from '../../widgets'
 import styles from './HomePage.scss'
 
 export default function HomePage () {
@@ -39,7 +46,13 @@ export default function HomePage () {
         <Divider />
         <JSXExample />
         <Divider />
+        <ComponentsExample />
+        <Divider />
         <CountExample />
+        <Divider />
+        <ControlFlowExample />
+        <Divider />
+        <RouterExample />
       </Flex>
     </DelayPage>
 

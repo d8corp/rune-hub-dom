@@ -4,8 +4,10 @@ Build single-page applications with less code and a clean, minimal API.
 Write less boilerplate, focus on your app.
 
 ```ts
-//! Code
+//! index.tsx
 import { rundom } from 'rundom'
 
 rundom('Hello World!')
 ```
+
+Check [Quick Start](/quick-start) to setup environment.

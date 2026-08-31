@@ -15,17 +15,15 @@ export function View ({ title, ...props }: ViewProps) {
 
   return (
     <Flex {...props} vertical class={styles.root}>
-      <Flex vertical class={styles.header}>
-        <Flex padding={[12, 16]} class={styles.title} gap={12} align='center'>
-          <Flex gap={6}>
-            <Dot color='error' />
-            <Dot color='warning' />
-            <Dot color='success' />
-          </Flex>
-          <Typography flex>
-            <BaseMarkdown text={() => use(title) ?? ''} />
-          </Typography>
+      <Flex padding={[12, 16]} class={styles.title} gap={12} align='center'>
+        <Flex gap={6}>
+          <Dot color='error' />
+          <Dot color='warning' />
+          <Dot color='success' />
         </Flex>
+        <Typography flex>
+          <BaseMarkdown text={() => use(title) ?? ''} />
+        </Typography>
       </Flex>
       <div class={styles.code}>
         {props.children}
