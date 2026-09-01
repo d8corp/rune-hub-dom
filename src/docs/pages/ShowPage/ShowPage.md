@@ -1,10 +1,10 @@
 # Show
 
-| Prop        | Type                          | Description                                         |
-|-------------|-------------------------------|-----------------------------------------------------|
-| when [*](#) | `Slot<T>` \| `() => T` \| `T` | Condition to determine whether to show the children |
-| fallback    | `JSX.Element`                 | Element to render if the condition is not met       |
-| children    | `JSX.Element`                 | Content to render when the condition is met         |
+| Prop            | Type                          | Description                                         |
+|-----------------|-------------------------------|-----------------------------------------------------|
+| **when** [*](#) | `Slot<T>` \| `() => T` \| `T` | Condition to determine whether to show the children |
+| **fallback**    | `JSX.Element`                 | Element to render if the condition is not met       |
+| **children**    | `JSX.Element`                 | Content to render when the condition is met         |
 
 You can use `Show` component to show/hide content by state.
 

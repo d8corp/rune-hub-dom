@@ -1,15 +1,15 @@
 ## Link
 
-| Prop     | Type                                                 | Description                                                    |
-|----------|------------------------------------------------------|----------------------------------------------------------------|
-| href     | `string`                                             | URL or path the link navigates to                              |
-| target   | `'_blank'` \| `'_parent'` \| `'__self'` \| `'__top'` | The target attribute for the link                              |
-| scroll   | `'after'` \| `'before'` \| `'none'`                  | Controls scroll behavior on navigation                         |
-| scrollTo | `number` \| `string`                                 | Position or selector to scroll to after navigation             |
-| replace  | `boolean`                                            | Replace the current history entry instead of pushing a new one |
-| exact    | `boolean`                                            | Match the path exactly instead of by prefix                    |
-| class    | `string` \| `{ root: string, active: string }`       | CSS class(es) for the link and its active state                |
-| children | `JSX.Element`                                        | Content to render inside the link                              |
+| Prop         | Type                                                 | Description                                                    |
+|--------------|------------------------------------------------------|----------------------------------------------------------------|
+| **href**     | `string`                                             | URL or path the link navigates to                              |
+| **target**   | `'_blank'` \| `'_parent'` \| `'__self'` \| `'__top'` | The target attribute for the link                              |
+| **scroll**   | `'after'` \| `'before'` \| `'none'`                  | Controls scroll behavior on navigation                         |
+| **scrollTo** | `number` \| `string`                                 | Position or selector to scroll to after navigation             |
+| **replace**  | `boolean`                                            | Replace the current history entry instead of pushing a new one |
+| **exact**    | `boolean`                                            | Match the path exactly instead of by prefix                    |
+| **class**    | `string` \| `{ root: string, active: string }`       | CSS class(es) for the link and its active state                |
+| **children** | `JSX.Element`                                        | Content to render inside the link                              |
 
 Use the `Link` component to create links.
 It behaves like an HTML `<a>` tag but uses the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) for internal navigation.

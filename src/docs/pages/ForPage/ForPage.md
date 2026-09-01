@@ -1,10 +1,10 @@
 ## For
 
-| Prop      | Type                                                  | Description                                               |
-|-----------|-------------------------------------------------------|-----------------------------------------------------------|
-| of [*](#) | `StateProp<Iterable<T>>`                              | The collection to iterate over                            |
-| key       | `keyof T` \| `(item: T) => any`                       | Unique key for each item, used for DOM optimization       |
-| children  | `(item: Slot<T>, index: Slot<number>) => JSX.Element` | Function that returns JSX for each item in the collection |
+| Prop          | Type                                                  | Description                                               |
+|---------------|-------------------------------------------------------|-----------------------------------------------------------|
+| **of** [*](#) | `StateProp<Iterable<T>>`                              | The collection to iterate over                            |
+| **key**       | `keyof T` \| `(item: T) => any`                       | Unique key for each item, used for DOM optimization       |
+| **children**  | `(item: Slot<T>, index: Slot<number>) => JSX.Element` | Function that returns JSX for each item in the collection |
 
 You can use `map` method of an array to put view on data.
 ```tsx

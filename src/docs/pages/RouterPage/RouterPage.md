@@ -1,9 +1,9 @@
 # Router
 
-| Prop           | Type                     | Description                                          |
-|----------------|--------------------------|------------------------------------------------------|
-| routing [*](#) | `StateProp<Routing>`     | Routing object that defines the route structure      |
-| permissions    | `StateProp<Set<string>>` | Set of permissions required to access certain routes |
+| Prop               | Type                     | Description                                          |
+|--------------------|--------------------------|------------------------------------------------------|
+| **routing** [*](#) | `StateProp<Routing>`     | Routing object that defines the route structure      |
+| **permissions**    | `StateProp<Set<string>>` | Set of permissions required to access certain routes |
 
 You can render content based on the current URL.
 
@@ -320,5 +320,5 @@ export const Content = () => (
 ## What's Next?
 ---
 
-- Explore hooks [useParam](/use-param) and [useParams](/use-params)
 - Discover component [Link](/link)
+- Explore hooks [useParam](/use-param) and [useParams](/use-params)

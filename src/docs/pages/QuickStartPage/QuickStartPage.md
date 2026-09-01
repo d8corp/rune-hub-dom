@@ -1,52 +1,6 @@
 # Quick Start
 
-Build reactive web applications with direct DOM manipulation and fine-grained updates.
-Say goodbye to virtual DOM overhead and unnecessary re-renders.
-You get simple, composable components and a runtime that updates only what actually changed.
-
 This guide will take you from an empty directory to a running application, help you understand the core building blocks, and prepare your project for production.
-
-## Why Rundom?
----
-
-Here is what makes it stand out:
-
-- **Fine-grained reactivity** — Updates only what changed, not the entire component tree
-- **Smaller bundles** — No virtual DOM diffing library
-- **Simple mental model** — Components render once, state drives updates automatically
-- **TypeScript-first** — Full type safety for JSX, props, and state
-- **Built-in routing** — Flexible routing with code-splitting, permissions, and nested layouts
-- **Powerful utilities** — Portal, Show, Hide, For, Delay, and more out of the box
-
-## See It in Action
----
-
-Here is a complete, reactive counter in just a few lines of code:
-
-```tsx
-//! src/index.tsx
-import { rundom } from 'rundom'
-import { Slot } from 'rune-hub'
-
-const count = new Slot(() => 0)
-const inc = () => count.value++
-
-rundom(
-  <button onclick={inc}>
-    Count: {count}
-  </button>
-)
-```
-
-Notice how we pass `count` directly into the JSX.
-
-When `count.value` changes, `rundom` automatically tracks it and **updates only the text node** inside the button.
-No component re-renders, no diffing algorithm.
-
-> The use of [components](/components) is not mandatory
-
-## Installation
----
 
 ### Prerequisites
 
@@ -54,7 +8,8 @@ No component re-renders, no diffing algorithm.
 - **Package manager**: npm, yarn, or pnpm
 - **Browser**: Any modern browser supporting ES6+
 
-### Option 1: Create a New Project (Recommended)
+## InnetJS
+---
 
 The fastest way to get started is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -78,32 +33,8 @@ my-app/
 └── package.json
 ```
 
-### Option 2: Add to Existing Project
-
-If you prefer to integrate [Rundom](/) into your own build setup, install the core packages:
-
-```shell
-//! npm
-npm install rundom rune-hub
-
-//! yarn
-yarn add rundom rune-hub
-
-//! pnpm
-pnpm add rundom rune-hub
-```
-
-**Package breakdown:**
-- [rune-hub](https://github.com/d8corp/rune-hub) — Reactive state management
-
-## Your First Application
----
-
-If you scaffolded your project using `npx innetjs init my-app -t rundom` (where `-t rundom` selects the standard frontend template), your environment is already fully configured.
-
-Let's look under the hood of your new project. The following steps break down the generated files, explain how they work together, and show you how to run and build your app.
-
-*(Note: If you are setting up Innet manually in an existing project, you can use these steps as a blueprint to configure your own files!)*
+Let's look under the hood of your new project. 
+The following steps break down the generated files, explain how they work together, and show you how to run and build your app.
 
 ### The Entry Point
 
@@ -161,7 +92,6 @@ To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsc
     "rootDir": "src",
     "target": "ES2018",
     "lib": [ "dom", "dom.iterable", "esnext" ],
-    "types": ["jest"],
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",

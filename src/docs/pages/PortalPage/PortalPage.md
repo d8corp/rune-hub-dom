@@ -26,7 +26,7 @@ Use a `Portal` to render content into the `app` element.
 import { rundom, Portal } from 'rundom'
 
 rundom(
-  <Portal to={document.getElementById('app')}>
+  <Portal to={document.getElementById('app')!}>
     <h1>
       Hello World!
     </h1>

@@ -1,6 +1,6 @@
 # Components
 
-Components are the fundamental building blocks of an `rundom` application.
+Components are the fundamental building blocks of an application.
 A component is simply a function that returns renderable content, which you can then use directly as a JSX element.
 
 ```tsx
@@ -55,10 +55,7 @@ rundom(<Content color='red' />)
 
 ### State Props
 
-In `rundom`, **components do not "re-render"**.
-
-Instead, think of a component as the slider on a zipper: on one side is your reactive state, and on the other side are the DOM elements.
-The component's only job is to connect (zip) them together.
+In `rundom`, **components do not "re-render"**. 
 A component is either inserted into the DOM (mounted) or removed from it (unmounted) — the component function itself is never called again.
 
 Use the `StateProp<T>` type to allow a prop to receive either:
@@ -204,5 +201,4 @@ export function Counter () {
 ## What's Next?
 ---
 
-- **[Components](/components)** — Learn about component patterns, props, children, and lifecycle hooks like `useEffect`.
 - **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`, including `Slot` and watchers.

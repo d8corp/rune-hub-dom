@@ -19,11 +19,11 @@ export function Content () {
 
 ## Provider
 
-| Prop            | Type                           | Description                                                     |
-|-----------------|--------------------------------|-----------------------------------------------------------------|
-| for [*](#)      | `Context<T>` \| `Context<T>[]` | A context or array of contexts to provide                       |
-| set [*](#)      | `T` \| `T[]`                   | A value or array of values to pass to the context(s)            |
-| children [*](#) | `JSX.Element`                  | Child elements that will have access to the provided context(s) |
+| Prop                | Type                           | Description                                                     |
+|---------------------|--------------------------------|-----------------------------------------------------------------|
+| **for** [*](#)      | `Context<T>` \| `Context<T>[]` | A context or array of contexts to provide                       |
+| **set** [*](#)      | `T` \| `T[]`                   | A value or array of values to pass to the context(s)            |
+| **children** [*](#) | `JSX.Element`                  | Child elements that will have access to the provided context(s) |
 
 Use `Context.Provider` to provide context value into children.
 

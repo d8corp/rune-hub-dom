@@ -32,7 +32,7 @@ export function Content (props: ContentProps) {
 
 Then you can use `class` prop to define classes.
 
-```typescript jsx
+```tsx
 //! src/index.tsx
 import { rundom } from 'rundom'
 import { Slot } from 'rune-hub'
@@ -49,14 +49,13 @@ rundom(
       class={{
         root: 'root',
         header: ['header', 'another-class'],
-        content: [
+        content: () => [
           'content',
-          () => show.value && 'show'
+          show.value && 'show'
         ],
       }}
     />
-    <button
-      onclick={handleClick}>
+    <button onclick={handleClick}>
       Hide
     </button>
   </>

@@ -25,11 +25,6 @@ export const menu: MenuItem[] = [
         href: '/styling',
         children: 'Styling',
       },
-      {
-        href: '/context',
-        exact: true,
-        children: 'Context',
-      },
     ],
   },
   {
