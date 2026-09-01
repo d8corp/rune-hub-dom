@@ -8,25 +8,34 @@ This guide will take you from an empty directory to a running application, help 
 - **Package manager**: npm, yarn, or pnpm
 - **Browser**: Any modern browser supporting ES6+
 
-## InnetJS
+## Setup environment
 ---
-
-The fastest way to get started is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
+Feel free to use any preferred tooling.
+This section covers the setup for [innetjs]([innetjs](https://www.npmjs.com/package/innetjs)) and [Vite](/).
 
 ```shell
-//! Terminal
-npx innetjs init my-app -t rundom
+//! innetjs
+npx innetjs init my-app --template rundom
+//! vite
+npm create vite@latest my-app -- --template rundom
 ```
 
-> The `-t rundom` flag creates a `rundom` frontend template, and `my-app` is the working folder.
+> The `--template rundom` flag creates a `rundom` frontend template, and `my-app` is the working folder.
 
 This creates a ready-to-use project with component examples, configured routing, a development server with TypeScript + JSX setup, and an optimized build pipeline.
 
 ```
-//! Project structure
+//! Innet structure
 my-app/
 ├── public/
 │   └── index.html     // HTML shell
+├── src/
+│   └── index.tsx      // Application entry point
+├── tsconfig.json      // TypeScript and JSX configuration
+└── package.json
+//! Vite structure
+my-app/
+├── index.html     // HTML shell
 ├── src/
 │   └── index.tsx      // Application entry point
 ├── tsconfig.json      // TypeScript and JSX configuration
@@ -36,7 +45,7 @@ my-app/
 Let's look under the hood of your new project. 
 The following steps break down the generated files, explain how they work together, and show you how to run and build your app.
 
-### The Entry Point
+## The Entry Point
 
 Open `src/index.tsx`. This is where your application comes to life:
 
@@ -58,9 +67,10 @@ rundom(<App />)
 
 The `rundom()` function takes your root JSX component and mounts it to the DOM.
 
-### HTML Shell
+## HTML Shell
 
-Next, look at `public/index.html`. This is the shell that hosts your app:
+Next, look at `public/index.html` or `index.html` for Vite.
+This is the shell that hosts your app:
 
 ```html
 //! public/index.html
@@ -81,7 +91,7 @@ Next, look at `public/index.html`. This is the shell that hosts your app:
 By default, `rundom` attaches your application directly to `document.body`.
 If you prefer to mount your app inside a specific wrapper (like `<div id="root">`), you can easily do so using the built-in [Portal](/portal) component.
 
-### TypeScript & JSX Configuration
+## TypeScript & JSX Configuration
 
 To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsconfig.json` like this:
 
@@ -104,7 +114,7 @@ To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsc
 
 ```
 
-### Start the Development Server
+## Start the Development Server
 
 If you haven't already, fire up the development server:
 
@@ -115,7 +125,7 @@ npm start
 
 The `innetjs` CLI acts as your bundler and dev server, providing TypeScript compilation, JSX transformation, and lightning-fast rebuilds.
 
-### Build for Production
+## Build for Production
 
 Once you are happy with your app and ready to deploy, you need to create an optimized production bundle:
 
