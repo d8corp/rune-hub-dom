@@ -201,4 +201,4 @@ export function Counter () {
 ## What's Next?
 ---
 
-- **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`, including `Slot` and watchers.
+- **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`.
