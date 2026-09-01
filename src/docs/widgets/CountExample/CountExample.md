@@ -6,14 +6,14 @@ Just update your value and the UI follows automatically, thanks to [rune-hub](ht
 ```tsx
 //! index.tsx
 import { rundom } from 'rundom'
-import { Slot } from 'rune-hub'
+import { slot } from 'rune-hub'
 
-const count = new Slot(() => 0)
-const inc = () => count.value++
+const count = () => 0
+const inc = () => slot(count).value++
 
 rundom(
   <button onclick={inc}>
-    Count: {count}
+    Count: {slot(count)}
   </button>
 )
 ```
