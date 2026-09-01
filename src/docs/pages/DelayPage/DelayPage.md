@@ -1,11 +1,11 @@
 # Delay
 
-| Prop     | Type                 | Description                                        |
-|----------|----------------------|----------------------------------------------------|
-| show     | `number`             | Delay before showing the content (in milliseconds) |
-| hide     | `number`             | Delay before hiding the content (in milliseconds)  |
-| ref      | `Ref<Slot<boolean>>` | Reference to the visibility state                  |
-| children | `JSX.Element`        | Content to render with delay                       |
+| Prop         | Type                 | Description                                        |
+|--------------|----------------------|----------------------------------------------------|
+| **show**     | `number`             | Delay before showing the content (in milliseconds) |
+| **hide**     | `number`             | Delay before hiding the content (in milliseconds)  |
+| **ref**      | `Ref<Slot<boolean>>` | Reference to the visibility state                  |
+| **children** | `JSX.Element`        | Content to render with delay                       |
 
 You can show or hide elements with a delay.
 
