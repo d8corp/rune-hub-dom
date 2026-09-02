@@ -1,6 +1,6 @@
 # Portal
 
-The `Portal` component renders content into a DOM element outside the current component hierarchy.
+The `<Portal>` component renders content into a DOM element outside the current component hierarchy.
 This is essential for building UI elements that need to break out of their parent's styling context, such as modals, tooltips, notifications, and dropdowns.
 
 | Prop              | Type                                  | Description                                               |
@@ -11,7 +11,7 @@ This is essential for building UI elements that need to break out of their paren
 ## Basic Usage
 ---
 
-If you want to render content into an element other than `body`, use the `Portal` component.
+If you want to render content into an element other than `body`, use the `<Portal>` component.
 
 ```html
 //! public/index.html
@@ -30,7 +30,7 @@ If you want to render content into an element other than `body`, use the `Portal
 </html>
 ```
 
-Use a `Portal` to render content into the `app` element:
+Use a `<Portal>` to render content into the `app` element:
 
 ```tsx
 //! src/index.tsx
