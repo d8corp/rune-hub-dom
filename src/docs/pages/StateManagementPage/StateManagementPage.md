@@ -84,69 +84,68 @@ rundom(
 ## Best Practices
 ---
 
-### When to Use Slot
+**Use functions for dynamic content**: Wrap computed content in functions
+```tsx
+//! 👍 Good
+<div>
+  Price: ${() => price.value.toFixed(2)}
+</div>
 
-Use `Slot` for any value that needs to be reactive:
+//! 👎 Avoid
+<div>
+  Price: ${price.value.toFixed(2)}
+</div>
+```
 
-- **UI state**: toggles, selections, form inputs
-- **Application state**: user data, shopping cart, filters
-- **Derived values**: computed totals, filtered lists, validation states
-- **External data**: API responses, WebSocket messages
+**Avoid creating runes in render functions**: Create runes at module level or in setup phase
+```tsx
+//! 👍 Good
+const count = () => 0
 
-### Performance Tips
+const MyComponent = () => (
+  <div>{slot(count)}</div>
+)
 
+//! 👎 Avoid
+const MyComponent = () => {
+  const count = () => 0
+  // Creates new slot in a hub each render
+  return <div>{slot(count)}</div>
+}
+```
 
-1. **Use functions for dynamic content**: Wrap computed values in functions when you need to format or transform
-   ```tsx
-   //! 🟢 Good - lightweight formatting
-   <div>Price: ${() => price.value.toFixed(2)}</div>
-   
-   //! 🔴 Avoid - the component will remove after `price` changed
-   <div>Price: ${price.value.toFixed(2)}</div>
-   ```
+**Keep slots focused**: Create separate slots for independent concerns rather than large nested objects
+```tsx
+//! 👍 Good
+const firstName = new Slot(() => 'John')
+const lastName = new Slot(() => 'Doe')
 
-2. **Avoid creating runes in render functions**: Create runes at module level or in setup phase
-   ```tsx
-   //! 🟢 Good - module level
-   const count = () => 0
-   const MyComponent = () => <div>{slot(count)}</div>
-   
-   //! 🔴 Avoid - new rune every render
-   const MyComponent = () => {
-     const count = () => 0 // Creates new slot in a hub each time
-     return <div>{slot(count)}</div>
-   }
-   ```
+//! 👎 Avoid
+const user = new Slot(() => ({
+   firstName: 'John',
+   lastName: 'Doe',
+}))
+```
 
-3. **Keep slots focused**: Create separate slots for independent concerns rather than large nested objects
-   ```tsx
-   //! 🟢 Good - separate slots
-   const firstName = new Slot(() => 'John')
-   const lastName = new Slot(() => 'Doe')
-   
-   //! 🔴 Avoid - nested object for independent values
-   const user = new Slot(() => ({ firstName: 'John', lastName: 'Doe' }))
-   ```
+**Use computed slots for derived values**: Let `rundom` handle dependency tracking automatically
+```tsx
+//! 👍 Good
+const total = new Slot(() => price.value * quantity.value)
 
-4. **Use computed slots for derived values**: Let `rundom` handle dependency tracking automatically
-   ```tsx
-   //! 🟢 Good - automatic reactivity
-   const total = new Slot(() => price.value * quantity.value)
-   
-   //! 🔴 Avoid - manual updates
-   let total = 0
-   const updateTotal = () => { total = price.value * quantity.value }
-   ```
+//! 👎 Avoid
+let total = 0
+const updateTotal = () => { total = price.value * quantity.value }
+```
 
-5. **Minimize watchers**: Use `.on()` only for side effects, not for derived values
-   ```tsx
-   //! 🟢 Good - computed slot
-   const fullName = new Slot(() => `${first.value} ${last.value}`)
-   
-   //! 🔴 Avoid - watcher for derived value
-   const fullName = new Slot(() => '')
-   first.on(() => fullName.value = `${first.value} ${last.value}`)
-   ```
+**Minimize watchers**: Use `.on()` only for side effects, not for derived values
+```tsx
+//! 👍 Good
+const fullName = new Slot(() => `${first.value} ${last.value}`)
+
+//! 👎 Avoid
+const fullName = new Slot(() => '')
+first.on(() => fullName.value = `${first.value} ${last.value}`)
+```
 
 ### Common Patterns
 
@@ -195,8 +194,5 @@ const removeItem = (index: number) => {
 ## What's Next?
 ---
 
-- **[Components](/components)** — Learn how to build reusable components with reactive props
-- **[Show](/show)** — Conditionally render content based on state
-- **[Hide](/hide)** — Hide elements without removing them from the DOM
-- **[For](/for)** — Efficiently render lists of reactive data
-- **[Context](/context)** — Share state across components without prop drilling
+- **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
+- **[Context](/context)** — Share state across components without prop drilling.

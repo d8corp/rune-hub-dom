@@ -135,36 +135,37 @@ rundom(<Content color='red'>Hello</Content>)
 
 `rundom` handles different return types gracefully to set up the initial DOM structure and reactive bindings:
 
-- `string` and `number` are rendered as static text nodes.
-  ```tsx
-  //! Primitives
-  const TextNum = () => 123
-  const TextStr = () => '123'
-  ```
-- `null`, `undefined`, `boolean`, and `symbol` render nothing.
-  ```tsx
-  //! Ignored Values
-  const Empty1 = () => null
-  const Empty2 = () => {} // undefined
-  const Empty3 = () => true
-  const Empty4 = () => Symbol()
-  ```
-- Raw DOM elements (e.g., created via `document.createElement`) are inserted directly into the DOM.
-  ```tsx
-  //! DOM Elements
-  const RawDiv = () => document.createElement('div')
-  ```
-- Standard JSX elements, Fragments, or arrays of elements are rendered into the DOM.
-  ```tsx
-  //! JSX Elements & Fragments
-  const FragmentComp = () => <>content</>
-  const ArrayComp = () => ['content']
-  const JsxComp = () => <div>content</div>
-  const BrComp = () => <br />
-  ```
+`string` and `number` are rendered as static text nodes.
+```tsx
+//! Primitives
+const TextNum = () => 123
+const TextStr = () => '123'
+```
+
+`null`, `undefined`, `boolean`, and `symbol` render nothing.
+```tsx
+//! Ignored Values
+const Empty1 = () => null
+const Empty2 = () => {} // undefined
+const Empty3 = () => true
+const Empty4 = () => Symbol()
+```
+Raw DOM elements (e.g., created via `document.createElement`) are inserted directly into the DOM.
+```tsx
+//! DOM Elements
+const RawDiv = () => document.createElement('div')
+```
+Standard JSX elements, Fragments, or arrays of elements are rendered into the DOM.
+```tsx
+//! JSX Elements & Fragments
+const FragmentComp = () => <>content</>
+const ArrayComp = () => ['content']
+const JsxComp = () => <div>content</div>
+const BrComp = () => <br />
+```
 
 ```tsx
-//! Functions & Observables
+//! Function & Slot
 const state = new Slot(() => {})
 
 const Test1 = () => () => state.value
@@ -202,3 +203,6 @@ export function Counter () {
 ---
 
 - **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`.
+- **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
+- **[Context](/context)** — Share state across components without prop drilling.
+- **[Ref](/ref)** — Access DOM elements directly.
