@@ -11,13 +11,13 @@ This guide will take you from an empty directory to a running application, help 
 ## Setup environment
 ---
 Feel free to use any preferred tooling.
-This section covers the setup for [innetjs]([innetjs](https://www.npmjs.com/package/innetjs)) and [Vite](/).
+This section covers the setup for [Vite](/) and [InnetJS](https://www.npmjs.com/package/innetjs).
 
 ```shell
-//! innetjs
-npx innetjs init my-app --template rundom
-//! vite
+//! Vite
 npm create vite@latest my-app -- --template rundom
+//! InnetJS
+npx innetjs init my-app --template rundom
 ```
 
 > The `--template rundom` flag creates a `rundom` frontend template, and `my-app` is the working folder.
@@ -25,17 +25,18 @@ npm create vite@latest my-app -- --template rundom
 This creates a ready-to-use project with component examples, configured routing, a development server with TypeScript + JSX setup, and an optimized build pipeline.
 
 ```
-//! Innet structure
+//! Vite structure
 my-app/
 ├── public/
-│   └── index.html     // HTML shell
+├── index.html         // HTML shell
 ├── src/
 │   └── index.tsx      // Application entry point
 ├── tsconfig.json      // TypeScript and JSX configuration
 └── package.json
-//! Vite structure
+//! Innet structure
 my-app/
-├── index.html     // HTML shell
+├── public/
+│   └── index.html     // HTML shell
 ├── src/
 │   └── index.tsx      // Application entry point
 ├── tsconfig.json      // TypeScript and JSX configuration
@@ -69,11 +70,11 @@ The `rundom()` function takes your root JSX component and mounts it to the DOM.
 
 ## HTML Shell
 
-Next, look at `public/index.html` or `index.html` for Vite.
+Next, look at `index.html` for Vite.
 This is the shell that hosts your app:
 
 ```html
-//! public/index.html
+//! index.html
 <!doctype html>
 <html lang="en">
   <head>
@@ -111,8 +112,9 @@ To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsc
   },
   "include": [ "src" ]
 }
-
 ```
+
+> Make sure you add `"jsx": "react-jsxdev"` and `"jsxImportSource": "rundom"` to use JSX.
 
 ## Start the Development Server
 
@@ -123,7 +125,7 @@ If you haven't already, fire up the development server:
 npm start
 ```
 
-The `innetjs` CLI acts as your bundler and dev server, providing TypeScript compilation, JSX transformation, and lightning-fast rebuilds.
+The Vite or InnetJS CLI acts as your bundler and dev server, providing TypeScript compilation, JSX transformation, and lightning-fast rebuilds.
 
 ## Build for Production
 
@@ -146,24 +148,24 @@ Now that you have a working [Rundom](/) application, explore more advanced featu
 ### Core Concepts
 
 - **[Components](/components)** — Learn about component patterns, props, children, and lifecycle hooks like `useEffect`.
-- **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`, including `Slot` and watchers.
+- **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`.
+- **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
 
 ### Routing & Navigation
 
-- **[Routing](/router)** — Build multi-page apps with nested routes, permissions, and lazy loading.
-- **[Link](/link)** — Navigate between pages without full page reloads.
-- **[useParam](/use-param)** — Access route parameters in components.
+- **[\<Router>](/router)** — Build multi-page apps with nested routes, permissions, and lazy loading.
+- **[\<Link>](/link)** — Navigate between pages without full page reloads.
+- **[useParam](/use-param)** / **[useParams](/use-params)** — Access route parameters in components.
 
 ### Built-in Components
 
-- **[Portal](/portal)** — Render content in different DOM locations (modals, tooltips).
-- **[Show](/show) / [Hide](/hide)** — Conditionally render or hide content based on reactive state.
-- **[For](/for)** — Efficiently render lists with automatic DOM reconciliation.
-- **[Delay](/delay)** — Delay rendering of components.
-- **[Lazy](/lazy)** — Lazy load components with code splitting.
+- **[\<Portal>](/portal)** — Render content in different DOM locations (modals, tooltips).
+- **[\<Show>](/show) / [\<Hide>](/hide)** — Conditionally render or hide content based on reactive state.
+- **[\<For>](/for)** — Efficiently render lists with automatic DOM reconciliation.
+- **[\<Delay>](/delay)** — Delay rendering of components.
+- **[\<Lazy>](/lazy)** — Lazy load components with code splitting.
 
 ### Advanced Topics
 
 - **[Context](/context)** — Share state across component trees without prop drilling.
-- **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
 - **[Ref](/ref)** — Access DOM elements directly.
