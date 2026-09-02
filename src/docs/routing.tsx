@@ -110,9 +110,9 @@ export const routing = createRouting([
           },
           {
             index: true,
-            path: 'use-parent',
+            path: 'use-styles',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/UseParentPage')),
+            component: lazy(() => import('./pages/UseStylesPage')),
           },
           {
             index: true,

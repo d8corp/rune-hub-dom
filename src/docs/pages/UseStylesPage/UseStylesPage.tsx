@@ -1,7 +1,7 @@
 import { DelayPage, Markdown, Typography } from '../../ui'
-import description from './UseParentPage.md'
+import description from './UseStylesPage.md'
 
-export default function UseParentPage () {
+export default function UseStylesPage () {
   return (
     <DelayPage>
       <Typography>

@@ -81,9 +81,9 @@ export const menu: MenuItem[] = [
         children: 'useParams',
       },
       {
-        href: '/use-parent',
+        href: '/use-styles',
         exact: true,
-        children: 'useParent',
+        children: 'useStyles',
       },
     ],
   },
@@ -99,11 +99,6 @@ export const menu: MenuItem[] = [
         href: '/context',
         exact: true,
         children: 'Context',
-      },
-      {
-        href: '/style',
-        exact: true,
-        children: 'style',
       },
     ],
   },

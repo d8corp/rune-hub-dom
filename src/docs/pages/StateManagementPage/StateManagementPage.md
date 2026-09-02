@@ -1,10 +1,38 @@
 # State Management
 
-With `rundom`, you can avoid the traditional component-based approach while still having access to state management.
+With [Rundom](/), you can avoid the traditional component-based approach while still having access to state management.
 
 State management is powered by [RuneHub](https://github.com/d8corp/rune-hub)
 
-To bind state to content, use `Slot` or a function as the content.
+## Slot
+---
+
+`Slot` serves as the core unit for **state**, **computed state**, and **observable effects**.
+It's API similar to [TC39 Signals Proposal](https://github.com/tc39/proposal-signals).
+When you place a `Slot` directly in your JSX, [Rundom](/) automatically subscribes to changes and updates the DOM.
+
+```tsx
+//! src/index.tsx
+import { rundom } from 'rundom'
+import { Slot } from 'rune-hub'
+
+const count = new Slot(() => 0)
+const increase = () => count.value++
+
+rundom(
+  <>
+     <h1>
+        Total clicks: {count}
+     </h1>
+     <button onclick={increase}>
+        Click Me
+     </button>
+  </>
+)
+```
+
+You can also use a function to access the state value. 
+This is useful when you need to transform or format the value:
 
 ```tsx
 //! src/index.tsx
@@ -17,7 +45,7 @@ const increase = () => count.value++
 rundom(
   <>
     <h1>
-      Count: {count}
+      {() => `Total clicks: ${count.value}`}
     </h1>
     <button onclick={increase}>
       Click Me
@@ -26,7 +54,11 @@ rundom(
 )
 ```
 
-To bind a state and a prop use `Slot` or a function as a value of the prop.
+## Reactive Attributes
+---
+
+To bind reactive state to an HTML element attribute, use `Slot` or a function as a value of the attribute.
+This creates fine-grained reactivity where only the specific property updates without re-rendering the entire component.
 
 ```tsx
 //! src/index.tsx
@@ -36,22 +68,135 @@ import { Slot } from 'rune-hub'
 const darkMode = new Slot(() => false)
 const modeClass = new Slot(() => darkMode.value ? 'dark' : 'light')
 
-const handleChange = (e: Event) => {
-  darkMode.value = (e.target as HTMLInputElement).checked
+const toggleMode = () => {
+  darkMode.value = !darkMode.value
 }
 
 rundom(
   <div class={modeClass}>
-    <h1>
-      Hello World!
-    </h1>
-    <label>
-      <input
-        type="checkbox"
-        onchange={handleChange}
-      />
-      Dark Mode
-    </label>
+    <button onClick={toggleMode}>
+      Mode: {modeClass}
+    </button>
   </div>
 )
 ```
+
+## Best Practices
+---
+
+### When to Use Slot
+
+Use `Slot` for any value that needs to be reactive:
+
+- **UI state**: toggles, selections, form inputs
+- **Application state**: user data, shopping cart, filters
+- **Derived values**: computed totals, filtered lists, validation states
+- **External data**: API responses, WebSocket messages
+
+### Performance Tips
+
+
+1. **Use functions for dynamic content**: Wrap computed values in functions when you need to format or transform
+   ```tsx
+   //! 🟢 Good - lightweight formatting
+   <div>Price: ${() => price.value.toFixed(2)}</div>
+   
+   //! 🔴 Avoid - the component will remove after `price` changed
+   <div>Price: ${price.value.toFixed(2)}</div>
+   ```
+
+2. **Avoid creating runes in render functions**: Create runes at module level or in setup phase
+   ```tsx
+   //! 🟢 Good - module level
+   const count = () => 0
+   const MyComponent = () => <div>{slot(count)}</div>
+   
+   //! 🔴 Avoid - new rune every render
+   const MyComponent = () => {
+     const count = () => 0 // Creates new slot in a hub each time
+     return <div>{slot(count)}</div>
+   }
+   ```
+
+3. **Keep slots focused**: Create separate slots for independent concerns rather than large nested objects
+   ```tsx
+   //! 🟢 Good - separate slots
+   const firstName = new Slot(() => 'John')
+   const lastName = new Slot(() => 'Doe')
+   
+   //! 🔴 Avoid - nested object for independent values
+   const user = new Slot(() => ({ firstName: 'John', lastName: 'Doe' }))
+   ```
+
+4. **Use computed slots for derived values**: Let `rundom` handle dependency tracking automatically
+   ```tsx
+   //! 🟢 Good - automatic reactivity
+   const total = new Slot(() => price.value * quantity.value)
+   
+   //! 🔴 Avoid - manual updates
+   let total = 0
+   const updateTotal = () => { total = price.value * quantity.value }
+   ```
+
+5. **Minimize watchers**: Use `.on()` only for side effects, not for derived values
+   ```tsx
+   //! 🟢 Good - computed slot
+   const fullName = new Slot(() => `${first.value} ${last.value}`)
+   
+   //! 🔴 Avoid - watcher for derived value
+   const fullName = new Slot(() => '')
+   first.on(() => fullName.value = `${first.value} ${last.value}`)
+   ```
+
+### Common Patterns
+
+**Loading states:**
+```tsx
+//! src/LoadingPattern.tsx
+import { Slot } from 'rune-hub'
+
+const isLoading = new Slot(() => false)
+const data = new Slot(() => null)
+
+const fetchData = async () => {
+  isLoading.value = true
+  try {
+    const response = await fetch('/api/data')
+    data.value = await response.json()
+  } finally {
+    isLoading.value = false
+  }
+}
+```
+
+**Toggle patterns:**
+```tsx
+//! src/TogglePattern.tsx
+import { Slot } from 'rune-hub'
+
+const isOpen = new Slot(() => false)
+const toggle = () => isOpen.value = !isOpen.value
+const open = () => isOpen.value = true
+const close = () => isOpen.value = false
+```
+
+**List management:**
+```tsx
+//! src/ListPattern.tsx
+import { Slot } from 'rune-hub'
+
+const items = new Slot(() => ['Item 1', 'Item 2'])
+const addItem = (item: string) => items.value = [...items.value, item]
+const removeItem = (index: number) => {
+  items.value = items.value.filter((_, i) => i !== index)
+}
+```
+
+## What's Next?
+---
+
+- **[Components](/components)** — Learn how to build reusable components with reactive props
+- **[Show](/show)** — Conditionally render content based on state
+- **[Hide](/hide)** — Hide elements without removing them from the DOM
+- **[For](/for)** — Efficiently render lists of reactive data
+- **[Context](/context)** — Share state across components without prop drilling
