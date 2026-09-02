@@ -106,7 +106,7 @@ const MyComponent = () => (
   <div>{slot(count)}</div>
 )
 
-//! 👎 Avoid
+//! 👎 Forbidden
 const MyComponent = () => {
   const count = () => 0
   // Creates new slot in a hub each render
@@ -130,21 +130,30 @@ const user = new Slot(() => ({
 **Use computed slots for derived values**: Let `rundom` handle dependency tracking automatically
 ```tsx
 //! 👍 Good
-const total = new Slot(() => price.value * quantity.value)
+const total = new Slot(() => (
+  price.value * quantity.value
+))
 
 //! 👎 Avoid
 let total = 0
-const updateTotal = () => { total = price.value * quantity.value }
+const updateTotal = () => {
+  total = price.value * quantity.value
+}
 ```
 
 **Minimize watchers**: Use `.on()` only for side effects, not for derived values
 ```tsx
 //! 👍 Good
-const fullName = new Slot(() => `${first.value} ${last.value}`)
+const fullName = new Slot(() => (
+  `${first.value} ${last.value}`
+))
 
 //! 👎 Avoid
 const fullName = new Slot(() => '')
-first.on(() => fullName.value = `${first.value} ${last.value}`)
+
+first.on('change', () => {
+  fullName.set(`${first.raw} ${last.raw}`)
+})
 ```
 
 ### Common Patterns
