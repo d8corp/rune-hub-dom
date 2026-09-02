@@ -6,22 +6,31 @@
 | **fallback**    | `JSX.Element`                 | Element to render if the condition is not met       |
 | **children**    | `JSX.Element`                 | Content to render when the condition is met         |
 
-You can use `Show` component to show/hide content by state.
+The `<Show>` component provides conditional rendering based on reactive state.
+When the condition is truthy, it renders the children; otherwise, it renders the fallback content.
 
 ```tsx
-import { Show } from 'rundom'
+//! Basic usage
+import { rundom, Show } from 'rundom'
 import { Slot } from 'rune-hub'
 
-const show = new Slot(() => true)
+const isVisible = new Slot(() => true)
+const hide = () => isVisible.set(false)
 
-export default (
-  <Show when={show}>
-    <button
-      onclick={() => {
-        show.value = false
-      }}>
-      Click Me
+rundom(
+  <Show when={isVisible}>
+    <button onclick={hide}>
+      Click to Hide
     </button>
   </Show>
 )
 ```
+
+## What's Next?
+---
+
+- Learn about the [\<Hide>](/hide) component for reversed visibility toggling
+- Explore [\<For>](/for) component for rendering dynamic lists with conditional items
+- Discover [\<Router>](/router) for route-based conditional rendering
+- Understand [State Management](/state-management) for managing reactive conditions
+
