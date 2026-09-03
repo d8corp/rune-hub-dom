@@ -29,7 +29,7 @@ body {
   --color-bg-surface: light-dark(#f7f5fc, #12121F);
   --color-bg-contrast: light-dark(#f7f5fc, #171426);
   --color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
-  --color-bg-hover: light-dark(#E8E5F5, #252545);
+  --color-bg-hover: light-dark(#f7f5fc, #252545);
   --color-bg-alpha: #8B5CF614;
   --color-bg-alpha-hover: #8B5CF626;
   --color-primary: light-dark(#7C3AED, #8B5CF6);
@@ -239,6 +239,7 @@ thead {
   position: sticky;
   top: calc(var(--header-size) + 10px);
   margin-bottom: 53px;
+  z-index: 1;
 
   &:before {
     content: "";
@@ -284,32 +285,34 @@ th {
   font-weight: 900;
   text-align: left;
   padding: 12px 18px;
-  border-bottom: 1px solid var(--color-border);
-  border-top: 1px solid var(--color-border);
   font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--color-primary-light);
+  position: relative;
+  @include proximityGlow(1px 0);
 
-  &:first-child {
-    border-left: 1px solid var(--color-border);
+  &:first-child:before {
+    padding-left: 1px;
   }
-  &:last-child {
-    border-right: 1px solid var(--color-border);
+
+  &:last-child:before {
+    padding-right: 1px;
   }
 }
 
 td {
   padding: 14px 18px;
-  border-bottom: 1px solid var(--color-border);
   vertical-align: top;
   background: var(--color-bg-elevated);
   transition: background-color .2s;
+  position: relative;
+  @include proximityGlow(0 0 1px);
 
-  &:first-child {
-    border-left: 1px solid var(--color-border);
+  &:first-child:before {
+    padding-left: 1px;
   }
 
-  &:last-child {
-    border-right: 1px solid var(--color-border);
+  &:last-child:before {
+    padding-right: 1px;
   }
 }
