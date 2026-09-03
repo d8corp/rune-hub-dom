@@ -1,0 +1,34 @@
+@mixin proximityGlow {
+  --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
+  --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
+
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    background: fixed radial-gradient(
+      circle 100px at var(--proximity-x) var(--proximity-y),
+      var(--color-primary) 0%,
+      var(--color-primary) 30%,
+      transparent 100%
+    );
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+    mask-image: linear-gradient(#fff, #fff), linear-gradient(#000, #000);
+    -webkit-mask-clip: content-box, padding-box;
+    mask-clip: content-box, padding-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    background-color: var(--color-border);
+    transition: background-color .2s;
+  }
+
+  &:hover:before {
+    background-color: var(--color-border-hover);
+  }
+}

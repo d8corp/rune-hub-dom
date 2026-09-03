@@ -1,3 +1,5 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   &:after {
     content: 'copied';
@@ -15,6 +17,11 @@
     left: var(--ui-code-x);
     top: var(var(--ui-code-y) + var(--scroll));
   }
+}
+
+.glow {
+  border: none;
+  @include proximityGlow;
 }
 
 .copied:after {

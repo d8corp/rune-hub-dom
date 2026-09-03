@@ -1,7 +1,9 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   cursor: pointer;
   font-weight: bold;
-  transition: box-shadow .2s, background .2s, border .2s, color .2s;
+  transition: box-shadow .2s, background .2s .1s, border .2s, color .2s;
   text-decoration: none;
   overflow: hidden;
   position: relative;
@@ -19,7 +21,7 @@
   border-color: transparent;
   box-shadow: 0 4px 24px rgba(139, 92, 246, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 
-  &:before {
+  &:after {
     content: '';
     position: absolute;
     inset: 0;
@@ -31,7 +33,43 @@
     color: white;
     box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 
-    &:before {
+    &:after {
+      transform: translateX(100%);
+      transition: transform .3s;
+    }
+  }
+}
+
+.glow,
+.secondary {
+  background: var(--color-bg-alpha);
+  color: var(--color-primary-light);
+  border: none;
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background: var(--color-bg-alpha-hover);
+    color: light-dark(var(--color-primary), var(--color-text));
+  }
+}
+
+.glow {
+  @include proximityGlow;
+}
+
+.glow,
+.secondary {
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: var(--gradient-shine);
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    &:after {
       transform: translateX(100%);
       transition: transform .3s;
     }
@@ -39,28 +77,10 @@
 }
 
 .secondary {
-  background: var(--color-bg-alpha);
-  color: var(--color-primary-light);
   border: 1px solid var(--color-border);
-  backdrop-filter: blur(8px);
-
-  &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-shine);
-    transform: translateX(-100%);
-  }
 
   &:hover {
-    background: var(--color-bg-alpha-hover);
     border-color: var(--color-border-hover);
-    color: light-dark(var(--color-primary), var(--color-text));
-
-    &:before {
-      transform: translateX(100%);
-      transition: transform .3s;
-    }
   }
 }
 

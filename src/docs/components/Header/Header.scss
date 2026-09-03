@@ -15,6 +15,11 @@
   transform: translateY(0);
 }
 
+.themeButton {
+  --proximity-x-offset: calc(min(100vw, calc(((100vw - 1440px) / 2) + 1440px)) - 100% - 24px);
+  --proximity-y-offset: 14px;
+}
+
 .content {
   max-width: 1440px;
   margin: 0 auto;

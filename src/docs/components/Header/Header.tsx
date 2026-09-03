@@ -23,7 +23,7 @@ export function Header () {
             <Link href='/quick-start' class={styles.link}>Docs</Link>
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
           </Hide>
-          <Button view='secondary' onclick={toggleTheme}>
+          <Button view='glow' class={styles.themeButton} onclick={toggleTheme}>
             {() => theme.value === 'light dark' ? 'SYSTEM' : theme.value.toUpperCase()}
           </Button>
         </Flex>

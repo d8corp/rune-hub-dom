@@ -3,11 +3,15 @@ import { Slot } from 'rune-hub'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
+import type { ObservableProp } from '../../../types'
+import { use } from '../../../utils'
 import $styles from './Code.module.scss'
 
-export type CodeProps = HTMLStyleProps<HTMLElement, typeof $styles>
+export interface CodeProps extends HTMLStyleProps<HTMLElement, typeof $styles> {
+  glow?: ObservableProp<boolean>;
+}
 
-export function Code ({ onclick, style, ...props }: CodeProps) {
+export function Code ({ onclick, style, glow, ...props }: CodeProps) {
   const styles = useStyles($styles, props.class)
   const x = new Slot(() => '')
   const y = new Slot(() => '')
@@ -30,7 +34,11 @@ export function Code ({ onclick, style, ...props }: CodeProps) {
     onclick?.(e)
   }
 
-  const root = () => classes([styles.root, copied.value && styles.copied])
+  const root = () => classes([
+    styles.root,
+    copied.value && styles.copied,
+    use(glow) && styles.glow,
+  ])
 
   return (
     <code

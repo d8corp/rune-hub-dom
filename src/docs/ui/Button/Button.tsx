@@ -10,7 +10,7 @@ import styles from './Button.module.scss'
 
 export type ButtonStyles = typeof styles
 
-export type ButtonView = 'primary' | 'secondary'
+export type ButtonView = 'primary' | 'secondary' | 'glow'
 export type ButtonSize = 'm' | 'l' | 's'
 
 export type ButtonProps<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> = FlexProps<T, S> & {

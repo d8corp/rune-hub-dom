@@ -10,12 +10,13 @@ import './styles/base.scss'
 
 import { Router } from '../components'
 import { rundom } from '../rundom'
-import { removeLoading, scrollToHash } from './helpers'
+import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
 import { routing } from './routing'
 // import { listenScrolling } from './state'
 
 removeLoading()
 scrollToHash()
+listenCursorPosition()
 // listenScrolling()
 
 rundom(<Router routing={routing} />)
