@@ -1,12 +1,6 @@
-import { DelayPage, Markdown, Typography } from '../../ui'
+import { MarkdownPage } from '../../ui'
 import description from './ComponentsPage.md'
 
 export default function ComponentsPage () {
-  return (
-    <DelayPage>
-      <Typography>
-        <Markdown text={description} glow />
-      </Typography>
-    </DelayPage>
-  )
+  return <MarkdownPage text={description} />
 }

@@ -1,12 +1,6 @@
-import { DelayPage, Markdown, Typography } from '../../ui'
+import { MarkdownPage } from '../../ui'
 import description from './QuickStartPage.md'
 
 export default function QuickStartPage () {
-  return (
-    <DelayPage>
-      <Typography>
-        <Markdown glow text={description} />
-      </Typography>
-    </DelayPage>
-  )
+  return <MarkdownPage text={description} />
 }
