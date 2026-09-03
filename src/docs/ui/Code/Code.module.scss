@@ -21,6 +21,7 @@
 
 .glow {
   border: none;
+  display: inline-block;
   position: relative;
   @include proximityGlow;
 

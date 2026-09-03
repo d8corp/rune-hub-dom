@@ -1,3 +1,5 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   transition: all 0.3s;
   border: none;
@@ -15,6 +17,22 @@
 .legend {
   padding: 0 16px;
   color: var(--color-text);
+}
+
+.glow {
+  --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
+  --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
+
+  position: relative;
+  border: none;
+  height: 2px;
+
+  background: fixed radial-gradient(
+    circle 100px at var(--proximity-x) var(--proximity-y),
+    var(--color-primary) 0%,
+    var(--color-primary) 30%,
+    transparent 100%
+  );
 }
 
 .vertical {

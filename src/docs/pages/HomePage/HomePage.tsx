@@ -44,15 +44,15 @@ export default function HomePage () {
       </Flex>
       <Flex vertical gap={64} padding={[80, 24]} align='center' class={styles.section}>
         <HelloWorldExample />
-        <Divider />
+        <Divider glow />
         <JSXExample />
-        <Divider />
+        <Divider glow />
         <ComponentsExample />
-        <Divider />
+        <Divider glow />
         <CountExample />
-        <Divider />
+        <Divider glow />
         <ControlFlowExample />
-        <Divider />
+        <Divider glow />
         <RouterExample />
       </Flex>
     </DelayPage>

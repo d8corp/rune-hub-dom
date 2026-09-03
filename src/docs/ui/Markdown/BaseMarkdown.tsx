@@ -61,7 +61,7 @@ export function BaseMarkdown ({ text, map, glow }: BaseMarkdownProps) {
 
       return new JSXNode(Title, { h: depth, title: text, children: text ? undefined : jsxChildren, link: depth < 3 })
     },
-    HorizontalRule: () => new JSXNode(Divider, {}),
+    HorizontalRule: () => new JSXNode(Divider, { glow }),
     Strong: ({ children }: TxtStrongNode) => new JSXNode('strong', {
       children: children?.map(ast2jsx),
     }),

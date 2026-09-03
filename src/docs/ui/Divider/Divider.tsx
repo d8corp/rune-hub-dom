@@ -8,10 +8,12 @@ import $styles from './Divider.module.scss'
 
 interface DividerPros extends HTMLStyleProps<HTMLHRElement, typeof $styles> {
   vertical?: ObservableProp<boolean>
+  glow?: ObservableProp<boolean>
 }
 
 export function Divider ({
   vertical,
+  glow,
   children,
   ...props
 }: DividerPros = {}) {
@@ -20,6 +22,7 @@ export function Divider ({
   const root = injectAll([
     styles.root,
     inject(vertical, vertical => vertical && styles.vertical),
+    inject(glow, glow => glow && styles.glow),
   ], classes)
 
   if (!children) {

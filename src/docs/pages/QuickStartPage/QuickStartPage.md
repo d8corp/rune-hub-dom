@@ -47,6 +47,7 @@ Let's look under the hood of your new project.
 The following steps break down the generated files, explain how they work together, and show you how to run and build your app.
 
 ## The Entry Point
+---
 
 Open `src/index.tsx`. This is where your application comes to life:
 
@@ -69,6 +70,7 @@ rundom(<App />)
 The `rundom()` function takes your root JSX component and mounts it to the DOM.
 
 ## HTML Shell
+---
 
 Next, look at `index.html` for Vite.
 This is the shell that hosts your app:
@@ -93,6 +95,7 @@ By default, `rundom` attaches your application directly to `document.body`.
 If you prefer to mount your app inside a specific wrapper (like `<div id="root">`), you can easily do so using the built-in [Portal](/portal) component.
 
 ## TypeScript & JSX Configuration
+---
 
 To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsconfig.json` like this:
 
@@ -117,6 +120,7 @@ To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsc
 > Make sure you add `"jsx": "react-jsxdev"` and `"jsxImportSource": "rundom"` to use JSX.
 
 ## Start the Development Server
+---
 
 If you haven't already, fire up the development server:
 
@@ -128,6 +132,7 @@ npm start
 The Vite or InnetJS CLI acts as your bundler and dev server, providing TypeScript compilation, JSX transformation, and lightning-fast rebuilds.
 
 ## Build for Production
+---
 
 Once you are happy with your app and ready to deploy, you need to create an optimized production bundle:
 
