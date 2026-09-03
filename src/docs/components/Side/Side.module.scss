@@ -1,3 +1,5 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   order: -1;
   width: 260px;
@@ -14,11 +16,13 @@
     opacity: 0;
     max-height: none;
     background: var(--color-bg-deep);
-    border-right: 1px solid var(--color-border);
     padding: 58px 24px 0;
     width: 309px;
     transition: opacity .2s, transform .2s;
     transform: translateX(-50px);
+    z-index: 1;
+
+    @include proximityGlow(0 1px 0 0);
 
     &.show {
       opacity: 1;
@@ -70,11 +74,21 @@
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s;
-  border: 1px solid transparent;
+  border: none;
+  position: relative;
+
+  @include proximityGlow;
+
+  &:before {
+    display: none;
+  }
 }
 
 .itemSelected {
   background: var(--color-bg-alpha);
   color: var(--color-primary-light);
-  border: 1px solid var(--color-border);
+
+  &:before {
+    display: block;
+  }
 }

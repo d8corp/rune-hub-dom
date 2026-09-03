@@ -24,14 +24,15 @@ export default function HomePage () {
             Welcome to Rundom
           </Title>
           <p class={styles.description}>
-            <Code>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
+            <Code glow>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
           </p>
           <div class={styles.buttons}>
             <Button element='a' size='l' href='/quick-start'>
               Get Started
             </Button>
             <Button
-              view='secondary' size='l'
+              view='glow'
+              size='l'
               element='a'
               href='https://github.com/d8corp/rundom'
               target='_blank'

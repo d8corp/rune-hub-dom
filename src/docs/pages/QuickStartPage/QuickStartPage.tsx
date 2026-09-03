@@ -5,7 +5,7 @@ export default function QuickStartPage () {
   return (
     <DelayPage>
       <Typography>
-        <Markdown text={description} />
+        <Markdown glow text={description} />
       </Typography>
     </DelayPage>
   )

@@ -31,9 +31,10 @@ import { use } from '../../../utils'
 export interface BaseMarkdownProps {
   text?: ObservableProp<string>
   map?: Partial<Record<ASTNodeTypes | string, (node: any) => JSX.Element>>
+  glow?: ObservableProp<boolean>
 }
 
-export function BaseMarkdown ({ text, map }: BaseMarkdownProps) {
+export function BaseMarkdown ({ text, map, glow }: BaseMarkdownProps) {
   const ast2jsx = (ast: TxtNode) => {
     return currentMap[ast.type as ASTNodeTypes]?.(ast)
   }
@@ -75,6 +76,7 @@ export function BaseMarkdown ({ text, map }: BaseMarkdownProps) {
     }),
     Code: ({ value }: TxtCodeNode) => new JSXNode(Code, {
       children: value,
+      glow,
     }),
     CodeBlock: ({ value }: TxtCodeBlockNode) => new JSXNode('pre', {
       children: value,

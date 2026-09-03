@@ -1,13 +1,16 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   position: sticky;
   top: 0;
   background: var(--color-bg-surface);
-  border-bottom: 1px solid var(--color-bg-hover);
   opacity: 0;
   transform: translateY(-30px);
   transition: opacity .2s, transform .2s, background-color .2s, border-color .2s;
   height: 64px;
-  z-index: 1;
+  z-index: 2;
+
+  @include proximityGlow(0 0 1px);
 }
 
 .show {

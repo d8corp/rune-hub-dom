@@ -3,7 +3,7 @@
 .root {
   cursor: pointer;
   font-weight: bold;
-  transition: box-shadow .2s, background .2s .1s, border .2s, color .2s;
+  transition: box-shadow .2s, background .2s, border .2s, color .2s;
   text-decoration: none;
   overflow: hidden;
   position: relative;
@@ -54,7 +54,11 @@
 }
 
 .glow {
-  @include proximityGlow;
+  @include proximityGlow(1px);
+
+  &:hover:before {
+    background-color: var(--color-border-hover);
+  }
 }
 
 .glow,

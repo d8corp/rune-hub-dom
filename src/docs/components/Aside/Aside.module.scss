@@ -1,3 +1,5 @@
+@use "src/docs/styles/proximityGlow" as *;
+
 .root {
   width: 200px;
   padding-left: 8px;
@@ -25,7 +27,9 @@
     width: 224px;
     max-height: none;
     background: var(--color-bg-deep);
-    border-left: 1px solid var(--color-border);
+    z-index: 1;
+
+    @include proximityGlow(0 0 0 1px);
 
     & > .background {
       width: 100vw;
@@ -58,10 +62,14 @@
 }
 
 .content {
-  border-left: 1px solid var(--color-border);
   padding-left: 12px;
   opacity: 0;
   transition: opacity .3s;
+  position: relative;
+
+  @media (min-width: 1024px) {
+    @include proximityGlow(0 0 0 1px);
+  }
 
   @media (max-width: 1023px) {
     border-left: none;

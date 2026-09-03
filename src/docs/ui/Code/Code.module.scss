@@ -21,7 +21,12 @@
 
 .glow {
   border: none;
+  position: relative;
   @include proximityGlow;
+
+  &:hover:before {
+    background-color: var(--color-border-hover);
+  }
 }
 
 .copied:after {

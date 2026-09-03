@@ -9,8 +9,8 @@ import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 import { Typography } from '../Typography'
 
 import { useEffect, useStyles } from '../../../hooks'
-import type { JSXElement } from '../../../types'
-import { inject, Ref } from '../../../utils'
+import type { JSXElement, ObservableProp } from '../../../types'
+import { inject, injectAll, Ref } from '../../../utils'
 import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'
 
@@ -25,11 +25,13 @@ const icons = {
 export type HighlightProps<T extends FlexElement = 'div'> = FlexProps<T, typeof $styles> & {
   code: string
   lang: string
+  glow?: ObservableProp<boolean>
 }
 
 export function Highlight<T extends FlexElement = 'div'> ({
   code,
   lang,
+  glow,
   ...props
 }: HighlightProps<T>) {
   const styles = useStyles($styles, props.class)
@@ -157,7 +159,12 @@ export function Highlight<T extends FlexElement = 'div'> ({
   }
 
   return (
-    <Flex<T> vertical {...(props as any)} class={styles.root}>
+    <Flex<T>
+      vertical {...(props as any)} class={injectAll([
+        styles.root,
+        inject(glow, glow => glow && styles.glow),
+      ], classes)}
+    >
       <Content />
     </Flex>
   )

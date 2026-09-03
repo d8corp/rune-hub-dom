@@ -8,7 +8,7 @@ import { Button, Flex, Link } from '../../ui'
 import styles from './Header.scss'
 
 export function Header () {
-  const show = useShow()
+  const show = useShow(200)
 
   const hideMenu = new Slot(() => pageWidth.value < 420)
 

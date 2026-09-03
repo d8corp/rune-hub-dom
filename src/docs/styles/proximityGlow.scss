@@ -1,8 +1,6 @@
-@mixin proximityGlow {
+@mixin proximityGlow ($padding: 1px) {
   --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
   --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
-
-  position: relative;
 
   &:before {
     content: '';
@@ -17,7 +15,7 @@
     );
     inset: 0;
     border-radius: inherit;
-    padding: 1px;
+    padding: $padding;
     -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
     mask-image: linear-gradient(#fff, #fff), linear-gradient(#000, #000);
     -webkit-mask-clip: content-box, padding-box;
@@ -26,9 +24,5 @@
     mask-composite: exclude;
     background-color: var(--color-border);
     transition: background-color .2s;
-  }
-
-  &:hover:before {
-    background-color: var(--color-border-hover);
   }
 }

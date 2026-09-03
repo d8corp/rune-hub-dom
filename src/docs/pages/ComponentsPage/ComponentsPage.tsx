@@ -5,7 +5,7 @@ export default function ComponentsPage () {
   return (
     <DelayPage>
       <Typography>
-        <Markdown text={description} />
+        <Markdown text={description} glow />
       </Typography>
     </DelayPage>
   )
