@@ -4,7 +4,7 @@ import { Flex, type FlexProps } from '../Flex'
 import { Link } from '../Link'
 
 import { Show, useHidden } from '../../../components'
-import { useOnce, useShow, useStyles } from '../../../hooks'
+import { useClear, useShow, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { use } from '../../../utils'
 import { LinkIcon } from '../../icons'
@@ -64,7 +64,7 @@ export function Title ({
     const link: TitleLink = { id, title }
     titleLinks.raw.add(link)
 
-    useOnce('clear', () => {
+    useClear(() => {
       titleLinks.raw.delete(link)
     })
 

@@ -1,7 +1,7 @@
 import { batch, Slot, unwatch } from 'rune-hub'
 
 import { parentContext } from '../../constants'
-import { useCtx, useOnce } from '../../hooks'
+import { useClear, useCtx } from '../../hooks'
 import { rundom } from '../../rundom'
 import type { JSXElement, ObservableProp } from '../../types'
 import type { ContextData } from '../../utils'
@@ -56,7 +56,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
   let keysList: any[] = []
   const handlersMap = new Map<any, ContextData>()
 
-  useOnce('clear', () => {
+  useClear(() => {
     handlersMap.forEach((data) => watcherContext.get(data)?.destroy())
   })
 

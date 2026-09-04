@@ -1,7 +1,7 @@
 import { Slot } from 'rune-hub'
 import Timer from 'sync-timer'
 
-import { useOnce } from '../useOnce'
+import { useClear } from '../useClear'
 
 export function useShow (delay: number = 100) {
   const show = new Slot(() => false)
@@ -10,7 +10,7 @@ export function useShow (delay: number = 100) {
     show.value = true
   }, delay)
 
-  useOnce('clear', () => {
+  useClear(() => {
     timer.cancel()
   })
 

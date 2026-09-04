@@ -2,7 +2,7 @@ import { Slot } from 'rune-hub'
 
 import { Hide } from './Hide'
 
-import { useOnce } from '../../hooks'
+import { useClear } from '../../hooks'
 import { rundom } from '../../rundom'
 
 afterEach(() => {
@@ -69,7 +69,7 @@ describe('Hide', () => {
     const hide = new Slot(() => false)
 
     function Test () {
-      useOnce('clear', fn)
+      useClear(fn)
 
       return 'test'
     }

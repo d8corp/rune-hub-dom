@@ -2,7 +2,7 @@ import { Hub, Slot, unwatch } from 'rune-hub'
 import Timer from 'sync-timer'
 
 import { parentContext } from '../../constants'
-import { useOnce } from '../../hooks'
+import { useClear } from '../../hooks'
 import { rundom } from '../../rundom'
 import type { Ref } from '../../utils'
 import { append, Content, Context, dissolve } from '../../utils'
@@ -36,7 +36,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     append(parent, content)
     parentContext.set(content, context)
 
-    useOnce('clear', () => {
+    useClear(() => {
       dissolve(content)
     })
   }
@@ -53,7 +53,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
 
     const watcher = new Slot(run)
 
-    useOnce('clear', () => {
+    useClear(() => {
       hideState.set(true)
       new Timer(() => { watcher.destroy() }, hide)
     })
@@ -67,7 +67,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
         }
       }, show)
 
-      useOnce('clear', () => {
+      useClear(() => {
         timer.cancel()
       })
     } else {
@@ -83,7 +83,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     const timer = new Timer(listener, show)
     useContent()
 
-    useOnce('clear', () => {
+    useClear(() => {
       timer.cancel()
     })
   }

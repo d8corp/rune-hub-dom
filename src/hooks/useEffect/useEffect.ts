@@ -1,6 +1,6 @@
 import { hub } from 'rune-hub'
 
-import { useOnce } from '../useOnce'
+import { useClear } from '../useClear'
 
 import { Context } from '../../utils'
 
@@ -12,7 +12,7 @@ export function useEffect (effect: Effect) {
 
   let destroyed = false
 
-  useOnce('clear', () => {
+  useClear(() => {
     destroyed = true
   })
 
@@ -24,7 +24,7 @@ export function useEffect (effect: Effect) {
         const destroy = effect()
 
         if (destroy) {
-          useOnce('clear', destroy)
+          useClear(destroy)
         }
       }, currentContext)
     })
