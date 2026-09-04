@@ -41,20 +41,21 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
     })
   }
 
-  const run = () => Context.use(() => rundom(children), context)
+  const delayContent = () => Context.use(() => rundom(children), context)
 
   if (hide > 0) {
-    const hideState = new Slot(() => false)
-    delayContext.set(hideState, context)
+    const hideSlot = new Slot(() => false, Hub.cur, true)
+
+    delayContext.set(hideSlot, context)
 
     if (ref) {
-      ref.value = hideState
+      ref.value = hideSlot
     }
 
-    const watcher = new Slot(run)
+    const watcher = new Slot(delayContent, Hub.cur, true)
 
     useClear(() => {
-      hideState.set(true)
+      hideSlot.set(true)
       new Timer(() => { watcher.destroy() }, hide)
     })
 
@@ -62,7 +63,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
       useContent()
 
       const timer = new Timer(() => {
-        if (!hideState.raw) {
+        if (!hideSlot.raw) {
           watcher.on()
         }
       }, show)
@@ -78,8 +79,8 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
   }
 
   if (show > 0) {
-    const ctx = Hub.cur?.ctx
-    const listener = ctx ? () => ctx.use(run) : run
+    const ctx = Hub.ctx
+    const listener = ctx ? () => ctx.use(delayContent) : delayContent
     const timer = new Timer(listener, show)
     useContent()
 

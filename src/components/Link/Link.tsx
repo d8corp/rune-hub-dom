@@ -1,5 +1,5 @@
 import { classes } from 'html-classes'
-import { Slot } from 'rune-hub'
+import { Hub, Slot } from 'rune-hub'
 
 import { type HTMLStyleProps, useStyles } from '../../hooks'
 import type { LinkToParams } from '../../utils'
@@ -52,16 +52,16 @@ export function Link (props: LinkProps) {
           : ''
 
       return `^${prefix}${clearHref(href)}${exact ? '$' : ''}`
-    })
+    }, Hub.cur, true)
 
-    const reg = new Slot(() => new RegExp(regString.value))
+    const reg = new Slot(() => new RegExp(regString.value), Hub.cur, true)
 
     return new Slot(() => {
       return classes([
         styles.root,
         reg.value.test(locationURL.value) && styles.active,
       ])
-    })
+    }, Hub.cur, true)
   }
 
   const className = rest.class ? createClassName() : undefined

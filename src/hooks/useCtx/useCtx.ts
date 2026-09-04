@@ -1,5 +1,5 @@
 import { Hub } from 'rune-hub'
 
 export function useCtx () {
-  return Hub.cur?.ctx
+  return Hub.ctx
 }

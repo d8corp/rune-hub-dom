@@ -1,4 +1,4 @@
-import { type Rune, Slot } from 'rune-hub'
+import { Hub, type Rune, Slot } from 'rune-hub'
 
 import { parentContext } from './constants'
 import { useClear } from './hooks'
@@ -18,7 +18,7 @@ export function runReactive (target: Slot<JSXElement> | Rune<JSXElement>) {
 
   new Slot(() => Context.use(() => {
     rundom(use(target))
-  }, context)).on()
+  }, context), Hub.cur, true).on()
 }
 
 export function runElement (target: HTMLElement | SVGElement | Text | Content) {
@@ -64,7 +64,7 @@ export function runNode (target: JSXNode) {
           if (typeof rawValue === 'function') {
             new Slot(() => {
               element.style.setProperty(property, rawValue())
-            }).on()
+            }, Hub.cur, true).on()
           } else {
             element.style.setProperty(property, rawValue)
           }
@@ -82,7 +82,7 @@ export function runNode (target: JSXNode) {
           } else {
             element.setAttribute(prop, String(result))
           }
-        }).on()
+        }, Hub.cur, true).on()
 
         continue
       }

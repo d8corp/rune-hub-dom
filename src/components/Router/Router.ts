@@ -1,4 +1,4 @@
-import { Slot } from 'rune-hub'
+import { Hub, Slot } from 'rune-hub'
 
 import { Lazy } from '../Lazy'
 import { Pipe } from '../Pipe'
@@ -17,7 +17,7 @@ export interface RouterProps {
 const EMPTY_SET = new Set<string>()
 
 export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
-  const params = paramsContext.get() || new Slot<Record<string, string>>(() => ({}))
+  const params = paramsContext.get() || new Slot<Record<string, string>>(() => ({}), Hub.cur, true)
 
   const route = new Slot(() => {
     const newParams: Record<string, string> = {}
@@ -25,7 +25,7 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     params.value = newParams
 
     return route
-  })
+  }, Hub.cur, true)
 
   const components = new Slot(() => {
     const routeValue = route.value
@@ -39,7 +39,7 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     }
 
     return result
-  })
+  }, Hub.cur, true)
 
   const loadedComponents = new Map()
 
@@ -48,9 +48,9 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     set: params,
     children: new JSXNode(Pipe, {
       children: (children, index) => new JSXNode(Lazy, {
-        component: new Slot(() => components.value[index]),
-        fallback: new Slot(() => route.value?.fallback?.[index]),
-        show: new Slot(() => components.value.length > index),
+        component: new Slot(() => components.value[index], Hub.cur, true),
+        fallback: new Slot(() => route.value?.fallback?.[index], Hub.cur, true),
+        show: new Slot(() => components.value.length > index, Hub.cur, true),
         render: (Component) => new JSXNode(Component, { children }),
         loadedComponents,
       }),

@@ -1,4 +1,4 @@
-import { batch, Slot, unwatch } from 'rune-hub'
+import { batch, Hub, Slot, unwatch } from 'rune-hub'
 
 import { parentContext } from '../../constants'
 import { useClear, useCtx } from '../../hooks'
@@ -80,8 +80,8 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         parentContext.set(deepContent, deepHandler)
         append(parentContext.get(), deepContent)
         const currentIndex = index++
-        const indexState = new Slot(() => currentIndex)
-        const valueState = new Slot(() => value)
+        const indexState = new Slot(() => currentIndex, Hub.cur, true)
+        const valueState = new Slot(() => value, Hub.cur, true)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -92,7 +92,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         watcherContext.set(unwatch(() => {
           const result = new Slot(() => {
             deepRender(children(valueState as any, indexState as any))
-          })
+          }, Hub.cur, true)
 
           result.on()
 
@@ -143,8 +143,8 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const content = new Content()
         const deepHandler = Object.create(childHandler)
         parentContext.set(content, deepHandler)
-        const valueState = new Slot(() => value)
-        const indexState = new Slot(() => index)
+        const valueState = new Slot(() => value, Hub.cur, true)
+        const indexState = new Slot(() => index, Hub.cur, true)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -163,7 +163,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         watcherContext.set(unwatch(() => {
           const result = new Slot(() => {
             deepRender(children(valueState as any, indexState as any))
-          })
+          }, Hub.cur, true)
 
           result.on()
 

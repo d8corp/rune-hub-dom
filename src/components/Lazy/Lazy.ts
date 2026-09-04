@@ -1,5 +1,5 @@
 import type { Rune } from 'rune-hub'
-import { Slot } from 'rune-hub'
+import { Hub, Slot } from 'rune-hub'
 
 import type { Component, JSXTypeProps, ObservableProp } from '../../types'
 import { JSXNode } from '../../types'
@@ -23,7 +23,7 @@ export function Lazy<C extends Component = Component> ({
 }: LazyProps<C>) {
   if (!show) return
 
-  const loading = new Slot(() => false)
+  const loading = new Slot(() => false, Hub.cur, true)
 
   new Slot(() => {
     if (!use(show)) return
@@ -38,7 +38,7 @@ export function Lazy<C extends Component = Component> ({
         loading.set(false)
       })
     }
-  }).on()
+  }, Hub.cur, true).on()
 
   return () => {
     if (!use(show)) return null
