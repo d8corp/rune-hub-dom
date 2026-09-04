@@ -74,10 +74,13 @@
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s;
-  border: none;
   position: relative;
+  border: 1px solid transparent;
 
-  @include proximityGlow;
+  @media (min-width: 802px) {
+    border: none;
+    @include proximityGlow;
+  }
 
   &:before {
     display: none;
@@ -87,6 +90,7 @@
 .itemSelected {
   background: var(--color-bg-alpha);
   color: var(--color-primary-light);
+  border-color: var(--color-border);
 
   &:before {
     display: block;
