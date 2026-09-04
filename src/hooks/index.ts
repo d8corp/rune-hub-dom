@@ -1,3 +1,4 @@
+export * from './useClear'
 export * from './useCtx'
 export * from './useEffect'
 export * from './useOn'

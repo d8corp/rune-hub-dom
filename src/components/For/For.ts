@@ -60,10 +60,10 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
     handlersMap.forEach((data) => watcherContext.get(data)?.destroy())
   })
 
-  return () => {
+  return function For () {
     const values = ofProp()
     const childHandler = Context.current
-    const mainContent = parentContext.get(childHandler)!
+    const mainContent = parentContext.get()!
 
     if (!useCtx()!.inited) {
       let index = 0

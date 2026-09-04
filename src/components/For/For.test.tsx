@@ -245,5 +245,27 @@ describe('For', () => {
 
       expect(document.body.innerHTML).toBe('<ul><li>#0: Alex</li><li>#1: Dan</li><li>#2: Mike</li></ul>')
     })
+
+    it('should work without fallback', () => {
+      const values = new Slot(() => ['Foo', 'Bar', 'Baz'])
+
+      rundom(
+        <ul>
+          <For of={values}>
+            {(value) => <li>{value}</li>}
+          </For>
+        </ul>,
+      )
+
+      expect(document.body.innerHTML).toBe('<ul><li>Foo</li><li>Bar</li><li>Baz</li></ul>')
+
+      values.value = []
+
+      expect(document.body.innerHTML).toBe('<ul></ul>')
+
+      values.value = ['Foo', 'Bar', 'Baz']
+
+      expect(document.body.innerHTML).toBe('<ul><li>Foo</li><li>Bar</li><li>Baz</li></ul>')
+    })
   })
 })
