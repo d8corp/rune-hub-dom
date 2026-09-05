@@ -8,8 +8,6 @@ import 'prismjs/components/prism-json'
 import './styles/external.global.scss'
 import './styles/base.scss'
 
-import { Hub } from 'rune-hub'
-
 import { Router } from '../components'
 import { rundom } from '../rundom'
 import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
@@ -21,9 +19,4 @@ scrollToHash()
 listenCursorPosition()
 // listenScrolling()
 
-// @ts-expect-error: Test
-const hub = window.hub = new Hub()
-
-hub.use(() => {
-  rundom(<Router routing={routing} />)
-})
+rundom(<Router routing={routing} />)
