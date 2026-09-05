@@ -44,9 +44,9 @@ export const routing = createRouting([
           },
           {
             index: true,
-            path: 'styling',
+            path: 'html-elements',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/StylingPage')),
+            component: lazy(() => import('./pages/HTMLElementsPage')),
           },
           {
             index: true,

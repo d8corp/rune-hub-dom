@@ -14,16 +14,16 @@ export const menu: MenuItem[] = [
         children: 'Quick Start',
       },
       {
+        href: '/html-elements',
+        children: 'HTML Elements',
+      },
+      {
         href: '/components',
         children: 'Components',
       },
       {
         href: '/state-management',
         children: 'State Management',
-      },
-      {
-        href: '/styling',
-        children: 'Styling',
       },
     ],
   },

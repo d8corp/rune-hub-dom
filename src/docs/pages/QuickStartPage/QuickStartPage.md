@@ -8,7 +8,7 @@ This guide will take you from an empty directory to a running application, help 
 - **Package manager**: npm, yarn, or pnpm
 - **Browser**: Any modern browser supporting ES6+
 
-## Setup environment
+## Getting Started
 ---
 Feel free to use any preferred tooling.
 This section covers the setup for [Vite](/) and [InnetJS](https://www.npmjs.com/package/innetjs).
@@ -72,11 +72,24 @@ The `rundom()` function takes your root JSX component and mounts it to the DOM.
 ## HTML Shell
 ---
 
-Next, look at `index.html` for Vite.
+Next, look at `index.html`.
 This is the shell that hosts your app:
 
 ```html
-//! index.html
+//! Vite
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innet App</title>
+    <script type="module" defer src="/src/index.tsx"></script>
+  </head>
+  <body>
+    <!-- rundom automatically injects your app here -->
+  </body>
+</html>
+//! InnetJS
 <!doctype html>
 <html lang="en">
   <head>
@@ -94,7 +107,7 @@ This is the shell that hosts your app:
 By default, `rundom` attaches your application directly to `document.body`.
 If you prefer to mount your app inside a specific wrapper (like `<div id="root">`), you can easily do so using the built-in [Portal](/portal) component.
 
-## TypeScript & JSX Configuration
+## TypeScript & JSX
 ---
 
 To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsconfig.json` like this:
@@ -110,16 +123,16 @@ To ensure TypeScript understands JSX syntax of `rundom`, the CLI configures `tsc
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "jsx": "react-jsxdev",
+    "jsx": "react-jsx",
     "jsxImportSource": "rundom"
   },
   "include": [ "src" ]
 }
 ```
 
-> Make sure you add `"jsx": "react-jsxdev"` and `"jsxImportSource": "rundom"` to use JSX.
+> Make sure you add `"jsx": "react-jsx"` and `"jsxImportSource": "rundom"` to use JSX.
 
-## Start the Development Server
+## Development Server
 ---
 
 If you haven't already, fire up the development server:
