@@ -156,7 +156,8 @@ pre, code {
 }
 
 code {
-  background: rgba(139, 92, 246, 0.1);
+  background: var(--color-bg-alpha);
+  backdrop-filter: blur(2px);
   border: 1px solid var(--color-border);
   color: var(--color-primary-light);
   padding: 2px 8px;

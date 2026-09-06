@@ -1,5 +1,14 @@
 @use "src/docs/styles/proximityGlow" as *;
 
+@keyframes banner {
+  from {
+    --proximity-y-offset: 0vh;
+  }
+  to {
+    --proximity-y-offset: -100vh;
+  }
+}
+
 .banner {
   text-align: center;
   height: calc(100vh - var(--header-size));
@@ -12,17 +21,32 @@
           radial-gradient(circle at 100px 100px, rgba(139, 92, 246, .08) 100px, transparent 350px),
           var(--color-bg-deep);
 
+  animation-timeline: view(block 0 calc(100% - var(--header-size)));
+  animation-timing-function: linear;
+  animation-name: banner;
+
   &::before {
+    --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
+    --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
+
     content: '';
     position: absolute;
     inset: 0;
-    background:
-            fixed linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-            fixed linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background: fixed linear-gradient(var(--color-primary) 1px, transparent 1px),
+    fixed linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%);
+
+    @supports (animation-timeline: view()) {
+      mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%),
+      radial-gradient(
+              circle 100px at var(--proximity-x) var(--proximity-y),
+              black 0%,
+              #0007 30%,
+              transparent 100%
+      );
+    }
   }
 }
 

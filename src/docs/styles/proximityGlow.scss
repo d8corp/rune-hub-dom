@@ -1,3 +1,15 @@
+@property --proximity-x-offset {
+  syntax: '<length-percentage>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --proximity-y-offset {
+  syntax: '<length-percentage>';
+  initial-value: 0;
+  inherits: true;
+}
+
 @mixin proximityGlow ($padding: 1px) {
   --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
   --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
