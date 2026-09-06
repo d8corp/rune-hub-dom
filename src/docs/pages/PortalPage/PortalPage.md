@@ -3,10 +3,10 @@
 The `<Portal>` component renders content into a DOM element outside the current component hierarchy.
 This is essential for building UI elements that need to break out of their parent's styling context, such as modals, tooltips, notifications, and dropdowns.
 
-| Prop              | Type                                  | Description                                               |
-|-------------------|---------------------------------------|-----------------------------------------------------------|
-| **parent** [*](#) | `TargetElement` \| `DocumentFragment` | The element where the child content will be rendered      |
-| **children**      | `JSX.Element`                         | The content to render inside the specified parent element |
+| Prop          | Type                                  | Description                                               |
+|---------------|---------------------------------------|-----------------------------------------------------------|
+| **to** [*](#) | `TargetElement` \| `DocumentFragment` | The element where the child content will be rendered      |
+| **children**  | `JSX.Element`                         | The content to render inside the specified parent element |
 
 ## Basic Usage
 ---

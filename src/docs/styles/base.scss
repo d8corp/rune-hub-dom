@@ -1,5 +1,7 @@
 @use "src/docs/styles/proximityGlow" as *;
 
+$mobileSize: 600px;
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -20,6 +22,7 @@ body {
   flex-direction: column;
   background: var(--color-bg);
   color: var(--color-text);
+  overflow-x: hidden;
 }
 
 :root {
@@ -262,15 +265,42 @@ thead {
       border-top-right-radius: 10px;
     }
   }
+
+  @media (max-width: $mobileSize) {
+    display: none;
+  }
 }
 
 tbody {
-  & > tr:last-child {
-    & > td:first-child {
-      border-bottom-left-radius: 10px;
+  @media (min-width: $mobileSize) {
+    & > tr:last-child {
+      & > td:first-child {
+        border-bottom-left-radius: 10px;
+      }
+      & > td:last-child {
+        border-bottom-right-radius: 10px;
+      }
     }
+  }
+
+  @media (max-width: $mobileSize) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+tr {
+  @media (max-width: $mobileSize) {
+    display: flex;
+    flex-direction: column;
+
+    & > td:first-child {
+      border-radius: 10px 10px 0 0;
+    }
+
     & > td:last-child {
-      border-bottom-right-radius: 10px;
+      border-radius: 0 0 10px 10px;
     }
   }
 }
@@ -302,18 +332,34 @@ th {
 }
 
 td {
-  padding: 14px 18px;
+  padding: 4px 12px;
   vertical-align: top;
   background: var(--color-bg-elevated);
   transition: background-color .2s;
   position: relative;
-  @include proximityGlow(0 0 1px);
 
-  &:first-child:before {
-    padding-left: 1px;
+  @media (max-width: $mobileSize) {
+    @include proximityGlow(0 1px);
+
+    &:first-child:before {
+      padding-top: 1px;
+    }
+
+    &:last-child:before {
+      padding-bottom: 1px;
+    }
   }
 
-  &:last-child:before {
-    padding-right: 1px;
+  @media (min-width: $mobileSize) {
+    padding: 14px 18px;
+    @include proximityGlow(0 0 1px);
+
+    &:first-child:before {
+      padding-left: 1px;
+    }
+
+    &:last-child:before {
+      padding-right: 1px;
+    }
   }
 }
