@@ -341,12 +341,20 @@ td {
   @media (max-width: $mobileSize) {
     @include proximityGlow(0 1px);
 
-    &:first-child:before {
-      padding-top: 1px;
+    &:first-child {
+      padding-top: 8px;
+
+      &:before {
+        padding-top: 1px;
+      }
     }
 
-    &:last-child:before {
-      padding-bottom: 1px;
+    &:last-child {
+      padding-bottom: 8px;
+
+      &:before {
+        padding-bottom: 1px;
+      }
     }
   }
 
