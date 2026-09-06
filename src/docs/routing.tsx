@@ -32,6 +32,12 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'jsx-dom-elements',
+            fallback: <LoadingPage />,
+            component: lazy(() => import('./pages/JSXDOMElementsPage')),
+          },
+          {
+            index: true,
             path: 'components',
             fallback: <LoadingPage />,
             component: lazy(() => import('./pages/ComponentsPage')),
@@ -47,12 +53,6 @@ export const routing = createRouting([
             path: 'routing',
             fallback: <LoadingPage />,
             component: lazy(() => import('./pages/RoutingPage')),
-          },
-          {
-            index: true,
-            path: 'html-elements',
-            fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/HTMLElementsPage')),
           },
           {
             index: true,

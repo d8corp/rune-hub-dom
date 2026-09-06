@@ -18,8 +18,8 @@ export const menu: MenuItem[] = [
         children: 'JSX Elements',
       },
       {
-        href: '/html-elements',
-        children: 'HTML Elements',
+        href: '/jsx-dom-elements',
+        children: 'JSX DOM Elements',
       },
       {
         href: '/components',

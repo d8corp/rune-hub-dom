@@ -1,4 +1,4 @@
-# HTML Elements
+# JSX DOM Elements
 
 You can also bind multiple properties to different state values:
 
