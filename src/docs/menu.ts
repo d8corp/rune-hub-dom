@@ -14,6 +14,10 @@ export const menu: MenuItem[] = [
         children: 'Quick Start',
       },
       {
+        href: '/jsx-elements',
+        children: 'JSX Elements',
+      },
+      {
         href: '/html-elements',
         children: 'HTML Elements',
       },
