@@ -156,14 +156,20 @@ rundom(
 Nest `For` components to render hierarchical data structures like categories with items, nested comments, or tree views:
 
 ```tsx
-//! Nested For components
-import { For } from 'rundom'
+//! src/index.tsx
+import { rundom, For } from 'rundom'
 import { Slot } from 'rune-hub'
+
+interface Item {
+  id: number;
+  name: string;
+  price: number
+}
 
 interface Category {
   id: number
   name: string
-  products: Array<{ id: number; name: string; price: number }>
+  products: Item[]
 }
 
 const categories = new Slot<Category[]>(() => [
@@ -185,7 +191,7 @@ const categories = new Slot<Category[]>(() => [
   },
 ])
 
-export default (
+rundom(
   <div>
     <For of={categories} key='id'>
       {(category) => (
@@ -203,174 +209,6 @@ export default (
         </section>
       )}
     </For>
-  </div>
-)
-```
-
-For deeply nested structures, consider breaking out child components:
-
-```tsx
-//! Nested with child components
-import { For } from 'rundom'
-import { Slot } from 'rune-hub'
-
-interface Comment {
-  id: number
-  text: string
-  author: string
-  replies: Comment[]
-}
-
-const CommentItem = ({ comment }: { comment: Slot<Comment> }) => (
-  <div style="margin-left: 20px">
-    <p>
-      <strong>{() => comment.value.author}:</strong> {() => comment.value.text}
-    </p>
-    <For of={() => comment.value.replies} key='id'>
-      {(reply) => <CommentItem comment={reply} />}
-    </For>
-  </div>
-)
-
-const comments = new Slot<Comment[]>(() => [
-  {
-    id: 1,
-    text: 'Great article!',
-    author: 'Mike',
-    replies: [
-      { id: 2, text: 'Thanks!', author: 'Alex', replies: [] },
-      { id: 3, text: 'Agreed!', author: 'Dan', replies: [] },
-    ],
-  },
-])
-
-export default (
-  <div>
-    <For of={comments} key='id'>
-      {(comment) => <CommentItem comment={comment} />}
-    </For>
-  </div>
-)
-```
-
-## Integration with Show/Hide
----
-
-Combine `For` with conditional rendering components to create dynamic, filterable lists:
-
-```tsx
-//! Conditional rendering in lists
-import { For, Show, Hide } from 'rundom'
-import { Slot } from 'rune-hub'
-
-interface Task {
-  id: number
-  text: string
-  completed: boolean
-  priority: 'low' | 'medium' | 'high'
-}
-
-const tasks = new Slot<Task[]>(() => [
-  { id: 1, text: 'Review PR', completed: false, priority: 'high' },
-  { id: 2, text: 'Write docs', completed: true, priority: 'medium' },
-  { id: 3, text: 'Update tests', completed: false, priority: 'low' },
-])
-
-const showCompleted = new Slot(() => true)
-
-export default (
-  <div>
-    <label>
-      <input
-        type="checkbox"
-        checked={showCompleted}
-        onchange={(e) => {
-          showCompleted.value = e.target.checked
-          showCompleted.update()
-        }}
-      />
-      Show completed tasks
-    </label>
-
-    <ul>
-      <For of={tasks} key='id'>
-        {(task) => (
-          <>
-            <Show when={() => showCompleted.value || !task.value.completed}>
-              <li style={() => ({
-                textDecoration: task.value.completed ? 'line-through' : 'none',
-                color: task.value.priority === 'high' ? 'red' : 'black',
-              })}>
-                {() => task.value.text}
-                <Hide when={() => task.value.completed}>
-                  <span> [{() => task.value.priority}]</span>
-                </Hide>
-              </li>
-            </Show>
-          </>
-        )}
-      </For>
-    </ul>
-  </div>
-)
-```
-
-Create filtered views without modifying the original data:
-
-```tsx
-//! Filtered list view
-import { For } from 'rundom'
-import { Slot } from 'rune-hub'
-
-interface Product {
-  id: number
-  name: string
-  category: string
-  inStock: boolean
-}
-
-const products = new Slot<Product[]>(() => [
-  { id: 1, name: 'Laptop', category: 'Electronics', inStock: true },
-  { id: 2, name: 'Desk', category: 'Furniture', inStock: false },
-  { id: 3, name: 'Mouse', category: 'Electronics', inStock: true },
-])
-
-const selectedCategory = new Slot(() => 'all')
-
-const filteredProducts = new Slot(() => {
-  if (selectedCategory.value === 'all') {
-    return products.value
-  }
-  return products.value.filter((p) => p.category === selectedCategory.value)
-})
-
-// Update filteredProducts when dependencies change
-products.on(() => filteredProducts.update())
-selectedCategory.on(() => filteredProducts.update())
-
-export default (
-  <div>
-    <select
-      onchange={(e) => {
-        selectedCategory.value = e.target.value
-        selectedCategory.update()
-      }}
-    >
-      <option value="all">All Categories</option>
-      <option value="Electronics">Electronics</option>
-      <option value="Furniture">Furniture</option>
-    </select>
-
-    <ul>
-      <For of={filteredProducts} key='id'>
-        {(product) => (
-          <li>
-            {() => product.value.name}
-            {() => product.value.inStock ? ' ✓' : ' (Out of stock)'}
-          </li>
-        )}
-      </For>
-    </ul>
   </div>
 )
 ```
