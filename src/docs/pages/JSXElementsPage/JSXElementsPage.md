@@ -28,32 +28,36 @@ rundom(null)                        // null (renders nothing)
 ## JSX DOM Element
 ---
 
-The most common JSXElement type is a standard JSX expression representing an HTML element.
+The most common `JSXElement` type is a standard JSX expression representing an HTML element.
 These are transformed at compile time into calls that create real DOM nodes.
 
 ```tsx
 //! JSX DOM Elements
-const Heading = () => <h1>Title</h1>
-const Button = () => <button onclick={() => {}}>Click</button>
+rundom(
+  <h1>Title</h1>
+)
 ```
 
 JSX DOM elements support all standard HTML attributes and event handlers:
 
 ```tsx
 //! With Attributes
-const StyledDiv = () => (
-  <div class="container" style={{ color: 'red' }}>
+const StyledButton = () => (
+  <button
+    class="button"
+    onclick={() => console.log('Click')}
+    style={{ color: 'red' }}>
     Content
-  </div>
+  </button>
 )
 ```
 
-For a detailed guide on HTML elements, attributes, events, and styling, see **[JSX DOM Elements](/jsx-dom-elements)**.
+For a detailed guide on JSX DOM Elements, their attributes, events, and styling, see **[JSX DOM Elements](/jsx-dom-elements)**.
 
 ## JSX Component
 ---
 
-Components are functions that return JSXElement values.
+Components are functions that return `JSXElement` values.
 When you use a component in JSX syntax, it creates a JSX component element.
 
 ```tsx
@@ -74,7 +78,7 @@ For a comprehensive guide on component patterns, props, children, and lifecycle,
 ## HTMLElement
 ---
 
-Raw DOM elements created via `document.createElement()` or obtained from the DOM API are valid JSXElement values.
+Raw DOM elements created via `document.createElement()` or obtained from the DOM API are valid `JSXElement` values.
 `rundom` inserts them directly into the DOM without any transformation.
 
 ```tsx
@@ -92,7 +96,9 @@ This is useful when integrating with third-party libraries:
 //! Third-Party Integration
 import someLibrary from 'some-lib'
 
-const Widget = () => someLibrary.createWidget()
+const Widget = () => (
+  someLibrary.createWidget()
+)
 ```
 
 ## String
@@ -116,6 +122,8 @@ Strings can be embedded within JSX:
 ```tsx
 //! Embedded Strings
 const Paragraph = () => <p>{'This is a string'}</p>
+// The same
+const Paragraph1 = () => <p>This is a string</p>
 ```
 
 ## Number
@@ -126,22 +134,22 @@ Number values are converted to strings and rendered as text nodes.
 ```tsx
 //! Number Elements
 const Counter = () => 42
-const Zero = () => 0 // Renders "0"
+const Zero = () => 0
 ```
 
-Numbers are commonly used with reactive state:
+Number can be embedded within JSX:
 
 ```tsx
-//! Reactive Numbers
-import { Slot } from 'rune-hub'
+//! Embedded Numbers
+interface ExampleProps {
+  a: number
+  b: number
+}
 
-const CounterApp = () => {
-  const count = new Slot(() => 0)
-  
+function Example ({ a, b }: ExampleProps) {
   return (
     <div>
-      <p>Count: {count}</p>
-      <button onclick={() => count.value++}>+</button>
+      {a} + {b} = {a + b}
     </div>
   )
 }
@@ -164,16 +172,14 @@ Use them in conditional expressions:
 
 ```tsx
 //! Conditional Rendering
-import { Slot } from 'rune-hub'
+interface ConditionalProps {
+  value: boolean
+}
 
-const Conditional = () => {
-  const show = new Slot(() => false)
-  
-  return (
-    <div>
-      {() => show.value ? <p>Visible</p> : null}
-    </div>
-  )
+function Conditional ({ value }: ConditionalProps) {
+  if (!value) return null
+
+  return <div>Passed</div>
 }
 ```
 
@@ -221,7 +227,7 @@ Symbols are rarely used as return values but are handled gracefully by `rundom`.
 ## Array
 ---
 
-Arrays of JSXElement values are flattened and rendered sequentially.
+Arrays of `JSXElement` values are flattened and rendered sequentially.
 Each element in the array is processed according to its type.
 
 ```tsx
@@ -305,7 +311,7 @@ const Counter = () => {
 ### Slot Objects
 
 A `Slot` is a reactive container from the `rune-hub` library.
-When you pass a `Slot` directly as a JSXElement or attribute value, `rundom` automatically subscribes to it and updates the DOM when the slot's value changes.
+When you pass a `Slot` directly as a `JSXElement` or attribute value, `rundom` automatically subscribes to it and updates the DOM when the slot's value changes.
 
 ```tsx
 //! Slot Elements
@@ -341,7 +347,7 @@ const StyledText = () => {
 
 ### No Re-Rendering
 
-Unlike traditional frameworks, `rundom` **never re-executes the component function**.
+`rundom` **never re-executes the component function**.
 When state changes, only the specific DOM properties bound to that state are updated.
 
 ```tsx
@@ -351,12 +357,18 @@ import { Slot } from 'rune-hub'
 const SurgicalUpdate = () => {
   const color = new Slot(() => 'red')
   
+  const handleClick = () => {
+    color.set('blue')
+  }
+  
   console.log('Rendered') // Only logs once
   
   return (
     <div>
-      <p style={{ color }}>Text color updates</p>
-      <button onclick={() => color.set('blue')}>
+      <p style={{ color }}>
+        Text color updates
+      </p>
+      <button onclick={handleClick}>
         Change Color
       </button>
     </div>
@@ -370,7 +382,7 @@ When you click the button, the paragraph's color changes instantly, but the comp
 ## What's Next?
 ---
 
-Now that you understand JSXElement types, explore related concepts:
+Now that you understand `JSXElement` types, explore related concepts:
 
 - **[JSX DOM Elements](/jsx-dom-elements)** — Detailed guide on HTML elements, attributes, events, and styling.
 - **[Components](/components)** — Build reusable component patterns with props and children.
