@@ -23,6 +23,7 @@ export function Header () {
           <Hide when={hideMenu}>
             <Link href='/quick-start' class={styles.link}>Docs</Link>
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
+            <Link href='https://github.com/d8corp/rundom' class={styles.link}>GitHub</Link>
           </Hide>
           <Button view='glow' class={styles.themeButton} onclick={toggleTheme}>
             {() => theme.value === 'light dark' ? <SunIcon /> : theme.value === 'light' ? <MoonIcon /> : <MonitorIcon />}

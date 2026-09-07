@@ -14,10 +14,12 @@ The framework handles different types intelligently, converting them into DOM no
 
 ```tsx
 //! Valid JSX Elements
-import { rundom } from 'rundom'
+import { rundom, type JSXElement } from 'rundom'
 
-// All of these are valid JSXElement values
-rundom(<div>Hello</div>)           // JSX DOM element
+function App (): JSXElement {}      // Components return JSXElement
+
+// rundom(element: JSXElement)
+rundom(<div>Hello</div>)            // JSX DOM element
 rundom(<App />)                     // JSX component
 rundom(document.createElement('p')) // Raw HTMLElement
 rundom('Hello World')               // string
@@ -33,20 +35,27 @@ These are transformed at compile time into calls that create real DOM nodes.
 
 ```tsx
 //! JSX DOM Elements
-rundom(
-  <h1>Title</h1>
-)
+import { rundom } from 'rundom'
+
+rundom(<h1>Title</h1>)
 ```
 
 JSX DOM elements support all standard HTML attributes and event handlers:
 
 ```tsx
 //! With Attributes
-const StyledButton = () => (
+import { rundom } from 'rundom'
+
+const handleClick = () => {
+  console.log('Click!')
+}
+
+rundom(
   <button
-    class="button"
-    onclick={() => console.log('Click')}
-    style={{ color: 'red' }}>
+    class="button"            // Attributes
+    onclick={handleClick}     // Events
+    style={{ color: 'red' }}  // Styles
+  >
     Content
   </button>
 )
@@ -62,6 +71,8 @@ When you use a component in JSX syntax, it creates a JSX component element.
 
 ```tsx
 //! Component Usage
+import { rundom } from 'rundom'
+
 interface GreetingProps {
   name: string
 }
@@ -70,12 +81,12 @@ function Greeting ({ name }: GreetingProps) {
   return <h1>Hello, {name}!</h1>
 }
 
-const App = () => <Greeting name="World" />
+rundom(<Greeting name="World" />)
 ```
 
 For a comprehensive guide on component patterns, props, children, and lifecycle, see **[Components](/components)**.
 
-## HTMLElement
+## HTML Element
 ---
 
 Raw DOM elements created via `document.createElement()` or obtained from the DOM API are valid `JSXElement` values.
@@ -83,23 +94,15 @@ Raw DOM elements created via `document.createElement()` or obtained from the DOM
 
 ```tsx
 //! Raw DOM Elements
-const RawDiv = () => {
-  const div = document.createElement('div')
-  div.textContent = 'Created directly'
-  return div
-}
+import { rundom } from 'rundom'
+
+const h1 = document.createElement('h1')
+h1.textContent = 'Created directly'
+
+rundom(<div>{h1}</div>)
 ```
 
-This is useful when integrating with third-party libraries:
-
-```tsx
-//! Third-Party Integration
-import someLibrary from 'some-lib'
-
-const Widget = () => (
-  someLibrary.createWidget()
-)
-```
+This is useful when integrating with third-party libraries.
 
 ## String
 ---
@@ -121,9 +124,11 @@ Strings can be embedded within JSX:
 
 ```tsx
 //! Embedded Strings
-const Paragraph = () => <p>{'This is a string'}</p>
+import { rundom } from 'rundom'
+
+rundom(<p>{'This is a string'}</p>)
 // The same
-const Paragraph1 = () => <p>This is a string</p>
+rundom(<p>This is a string</p>)
 ```
 
 ## Number

@@ -27,7 +27,7 @@ export default function HomePage () {
             <Code glow>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
           </p>
           <div class={styles.buttons}>
-            <Button element='a' size='l' href='/quick-start'>
+            <Button style={{ width: '175px' }} element='a' size='l' href='/quick-start'>
               Get Started
             </Button>
             <Button
