@@ -27,7 +27,7 @@ const fallback = <p>Empty</p>
 export function ControlFlowExample () {
   return (
     <Example description={text}>
-      <input oninput={onSearch} />
+      <input value={search} oninput={onSearch} />
       <Show when={found} fallback={fallback}>
         <ul>
           <For of={values}>

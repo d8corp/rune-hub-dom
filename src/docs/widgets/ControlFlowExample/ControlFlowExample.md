@@ -13,7 +13,7 @@ const fallback = <p>Empty</p>
 
 rundom(
   <>
-    <input oninput={onSearch} />
+    <input value={search} oninput={onSearch} />
     <Show when={found} fallback={fallback}>
       <ul>
         <For of={values}>
