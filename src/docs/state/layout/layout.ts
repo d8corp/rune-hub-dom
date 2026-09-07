@@ -13,6 +13,12 @@ export const isShowSideMobile = new Slot(() => false)
 export const isShowAsideDesktop = new Slot(() => true)
 export const isShowAsideMobile = new Slot(() => false)
 export const titleLinks = new Slot(() => new Set<TitleLink>())
+export const titleVariables = new Slot(() => Array.from(titleLinks.value).map(({ id }) => getAsideTimeline(id)))
+export const titleTimelineScope = new Slot(() => titleVariables.value.join(','))
+
+export function getAsideTimeline (id: string) {
+  return `--aside-timeline-${id}`
+}
 
 export const isShowSide = new Slot(() => isMobile.value ? isShowSideMobile.value : true)
 export const isShowAside = new Slot(() => isLaptop.value ? isShowAsideMobile.value : isShowAsideDesktop.value)

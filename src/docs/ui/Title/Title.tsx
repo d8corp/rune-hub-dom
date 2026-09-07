@@ -9,7 +9,7 @@ import type { ObservableProp } from '../../../types'
 import { use } from '../../../utils'
 import { LinkIcon } from '../../icons'
 import type { TitleLink } from '../../state'
-import { titleLinks } from '../../state'
+import { getAsideTimeline, titleLinks } from '../../state'
 import { slugify } from '../../utils'
 import $styles from './Title.module.scss'
 
@@ -77,6 +77,10 @@ export function Title ({
       wrap
       {...props}
       id={id}
+      style={{
+        'view-timeline': h === 1 ? id && getAsideTimeline(id) : undefined,
+        ...props.style,
+      }}
       class={() => [
         styles.root,
         title && link && styles.withLink,

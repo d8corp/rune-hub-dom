@@ -3,7 +3,7 @@ import { classes } from 'html-classes'
 import { Delay, For, useHidden } from '../../../components'
 import { useCtx, useShow } from '../../../hooks'
 import type { TitleLink } from '../../state'
-import { hideAside, titleLinks } from '../../state'
+import { getAsideTimeline, hideAside, titleLinks } from '../../state'
 import { Flex, Link } from '../../ui'
 import styles from './Aside.module.scss'
 
@@ -25,7 +25,14 @@ function Content ({ links }: ContentProps) {
     >
       <For of={links} key='id'>
         {(value) => (
-          <Link onclick={hideAside} href={`#${value.id}`} class={styles.item}>{value.title}</Link>
+          <Link
+            onclick={hideAside}
+            href={`#${value.id}`}
+            class={styles.item}
+            style={{ 'animation-timeline': getAsideTimeline(value.id) }}
+          >
+            {value.title}
+          </Link>
         )}
       </For>
     </Flex>

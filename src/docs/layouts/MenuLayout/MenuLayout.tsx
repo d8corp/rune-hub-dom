@@ -2,14 +2,22 @@ import { Delay, Hide, Show } from '../../../components'
 import type { ChildrenProps } from '../../../types'
 import { Aside, Side } from '../../components'
 import { AsideIcon, SideIcon } from '../../icons'
-import { hasTitleLinks, isMobile, isShowAside, isShowSide, toggleIsShowAside, toggleIsShowSide } from '../../state'
+import {
+  hasTitleLinks,
+  isMobile,
+  isShowAside,
+  isShowSide,
+  titleTimelineScope,
+  toggleIsShowAside,
+  toggleIsShowSide,
+} from '../../state'
 import { DelayPage, Flex } from '../../ui'
 import styles from './MenuLayout.module.scss'
 
 export function MenuLayout ({ children }: ChildrenProps) {
   return (
     <DelayPage class={styles.root} padding={[40, 24]}>
-      <Flex flex gap={24}>
+      <Flex flex gap={24} style={{ 'timeline-scope': titleTimelineScope }}>
         <Flex element='main' flex class={styles.main}>
           {children}
         </Flex>

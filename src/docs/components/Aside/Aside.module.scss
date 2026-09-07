@@ -1,5 +1,16 @@
 @use "src/docs/styles/proximityGlow" as *;
 
+@keyframes highlight-link {
+  0%, 100% {
+    color: var(--color-text-dim);
+    font-weight: normal;
+  }
+  10%, 90% {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+}
+
 .root {
   width: 200px;
   padding-left: 8px;
@@ -90,4 +101,9 @@
   font-size: 13px;
   font-weight: 500;
   transition: color 0.2s;
+  animation: highlight-link both linear;
+
+  &:hover {
+    color: var(--color-primary) !important;
+  }
 }

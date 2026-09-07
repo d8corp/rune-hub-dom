@@ -27,6 +27,8 @@ import { Title } from '../Title'
 import type { ObservableProp } from '../../../types'
 import { JSXNode } from '../../../types'
 import { use } from '../../../utils'
+import { getAsideTimeline } from '../../state'
+import { slugify } from '../../utils'
 
 export interface BaseMarkdownProps {
   text?: ObservableProp<string>
@@ -40,7 +42,49 @@ export function BaseMarkdown ({ text, map, glow }: BaseMarkdownProps) {
   }
 
   const currentMap: Partial<Record<ASTNodeTypes | string, (node: any) => JSX.Element>> = {
-    Document: ({ children }: TxtDocumentNode) => children.map(ast2jsx),
+    Document: ({ children }: TxtDocumentNode) => {
+      if (!children) return []
+
+      const sections: any[] = []
+      let currentSectionChildren: TxtNode[] = []
+      let currentSectionId: string | undefined
+
+      const pushCurrentSection = () => {
+        if (currentSectionChildren.length > 0) {
+          if (currentSectionId) {
+            const timelineName = getAsideTimeline(currentSectionId)
+
+            sections.push(
+              new JSXNode('section', {
+                style: { 'view-timeline': `${timelineName} block` },
+                children: currentSectionChildren.map(ast2jsx),
+              }),
+            )
+          } else {
+            sections.push(...currentSectionChildren.map(ast2jsx))
+          }
+        }
+      }
+
+      children.forEach((node) => {
+        if (node.type === 'Header' && (node as TxtHeaderNode).depth === 2) {
+          pushCurrentSection()
+
+          const headerText = (node as TxtHeaderNode).children
+            ?.map((c: any) => c.value || '')
+            .join('') || ''
+
+          currentSectionId = slugify(headerText)
+          currentSectionChildren = [node]
+        } else {
+          currentSectionChildren.push(node)
+        }
+      })
+
+      pushCurrentSection()
+
+      return sections
+    },
     Paragraph: ({ children }: TxtParagraphNode) => new JSXNode('p', {
       children: children?.map(ast2jsx),
     }),
