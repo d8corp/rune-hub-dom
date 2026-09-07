@@ -3,11 +3,9 @@
 @keyframes highlight-link {
   0%, 100% {
     color: var(--color-text-dim);
-    font-weight: normal;
   }
   10%, 90% {
     color: var(--color-primary);
-    font-weight: bold;
   }
 }
 

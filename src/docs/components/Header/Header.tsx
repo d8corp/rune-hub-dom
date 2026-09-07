@@ -3,6 +3,7 @@ import { Slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
 import { useShow } from '../../../hooks'
+import { MonitorIcon, MoonIcon, SunIcon } from '../../icons'
 import { pageWidth, theme, toggleTheme } from '../../state'
 import { Button, Flex, Link } from '../../ui'
 import styles from './Header.scss'
@@ -24,7 +25,7 @@ export function Header () {
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
           </Hide>
           <Button view='glow' class={styles.themeButton} onclick={toggleTheme}>
-            {() => theme.value === 'light dark' ? 'SYSTEM' : theme.value.toUpperCase()}
+            {() => theme.value === 'light dark' ? <SunIcon /> : theme.value === 'light' ? <MoonIcon /> : <MonitorIcon />}
           </Button>
         </Flex>
       </Flex>
