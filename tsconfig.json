@@ -19,10 +19,11 @@
     "resolveJsonModule": true,
     "strict": true,
     "declaration": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsxdev",
     "jsxImportSource": "@",
     "paths": {
-      "@/jsx-runtime": ["./src/jsx-runtime"]
+      "@/jsx-runtime": ["./src/jsx-runtime"],
+      "@/jsx-dev-runtime": ["./src/jsx-dev-runtime"]
     }
   },
   "include": [

@@ -36,7 +36,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
 }: HighlightProps<T>) {
   const styles = useStyles($styles, props.class)
   const ref = new Ref<HTMLPreElement>()
-  const copied = new Slot(() => false)
+  const copied = new Slot(function copied () { return false })
   let copyTimer: any
 
   const hasLand = lang in Prism.languages
@@ -107,7 +107,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
       )
     }
 
-    const tab = new Slot(() => 0)
+    const tab = new Slot(function highlightTab () { return 0 })
     let fullCode = ''
 
     const copy = () => {
@@ -122,7 +122,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
     }
 
     useEffect(() => {
-      new Slot(() => {
+      return new Slot(function renderPrisma () {
         if (!ref.value) return
 
         const [, currentCode] = tabs[tab.value]

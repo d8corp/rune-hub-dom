@@ -1,4 +1,4 @@
-import { Slot } from 'rune-hub'
+import { raw, Slot, update } from 'rune-hub'
 
 import { Flex, type FlexProps } from '../Flex'
 import { Link } from '../Link'
@@ -29,7 +29,7 @@ const updateTitleLinks = () => {
 
   queueMicrotask(() => {
     if (id === updateLinks) {
-      titleLinks.update()
+      update(titleLinks)
     }
   })
 }
@@ -54,7 +54,7 @@ export function Title ({
   const show = useShow()
   const hide = useHidden()
   const styles = useStyles($styles, props.class)
-  const showSubtitle = subtitle ? new Slot(() => Boolean(use(subtitle))) : null
+  const showSubtitle = subtitle ? new Slot(function showSubtitle () { return Boolean(use(subtitle)) }) : null
 
   if (h === 1 && title !== undefined) {
     document.title = title
@@ -62,10 +62,10 @@ export function Title ({
 
   if (id) {
     const link: TitleLink = { id, title }
-    titleLinks.raw.add(link)
+    raw(titleLinks).add(link)
 
     useClear(() => {
-      titleLinks.raw.delete(link)
+      raw(titleLinks).delete(link)
     })
 
     updateTitleLinks()

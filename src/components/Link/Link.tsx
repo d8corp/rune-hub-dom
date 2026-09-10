@@ -1,9 +1,8 @@
 import { classes } from 'html-classes'
-import { Hub, Slot } from 'rune-hub'
 
 import { type HTMLStyleProps, useStyles } from '../../hooks'
 import type { LinkToParams } from '../../utils'
-import { linkTo, locationURL, use } from '../../utils'
+import { linkTo, locationURL, SystemSlot, use } from '../../utils'
 
 export const defaultLinkClass = {
   root: '',
@@ -42,7 +41,7 @@ export function Link (props: LinkProps) {
   const getHref = () => use(href) || ''
 
   function createClassName () {
-    const regString = new Slot(() => {
+    const regString = new SystemSlot(() => {
       const href = getHref()
 
       const prefix = href.startsWith('?')
@@ -52,16 +51,16 @@ export function Link (props: LinkProps) {
           : ''
 
       return `^${prefix}${clearHref(href)}${exact ? '$' : ''}`
-    }, Hub.cur, true)
+    })
 
-    const reg = new Slot(() => new RegExp(regString.value), Hub.cur, true)
+    const reg = new SystemSlot(() => new RegExp(regString.value))
 
-    return new Slot(() => {
+    return new SystemSlot(() => {
       return classes([
         styles.root,
         reg.value.test(locationURL.value) && styles.active,
       ])
-    }, Hub.cur, true)
+    })
   }
 
   const className = rest.class ? createClassName() : undefined

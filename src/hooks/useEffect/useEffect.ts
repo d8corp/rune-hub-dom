@@ -1,4 +1,4 @@
-import { hub } from 'rune-hub'
+import { Hub, hub } from 'rune-hub'
 
 import { useClear } from '../useClear'
 
@@ -9,6 +9,7 @@ export type Effect = () => undefined | (() => void)
 export function useEffect (effect: Effect) {
   const currentHub = hub()
   const currentContext = Context.current
+  const currentSlot = Hub.ctx
 
   let destroyed = false
 
@@ -16,9 +17,7 @@ export function useEffect (effect: Effect) {
     destroyed = true
   })
 
-  queueMicrotask(() => {
-    if (destroyed) return
-
+  const run = () => {
     currentHub.use(() => {
       Context.use(() => {
         const destroy = effect()
@@ -28,5 +27,15 @@ export function useEffect (effect: Effect) {
         }
       }, currentContext)
     })
+  }
+
+  queueMicrotask(() => {
+    if (destroyed) return
+
+    if (currentSlot) {
+      currentSlot.use(run)
+    } else {
+      run()
+    }
   })
 }

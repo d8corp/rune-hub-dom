@@ -1,4 +1,5 @@
-import { batch, Hub, Slot, unwatch } from 'rune-hub'
+import type { Slot } from 'rune-hub'
+import { batch, unwatch } from 'rune-hub'
 
 import { parentContext } from '../../constants'
 import { useClear, useCtx } from '../../hooks'
@@ -15,6 +16,7 @@ import {
   lcs,
   observablePropToRuneProp,
   prepend,
+  SystemSlot,
 } from '../../utils'
 
 /** @experimental */
@@ -80,8 +82,8 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         parentContext.set(deepContent, deepHandler)
         append(parentContext.get(), deepContent)
         const currentIndex = index++
-        const indexState = new Slot(() => currentIndex, Hub.cur, true)
-        const valueState = new Slot(() => value, Hub.cur, true)
+        const indexState = new SystemSlot(() => currentIndex)
+        const valueState = new SystemSlot(() => value)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -90,9 +92,9 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
-          const result = new Slot(() => {
+          const result = new SystemSlot(() => {
             deepRender(children(valueState as any, indexState as any))
-          }, Hub.cur, true)
+          })
 
           result.on()
 
@@ -143,8 +145,8 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const content = new Content()
         const deepHandler = Object.create(childHandler)
         parentContext.set(content, deepHandler)
-        const valueState = new Slot(() => value, Hub.cur, true)
-        const indexState = new Slot(() => index, Hub.cur, true)
+        const valueState = new SystemSlot(() => value)
+        const indexState = new SystemSlot(() => index)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -161,9 +163,9 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
-          const result = new Slot(() => {
+          const result = new SystemSlot(() => {
             deepRender(children(valueState as any, indexState as any))
-          }, Hub.cur, true)
+          })
 
           result.on()
 

@@ -1,12 +1,20 @@
-import { Hub, type Rune, Slot } from 'rune-hub'
+import { type Rune, Slot } from 'rune-hub'
 
-import { parentContext } from './constants'
+import { catchContext, parentContext } from './constants'
 import { useClear } from './hooks'
-import type { HTMLProps, JSXElement } from './types'
+import type { HTMLProps, JSXElement, JSXSource } from './types'
 import { JSXNode } from './types'
-import { append, Content, Context, observablePropToRuneProp, remove, use } from './utils'
+import { append, Content, Context, observablePropToRuneProp, remove, SystemSlot, use } from './utils'
 
 Context.render = rundom
+
+function getSourceUrl (source?: JSXSource): string {
+  if (source) {
+    return `\n    at /${source.fileName}:${source.lineNumber}:${source.columnNumber}`
+  }
+
+  return ''
+}
 
 export const svgNamespaceContext = new Context<string>('')
 
@@ -16,9 +24,11 @@ export function runReactive (target: Slot<JSXElement> | Rune<JSXElement>) {
   parentContext.set(content, context)
   runElement(content)
 
-  new Slot(() => Context.use(() => {
-    rundom(use(target))
-  }, context), Hub.cur, true).on()
+  new SystemSlot(function reactiveContent () {
+    return Context.use(() => {
+      rundom(use(target))
+    }, context)
+  }).on()
 }
 
 export function runElement (target: HTMLElement | SVGElement | Text | Content) {
@@ -31,6 +41,26 @@ export function runArray (target: JSXElement[]) {
 }
 
 export function runNode (target: JSXNode) {
+  if (typeof target.type === 'function') {
+    const catchFn = catchContext.get()
+
+    if (!catchFn) return rundom(target.type(target.props))
+
+    try {
+      rundom(target.type(target.props))
+    } catch (e) {
+      const error = Error(`Exception in <${target.type.name}>${getSourceUrl(target.source)}`, { cause: e })
+
+      queueMicrotask(() => {
+        catchFn(error)
+      })
+
+      throw error
+    }
+
+    return
+  }
+
   if (typeof target.type === 'string') {
     const element = svgNamespaceContext.get() || target.type === 'svg'
       ? document.createElementNS(svgNamespaceContext.get() || 'http://www.w3.org/2000/svg', target.type)
@@ -62,9 +92,9 @@ export function runNode (target: JSXNode) {
           const rawValue = observablePropToRuneProp(value[property])
 
           if (typeof rawValue === 'function') {
-            new Slot(() => {
+            new SystemSlot(() => {
               element.style.setProperty(property, rawValue())
-            }, Hub.cur, true).on()
+            }).on()
           } else {
             element.style.setProperty(property, rawValue)
           }
@@ -74,7 +104,7 @@ export function runNode (target: JSXNode) {
       }
 
       if (value instanceof Slot || typeof value === 'function') {
-        new Slot(() => {
+        new SystemSlot(() => {
           const result = use(value)
 
           if (result === undefined || result === '') {
@@ -82,7 +112,7 @@ export function runNode (target: JSXNode) {
           } else {
             element.setAttribute(prop, String(result))
           }
-        }, Hub.cur, true).on()
+        }).on()
 
         continue
       }
@@ -102,12 +132,6 @@ export function runNode (target: JSXNode) {
 
       Context.use(() => rundom(target.props.children), context)
     }
-
-    return
-  }
-
-  if (typeof target.type === 'function') {
-    rundom(target.type(target.props))
 
     return
   }

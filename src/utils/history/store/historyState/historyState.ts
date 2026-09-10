@@ -1,4 +1,4 @@
-import { Slot } from 'rune-hub'
+import { SystemSlot } from '../../../SystemSlot'
 
 export interface HistoryStep {
   url: string
@@ -14,7 +14,7 @@ export function getHistoryStateRaw (): HistoryState {
   }
 }
 
-export const historyState = new Slot(() => getHistoryStateRaw())
+export const historyState = new SystemSlot(() => getHistoryStateRaw())
 
 export function updateHistoryState () {
   historyState.set(getHistoryStateRaw())

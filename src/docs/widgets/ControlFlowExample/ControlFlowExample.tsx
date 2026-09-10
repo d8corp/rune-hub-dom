@@ -6,15 +6,15 @@ import text from './ControlFlowExample.md'
 
 const list = ['foo', 'bar', 'baz']
 
-const search = new Slot(() => '')
+const search = new Slot(function search () { return '' })
 
-const values = new Slot(() => {
+const values = new Slot(function values () {
   return list.filter(value => {
     return value.includes(search.value)
   })
 })
 
-const found = new Slot(() => {
+const found = new Slot(function found () {
   return Boolean(values.value.length)
 })
 

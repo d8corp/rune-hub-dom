@@ -1,7 +1,7 @@
-import { Slot } from 'rune-hub'
-
 import { historyState } from '../historyState'
 
-export const locationPath = new Slot(function locationPath () {
+import { SystemSlot } from '../../../SystemSlot'
+
+export const locationPath = new SystemSlot(function locationPath () {
   return historyState.value && window.location.pathname
 })

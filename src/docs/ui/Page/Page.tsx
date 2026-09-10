@@ -1,5 +1,5 @@
 import { classes } from 'html-classes'
-import { Slot } from 'rune-hub'
+import { get, Slot } from 'rune-hub'
 
 import type { FlexProps } from '../Flex'
 import { Flex } from '../Flex'
@@ -35,10 +35,10 @@ export function Page ({ ...props }: PageProps) {
   const styles = useStyles($styles, props.class)
   const show = useShow()
   const hidden = useHidden()
-  const scrolled = new Slot(() => false)
+  const scrolled = new Slot(function pageScrolled () { return false })
 
-  new Slot(() => {
-    if (styles.show && !scrolling.value) {
+  new Slot(function scrollingEffect () {
+    if (styles.show && !get(scrolling)) {
       scrolled.value = true
     }
   }).on()

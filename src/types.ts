@@ -13,6 +13,12 @@ export type Child = Parent | Text
 export type RuneProp<T = unknown> = T | Rune<T>
 export type ObservableProp<T = unknown> = RuneProp<T> | Slot<T>
 
+export interface JSXSource {
+  fileName: string
+  lineNumber: number
+  columnNumber: number
+}
+
 export interface IContent {
   _parent?: Parent
   _prev?: Child
@@ -62,6 +68,7 @@ export class JSXNode <T extends JSXType = JSXType> {
   constructor (
     public type: T,
     public props: JSXTypeProps<T>,
+    public source?: JSXSource,
   ) {}
 }
 

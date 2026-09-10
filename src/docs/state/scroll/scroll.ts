@@ -1,6 +1,6 @@
-import { Slot } from 'rune-hub'
+import { set } from 'rune-hub'
 
-export const scrolling = new Slot(() => false)
+export const scrolling = () => false
 
 export const listenScrolling = () => {
   let timer: any
@@ -11,10 +11,10 @@ export const listenScrolling = () => {
     })
 
     clearTimeout(timer)
-    scrolling.set(true)
+    set(scrolling, true)
 
     timer = setTimeout(() => {
-      scrolling.set(false)
+      set(scrolling, false)
     }, 100)
   })
 }

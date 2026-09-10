@@ -1,10 +1,11 @@
-import { Slot } from 'rune-hub'
+import { get, set } from 'rune-hub'
 
-export const pageWidth = new Slot(() => window.innerWidth)
+export const pageWidth = () => window.innerWidth
 
-export const isLaptop = new Slot(() => pageWidth.value < 1024)
-export const isMobile = new Slot(() => pageWidth.value < 802)
+export const isLaptop = () => get(pageWidth) < 1024
+export const isMobile = () => get(pageWidth) < 802
+export const isSmallMobile = () => get(pageWidth) < 420
 
 window.addEventListener('resize', () => {
-  pageWidth.set(window.innerWidth)
+  set(pageWidth, window.innerWidth)
 })

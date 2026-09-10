@@ -1,5 +1,5 @@
 import { persistent } from '@rune-hub/utils'
-import { batch, Slot } from 'rune-hub'
+import { batch, get, raw, set } from 'rune-hub'
 
 import { isLaptop, isMobile } from '../window'
 
@@ -8,36 +8,36 @@ export interface TitleLink {
   title?: string
 }
 
-export const theme = new Slot(() => persistent<'light dark' | 'light' | 'dark'>('theme', 'light dark'))
-export const isShowSideMobile = new Slot(() => false)
-export const isShowAsideDesktop = new Slot(() => true)
-export const isShowAsideMobile = new Slot(() => false)
-export const titleLinks = new Slot(() => new Set<TitleLink>())
-export const titleVariables = new Slot(() => Array.from(titleLinks.value).map(({ id }) => getAsideTimeline(id)))
-export const titleTimelineScope = new Slot(() => titleVariables.value.join(','))
+export const theme = () => persistent<'light dark' | 'light' | 'dark'>('theme', 'light dark')
+export const isShowSideMobile = () => false
+export const isShowAsideDesktop = () => true
+export const isShowAsideMobile = () => false
+export const titleLinks = () => new Set<TitleLink>()
+export const titleVariables = () => Array.from(get(titleLinks)).map(({ id }) => getAsideTimeline(id))
+export const titleTimelineScope = () => get(titleVariables).join(',')
 
 export function getAsideTimeline (id: string) {
   return `--aside-timeline-${id}`
 }
 
-export const isShowSide = new Slot(() => isMobile.value ? isShowSideMobile.value : true)
-export const isShowAside = new Slot(() => isLaptop.value ? isShowAsideMobile.value : isShowAsideDesktop.value)
-export const hasTitleLinks = new Slot(() => titleLinks.value.size > 1)
+export const isShowSide = () => get(isMobile) ? get(isShowSideMobile) : true
+export const isShowAside = () => get(isLaptop) ? get(isShowAsideMobile) : get(isShowAsideDesktop)
+export const hasTitleLinks = () => get(titleLinks).size > 1
 
 export const hideSide = () => {
-  isShowSideMobile.value = false
+  set(isShowSideMobile, false)
 }
 
 export const hideAside = () => {
-  if (isLaptop.raw) {
-    isShowAsideMobile.value = false
+  if (raw(isLaptop)) {
+    set(isShowAsideMobile, false)
   }
 }
 
 export const toggleIsShowSide = () => {
   batch(() => {
     hideAside()
-    isShowSideMobile.value = !isShowSideMobile.value
+    set(isShowSideMobile, !raw(isShowSideMobile))
   })
 }
 
@@ -45,26 +45,26 @@ export const toggleIsShowAside = () => {
   batch(() => {
     hideSide()
 
-    if (isLaptop.raw) {
-      isShowAsideMobile.value = !isShowAsideMobile.raw
+    if (raw(isLaptop)) {
+      set(isShowAsideMobile, !raw(isShowAsideMobile))
     } else {
-      isShowAsideDesktop.value = !isShowAsideDesktop.raw
+      set(isShowAsideDesktop, !raw(isShowAsideDesktop))
     }
   })
 }
 
 export const toggleTheme = () => {
-  if (theme.raw === 'light') {
-    theme.set('dark')
-  } else if (theme.raw === 'dark') {
-    theme.set('light dark')
+  const current = raw(theme)
+
+  if (current === 'light') {
+    set(theme, 'dark')
+  } else if (current === 'dark') {
+    set(theme, 'light dark')
   } else {
-    theme.set('light')
+    set(theme, 'light')
   }
 }
 
-const updateTheme = () => {
-  document.body.style.colorScheme = theme.raw
+export const applyTheme = () => {
+  document.body.style.colorScheme = get(theme)
 }
-
-theme.on('change', updateTheme)

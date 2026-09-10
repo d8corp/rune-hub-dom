@@ -1,5 +1,3 @@
-import { Hub, Slot } from 'rune-hub'
-
 import { Lazy } from '../Lazy'
 import { Pipe } from '../Pipe'
 import { findRoute } from './helpers/findRoute'
@@ -7,7 +5,7 @@ import { paramsContext } from './hooks'
 import { type Routing } from './types'
 
 import { type Component, JSXNode, type ObservableProp } from '../../types'
-import { Context, isLazy, type LazyResult, locationPath, use } from '../../utils'
+import { Context, isLazy, type LazyResult, locationPath, SystemSlot, use } from '../../utils'
 
 export interface RouterProps {
   routing: ObservableProp<Routing>
@@ -17,17 +15,17 @@ export interface RouterProps {
 const EMPTY_SET = new Set<string>()
 
 export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
-  const params = paramsContext.get() || new Slot<Record<string, string>>(() => ({}), Hub.cur, true)
+  const params = paramsContext.get() || new SystemSlot<Record<string, string>>(() => ({}))
 
-  const route = new Slot(() => {
+  const route = new SystemSlot(() => {
     const newParams: Record<string, string> = {}
     const route = findRoute(use(routing), locationPath.value.split('/').filter(Boolean), newParams, use(permissions))
     params.value = newParams
 
     return route
-  }, Hub.cur, true)
+  })
 
-  const components = new Slot(() => {
+  const components = new SystemSlot(() => {
     const routeValue = route.value
     if (!routeValue) return []
 
@@ -39,7 +37,7 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     }
 
     return result
-  }, Hub.cur, true)
+  })
 
   const loadedComponents = new Map()
 
@@ -48,9 +46,9 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     set: params,
     children: new JSXNode(Pipe, {
       children: (children, index) => new JSXNode(Lazy, {
-        component: new Slot(() => components.value[index], Hub.cur, true),
-        fallback: new Slot(() => route.value?.fallback?.[index], Hub.cur, true),
-        show: new Slot(() => components.value.length > index, Hub.cur, true),
+        component: new SystemSlot(() => components.value[index]),
+        fallback: new SystemSlot(() => route.value?.fallback?.[index]),
+        show: new SystemSlot(() => components.value.length > index),
         render: (Component) => new JSXNode(Component, { children }),
         loadedComponents,
       }),

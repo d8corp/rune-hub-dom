@@ -1,11 +1,12 @@
-import { Hub, Slot, unwatch } from 'rune-hub'
+import type { Slot } from 'rune-hub'
+import { Hub, unwatch } from 'rune-hub'
 import Timer from 'sync-timer'
 
 import { parentContext } from '../../constants'
 import { useClear } from '../../hooks'
 import { rundom } from '../../rundom'
 import type { Ref } from '../../utils'
-import { append, Content, Context, dissolve } from '../../utils'
+import { append, Content, Context, dissolve, SystemSlot } from '../../utils'
 
 export const delayContext = new Context<undefined | Slot<boolean>>(undefined)
 
@@ -44,7 +45,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
   const delayContent = () => Context.use(() => rundom(children), context)
 
   if (hide > 0) {
-    const hideSlot = new Slot(() => false, Hub.cur, true)
+    const hideSlot = new SystemSlot(() => false)
 
     delayContext.set(hideSlot, context)
 
@@ -52,7 +53,7 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
       ref.value = hideSlot
     }
 
-    const watcher = new Slot(delayContent, Hub.cur, true)
+    const watcher = new SystemSlot(delayContent)
 
     useClear(() => {
       hideSlot.set(true)

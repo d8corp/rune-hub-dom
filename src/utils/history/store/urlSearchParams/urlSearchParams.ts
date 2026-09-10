@@ -1,7 +1,7 @@
-import { Slot } from 'rune-hub'
-
 import { locationSearch } from '../locationSearch'
 
-export const urlSearchParams = new Slot(function urlSearchParams () {
+import { SystemSlot } from '../../../SystemSlot'
+
+export const urlSearchParams = new SystemSlot(function urlSearchParams () {
   return new URLSearchParams(locationSearch.value)
 })

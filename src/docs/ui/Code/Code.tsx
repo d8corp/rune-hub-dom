@@ -13,9 +13,9 @@ export interface CodeProps extends HTMLStyleProps<HTMLElement, typeof $styles> {
 
 export function Code ({ onclick, style, glow, ...props }: CodeProps) {
   const styles = useStyles($styles, props.class)
-  const x = new Slot(() => '')
-  const y = new Slot(() => '')
-  const copied = new Slot(() => false)
+  const x = new Slot(function x () { return '' })
+  const y = new Slot(function y () { return '' })
+  const copied = new Slot(function copied () { return false })
   let copyTimer: any
 
   const handleClick = (e: PointerEvent) => {

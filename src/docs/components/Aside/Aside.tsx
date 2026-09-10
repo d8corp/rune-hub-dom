@@ -1,4 +1,5 @@
 import { classes } from 'html-classes'
+import { get } from 'rune-hub'
 
 import { Delay, For, useHidden } from '../../../components'
 import { useCtx, useShow } from '../../../hooks'
@@ -60,7 +61,7 @@ export function Aside () {
         </div>
         {() => (
           <Delay show={useCtx()?.inited ? 200 : 0} hide={200}>
-            <Content links={titleLinks.value} />
+            <Content links={get(titleLinks)} />
           </Delay>
         )}
       </Flex>

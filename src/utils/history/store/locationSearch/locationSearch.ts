@@ -1,7 +1,7 @@
-import { Slot } from 'rune-hub'
-
 import { historyState } from '../historyState'
 
-export const locationSearch = new Slot(function locationSearch () {
+import { SystemSlot } from '../../../SystemSlot'
+
+export const locationSearch = new SystemSlot(function locationSearch () {
   return historyState.value && window.location.search
 })

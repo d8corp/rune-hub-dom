@@ -1,3 +1,5 @@
+import { slot } from 'rune-hub'
+
 import { Hide } from '../../../components'
 import type { ChildrenProps } from '../../../types'
 import { isLaptop } from '../../state'
@@ -12,7 +14,7 @@ export interface ExampleProps extends ChildrenProps {
 
 export function Example ({ description, children, views }: ExampleProps) {
   return (
-    <Flex gap={32} align='center' vertical={isLaptop} class={styles.root}>
+    <Flex gap={32} align='center' vertical={slot(isLaptop)} class={styles.root}>
       <Typography class={styles.description}>
         <Markdown text={description} />
       </Typography>
