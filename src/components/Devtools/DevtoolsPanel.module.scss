@@ -30,12 +30,25 @@
 }
 
 .closeButton {
+  display: flex;
   cursor: pointer;
+  border: none;
+  padding: 1px;
+  background: var(--devtools-color-error);
+  font-size: 10px;
+  border-radius: 6px;
+  transition: color .2s ease;
+  color: transparent;
+
+  &:hover {
+    color: #000a;
+  }
 }
 
 .header {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  align-items: center;
 }
 
 .content {
@@ -53,4 +66,20 @@
   flex-direction: column;
   overflow: auto;
   overscroll-behavior: contain;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+}
+
+.asideHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.search {
+  flex: 1;
 }

@@ -1,5 +1,6 @@
 export * from './AsideIcon'
 export * from './BurgerIcon'
+export * from './CloseIcon'
 export * from './CopyIcon'
 export * from './HtmlIcon'
 export * from './JsonIcon'
