@@ -1,50 +1,9 @@
-.root {
-  --color-bg: light-dark(#fff, #161626);
-  --color-border: light-dark(#7C3AED1F, #8B5CF61F);
-  --color-text-muted: light-dark(#5B556E, #94A3B8);
-
-  display: flex;
-  position: fixed;
-  flex-direction: column;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  padding: 10px;
-  border-radius: 6px;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  z-index: 999999;
-  height: 50vh;
-  color: var(--color-text-muted);
-}
-
-.openButton {
-  position: fixed;
-  cursor: pointer;
-  bottom: 10px;
-  left: 10px;
-  z-index: 999999;
-}
-
-.closeButton {
-  cursor: pointer;
-}
-
-.header {
-  display: flex;
-  padding: 10px;
-}
-
-.content {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-}
-
-.list {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: auto;
-  overscroll-behavior: contain;
+:root {
+  --devtools-color-bg: light-dark(#fff, #161626);
+  --devtools-color-bg-alpha: #8B5CF614;
+  --devtools-color-bg-alpha-hover: #8B5CF626;
+  --devtools-color-border: light-dark(#7C3AED1F, #8B5CF61F);
+  --devtools-color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
+  --devtools-color-text: light-dark(#5B556E, #94A3B8);
+  --devtools-color-primary: light-dark(#7C3AED, #8B5CF6);
 }

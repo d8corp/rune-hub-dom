@@ -1,0 +1,21 @@
+.root {
+  position: fixed;
+  cursor: pointer;
+  bottom: 10px;
+  left: 10px;
+  z-index: 999999;
+  padding: 8px;
+  background: var(--devtools-color-bg-alpha);
+  backdrop-filter: blur(8px);
+  font-size: 14px;
+  border-radius: 8px;
+  height: 36px;
+  border: 1px solid var(--devtools-color-border);
+  color: var(--devtools-color-primary);
+  transition: background-color .2s, border-color .2s;
+
+  &:hover {
+    background: var(--devtools-color-bg-alpha-hover);
+    border-color: var(--devtools-color-border-hover);
+  }
+}
