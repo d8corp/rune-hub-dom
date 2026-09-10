@@ -5,13 +5,28 @@
   bottom: 10px;
   left: 10px;
   right: 10px;
-  padding: 10px;
-  border-radius: 6px;
-  background: var(--devtools-color-bg);
+  padding: 8px;
+  gap: 8px;
+  border-radius: 16px;
+  background: var(--devtools-color-bg-alpha);
   border: 1px solid var(--devtools-color-border);
   z-index: 999999;
   height: 50vh;
   color: var(--devtools-color-text);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.hide {
+  opacity: 0;
+  transform: translateY(100px);
 }
 
 .closeButton {
@@ -20,13 +35,16 @@
 
 .header {
   display: flex;
-  padding: 10px;
+  gap: 8px;
 }
 
 .content {
   display: flex;
   flex: 1;
   min-height: 0;
+  background: var(--devtools-color-bg);
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .list {

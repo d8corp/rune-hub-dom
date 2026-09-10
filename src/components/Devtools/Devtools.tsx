@@ -1,5 +1,6 @@
 import './Devtools.module.scss'
 
+import { Delay } from '../Delay'
 import { Show } from '../Show'
 import { DevtoolsButton } from './DevtoolsButton'
 import { DevtoolsPanel } from './DevtoolsPanel'
@@ -12,8 +13,10 @@ export function Devtools () {
 
   return (
     <Context.Provider for={devtoolsStoreContext} set={store}>
-      <Show when={store.show} fallback={<DevtoolsButton />}>
-        <DevtoolsPanel />
+      <Show when={store.show} fallback={<Delay hide={200}><DevtoolsButton /></Delay>}>
+        <Delay hide={200}>
+          <DevtoolsPanel />
+        </Delay>
       </Show>
     </Context.Provider>
   )
