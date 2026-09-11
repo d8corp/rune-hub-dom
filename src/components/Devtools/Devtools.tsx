@@ -2,8 +2,8 @@ import './Devtools.module.scss'
 
 import { Delay } from '../Delay'
 import { Show } from '../Show'
-import { DevtoolsButton } from './DevtoolsButton'
-import { DevtoolsPanel } from './DevtoolsPanel'
+import { DevtoolsButton } from './components/DevtoolsButton'
+import { DevtoolsPanel } from './components/DevtoolsPanel'
 import { devtoolsStoreContext, useCreateDevtoolsStore } from './hooks'
 
 import { Context } from '../../utils'

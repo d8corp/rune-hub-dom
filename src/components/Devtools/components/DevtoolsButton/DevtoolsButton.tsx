@@ -1,9 +1,8 @@
 import { classes } from 'html-classes'
 
-import { useHidden } from '../Delay'
-import { devtoolsStoreContext } from './hooks'
-
-import { useShow } from '../../hooks'
+import { useShow } from '../../../../hooks'
+import { useHidden } from '../../../Delay'
+import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsButton.module.scss'
 
 export function DevtoolsButton () {

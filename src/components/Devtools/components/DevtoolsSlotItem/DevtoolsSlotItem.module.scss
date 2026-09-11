@@ -1,0 +1,30 @@
+.root {
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  height: 34px;
+  gap: 8px;
+  border: 1px solid transparent;
+  transition: background-color .2s ease, border-color .2s ease;
+
+  &:hover {
+    background: var(--devtools-color-bg-alpha);
+  }
+}
+
+.selected {
+  background: var(--devtools-color-bg-alpha);
+  border-color: var(--devtools-color-border);
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  backdrop-filter: blur(8px);
+}
+
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
