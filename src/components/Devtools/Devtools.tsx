@@ -23,7 +23,7 @@ export function Devtools (props: DevtoolsProps) {
   return (
     <HubProvider hub={hub}>
       <Context.Provider for={devtoolsStoreContext} set={store}>
-        <Show when={store.show} fallback={<DevtoolsButton />}>
+        <Show when={store.show} fallback={<Delay hide={200}><DevtoolsButton /></Delay>}>
           <Delay hide={200}>
             <DevtoolsPanel />
           </Delay>
