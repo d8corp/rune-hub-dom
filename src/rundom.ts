@@ -92,7 +92,7 @@ export function runNode (target: JSXNode) {
           const rawValue = observablePropToRuneProp(value[property])
 
           if (typeof rawValue === 'function') {
-            new SystemSlot(() => {
+            new SystemSlot(function styleParamEffect () {
               element.style.setProperty(property, rawValue())
             }).on()
           } else {
@@ -103,18 +103,38 @@ export function runNode (target: JSXNode) {
         continue
       }
 
+      const bothSet = prop[0] === '$'
+      const fieldSet = bothSet || prop[0] === '_'
+      const attributeSet = bothSet || !fieldSet
+
+      const key = fieldSet ? prop.slice(1) : prop
+
       if (value instanceof Slot || typeof value === 'function') {
-        new SystemSlot(() => {
+        new SystemSlot(function attributeEffect () {
           const result = use(value)
 
-          if (result === undefined || result === '') {
-            element.removeAttribute(prop)
-          } else {
-            element.setAttribute(prop, String(result))
+          // @ts-expect-error TODO: fix types
+          if (fieldSet && element[key] !== result) {
+            // @ts-expect-error TODO: fix types
+            element[key] = result
+          }
+
+          if (attributeSet) {
+            if (result === undefined || result === '') {
+              element.removeAttribute(prop)
+            } else {
+              element.setAttribute(prop, String(result))
+            }
           }
         }).on()
 
         continue
+      }
+
+      // @ts-expect-error TODO: fix types
+      if (fieldSet && element[key] !== value) {
+        // @ts-expect-error TODO: fix types
+        element[key] = value
       }
 
       if (value !== undefined && value !== '') {

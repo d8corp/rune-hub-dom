@@ -16,7 +16,7 @@ import styles from './DevtoolsPanel.module.scss'
 export function DevtoolsPanel () {
   const shown = useShow()
   const hidden = useHidden()
-  const { show, search, searchSlots, slots, selected, props, systemFilter, anonFilter } = devtoolsStoreContext.get()!
+  const { show, search, searchSlots, slots, props, systemFilter, anonFilter } = devtoolsStoreContext.get()!
   const scroll = new SystemSlot(() => 0)
 
   const height = new SystemSlot(() => 0)
@@ -91,7 +91,7 @@ export function DevtoolsPanel () {
       <div class={styles.main}>
         <div class={styles.filter}>
           {() => `${searchSlots.value.length} / ${slots.value.size}`}
-          <input class={styles.search} value={search} oninput={(e: any) => { search.set(e.target.value) }} />
+          <input class={styles.search} _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
           <Show when={props.anon}>
             <button
               onclick={clickHandler(anonFilter)}
