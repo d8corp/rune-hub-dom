@@ -2,6 +2,7 @@ import { classes } from 'html-classes'
 import type { Slot } from 'rune-hub'
 
 import { DevtoolsSlotItem } from '../DevtoolsSlotItem'
+import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
 import { CloseIcon } from '../../../../docs/icons'
 import { useEffect, useShow } from '../../../../hooks'
@@ -124,7 +125,7 @@ export function DevtoolsPanel () {
               </div>
             </div>
           </div>
-          {() => selected.value && <pre style={{ flex: '1' }}>{String(selected.value.rune)}</pre>}
+          <DevtoolsSlotPanel />
         </div>
       </div>
     </div>
