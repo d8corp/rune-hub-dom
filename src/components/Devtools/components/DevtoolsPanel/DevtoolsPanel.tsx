@@ -17,15 +17,23 @@ export function DevtoolsPanel () {
   const hidden = useHidden()
   const { show, search, searchSlots, slots, selected, props, systemFilter, anonFilter } = devtoolsStoreContext.get()!
   const scroll = new SystemSlot(() => 0)
-  const scrollIndex = new SystemSlot(() => (scroll.value / 38) | 0)
+
   const height = new SystemSlot(() => 0)
   const heightCount = new SystemSlot(() => (height.value / 38) | 0)
+
+  const scrollIndex = new SystemSlot(() => {
+    return Math.min((scroll.value / 38) | 0, searchSlots.value.length - heightCount.value)
+  })
+
   const offset = new SystemSlot(() => scrollIndex.value * 38)
   const paddingTop = new SystemSlot(() => `${offset.value}px`)
-  const paddingBottom = new SystemSlot(() => `${(searchSlots.value.length * 38) - offset.value - height.value}px`)
+
+  const paddingBottom = new SystemSlot(() => {
+    return `${Math.max(0, (searchSlots.value.length * 38) - offset.value - height.value - 38)}px`
+  })
 
   const slotsList = new SystemSlot(() => {
-    return searchSlots.value.slice(scrollIndex.value, scrollIndex.value + heightCount.value + 1)
+    return searchSlots.value.slice(scrollIndex.value, scrollIndex.value + heightCount.value + 2)
   })
 
   const list = new Ref<HTMLDivElement>()
