@@ -45,7 +45,8 @@ export function Delay ({ show = 0, hide = 0, ref, children }: DelayProps) {
   const delayContent = () => Context.use(() => rundom(children), context)
 
   if (hide > 0) {
-    const hideSlot = new SystemSlot(() => false)
+    const delayHide = () => false
+    const hideSlot = new SystemSlot(delayHide)
 
     delayContext.set(hideSlot, context)
 

@@ -41,7 +41,7 @@ export function Link (props: LinkProps) {
   const getHref = () => use(href) || ''
 
   function createClassName () {
-    const regString = new SystemSlot(() => {
+    const linkRegString = () => {
       const href = getHref()
 
       const prefix = href.startsWith('?')
@@ -51,16 +51,21 @@ export function Link (props: LinkProps) {
           : ''
 
       return `^${prefix}${clearHref(href)}${exact ? '$' : ''}`
-    })
+    }
 
-    const reg = new SystemSlot(() => new RegExp(regString.value))
+    const linkReg = () => new RegExp(regString.value)
 
-    return new SystemSlot(() => {
+    const regString = new SystemSlot(linkRegString)
+    const reg = new SystemSlot(linkReg)
+
+    const linkClass = () => {
       return classes([
         styles.root,
         reg.value.test(locationURL.value) && styles.active,
       ])
-    })
+    }
+
+    return new SystemSlot(linkClass)
   }
 
   const className = rest.class ? createClassName() : undefined

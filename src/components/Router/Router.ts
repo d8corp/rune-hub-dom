@@ -15,17 +15,19 @@ export interface RouterProps {
 const EMPTY_SET = new Set<string>()
 
 export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
-  const params = paramsContext.get() || new SystemSlot<Record<string, string>>(() => ({}))
+  const params = paramsContext.get() || new SystemSlot<Record<string, string>>(function routerParams () { return {} })
 
-  const route = new SystemSlot(() => {
+  const currentRoute = () => {
     const newParams: Record<string, string> = {}
     const route = findRoute(use(routing), locationPath.value.split('/').filter(Boolean), newParams, use(permissions))
     params.value = newParams
 
     return route
-  })
+  }
 
-  const components = new SystemSlot(() => {
+  const route = new SystemSlot(currentRoute)
+
+  const routeComponents = () => {
     const routeValue = route.value
     if (!routeValue) return []
 
@@ -37,7 +39,9 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     }
 
     return result
-  })
+  }
+
+  const components = new SystemSlot(routeComponents)
 
   const loadedComponents = new Map()
 
@@ -46,9 +50,9 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
     set: params,
     children: new JSXNode(Pipe, {
       children: (children, index) => new JSXNode(Lazy, {
-        component: new SystemSlot(() => components.value[index]),
-        fallback: new SystemSlot(() => route.value?.fallback?.[index]),
-        show: new SystemSlot(() => components.value.length > index),
+        component: new SystemSlot(function routeComponent () { return components.value[index] }),
+        fallback: new SystemSlot(function routeFallback () { return route.value?.fallback?.[index] }),
+        show: new SystemSlot(function routeShow () { return components.value.length > index }),
         render: (Component) => new JSXNode(Component, { children }),
         loadedComponents,
       }),

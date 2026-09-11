@@ -13,7 +13,8 @@ export interface TryProps extends ChildrenProps {
 }
 
 export function Try (props: TryProps) {
-  const errorSlot = new SystemSlot<unknown>(() => {})
+  const tryError = () => {}
+  const errorSlot = new SystemSlot<unknown>(tryError)
 
   const retry = () => {
     errorSlot.set(undefined)

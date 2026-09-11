@@ -14,7 +14,7 @@ export function getHistoryStateRaw (): HistoryState {
   }
 }
 
-export const historyState = new SystemSlot(() => getHistoryStateRaw())
+export const historyState = new SystemSlot(getHistoryStateRaw)
 
 export function updateHistoryState () {
   historyState.set(getHistoryStateRaw())

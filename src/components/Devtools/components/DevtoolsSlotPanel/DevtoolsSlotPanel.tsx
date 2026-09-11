@@ -27,7 +27,7 @@ export function DevtoolsSlotPanel () {
           <div>
             prev: {() => values.value && JSON.stringify(selected.value?.prev)}
           </div>
-          <pre style={{ flex: '1' }}>
+          <pre class={styles.code}>
             {() => String(selected.value?.rune)}
           </pre>
         </div>

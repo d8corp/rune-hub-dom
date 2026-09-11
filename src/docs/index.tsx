@@ -33,7 +33,7 @@ function App () {
 
   return (
     <Try catch={ErrorPage}>
-      {process.env.DEV && <Devtools />}
+      {process.env.DEV && <Devtools anon system />}
       <Router routing={routing} />
     </Try>
   )

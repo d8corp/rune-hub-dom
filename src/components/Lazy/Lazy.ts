@@ -22,9 +22,10 @@ export function Lazy<C extends Component = Component> ({
 }: LazyProps<C>) {
   if (!show) return
 
-  const loading = new SystemSlot(() => false)
+  const lazyLoading = () => false
+  const loading = new SystemSlot(lazyLoading)
 
-  new SystemSlot(() => {
+  const lazyLoadingEffect = () => {
     if (!use(show)) return
 
     const currentComponent = use(component)
@@ -37,7 +38,9 @@ export function Lazy<C extends Component = Component> ({
         loading.set(false)
       })
     }
-  }).on()
+  }
+
+  new SystemSlot(lazyLoadingEffect).on()
 
   return () => {
     if (!use(show)) return null

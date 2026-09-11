@@ -24,11 +24,13 @@ export function runReactive (target: Slot<JSXElement> | Rune<JSXElement>) {
   parentContext.set(content, context)
   runElement(content)
 
-  new SystemSlot(function reactiveContent () {
+  const reactiveContent = () => {
     return Context.use(() => {
       rundom(use(target))
     }, context)
-  }).on()
+  }
+
+  new SystemSlot(reactiveContent).on()
 }
 
 export function runElement (target: HTMLElement | SVGElement | Text | Content) {
@@ -92,9 +94,11 @@ export function runNode (target: JSXNode) {
           const rawValue = observablePropToRuneProp(value[property])
 
           if (typeof rawValue === 'function') {
-            new SystemSlot(function styleParamEffect () {
+            const styleParamEffect = () => {
               element.style.setProperty(property, rawValue())
-            }).on()
+            }
+
+            new SystemSlot(styleParamEffect).on()
           } else {
             element.style.setProperty(property, rawValue)
           }
@@ -110,7 +114,7 @@ export function runNode (target: JSXNode) {
       const key = fieldSet ? prop.slice(1) : prop
 
       if (value instanceof Slot || typeof value === 'function') {
-        new SystemSlot(function attributeEffect () {
+        const attributeEffect = () => {
           const result = use(value)
 
           // @ts-expect-error TODO: fix types
@@ -126,7 +130,9 @@ export function runNode (target: JSXNode) {
               element.setAttribute(prop, String(result))
             }
           }
-        }).on()
+        }
+
+        new SystemSlot(attributeEffect).on()
 
         continue
       }

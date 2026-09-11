@@ -82,8 +82,10 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         parentContext.set(deepContent, deepHandler)
         append(parentContext.get(), deepContent)
         const currentIndex = index++
-        const indexState = new SystemSlot(() => currentIndex)
-        const valueState = new SystemSlot(() => value)
+        const forIndex = () => currentIndex
+        const forValue = () => value
+        const indexState = new SystemSlot(forIndex)
+        const valueState = new SystemSlot(forValue)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -92,9 +94,11 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
-          const result = new SystemSlot(() => {
+          const deepForRender = () => {
             deepRender(children(valueState as any, indexState as any))
-          })
+          }
+
+          const result = new SystemSlot(deepForRender)
 
           result.on()
 
@@ -145,8 +149,10 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const content = new Content()
         const deepHandler = Object.create(childHandler)
         parentContext.set(content, deepHandler)
-        const valueState = new SystemSlot(() => value)
-        const indexState = new SystemSlot(() => index)
+        const forIndex = () => index
+        const forValue = () => value
+        const valueState = new SystemSlot(forValue)
+        const indexState = new SystemSlot(forIndex)
 
         forValueContext.set(valueState, deepHandler)
         forIndexContext.set(indexState, deepHandler)
@@ -163,9 +169,11 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
         const deepRender = (children: JSXElement) => Context.use(() => rundom(children), deepHandler)
 
         watcherContext.set(unwatch(() => {
-          const result = new SystemSlot(() => {
+          const deepForRender = () => {
             deepRender(children(valueState as any, indexState as any))
-          })
+          }
+
+          const result = new SystemSlot(deepForRender)
 
           result.on()
 
