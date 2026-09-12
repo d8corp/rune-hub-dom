@@ -33,10 +33,9 @@ function App () {
 
   return (
     <Try catch={ErrorPage}>
-      {process.env.DEV && <Devtools anon system />}
       <Router routing={routing} />
     </Try>
   )
 }
 
-rundom(<App />)
+rundom([process.env.DEV && <Devtools anon system />, <App />])
