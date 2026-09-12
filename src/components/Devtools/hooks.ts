@@ -53,6 +53,27 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   const values = new SystemSlot<Map<Slot, unknown>>(() => new Map(Array.from(slots.raw).map(slot => [slot, slot.raw])), devHub)
   const ups = new SystemSlot<Map<Slot, boolean>>(() => new Map(Array.from(slots.raw).map(slot => [slot, slot.up])), devHub)
 
+  let isWillUpdate = false
+  const willUpdate = new Set<Slot>()
+
+  const update = (slot: Slot) => {
+    willUpdate.add(slot)
+    if (isWillUpdate) return
+    isWillUpdate = true
+
+    queueMicrotask(() => {
+      const slots = Array.from(willUpdate)
+      willUpdate.clear()
+      isWillUpdate = false
+
+      batch(() => {
+        for (const slot of slots) {
+          slot.update()
+        }
+      })
+    })
+  }
+
   const check = (slot: Slot) => {
     if (!props.system && slot instanceof SystemSlot) return true
     if (!props.anon && !hub.slots.has(slot.rune)) return true
@@ -66,24 +87,22 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
     slots.raw.add(slot)
     values.raw.set(slot, slot.raw)
 
-    batch(() => {
-      slots.update()
-      values.update()
-    })
+    update(slot)
+    update(values)
   })
 
   hub.on('change', slot => {
     if (check(slot)) return
 
     values.raw.set(slot, slot.raw)
-    values.update()
+    update(values)
   })
 
   hub.on('up', slot => {
     if (check(slot)) return
 
     ups.raw.set(slot, true)
-    ups.update()
+    update(ups)
   })
 
   hub.on('down', slot => {
@@ -91,7 +110,7 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
 
     if (hub.slots.has(slot.rune)) {
       ups.raw.set(slot, false)
-      ups.update()
+      update(ups)
 
       return
     }
@@ -100,10 +119,21 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
     values.raw.delete(slot)
     ups.raw.delete(slot)
 
-    batch(() => {
-      slots.update()
-      values.update()
-    })
+    update(slots)
+    update(values)
+    update(ups)
+  })
+
+  hub.on('destroy', slot => {
+    if (check(slot)) return
+
+    slots.raw.delete(slot)
+    values.raw.delete(slot)
+    ups.raw.delete(slot)
+
+    update(slots)
+    update(values)
+    update(ups)
   })
 
   return {
