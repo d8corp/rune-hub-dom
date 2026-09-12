@@ -1,4 +1,5 @@
 import { CloseIcon } from '../../../../docs/icons'
+import { SystemSlot } from '../../../../utils'
 import { Show } from '../../../Show'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
@@ -27,9 +28,24 @@ export function DevtoolsSlotPanel () {
           <div>
             prev: {() => values.value && JSON.stringify(selected.value?.prev)}
           </div>
-          <pre class={styles.code}>
-            {() => String(selected.value?.rune)}
-          </pre>
+          <div>
+            anon: {() => String(selected.value?.anon)}
+          </div>
+          <div>
+            state: {() => String(selected.value?.state)}
+          </div>
+          <div>
+            sets: {() => String(selected.value?.sets)}
+          </div>
+          <div>
+            system: {() => selected.value ? String(selected.value instanceof SystemSlot) : undefined}
+          </div>
+          <div class={styles.codeBlock}>
+            code:
+            <pre class={styles.code}>
+              {() => String(selected.value?.rune)}
+            </pre>
+          </div>
         </div>
       </div>
     </Show>
