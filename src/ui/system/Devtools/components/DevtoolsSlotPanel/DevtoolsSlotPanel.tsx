@@ -1,6 +1,9 @@
+import { SlotStatus } from '../SlotStatus'
+
 import { Show } from '../../../../../components'
 import { CloseIcon } from '../../../../../docs/icons'
 import { SystemSlot } from '../../../../../utils'
+import { Flex } from '../../../../layout'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
 
@@ -14,13 +17,13 @@ export function DevtoolsSlotPanel () {
   return (
     <Show when={selected}>
       <div class={styles.root}>
-        <div class={styles.header}>
+        <Flex gap={8} align='center'>
           <button onclick={handleClose}>
             <CloseIcon />
           </button>
-          {() => selected.value && ups.value.get(selected.value) ? '🟢 ' : '⚪ '}
+          <SlotStatus slot={selected} />
           {() => selected.value?.rune.name}
-        </div>
+        </Flex>
         <div class={styles.content}>
           <div>
             value: {() => selected.value && JSON.stringify(values.value.get(selected.value))}

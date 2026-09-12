@@ -1,5 +1,5 @@
-import { Flex } from '../../../ui'
-import { Button, Code, DelayPage, Divider, Dot, Title } from '../../ui'
+import { Dot, Flex } from '../../../ui'
+import { Button, Code, DelayPage, Divider, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,

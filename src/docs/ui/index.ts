@@ -1,7 +1,6 @@
 export * from './Button'
 export * from './Code'
 export * from './Divider'
-export * from './Dot'
 export * from './Highlight'
 export * from './Markdown'
 export * from './MarkdownPage'

@@ -44,9 +44,9 @@ body {
   --rd-color-text: light-dark(#1E1B2E, #F1F5F9);
   --rd-color-text-muted: light-dark(#5B556E, #94A3B8);
   --rd-color-text-dim: light-dark(#8B85A0, #64748B);
-  --color-success: light-dark(#059669, #34D399);
+  --rd-color-success: light-dark(#059669, #34D399);
   --rd-color-error: light-dark(#E11D48, #FB7185);
-  --color-warn: light-dark(#EA580C, #FB923C);
+  --rd-color-warn: light-dark(#EA580C, #FB923C);
   --color-shine: light-dark(#7C3AED1A, #FFFFFF1A);
 
   --gradient-base: linear-gradient(135deg, var(--rd-color-primary), var(--color-accent));
