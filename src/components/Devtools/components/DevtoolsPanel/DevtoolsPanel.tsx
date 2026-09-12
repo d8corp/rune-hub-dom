@@ -20,7 +20,7 @@ export function DevtoolsPanel () {
 
   const list = new Ref<HTMLDivElement>()
 
-  const { virtualList, offsetTop, offsetBottom } = useVirtualList({ list: searchSlots, itemHeight: 38, scrollbar: list, gap: 4 })
+  const { virtualList, offsetTop, offsetBottom } = useVirtualList({ list: searchSlots, itemHeight: 34, scrollbar: list, gap: 4 })
 
   const clickHandler = (slot: Slot<boolean | null>) => () => {
     if (slot.raw === null) {

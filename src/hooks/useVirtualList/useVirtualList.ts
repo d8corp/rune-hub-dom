@@ -17,9 +17,9 @@ export function useVirtualList<T> ({ scrollbar = documentElementRef, itemHeight,
   const virtualScroll = () => 0
   const virtualHeight = () => 0
   const virtualHeightCount = () => (height.value / itemSize) | 0
-  const virtualScrollIndex = () => Math.min((scroll.value / itemSize) | 0, use(list).length - heightCount.value)
-  const virtualOffset = () => scrollIndex.value * itemSize
-  const virtualOffsetTop = () => `${offset.value}px`
+  const virtualScrollIndex = () => Math.max(0, Math.min((scroll.value / itemSize) | 0, use(list).length - heightCount.value))
+  const virtualOffset = () => Math.max(0, scrollIndex.value * itemSize)
+  const virtualOffsetTop = () => `${Math.max(0, offset.value)}px`
   const virtualOffsetBottom = () => `${Math.max(0, (use(list).length * itemSize) - offset.value - height.value - itemSize)}px`
 
   const scroll = new SystemSlot(virtualScroll)
