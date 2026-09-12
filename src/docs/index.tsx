@@ -10,8 +10,11 @@ import './styles/base.scss'
 
 import { Hub, on } from 'rune-hub'
 
-import { Devtools, Router, Try } from '../components'
+import { linkBaseUrlContext, Router, Try } from '../components'
 import { rundom } from '../rundom'
+import { Devtools } from '../ui'
+import { Context } from '../utils'
+import { BASE_URL } from './constants'
 import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/ErrorPage'
 import { routing } from './routing'
@@ -33,7 +36,9 @@ function App () {
 
   return (
     <Try catch={ErrorPage}>
-      <Router routing={routing} />
+      <Context.Provider for={linkBaseUrlContext} set={`/${BASE_URL}`}>
+        <Router routing={routing} />
+      </Context.Provider>
     </Try>
   )
 }

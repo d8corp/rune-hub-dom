@@ -2,6 +2,7 @@ import { slot } from 'rune-hub'
 
 import { Delay, Hide, Show, Try } from '../../../components'
 import type { ChildrenProps } from '../../../types'
+import { Flex } from '../../../ui'
 import { Aside, Side } from '../../components'
 import { AsideIcon, SideIcon } from '../../icons'
 import { ErrorPage } from '../../pages/ErrorPage'
@@ -14,7 +15,7 @@ import {
   toggleIsShowAside,
   toggleIsShowSide,
 } from '../../state'
-import { DelayPage, Flex } from '../../ui'
+import { DelayPage } from '../../ui'
 import styles from './MenuLayout.module.scss'
 
 export function MenuLayout ({ children }: ChildrenProps) {

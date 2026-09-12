@@ -2,14 +2,14 @@ import './Devtools.module.scss'
 
 import { Hub } from 'rune-hub'
 
-import { Delay } from '../Delay'
-import { HubProvider } from '../HubProvider'
-import { Show } from '../Show'
 import { DevtoolsButton } from './components/DevtoolsButton'
 import { DevtoolsPanel } from './components/DevtoolsPanel'
 import { devtoolsStoreContext, useCreateDevtoolsStore } from './hooks'
 
-import { Context } from '../../utils'
+import { Delay } from '../../../components/Delay'
+import { HubProvider } from '../../../components/HubProvider'
+import { Show } from '../../../components/Show'
+import { Context } from '../../../utils'
 
 export interface DevtoolsProps {
   anon?: boolean

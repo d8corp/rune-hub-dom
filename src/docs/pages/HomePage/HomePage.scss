@@ -32,8 +32,8 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: fixed linear-gradient(var(--color-primary) 1px, transparent 1px),
-    fixed linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
+    background: fixed linear-gradient(var(--rd-color-primary) 1px, transparent 1px),
+    fixed linear-gradient(90deg, var(--rd-color-primary) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
     mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%);
@@ -62,7 +62,7 @@
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 13px;
-  color: var(--color-primary-light);
+  color: var(--rd-color-primary-6);
   margin-bottom: 24px;
   backdrop-filter: blur(2px);
   @include proximityGlow;

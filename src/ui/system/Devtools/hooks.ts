@@ -2,7 +2,7 @@ import { batch, Hub, type Slot } from 'rune-hub'
 
 import type { DevtoolsProps } from './Devtools'
 
-import { Context, SystemSlot } from '../../utils'
+import { Context, SystemSlot } from '../../../utils'
 
 export type DevtoolsStore = ReturnType<typeof useCreateDevtoolsStore>
 export const devtoolsStoreContext = new Context<DevtoolsStore | undefined>(undefined)

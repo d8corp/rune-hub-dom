@@ -2,7 +2,7 @@ import { classes } from 'html-classes'
 
 import { type HTMLStyleProps, useStyles } from '../../hooks'
 import type { LinkToParams } from '../../utils'
-import { linkTo, locationURL, SystemSlot, use } from '../../utils'
+import { Context, linkTo, locationURL, SystemSlot, use } from '../../utils'
 
 export const defaultLinkClass = {
   root: '',
@@ -15,13 +15,15 @@ function clearHref (url: string) {
   return url.replace(CLEAR_HREF, '')
 }
 
+export const linkBaseUrlContext = new Context('')
+
 export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, typeof defaultLinkClass>, LinkToParams {
   target?: '_blank' | '_parent' | '_self' | '_top'
   exact?: boolean
   children?: JSX.Element
 }
 
-export function Link (props: LinkProps) {
+export function BaseLink (props: LinkProps) {
   const styles = useStyles(defaultLinkClass, props.class)
   const { onclick, href, scroll = 'before', scrollTo, replace, exact, ...rest } = props
 
@@ -38,7 +40,13 @@ export function Link (props: LinkProps) {
     )
   }
 
-  const getHref = () => use(href) || ''
+  const baseUrl = linkBaseUrlContext.get()
+
+  const getHref = () => {
+    const result = use(href) || ''
+
+    return result.startsWith('/') ? `${baseUrl}${result}` : result
+  }
 
   function createClassName () {
     const linkRegString = () => {
@@ -84,5 +92,5 @@ export function Link (props: LinkProps) {
     onclick?.call(this, e)
   }
 
-  return <a {...rest} class={className} href={href} onclick={handleClick} />
+  return <a {...rest} class={className} href={getHref} onclick={handleClick} />
 }

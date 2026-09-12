@@ -1,11 +1,10 @@
 import { classes } from 'html-classes'
 import { get, Slot } from 'rune-hub'
 
-import type { FlexProps } from '../Flex'
-import { Flex } from '../Flex'
-
 import { Delay, useHidden } from '../../../components'
 import { useEffect, useShow, useStyles } from '../../../hooks'
+import type { FlexProps } from '../../../ui'
+import { Flex } from '../../../ui'
 import { Context } from '../../../utils'
 import type { PageUpdatedData } from '../../hooks'
 import { pageUpdated, usePageUpdated } from '../../hooks'

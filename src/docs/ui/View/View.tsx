@@ -1,10 +1,10 @@
 import { Dot } from '../Dot'
-import type { FlexProps } from '../Flex'
-import { Flex } from '../Flex'
 import { BaseMarkdown } from '../Markdown'
 import { Typography } from '../Typography'
 
 import { useStyles } from '../../../hooks'
+import type { FlexProps } from '../../../ui'
+import { Flex } from '../../../ui'
 import { use } from '../../../utils'
 import $styles from './View.module.scss'
 

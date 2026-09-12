@@ -1,7 +1,7 @@
 import type { ChildrenProps } from '../../../types'
+import { Flex } from '../../../ui'
 import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
-import { Flex } from '../../ui'
 import styles from './MainLayout.scss'
 
 export function MainLayout ({ children }: ChildrenProps) {

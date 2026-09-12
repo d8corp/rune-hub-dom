@@ -1,11 +1,10 @@
 import { raw, Slot, update } from 'rune-hub'
 
-import { Flex, type FlexProps } from '../Flex'
-import { Link } from '../Link'
-
 import { Show, useHidden } from '../../../components'
 import { useClear, useShow, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
+import { Flex, type FlexProps } from '../../../ui'
+import { Link } from '../../../ui'
 import { use } from '../../../utils'
 import { LinkIcon } from '../../icons'
 import type { TitleLink } from '../../state'

@@ -1,10 +1,9 @@
 import { classes } from 'html-classes'
 
-import type { FlexProps } from '../Flex'
-import { Flex } from '../Flex'
-
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
+import type { FlexProps } from '../../../ui'
+import { Flex } from '../../../ui'
 import { inject, injectAll } from '../../../utils'
 import styles from './Button.module.scss'
 

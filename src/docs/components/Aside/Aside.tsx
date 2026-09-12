@@ -3,9 +3,9 @@ import { get } from 'rune-hub'
 
 import { Delay, For, useHidden } from '../../../components'
 import { useCtx, useShow } from '../../../hooks'
+import { Flex, Link } from '../../../ui'
 import type { TitleLink } from '../../state'
 import { getAsideTimeline, hideAside, titleLinks } from '../../state'
-import { Flex, Link } from '../../ui'
 import styles from './Aside.module.scss'
 
 interface ContentProps {

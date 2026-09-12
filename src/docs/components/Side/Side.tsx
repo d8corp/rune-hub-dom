@@ -2,9 +2,9 @@ import { classes } from 'html-classes'
 
 import { useHidden } from '../../../components'
 import { useShow } from '../../../hooks'
+import { Flex, Link } from '../../../ui'
 import { menu } from '../../menu'
 import { hideSide } from '../../state'
-import { Flex, Link } from '../../ui'
 import styles from './Side.module.scss'
 
 export function Side () {

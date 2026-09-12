@@ -4,7 +4,7 @@ import type { LinkProps } from '../../../components'
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { inject } from '../../../utils'
+import { inject, injectAll } from '../../../utils'
 import $styles from './Flex.module.scss'
 
 export type FlexStyles = typeof $styles
@@ -31,14 +31,14 @@ export type FlexElement = keyof HTMLElementTagNameMap
 
 export interface BaseFlexProps {
   vertical?: ObservableProp<boolean>
-  align?: keyof typeof alignMap
-  justify?: keyof typeof justifyMap
-  gap?: number | [number, number]
-  flex?: number | boolean
-  wrap?: boolean
-  inline?: boolean
-  reverse?: boolean
-  padding?: number | [number, number] | [number, number, number] | [number, number, number, number]
+  align?: ObservableProp<keyof typeof alignMap>
+  justify?: ObservableProp<keyof typeof justifyMap>
+  gap?: ObservableProp<number | [number, number]>
+  flex?: ObservableProp<number | boolean>
+  wrap?: ObservableProp<boolean>
+  inline?: ObservableProp<boolean>
+  reverse?: ObservableProp<boolean>
+  padding?: ObservableProp<number | [number, number] | [number, number, number] | [number, number, number, number]>
 }
 
 export type FlexProps<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> = HTMLStyleProps<HTMLElementTagNameMap[T], S> & {
@@ -67,14 +67,14 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
       {...props as any}
       style={{
         ...(style as any),
-        '--ui-flex-justify': justify && justify !== 'start' ? justifyMap[justify] : '',
-        '--ui-flex-align': align && align !== 'start' ? alignMap[align as keyof typeof alignMap] : '',
-        '--ui-flex-wrap': wrap ? 'wrap' : '',
-        '--ui-flex-flex': String(flex === true ? 1 : flex || ''),
-        '--ui-flex': inline ? 'inline-flex' : '',
-        '--ui-flex-direction': inject(vertical, vertical => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
-        '--ui-flex-padding': !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`,
-        '--ui-flex-gap': !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`,
+        '--rd-flex-justify': inject(justify, justify => justify && justify !== 'start' ? justifyMap[justify] : ''),
+        '--rd-flex-align': inject(align, align => align && align !== 'start' ? alignMap[align as keyof typeof alignMap] : ''),
+        '--rd-flex-wrap': inject(wrap, wrap => wrap ? 'wrap' : ''),
+        '--rd-flex-flex': inject(flex, flex => String(flex === true ? 1 : flex || '')),
+        '--rd-flex': inject(inline, inline => inline ? 'inline-flex' : ''),
+        '--rd-flex-direction': injectAll([vertical, reverse], ([vertical, reverse]) => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
+        '--rd-flex-padding': inject(padding, padding => !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
+        '--rd-flex-gap': inject(gap, gap => !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
       }}
       class={styles.root}
     />

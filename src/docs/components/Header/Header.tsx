@@ -3,9 +3,10 @@ import { get, slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
 import { useShow } from '../../../hooks'
+import { Flex, Link } from '../../../ui'
 import { MonitorIcon, MoonIcon, SunIcon } from '../../icons'
 import { isSmallMobile, theme, toggleTheme } from '../../state'
-import { Button, Flex, Link } from '../../ui'
+import { Button } from '../../ui'
 import styles from './Header.scss'
 
 export function Header () {

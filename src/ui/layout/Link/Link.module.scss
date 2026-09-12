@@ -1,0 +1,15 @@
+.root {
+  color: var(--rd-ui-link-color, var(--rd-color-primary));
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--rd-ui-link-hover-color, var(--rd-color-primary-6));
+  }
+
+  &:focus-visible {
+    color: var(--rd-ui-link-focus-color);
+    text-decoration: underline;
+    outline: none;
+  }
+}

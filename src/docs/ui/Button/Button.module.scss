@@ -9,14 +9,14 @@
   position: relative;
 
   &:focus-visible {
-    outline: 1px solid var(--color-primary);
+    outline: 1px solid var(--rd-color-primary);
     outline-offset: 3px;
   }
 }
 
 .primary {
   background: var(--gradient-base);
-  background-color: var(--color-primary);
+  background-color: var(--rd-color-primary);
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 24px rgba(139, 92, 246, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
@@ -43,13 +43,13 @@
 .glow,
 .secondary {
   background: var(--color-bg-alpha);
-  color: var(--color-primary-light);
+  color: var(--rd-color-primary-6);
   border: none;
   backdrop-filter: blur(8px);
 
   &:hover {
     background: var(--color-bg-alpha-hover);
-    color: light-dark(var(--color-primary), var(--color-text));
+    color: light-dark(var(--rd-color-primary), var(--color-text));
   }
 }
 

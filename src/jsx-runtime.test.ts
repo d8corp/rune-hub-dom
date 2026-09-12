@@ -1,8 +1,7 @@
 import { Slot } from 'rune-hub'
 
 import { jsx } from './jsx-runtime'
-
-import { rundom } from '.'
+import { rundom } from './rundom'
 
 describe('jsx', () => {
   describe('HTML Element', () => {

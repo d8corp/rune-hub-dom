@@ -1,6 +1,6 @@
-import { CloseIcon } from '../../../../docs/icons'
-import { SystemSlot } from '../../../../utils'
-import { Show } from '../../../Show'
+import { Show } from '../../../../../components'
+import { CloseIcon } from '../../../../../docs/icons'
+import { SystemSlot } from '../../../../../utils'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
 

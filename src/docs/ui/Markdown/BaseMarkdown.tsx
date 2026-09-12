@@ -21,11 +21,11 @@ import { parse } from '@textlint/markdown-to-ast'
 
 import { Code } from '../Code'
 import { Divider } from '../Divider'
-import { Link } from '../Link'
 import { Title } from '../Title'
 
 import type { ObservableProp } from '../../../types'
 import { JSXNode } from '../../../types'
+import { Link } from '../../../ui'
 import { use } from '../../../utils'
 import { getAsideTimeline } from '../../state'
 import { slugify } from '../../utils'

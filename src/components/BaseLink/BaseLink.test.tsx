@@ -1,4 +1,4 @@
-import { Link } from './Link'
+import { BaseLink } from './BaseLink'
 
 import { rundom } from '../../rundom'
 import { pushHistory } from '../../utils'
@@ -8,15 +8,15 @@ afterEach(() => {
   document.body.innerHTML = ''
 })
 
-describe('Link', () => {
+describe('BaseLink', () => {
   it('should work without props', async () => {
-    rundom(<Link>home</Link>)
+    rundom(<BaseLink>home</BaseLink>)
 
     expect(document.body.innerHTML).toBe('<a>home</a>')
   })
 
   it('should contain default props on external', async () => {
-    rundom(<Link href='https://cantinc.com'>CANT inc.</Link>)
+    rundom(<BaseLink href='https://cantinc.com'>CANT inc.</BaseLink>)
 
     expect(document.body.innerHTML)
       .toBe('<a href="https://cantinc.com" rel="noopener noreferrer nofollow" target="_blank">CANT inc.</a>')
@@ -24,9 +24,9 @@ describe('Link', () => {
 
   it('should have self class', () => {
     rundom(
-      <Link href='/' class='test'>
+      <BaseLink href='/' class='test'>
         CANT inc.
-      </Link>,
+      </BaseLink>,
     )
 
     expect(document.body.innerHTML).toBe('<a class="test" href="/">CANT inc.</a>')
@@ -34,9 +34,9 @@ describe('Link', () => {
 
   it('should combine class prop', () => {
     rundom(
-      <Link href='/' class={['test1', false, 0, 'test2']}>
+      <BaseLink href='/' class={['test1', false, 0, 'test2']}>
         CANT inc.
-      </Link>,
+      </BaseLink>,
     )
 
     expect(document.body.innerHTML).toBe('<a class="test1 test2" href="/">CANT inc.</a>')
@@ -44,13 +44,13 @@ describe('Link', () => {
 
   it('should have active class', async () => {
     rundom(
-      <Link
+      <BaseLink
         href='/'
         exact
         class={{ root: 'test', active: 'active' }}
       >
         CANT inc.
-      </Link>,
+      </BaseLink>,
     )
 
     expect(document.body.innerHTML).toBe('<a class="test active" href="/">CANT inc.</a>')
@@ -66,9 +66,9 @@ describe('Link', () => {
 
   it('should work with any search', async () => {
     rundom(
-      <Link class={{ root: 'test', active: 'active' }} href='/test?phone=+7%20(999)%20999-99-99'>
+      <BaseLink class={{ root: 'test', active: 'active' }} href='/test?phone=+7%20(999)%20999-99-99'>
         CANT inc.
-      </Link>,
+      </BaseLink>,
     )
 
     expect(document.body.innerHTML).toBe('<a class="test" href="/test?phone=+7%20(999)%20999-99-99">CANT inc.</a>')

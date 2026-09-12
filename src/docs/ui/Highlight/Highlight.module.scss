@@ -71,11 +71,11 @@
   max-width: fit-content;
 
   &:hover {
-    color: var(--color-primary-light);
+    color: var(--rd-color-primary-6);
   }
 }
 
 .selected {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: var(--rd-color-primary);
+  border-bottom-color: var(--rd-color-primary);
 }

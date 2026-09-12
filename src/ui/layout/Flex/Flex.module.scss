@@ -1,0 +1,20 @@
+.root {
+  --rd-flex: flex;
+  --rd-flex-flex: none;
+  --rd-flex-gap: none;
+  --rd-flex-wrap: nowrap;
+  --rd-flex-direction: row;
+  --rd-flex-align: none;
+  --rd-flex-justify: unset;
+  --rd-flex-padding: 0;
+
+  box-sizing: border-box;
+  display: var(--rd-flex);
+  flex: var(--rd-flex-flex);
+  gap: var(--rd-flex-gap);
+  flex-wrap: var(--rd-flex-wrap);
+  flex-direction: var(--rd-flex-direction);
+  align-items: var(--rd-flex-align);
+  justify-content: var(--rd-flex-justify);
+  padding: var(--rd-flex-padding);
+}
