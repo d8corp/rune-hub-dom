@@ -38,4 +38,8 @@ function App () {
   )
 }
 
-rundom([process.env.DEV && <Devtools anon system />, <App />])
+if (process.env.DEV) {
+  rundom(<Devtools anon system />)
+}
+
+rundom(<App />)

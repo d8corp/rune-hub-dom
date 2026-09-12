@@ -84,25 +84,37 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   hub.on('init', slot => {
     if (check(slot)) return
 
-    slots.raw.add(slot)
-    values.raw.set(slot, slot.raw)
-
-    update(slot)
-    update(values)
+    if (hub.slots.has(slot.rune)) {
+      slots.raw.add(slot)
+      values.raw.set(slot, slot.raw)
+      update(slot)
+      update(values)
+    }
   })
 
   hub.on('change', slot => {
     if (check(slot)) return
 
-    values.raw.set(slot, slot.raw)
-    update(values)
+    if (values.raw.has(slot)) {
+      values.raw.set(slot, slot.raw)
+      update(values)
+    }
   })
 
   hub.on('up', slot => {
     if (check(slot)) return
 
-    ups.raw.set(slot, true)
-    update(ups)
+    if (values.raw.has(slot)) {
+      ups.raw.set(slot, true)
+      update(ups)
+    } else {
+      slots.raw.add(slot)
+      values.raw.set(slot, slot.raw)
+      ups.raw.set(slot, true)
+      update(slot)
+      update(values)
+      update(ups)
+    }
   })
 
   hub.on('down', slot => {
