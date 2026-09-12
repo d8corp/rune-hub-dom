@@ -2,7 +2,7 @@
 
 @keyframes highlight-link {
   0%, 100% {
-    color: var(--color-text-dim);
+    color: var(--rd-color-text-dim);
   }
   10%, 90% {
     color: var(--rd-color-primary);
@@ -35,7 +35,7 @@
     bottom: 0;
     width: 224px;
     max-height: none;
-    background: var(--color-bg-deep);
+    background: var(--rd-color-bg-deep);
     z-index: 1;
 
     @include proximityGlow(0 0 0 1px);
@@ -46,7 +46,7 @@
       top: 0;
       bottom: 0;
       opacity: .3;
-      background: var(--color-bg-deep);
+      background: var(--rd-color-bg-deep);
     }
   }
 }
@@ -67,7 +67,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-text-muted);
+  color: var(--rd-color-text-muted);
 }
 
 .content {
@@ -94,7 +94,7 @@
 }
 
 .item {
-  color: var(--color-text-dim);
+  color: var(--rd-color-text-dim);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;

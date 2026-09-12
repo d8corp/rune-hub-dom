@@ -3,7 +3,7 @@
 .root {
   position: sticky;
   top: 0;
-  background: var(--color-bg-surface);
+  background: var(--rd-color-bg-surface);
   opacity: 0;
   transform: translateY(-30px);
   transition: opacity .2s, transform .2s, background-color .2s, border-color .2s;
@@ -47,9 +47,9 @@
   font-size: 14px;
   font-weight: 500;
   transition: color 0.2s;
-  color: var(--color-text-muted);
+  color: var(--rd-color-text-muted);
 
   &:hover {
-    color: var(--color-text);
+    color: var(--rd-color-text);
   }
 }

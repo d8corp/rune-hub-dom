@@ -1,5 +1,3 @@
-import './Devtools.module.scss'
-
 import { Hub } from 'rune-hub'
 
 import { DevtoolsButton } from './components/DevtoolsButton'

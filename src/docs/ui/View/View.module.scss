@@ -1,22 +1,22 @@
 .root {
-  color: var(--color-text-muted);
+  color: var(--rd-color-text-muted);
   font-size: 14px;
 }
 
 .title {
   font-size: 12px;
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-  background: light-dark(var(--color-bg-elevated), var(--color-bg-surface));
+  color: var(--rd-color-text-muted);
+  border: 1px solid var(--rd-color-border);
+  background: light-dark(var(--rd-color-bg-elevated), var(--rd-color-bg-surface));
   border-radius: 16px 16px 0 0;
   transition: all .2s;
 }
 
 .code {
   padding: 20px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--rd-color-border);
   border-top: none;
-  background: light-dark(var(--color-bg-contrast), var(--color-bg-deep));
+  background: light-dark(var(--rd-color-bg-contrast), var(--rd-color-bg-deep));
   border-radius: 0 0 16px 16px;
   transition: all .2s;
 }

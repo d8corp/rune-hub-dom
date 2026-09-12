@@ -34,7 +34,7 @@
     mask-clip: content-box, padding-box;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    background-color: var(--color-border);
+    background-color: var(--rd-color-border);
     transition: background-color .2s;
   }
 }

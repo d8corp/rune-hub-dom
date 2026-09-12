@@ -65,6 +65,7 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
   return (
     <Element
       {...props as any}
+      class={styles.root}
       style={{
         ...(style as any),
         '--rd-flex-justify': inject(justify, justify => justify && justify !== 'start' ? justifyMap[justify] : ''),
@@ -76,7 +77,6 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
         '--rd-flex-padding': inject(padding, padding => !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
         '--rd-flex-gap': inject(gap, gap => !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
       }}
-      class={styles.root}
     />
   )
 }

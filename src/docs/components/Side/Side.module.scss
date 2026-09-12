@@ -15,7 +15,7 @@
     bottom: 0;
     opacity: 0;
     max-height: none;
-    background: var(--color-bg-deep);
+    background: var(--rd-color-bg-deep);
     padding: 58px 24px 0;
     width: 309px;
     transition: opacity .2s, transform .2s;
@@ -40,7 +40,7 @@
       top: 0;
       bottom: 0;
       opacity: .3;
-      background: var(--color-bg-deep);
+      background: var(--rd-color-bg-deep);
     }
   }
 }
@@ -63,13 +63,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-text);
+  color: var(--rd-color-text);
 }
 
 .item {
   padding: 6px 10px;
   border-radius: 6px;
-  color: var(--color-text-muted);
+  color: var(--rd-color-text-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -88,9 +88,9 @@
 }
 
 .itemSelected {
-  background: var(--color-bg-alpha);
+  background: var(--rd-color-bg-alpha);
   color: var(--rd-color-primary-6);
-  border-color: var(--color-border);
+  border-color: var(--rd-color-border);
 
   &:before {
     display: block;
