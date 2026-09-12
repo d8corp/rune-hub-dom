@@ -18,6 +18,8 @@
   transform: translateY(100px);
   transition: opacity .2s ease, transform .2s ease;
   font-family: var(--devtools-font-family), sans-serif;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .show {
@@ -82,7 +84,6 @@
   flex: 1;
   flex-direction: column;
   overflow: auto;
-  overscroll-behavior: contain;
   padding-right: 8px;
 }
 

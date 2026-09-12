@@ -12,11 +12,11 @@
 @keyframes view {
   from {
     opacity: 0;
-    transform: translateX(150px) translateZ(-350px) rotateY(-20deg);
+    transform: translateX(150px) translateZ(-350px);
   }
   to {
     opacity: 1;
-    transform: translateX(0) translateZ(0) rotateY(-15deg);
+    transform: translateX(0) translateZ(0);
   }
 }
 
@@ -51,6 +51,6 @@
   @media (min-width: 1024px) {
     width: 320px;
     animation-name: view;
-    transform: translateX(0) rotateY(-15deg);
+    transform: translateX(0);
   }
 }
