@@ -61,44 +61,46 @@ export function DevtoolsPanel () {
         </button>
       </div>
       <div class={styles.main}>
-        <div class={styles.filter}>
-          {() => `${searchSlots.value.length} / ${slots.value.size}`}
-          <input class={styles.search} _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
-          <Show when={props.anon}>
-            <button
-              onclick={clickHandler(anonFilter)}
-              class={classHandler(anonFilter)}
+        <div class={styles.aside}>
+          <div class={styles.asideHeader}>
+            <input class={styles.search} _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
+            {() => `${searchSlots.value.length} / ${slots.value.size}`}
+          </div>
+          <div class={styles.list} ref={list}>
+            <div
+              class={styles.virtualList}
+              style={{
+                'padding-top': offsetTop,
+                'padding-bottom': offsetBottom,
+              }}
             >
-              anon
-            </button>
-          </Show>
-          <Show when={props.system}>
-            <button
-              onclick={clickHandler(systemFilter)}
-              class={classHandler(systemFilter)}
-            >
-              system
-            </button>
-          </Show>
-          <button onclick={handleExport}>
-            Export
-          </button>
+              <For of={virtualList}>
+                {(slot: Slot<Slot>) => <DevtoolsSlotItem slot={slot} />}
+              </For>
+            </div>
+          </div>
         </div>
         <div class={styles.content}>
-          <div class={styles.aside}>
-            <div class={styles.list} ref={list}>
-              <div
-                class={styles.virtualList}
-                style={{
-                  'padding-top': offsetTop,
-                  'padding-bottom': offsetBottom,
-                }}
+          <div class={styles.filter}>
+            <Show when={props.anon}>
+              <button
+                onclick={clickHandler(anonFilter)}
+                class={classHandler(anonFilter)}
               >
-                <For of={virtualList}>
-                  {(slot: Slot<Slot>) => <DevtoolsSlotItem slot={slot} />}
-                </For>
-              </div>
-            </div>
+                anon
+              </button>
+            </Show>
+            <Show when={props.system}>
+              <button
+                onclick={clickHandler(systemFilter)}
+                class={classHandler(systemFilter)}
+              >
+                system
+              </button>
+            </Show>
+            <button onclick={handleExport}>
+              Export
+            </button>
           </div>
           <DevtoolsSlotPanel />
         </div>

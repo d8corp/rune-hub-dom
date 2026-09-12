@@ -84,10 +84,10 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   hub.on('init', slot => {
     if (check(slot)) return
 
-    if (hub.slots.has(slot.rune)) {
+    if (!slot.anon) {
       slots.raw.add(slot)
       values.raw.set(slot, slot.raw)
-      update(slot)
+      update(slots)
       update(values)
     }
   })
@@ -111,7 +111,7 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
       slots.raw.add(slot)
       values.raw.set(slot, slot.raw)
       ups.raw.set(slot, true)
-      update(slot)
+      update(slots)
       update(values)
       update(ups)
     }
@@ -120,7 +120,7 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   hub.on('down', slot => {
     if (check(slot)) return
 
-    if (hub.slots.has(slot.rune)) {
+    if (!slot.anon) {
       ups.raw.set(slot, false)
       update(ups)
 
