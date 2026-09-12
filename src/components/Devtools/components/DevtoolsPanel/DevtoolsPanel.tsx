@@ -5,8 +5,8 @@ import { DevtoolsSlotItem } from '../DevtoolsSlotItem'
 import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
 import { CloseIcon } from '../../../../docs/icons'
-import { useEffect, useShow } from '../../../../hooks'
-import { Ref, SystemSlot } from '../../../../utils'
+import { useShow, useVirtualList } from '../../../../hooks'
+import { Ref } from '../../../../utils'
 import { useHidden } from '../../../Delay'
 import { For } from '../../../For'
 import { Show } from '../../../Show'
@@ -17,51 +17,10 @@ export function DevtoolsPanel () {
   const shown = useShow()
   const hidden = useHidden()
   const { show, search, searchSlots, slots, props, systemFilter, anonFilter } = devtoolsStoreContext.get()!
-  const scroll = new SystemSlot(() => 0)
-
-  const height = new SystemSlot(() => 0)
-  const heightCount = new SystemSlot(() => (height.value / 38) | 0)
-
-  const scrollIndex = new SystemSlot(() => {
-    return Math.min((scroll.value / 38) | 0, searchSlots.value.length - heightCount.value)
-  })
-
-  const offset = new SystemSlot(() => scrollIndex.value * 38)
-  const paddingTop = new SystemSlot(() => `${offset.value}px`)
-
-  const paddingBottom = new SystemSlot(() => {
-    return `${Math.max(0, (searchSlots.value.length * 38) - offset.value - height.value - 38)}px`
-  })
-
-  const slotsList = new SystemSlot(() => {
-    return searchSlots.value.slice(scrollIndex.value, scrollIndex.value + heightCount.value + 2)
-  })
 
   const list = new Ref<HTMLDivElement>()
 
-  const resizeObserver = new ResizeObserver(entries => {
-    for (const entry of entries) {
-      height.set(entry.target.clientHeight)
-    }
-  })
-
-  useEffect(() => {
-    const element = list.value
-
-    if (!element) return
-
-    const listener = () => {
-      scroll.set(element.scrollTop)
-    }
-
-    element.addEventListener('scroll', listener)
-    resizeObserver.observe(element)
-
-    return () => {
-      resizeObserver.unobserve(element)
-      element.removeEventListener('scroll', listener)
-    }
-  })
+  const { virtualList, offsetTop, offsetBottom } = useVirtualList({ list: searchSlots, itemHeight: 38, scrollbar: list, gap: 4 })
 
   const clickHandler = (slot: Slot<boolean | null>) => () => {
     if (slot.raw === null) {
@@ -115,11 +74,11 @@ export function DevtoolsPanel () {
               <div
                 class={styles.virtualList}
                 style={{
-                  'padding-top': paddingTop,
-                  'padding-bottom': paddingBottom,
+                  'padding-top': offsetTop,
+                  'padding-bottom': offsetBottom,
                 }}
               >
-                <For of={slotsList}>
+                <For of={virtualList}>
                   {(slot: Slot<Slot>) => <DevtoolsSlotItem slot={slot} />}
                 </For>
               </div>
