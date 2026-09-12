@@ -105,6 +105,37 @@
 
 .search {
   flex: 1;
+  background: var(--devtools-color-bg-alpha);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px;
+  border: 1px solid var(--devtools-color-border);
+  border-radius: 12px;
+  height: 24px;
+  font-size: 12px;
+  cursor: text;
+  transition: background-color .2s ease, border .2s ease;
+
+  &:hover {
+    border-color: var(--devtools-color-border-hover);
+  }
+
+  &:has(>input:focus) {
+    border-color: var(--devtools-color-border-hover);
+    background: var(--devtools-color-bg-alpha-hover);
+  }
+
+  & > input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    height: 24px;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .filterButton {

@@ -4,7 +4,7 @@ import type { Slot } from 'rune-hub'
 import { DevtoolsSlotItem } from '../DevtoolsSlotItem'
 import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
-import { CloseIcon } from '../../../../docs/icons'
+import { CloseIcon, SearchIcon } from '../../../../docs/icons'
 import { useShow, useVirtualList } from '../../../../hooks'
 import { Ref } from '../../../../utils'
 import { useHidden } from '../../../Delay'
@@ -63,8 +63,11 @@ export function DevtoolsPanel () {
       <div class={styles.main}>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
-            <input class={styles.search} _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
-            {() => `${searchSlots.value.length} / ${slots.value.size}`}
+            <label class={styles.search}>
+              <SearchIcon />
+              <input _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
+              {() => `${searchSlots.value.length} / ${slots.value.size}`}
+            </label>
           </div>
           <div class={styles.list} ref={list}>
             <div
