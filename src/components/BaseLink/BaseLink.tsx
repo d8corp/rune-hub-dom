@@ -1,8 +1,9 @@
 import { classes } from 'html-classes'
 
 import { type HTMLStyleProps, useStyles } from '../../hooks'
+import type { ObservableProp } from '../../types'
 import type { LinkToParams } from '../../utils'
-import { Context, linkTo, locationURL, SystemSlot, use } from '../../utils'
+import { Context, inject, linkTo, locationURL, SystemSlot, use } from '../../utils'
 
 export const defaultLinkClass = {
   root: '',
@@ -20,6 +21,7 @@ export const linkBaseUrlContext = new Context('')
 export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, typeof defaultLinkClass>, LinkToParams {
   target?: '_blank' | '_parent' | '_self' | '_top'
   exact?: boolean
+  disabled?: ObservableProp<boolean>
   children?: JSX.Element
 }
 
@@ -32,7 +34,7 @@ export function BaseLink (props: LinkProps) {
       <a
         {...rest}
         class={styles.root}
-        href={href}
+        href={inject(rest.disabled, disabled => disabled ? '' : href)}
         rel={rest.rel ?? (href ? 'noopener noreferrer nofollow' : undefined)}
         target={rest.target ?? (href ? '_blank' : undefined)}
         onclick={onclick}
@@ -79,6 +81,12 @@ export function BaseLink (props: LinkProps) {
   const className = rest.class ? createClassName() : undefined
 
   function handleClick (e: MouseEvent) {
+    if (use(rest.disabled)) {
+      e.preventDefault()
+
+      return
+    }
+
     if (e.ctrlKey || e.metaKey) {
       // @ts-expect-error TODO: fix types
       return onclick?.call(this, e)

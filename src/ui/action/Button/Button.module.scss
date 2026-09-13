@@ -1,0 +1,47 @@
+@use "src/styles/token" as *;
+
+.root {
+  cursor: pointer;
+  background-clip: border-box;
+
+  @include token('text-decoration', 'button', 'link');
+  @include token('transition', 'button', 'link');
+  @include outline('button', 'root');
+
+  &:focus-visible {
+    @include outline('button', 'root', 'focus');
+  }
+}
+
+.primary {
+  @include view('button', 'primary');
+
+  &:not(.disabled):hover {
+    @include view('button', 'primary', 'hover');
+  }
+}
+
+.secondary {
+  @include view('button', 'secondary');
+
+  &:not(.disabled):hover {
+    @include view('button', 'secondary', 'hover');
+  }
+}
+
+.root[disabled='true'] {
+  cursor: default;
+  @include view('button', 'disabled');
+}
+
+.s {
+  @include block('button', 's');
+}
+
+.m {
+  @include block('button', 'm');
+}
+
+.l {
+  @include block('button', 'l');
+}

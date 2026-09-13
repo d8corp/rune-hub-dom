@@ -3,10 +3,9 @@ import { get, slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
 import { useShow } from '../../../hooks'
-import { Flex, Link } from '../../../ui'
+import { Button, Flex, Link } from '../../../ui'
 import { MonitorIcon, MoonIcon, SunIcon } from '../../icons'
 import { isSmallMobile, theme, toggleTheme } from '../../state'
-import { Button } from '../../ui'
 import styles from './Header.scss'
 
 export function Header () {
@@ -24,7 +23,7 @@ export function Header () {
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
             <Link href='https://github.com/d8corp/rundom' class={styles.link}>GitHub</Link>
           </Hide>
-          <Button view='glow' class={styles.themeButton} onclick={toggleTheme}>
+          <Button data-glow data-shine='secondary' view='secondary' class={styles.themeButton} onclick={toggleTheme}>
             {() => get(theme) === 'light dark' ? <SunIcon /> : get(theme) === 'light' ? <MoonIcon /> : <MonitorIcon />}
           </Button>
         </Flex>

@@ -1,5 +1,5 @@
-import { Dot, Flex } from '../../../ui'
-import { Button, Code, DelayPage, Divider, Title } from '../../ui'
+import { Button, Dot, Flex } from '../../../ui'
+import { Code, DelayPage, Divider, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -17,7 +17,7 @@ export default function HomePage () {
     <DelayPage class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
-          <div class={styles.version}>
+          <div data-glow class={styles.version}>
             <Dot pulse size='s' color={version.includes('alpha') ? 'error' : version.includes('beta') ? 'warning' : 'success'} />
             v{process.env.INNETJS_PACKAGE_VERSION} is now available
           </div>
@@ -32,7 +32,9 @@ export default function HomePage () {
               Get Started
             </Button>
             <Button
-              view='glow'
+              data-glow
+              data-shine
+              view='secondary'
               size='l'
               element='a'
               href='https://github.com/d8corp/rundom'

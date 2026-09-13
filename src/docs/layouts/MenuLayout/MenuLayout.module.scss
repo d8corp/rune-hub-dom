@@ -17,11 +17,11 @@
   position: sticky;
   bottom: 12px;
   margin: 0 auto;
-  background: var(--rd-color-bg-alpha);
+  background: var(--rd--alpha-color);
   backdrop-filter: blur(8px);
   padding: 8px;
   border-radius: 32px;
-  border: 1px solid var(--rd-color-border);
+  border: 1px solid var(--rd--secondary-border);
   z-index: 1;
 }
 
@@ -36,7 +36,7 @@
   background: transparent;
   border: none;
   border-radius: 50%;
-  color: var(--rd-color-text-muted);
+  color: var(--rd--root-color-muted);
   cursor: pointer;
   transition: .2s;
   display: flex;
@@ -44,12 +44,12 @@
   justify-content: center;
 
   &:hover {
-    background: var(--rd-color-bg-alpha);
-    color: var(--rd-color-text);
+    background: var(--rd--alpha-color);
+    color: var(--rd--root-color);
   }
 
   &:active {
-    background: var(--rd-color-border);
+    background: var(--rd--secondary-border);
   }
 }
 

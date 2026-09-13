@@ -52,13 +52,13 @@ export function DevtoolsPanel () {
   }
 
   return (
-    <div class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
+    <div data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
       <div class={styles.header}>
         <button class={styles.closeButton} onclick={() => show.set(false)}>
           <CloseIcon />
         </button>
       </div>
-      <div class={styles.main}>
+      <div data-glow class={styles.main}>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
             <label class={styles.search}>

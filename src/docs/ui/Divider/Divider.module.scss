@@ -9,14 +9,14 @@
 
   &:not(.vertical) {
     margin: 18px 0;
-    border-top: solid 2px var(--rd-color-border);
+    border-top: solid 2px var(--rd--secondary-border);
     align-self: stretch;
   }
 }
 
 .legend {
   padding: 0 16px;
-  color: var(--rd-color-text);
+  color: var(--rd--root-color);
 }
 
 .glow {
@@ -29,13 +29,13 @@
 
   background: fixed radial-gradient(
     circle 100px at var(--proximity-x) var(--proximity-y),
-    var(--rd-color-primary) 0%,
-    var(--rd-color-primary) 30%,
+    var(--rd__primary_background) 0%,
+    var(--rd__primary_background) 30%,
     transparent 100%
   );
 }
 
 .vertical {
   margin: 0 18px;
-  border-left: solid 1px var(--rd-color-border);
+  border-left: solid 1px var(--rd--secondary-border);
 }

@@ -21,8 +21,8 @@
     pointer-events: none;
     background: fixed radial-gradient(
       circle 100px at var(--proximity-x) var(--proximity-y),
-      var(--rd-color-primary) 0%,
-      var(--rd-color-primary) 30%,
+      var(--rd__primary_background) 0%,
+      var(--rd__primary_background) 30%,
       transparent 100%
     );
     inset: 0;
@@ -34,7 +34,7 @@
     mask-clip: content-box, padding-box;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    background-color: var(--rd-color-border);
+    background-color: var(--rd--secondary-border);
     transition: background-color .2s;
   }
 }

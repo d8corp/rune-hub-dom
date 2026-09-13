@@ -1,0 +1,35 @@
+@mixin token ($param, $component, $element, $mod: '') {
+  @if ($element == 'root') {
+    @if ($mod == '') {
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}, var(--rd__#{$element}_#{$param}));
+    } @else {
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}_#{$mod}, var(--rd_#{$component}_#{$element}_#{$param}, var(--rd__#{$element}_#{$param}))));
+    }
+  } @else {
+    @if ($mod == '') {
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}, var(--rd_#{$component}_root_#{$param}, var(--rd__#{$element}_#{$param}, var(--rd__root_#{$param}))));
+    } @else {
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}_#{$mod}, var(--rd_#{$component}_root_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}, var(--rd__root_#{$param}_#{$mod}, var(--rd__root_#{$param}))))));
+    }
+  }
+}
+
+@mixin view ($component, $element, $mod: '') {
+  @include token('background', $component, $element, $mod);
+  @include token('color', $component, $element, $mod);
+  @include token('border', $component, $element, $mod);
+  @include token('backdrop-filter', $component, $element, $mod);
+}
+
+@mixin outline ($component, $element, $mod: '') {
+  @include token('outline', $component, $element, $mod);
+  @include token('outline-offset', $component, $element, $mod);
+}
+
+@mixin block ($component, $element, $mod: '') {
+  @include token('font-size', $component, block-#{$element}, $mod);
+  @include token('font-weight', $component, block-#{$element}, $mod);
+  @include token('padding', $component, block-#{$element}, $mod);
+  @include token('border-radius', $component, block-#{$element}, $mod);
+  @include token('height', $component, block-#{$element}, $mod);
+}

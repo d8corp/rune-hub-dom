@@ -9,29 +9,28 @@
   position: relative;
 
   &:focus-visible {
-    outline: 1px solid var(--rd-color-primary);
+    outline: 1px solid var(--rd__primary_background);
     outline-offset: 3px;
   }
 }
 
 .primary {
   background: var(--gradient-base);
-  background-color: var(--rd-color-primary);
   color: white;
   border-color: transparent;
-  box-shadow: 0 4px 24px rgba(139, 92, 246, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  //box-shadow: 0 4px 24px rgba(139, 92, 246, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 
   &:after {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gradient-shine-primary);
+    background: var(--rd-gradient-shine);
     transform: translateX(-100%);
   }
 
   &:hover {
     color: white;
-    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    //box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 
     &:after {
       transform: translateX(100%);
@@ -42,22 +41,22 @@
 
 .glow,
 .secondary {
-  background: var(--rd-color-bg-alpha);
-  color: var(--rd-color-primary-6);
+  background: var(--rd--alpha-color);
+  color: var(--rd__primary_background-hover);
   border: none;
   backdrop-filter: blur(8px);
 
   &:hover {
-    background: var(--rd-color-bg-alpha-hover);
-    color: light-dark(var(--rd-color-primary), var(--rd-color-text));
+    background: var(--rd--alpha-color-hover);
+    color: light-dark(var(--rd__primary_background), var(--rd--root-color));
   }
 }
 
 .glow {
-  @include proximityGlow(1px);
+  @include proximityGlow;
 
   &:hover:before {
-    background-color: var(--rd-color-border-hover);
+    background-color: var(--rd__secondary_border_hover);
   }
 }
 
@@ -68,7 +67,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: var(--gradient-shine);
+    background: var(--rd-gradient-shine);
     transform: translateX(-100%);
   }
 
@@ -81,10 +80,10 @@
 }
 
 .secondary {
-  border: 1px solid var(--rd-color-border);
+  border: 1px solid var(--rd--secondary-border);
 
   &:hover {
-    border-color: var(--rd-color-border-hover);
+    border-color: var(--rd__secondary_border_hover);
   }
 }
 

@@ -10,7 +10,7 @@
 }
 
 .root {
-  border-radius: 50%;
+  border-radius: var(--rd-ui-dot-radius, 50%);
   background: var(--rd-ui-dot-color)
 }
 
@@ -25,19 +25,19 @@
 }
 
 .success {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-success, var(--rd-color-success));
+  --rd-ui-dot-color: var(--rd-ui-dot-color-success, var(--rd--success-color));
 }
 
 .error {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-error, var(--rd-color-error));
+  --rd-ui-dot-color: var(--rd-ui-dot-color-error, var(--rd--error-color));
 }
 
 .warning {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-warn, var(--rd-color-warn));
+  --rd-ui-dot-color: var(--rd-ui-dot-color-warn, var(--rd--warn-color));
 }
 
 .disabled {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-disabled, var(--rd-color-text-dim));
+  --rd-ui-dot-color: var(--rd-ui-dot-color-disabled, var(--rd--root-color-dim));
 }
 
 .pulse {

@@ -18,8 +18,8 @@
 
 .title {
   font-size: 18px;
-  color: var(--rd-color-text-muted);
-  border: 1px solid var(--rd-color-border);
+  color: var(--rd--root-color-muted);
+  border: 1px solid var(--rd--secondary-border);
   background: light-dark(var(--rd-color-bg-elevated), var(--rd-color-bg-surface));
   border-radius: 16px 16px 0 0;
   transition: all .2s;
@@ -37,7 +37,7 @@
 
 .code {
   padding: 20px;
-  border: 1px solid var(--rd-color-border);
+  border: 1px solid var(--rd--secondary-border);
   border-top: none;
   background: light-dark(var(--rd-color-bg-contrast), var(--rd-color-bg-deep));
   border-radius: 0 0 16px 16px;
@@ -71,11 +71,11 @@
   max-width: fit-content;
 
   &:hover {
-    color: var(--rd-color-primary-6);
+    color: var(--rd__primary_background-hover);
   }
 }
 
 .selected {
-  color: var(--rd-color-primary);
-  border-bottom-color: var(--rd-color-primary);
+  color: var(--rd__primary_background);
+  border-bottom-color: var(--rd__primary_background);
 }

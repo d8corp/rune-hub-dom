@@ -63,13 +63,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--rd-color-text);
+  color: var(--rd--root-color);
 }
 
 .item {
   padding: 6px 10px;
   border-radius: 6px;
-  color: var(--rd-color-text-muted);
+  color: var(--rd--root-color-muted);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -88,9 +88,9 @@
 }
 
 .itemSelected {
-  background: var(--rd-color-bg-alpha);
-  color: var(--rd-color-primary-6);
-  border-color: var(--rd-color-border);
+  background: var(--rd--alpha-color);
+  color: var(--rd__primary_background-hover);
+  border-color: var(--rd--secondary-border);
 
   &:before {
     display: block;

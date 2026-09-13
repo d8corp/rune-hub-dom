@@ -94,8 +94,14 @@ export function runNode (target: JSXNode) {
           const rawValue = observablePropToRuneProp(value[property])
 
           if (typeof rawValue === 'function') {
+            let prev: unknown
+
             const styleParamEffect = () => {
-              element.style.setProperty(property, rawValue())
+              const value = rawValue()
+
+              if (value === prev) return
+              element.style.setProperty(property, value)
+              prev = value
             }
 
             new SystemSlot(styleParamEffect).on()
@@ -114,8 +120,13 @@ export function runNode (target: JSXNode) {
       const key = fieldSet ? prop.slice(1) : prop
 
       if (value instanceof Slot || typeof value === 'function') {
+        let prev: unknown
+
         const attributeEffect = () => {
           const result = use(value)
+
+          if (result === prev) return
+          prev = result
 
           // @ts-expect-error TODO: fix types
           if (fieldSet && element[key] !== result) {

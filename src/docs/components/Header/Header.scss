@@ -19,8 +19,8 @@
 }
 
 .themeButton {
-  --proximity-x-offset: calc(min(100vw, calc(((100vw - 1440px) / 2) + 1440px)) - 100% - 24px);
-  --proximity-y-offset: 14px;
+  --rd-glow-x-offset: calc(min(100vw, calc(((100vw - 1440px) / 2) + 1440px)) - 100% - 24px);
+  --rd-glow-y-offset: 14px;
 }
 
 .content {
@@ -47,9 +47,9 @@
   font-size: 14px;
   font-weight: 500;
   transition: color 0.2s;
-  color: var(--rd-color-text-muted);
+  color: var(--rd--root-color-muted);
 
   &:hover {
-    color: var(--rd-color-text);
+    color: var(--rd--root-color);
   }
 }

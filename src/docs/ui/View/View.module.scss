@@ -1,12 +1,12 @@
 .root {
-  color: var(--rd-color-text-muted);
+  color: var(--rd--root-color-muted);
   font-size: 14px;
 }
 
 .title {
   font-size: 12px;
-  color: var(--rd-color-text-muted);
-  border: 1px solid var(--rd-color-border);
+  color: var(--rd--root-color-muted);
+  border: 1px solid var(--rd--secondary-border);
   background: light-dark(var(--rd-color-bg-elevated), var(--rd-color-bg-surface));
   border-radius: 16px 16px 0 0;
   transition: all .2s;
@@ -14,7 +14,7 @@
 
 .code {
   padding: 20px;
-  border: 1px solid var(--rd-color-border);
+  border: 1px solid var(--rd--secondary-border);
   border-top: none;
   background: light-dark(var(--rd-color-bg-contrast), var(--rd-color-bg-deep));
   border-radius: 0 0 16px 16px;

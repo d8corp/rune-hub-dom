@@ -2,10 +2,10 @@
 
 @keyframes banner {
   from {
-    --proximity-y-offset: 0vh;
+    --rd-glow-x-offset: 0vh;
   }
   to {
-    --proximity-y-offset: -100vh;
+    --rd-glow-y-offset: -100vh;
   }
 }
 
@@ -26,14 +26,14 @@
   animation-name: banner;
 
   &::before {
-    --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
-    --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
+    --rd-proximity-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
+    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
 
     content: '';
     position: absolute;
     inset: 0;
-    background: fixed linear-gradient(var(--rd-color-primary) 1px, transparent 1px),
-    fixed linear-gradient(90deg, var(--rd-color-primary) 1px, transparent 1px);
+    background: fixed linear-gradient(var(--rd__primary_background) 1px, transparent 1px),
+    fixed linear-gradient(90deg, var(--rd__primary_background) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
     mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%);
@@ -41,7 +41,7 @@
     @supports (animation-timeline: view()) {
       mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%),
       radial-gradient(
-              circle 100px at var(--proximity-x) var(--proximity-y),
+              circle 100px at var(--rd-proximity-x) var(--rd-proximity-y),
               black 0%,
               #0007 30%,
               transparent 100%
@@ -52,20 +52,20 @@
 
 .content {
   max-width: 800px;
+  position: relative;
 }
 
 .version {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--rd-color-bg-alpha);
+  background: var(--rd--alpha-color);
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 13px;
-  color: var(--rd-color-primary-6);
+  color: var(--rd__primary_background-hover);
   margin-bottom: 24px;
-  backdrop-filter: blur(2px);
-  @include proximityGlow;
+  backdrop-filter: var(--rd--secondary-blur);
 }
 
 .title {
@@ -74,7 +74,7 @@
 
 .description {
   font-size: 20px;
-  color: var(--rd-color-text-muted);
+  color: var(--rd--root-color-muted);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto 36px;

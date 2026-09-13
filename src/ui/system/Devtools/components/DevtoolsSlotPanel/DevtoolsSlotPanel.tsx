@@ -8,7 +8,7 @@ import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
 
 export function DevtoolsSlotPanel () {
-  const { selected, values, ups } = devtoolsStoreContext.get()!
+  const { selected, values } = devtoolsStoreContext.get()!
 
   const handleClose = () => {
     selected.set(undefined)
