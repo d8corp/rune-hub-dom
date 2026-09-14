@@ -14,50 +14,50 @@
 }
 
 .primary {
-  @include view('button', 'primary');
+  @include view('button', 'primary', '', 'block');
 
   &:hover {
-    @include view('button', 'primary', 'hover');
+    @include view('button', 'primary', 'hover', 'block');
   }
 }
 
 .accent {
-  @include view('button', 'accent');
+  @include view('button', 'accent', '', 'block');
 
   &:hover {
-    @include view('button', 'accent', 'hover');
+    @include view('button', 'accent', 'hover', 'block');
   }
 }
 
 .secondary {
-  @include view('button', 'secondary');
+  @include view('button', 'secondary', '', 'block');
 
   &:hover {
-    @include view('button', 'secondary', 'hover');
+    @include view('button', 'secondary', 'hover', 'block');
   }
 }
 
 .success {
-  @include view('button', 'success');
+  @include view('button', 'success', '', 'block');
 
   &:hover {
-    @include view('button', 'success', 'hover');
+    @include view('button', 'success', 'hover', 'block');
   }
 }
 
 .warning {
-  @include view('button', 'warning');
+  @include view('button', 'warning', '', 'block');
 
   &:hover {
-    @include view('button', 'warning', 'hover');
+    @include view('button', 'warning', 'hover', 'block');
   }
 }
 
 .danger {
-  @include view('button', 'danger');
+  @include view('button', 'danger', '', 'block');
 
   &:hover {
-    @include view('button', 'danger', 'hover');
+    @include view('button', 'danger', 'hover', 'block');
   }
 }
 
@@ -71,7 +71,7 @@
   @include block('button', 's');
 
   &.square {
-    @include token('padding', 'button', 'block-s', 'square');
+    @include token('padding', 'button', 's', 'square', 'block');
   }
 }
 
@@ -79,7 +79,7 @@
   @include block('button', 'm');
 
   &.square {
-    @include token('padding', 'button', 'block-m', 'square');
+    @include token('padding', 'button', 'm', 'square', 'block');
   }
 }
 
@@ -87,6 +87,6 @@
   @include block('button', 'l');
 
   &.square {
-    @include token('padding', 'button', 'block-l', 'square');
+    @include token('padding', 'button', 'l', 'square', 'block');
   }
 }

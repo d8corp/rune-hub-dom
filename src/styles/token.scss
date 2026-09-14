@@ -50,7 +50,6 @@
   @include token('font-size', $component, $element, $mod, 'block');
   @include token('font-weight', $component, $element, $mod, 'block');
   @include token('border-radius', $component, $element, $mod, 'block');
-  @include token('border-width', $component, $element, $mod, 'block');
 }
 
 @mixin inline-size ($component, $element, $mod: '') {
@@ -60,5 +59,4 @@
   @include token('font-size', $component, $element, $mod, 'inline');
   @include token('padding', $component, $element, $mod, 'inline');
   @include token('border-radius', $component, $element, $mod, 'inline');
-  @include token('border-width', $component, $element, $mod, 'inline');
 }
