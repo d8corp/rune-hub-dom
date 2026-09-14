@@ -19,7 +19,7 @@ export function DevtoolsSlotPanel () {
     <Show when={selected}>
       <div class={styles.root}>
         <Flex gap={8} align='center'>
-          <Button size='s' onclick={handleClose}>
+          <Button data-glow data-shine size='s' onclick={handleClose}>
             <CloseIcon />
           </Button>
           <SlotStatus slot={selected} />

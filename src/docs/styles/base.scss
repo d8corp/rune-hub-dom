@@ -43,30 +43,34 @@ body {
   --rd--root-outline-focus: 2px solid var(--rd__primary_background);
   --rd__root_transition: all .2s;
 
+  --rd__block-l_size: 56px;
   --rd__block-l_font-size: 16px;
   --rd__block-l_padding: 14px 28px;
+  --rd__block-l_padding_square: 14px;
   --rd__block-l_border-radius: 12px;
-  --rd__block-l_height: 56px;
   --rd__block-l_font-weight: bold;
 
+  --rd__block-m_size: 36px;
   --rd__block-m_font-size: 14px;
   --rd__block-m_padding: 8px 16px;
+  --rd__block-m_padding_square: 8px;
   --rd__block-m_border-radius: 8px;
-  --rd__block-m_height: 36px;
   --rd__block-m_font-weight: bold;
 
+  --rd__block-s_size: 24px;
   --rd__block-s_font-size: 10px;
-  --rd__block-s_padding: 6px;
+  --rd__block-s_padding: 6px 8px;
   --rd__block-s_border-radius: 6px;
-  --rd__block-s_height: 24px;
   --rd__block-s_font-weight: bold;
 
   --rd__inline-s_size: 8px;
   --rd__inline-s_font-size: 6px;
   --rd__inline-s_padding: 0 2px;
+
   --rd__inline-m_size: 12px;
   --rd__inline-m_font-size: 10px;
   --rd__inline-m_padding: 1px 4px;
+
   --rd__inline-l_size: 16px;
   --rd__inline-l_font-size: 14px;
   --rd__inline-l_padding: 2px 6px;

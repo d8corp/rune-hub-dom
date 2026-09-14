@@ -31,7 +31,9 @@
   @include token('font-weight', $component, block-#{$element}, $mod);
   @include token('padding', $component, block-#{$element}, $mod);
   @include token('border-radius', $component, block-#{$element}, $mod);
-  @include token('height', $component, block-#{$element}, $mod);
+  @include token('height', $component, block-#{$element}, $mod, 'size');
+  @include token('min-height', $component, block-#{$element}, $mod, 'size');
+  @include token('min-width', $component, block-#{$element}, $mod, 'size');
 }
 
 @mixin inline-size ($component, $element, $mod: '') {

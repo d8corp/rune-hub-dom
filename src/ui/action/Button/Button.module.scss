@@ -61,12 +61,24 @@
 
 .s {
   @include block('button', 's');
+
+  &.square {
+    @include token('padding', 'button', 'block-s', 'square');
+  }
 }
 
 .m {
   @include block('button', 'm');
+
+  &.square {
+    @include token('padding', 'button', 'block-m', 'square');
+  }
 }
 
 .l {
   @include block('button', 'l');
+
+  &.square {
+    @include token('padding', 'button', 'block-l', 'square');
+  }
 }
