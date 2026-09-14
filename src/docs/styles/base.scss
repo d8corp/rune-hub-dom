@@ -62,8 +62,14 @@ body {
   --rd__block-s_font-weight: bold;
 
   --rd__inline-s_size: 8px;
+  --rd__inline-s_font-size: 6px;
+  --rd__inline-s_padding: 0 2px;
   --rd__inline-m_size: 12px;
+  --rd__inline-m_font-size: 10px;
+  --rd__inline-m_padding: 1px 4px;
   --rd__inline-l_size: 16px;
+  --rd__inline-l_font-size: 14px;
+  --rd__inline-l_padding: 2px 6px;
 
   --rd__secondary_backdrop-filter: blur(4px);
 
@@ -90,11 +96,11 @@ body {
   --rd--root-color: light-dark(#1E1B2E, #F1F5F9);
   --rd--root-color-muted: light-dark(#5B556E, #94A3B8);
   --rd--root-color-dim: light-dark(#8B85A0, #64748B);
-  --rd__success_color: light-dark(#059669, #34D399);
+  --rd__success_color: light-dark(white, black);
   --rd__success_background: light-dark(#059669, #34D399);
-  --rd__error_color: light-dark(#E11D48, #FB7185);
-  --rd__error_background: light-dark(#E11D48, #FB7185);
-  --rd__warning_color: light-dark(#EA580C, #FB923C);
+  --rd__danger_color: light-dark(white, black);
+  --rd__danger_background: light-dark(#E11D48, #FB7185);
+  --rd__warning_color: light-dark(white, black);
   --rd__warning_background: light-dark(#EA580C, #FB923C);
   --rd__disabled_background: light-dark(#8B85A0, #64748B);
   --rd--shine-color: light-dark(#7C3AED1A, #FFFFFF1A);

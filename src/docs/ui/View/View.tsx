@@ -16,7 +16,7 @@ export function View ({ title, ...props }: ViewProps) {
     <Flex {...props} vertical class={styles.root}>
       <Flex padding={[12, 16]} class={styles.title} gap={12} align='center'>
         <Flex gap={6}>
-          <Dot color='error' />
+          <Dot color='danger' />
           <Dot color='warning' />
           <Dot color='success' />
         </Flex>

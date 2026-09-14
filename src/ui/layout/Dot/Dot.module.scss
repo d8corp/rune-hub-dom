@@ -12,7 +12,40 @@
 }
 
 .root {
-  border-radius: var(--rd-ui-dot-radius, 50%);
+  border-radius: var(--rd-ui-dot-radius, 9999px);
+  @include token('transition', 'dot', 'root');
+
+  &:has(> svg:first-child) {
+    padding-left: 0;
+  }
+
+  &:has(> svg:last-child) {
+    padding-right: 0;
+  }
+}
+
+.primary {
+  @include view('dot', 'primary');
+}
+
+.secondary {
+  @include view('dot', 'secondary');
+}
+
+.success {
+  @include view('dot', 'success');
+}
+
+.success {
+  @include view('dot', 'success');
+}
+
+.warning {
+  @include view('dot', 'warning');
+}
+
+.danger {
+  @include view('dot', 'danger');
 }
 
 .s {
@@ -27,19 +60,19 @@
   @include inline-size('dot', 'l');
 }
 
-.success {
-  @include view('dot', 'success');
+
+@media (hover: hover) and (pointer: fine) {
+  .hoverable:not(:hover) {
+    color: transparent;
+  }
 }
 
-.error {
-  @include view('dot', 'error');
-}
-
-.warning {
-  @include view('dot', 'warning');
+.clickable {
+  cursor: pointer;
 }
 
 .disabled {
+  cursor: default;
   @include view('dot', 'disabled');
 }
 

@@ -8,6 +8,7 @@ import { For, Show, useHidden } from '../../../../../components'
 import { CloseIcon, SearchIcon } from '../../../../../docs/icons'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import { Ref } from '../../../../../utils'
+import { Dot, Flex } from '../../../../layout'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsPanel.module.scss'
 
@@ -53,11 +54,13 @@ export function DevtoolsPanel () {
 
   return (
     <div data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
-      <div class={styles.header}>
-        <button class={styles.closeButton} onclick={() => show.set(false)}>
+      <Flex gap={8} align='center'>
+        <Dot hoverable color='danger' onclick={() => show.set(false)}>
           <CloseIcon />
-        </button>
-      </div>
+        </Dot>
+        <Dot hoverable color='warning' />
+        <Dot hoverable color='success' />
+      </Flex>
       <div data-glow class={styles.main}>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>

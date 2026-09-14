@@ -18,7 +18,7 @@ export default function HomePage () {
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <div data-glow class={styles.version}>
-            <Dot pulse size='s' color={version.includes('alpha') ? 'error' : version.includes('beta') ? 'warning' : 'success'} />
+            <Dot pulse size='s' color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'} />
             v{process.env.INNETJS_PACKAGE_VERSION} is now available
           </div>
           <Title title='Rundom — Frontend Framework' class={styles.title}>
@@ -34,7 +34,7 @@ export default function HomePage () {
             <Button
               data-glow
               data-shine
-              view='secondary'
+              color='secondary'
               size='l'
               element='a'
               href='https://github.com/d8corp/rundom'

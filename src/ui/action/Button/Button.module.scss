@@ -5,7 +5,7 @@
   background-clip: border-box;
 
   @include token('text-decoration', 'button', 'link');
-  @include token('transition', 'button', 'link');
+  @include token('transition', 'button', 'root');
   @include outline('button', 'root');
 
   &:focus-visible {
@@ -29,6 +29,31 @@
   }
 }
 
+.success {
+  @include view('button', 'success');
+
+  &:hover {
+    @include view('button', 'success', 'hover');
+  }
+}
+
+.warning {
+  @include view('button', 'warning');
+
+  &:hover {
+    @include view('button', 'warning', 'hover');
+  }
+}
+
+.danger {
+  @include view('button', 'danger');
+
+  &:hover {
+    @include view('button', 'danger', 'hover');
+  }
+}
+
+.disabled,
 .root[disabled='true'] {
   cursor: default;
   @include view('button', 'disabled');

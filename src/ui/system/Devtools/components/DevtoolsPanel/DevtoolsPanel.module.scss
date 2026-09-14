@@ -33,28 +33,6 @@
   margin-bottom: -100px;
 }
 
-.closeButton {
-  display: flex;
-  cursor: pointer;
-  border: none;
-  padding: 1px;
-  background: var(--rd__error_background);
-  font-size: 10px;
-  border-radius: 6px;
-  transition: color .2s ease;
-  color: transparent;
-
-  &:hover {
-    color: #000a;
-  }
-}
-
-.header {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
 .main {
   display: flex;
   gap: 8px;

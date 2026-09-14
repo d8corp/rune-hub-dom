@@ -72,6 +72,11 @@ export class JSXNode <T extends JSXType = JSXType> {
   ) {}
 }
 
+export type Merge<A, B> = B & Omit<A, keyof B>
+
+export type RDColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'disabled'
+export type RDSize = 's' | 'm' | 'l'
+
 declare global {
   interface Element extends IContent {}
   interface Text extends IContent {}

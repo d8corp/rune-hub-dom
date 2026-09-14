@@ -36,7 +36,8 @@
 
 @mixin inline-size ($component, $element, $mod: '') {
   @include token('height', $component, inline-#{$element}, $mod, 'size');
-  @include token('width', $component, inline-#{$element}, $mod, 'size');
   @include token('min-height', $component, inline-#{$element}, $mod, 'size');
   @include token('min-width', $component, inline-#{$element}, $mod, 'size');
+  @include token('font-size', $component, inline-#{$element}, $mod);
+  @include token('padding', $component, inline-#{$element}, $mod);
 }
