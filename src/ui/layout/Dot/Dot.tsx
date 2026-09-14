@@ -15,6 +15,7 @@ export type DotProps<T extends FlexElement = 'span', S extends DotStyles = DotSt
   color?: ObservableProp<RDColor>
   pulse?: ObservableProp<boolean>
   hoverable?: ObservableProp<boolean>
+  square?: ObservableProp<boolean>
 }>
 
 export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotStyles> ({
@@ -22,6 +23,7 @@ export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotSty
   color = 'warning',
   pulse,
   hoverable,
+  square,
   ...props
 }: DotProps<T, S>) {
   const styles = useStyles($styles, props.class)
@@ -39,6 +41,7 @@ export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotSty
         inject(color, color => styles[color]),
         inject(pulse, pulse => pulse && styles.pulse),
         inject(hoverable, hoverable => hoverable && styles.hoverable),
+        inject(square, square => square && styles.square),
       ], classes)}
     />
   )

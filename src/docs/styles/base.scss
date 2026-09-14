@@ -42,6 +42,8 @@ body {
 
   --rd__root_outline_focus: 2px solid var(--rd__primary_background);
   --rd__root_transition: all .2s;
+  --rd__root_border-width: 0;
+  --rd__root_border-radius: 0;
 
   --rd--alpha-color: #8B5CF614;
   --rd--alpha-color-hover: #8B5CF626;
@@ -52,37 +54,42 @@ body {
   --rd__root_color-dim: light-dark(#8B85A0, #64748B);
   --rd__shine_color: light-dark(#7C3AED1A, #FFFFFF1A);
 
-  --rd__block-l_size: 56px;
-  --rd__block-l_font-size: 16px;
-  --rd__block-l_padding: 14px 28px;
-  --rd__block-l_padding_square: 14px;
-  --rd__block-l_border-radius: 12px;
-  --rd__block-l_font-weight: bold;
+  --rd_block_l_size: 56px;
+  --rd_block_l_font-size: 16px;
+  --rd_block_l_padding: 14px 28px;
+  --rd_block_l_padding_square: 14px;
+  --rd_block_l_border-radius: 12px;
+  --rd_block_l_font-weight: bold;
 
-  --rd__block-m_size: 36px;
-  --rd__block-m_font-size: 14px;
-  --rd__block-m_padding: 8px 16px;
-  --rd__block-m_padding_square: 8px;
-  --rd__block-m_border-radius: 8px;
-  --rd__block-m_font-weight: bold;
+  --rd_block_m_size: 36px;
+  --rd_block_m_font-size: 14px;
+  --rd_block_m_padding: 8px 16px;
+  --rd_block_m_padding_square: 8px;
+  --rd_block_m_border-radius: 8px;
+  --rd_block_m_font-weight: bold;
 
-  --rd__block-s_size: 24px;
-  --rd__block-s_font-size: 10px;
-  --rd__block-s_padding: 6px 8px;
-  --rd__block-s_border-radius: 6px;
-  --rd__block-s_font-weight: bold;
+  --rd_block_s_size: 24px;
+  --rd_block_s_font-size: 10px;
+  --rd_block_s_padding: 6px 8px;
+  --rd_block_s_border-radius: 6px;
+  --rd_block_s_font-weight: bold;
 
-  --rd__inline-s_size: 8px;
-  --rd__inline-s_font-size: 6px;
-  --rd__inline-s_padding: 0;
+  --rd_inline_root_border-radius: 9999px;
 
-  --rd__inline-m_size: 12px;
-  --rd__inline-m_font-size: 10px;
-  --rd__inline-m_padding: 1px;
+  --rd_inline_s_size: 8px;
+  --rd_inline_s_font-size: 6px;
+  --rd_inline_s_padding: 0;
+  --rd_inline_s_border-radius_square: 2px;
 
-  --rd__inline-l_size: 16px;
-  --rd__inline-l_font-size: 12px;
-  --rd__inline-l_padding: 2px;
+  --rd_inline_m_size: 12px;
+  --rd_inline_m_font-size: 10px;
+  --rd_inline_m_padding: 1px;
+  --rd_inline_m_border-radius_square: 4px;
+
+  --rd_inline_l_size: 16px;
+  --rd_inline_l_font-size: 12px;
+  --rd_inline_l_padding: 2px;
+  --rd_inline_l_border-radius_square: 5px;
 
   --rd__primary_border: none;
   --rd__primary_color: white;

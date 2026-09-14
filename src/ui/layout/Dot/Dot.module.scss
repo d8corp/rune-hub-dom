@@ -54,14 +54,26 @@
 
 .s {
   @include inline-size('dot', 's');
+
+  &.square {
+    @include token('border-radius', 'dot', 's', 'square', 'inline');
+  }
 }
 
 .m {
   @include inline-size('dot', 'm');
+
+  &.square {
+    @include token('border-radius', 'dot', 'm', 'square', 'inline');
+  }
 }
 
 .l {
   @include inline-size('dot', 'l');
+
+  &.square {
+    @include token('border-radius', 'dot', 'l', 'square', 'inline');
+  }
 }
 
 

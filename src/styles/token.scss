@@ -1,45 +1,64 @@
-@mixin token ($param, $component, $element, $mod: '', $param-name: $param) {
+@mixin token ($param, $component, $element, $mod: '', $scope: '', $param-name: $param) {
   @if ($element == 'root') {
     @if ($mod == '') {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd__#{$element}_#{$param-name}));
+      @if ($scope == '') {
+        #{$param}: var(--rd_#{$component}_root_#{$param-name}, var(--rd__root_#{$param-name}));
+      } @else {
+        #{$param}: var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__root_#{$param-name})));
+      }
     } @else {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd__#{$element}_#{$param-name}))));
+      @if ($scope == '') {
+        #{$param}: var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__root_#{$param-name}))));
+      } @else {
+        #{$param}: var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd_#{$scope}_root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__root_#{$param-name}))))));
+      }
     }
   } @else {
     @if ($mod == '') {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))));
+      @if ($scope == '') {
+        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))));
+      } @else {
+        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$scope}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))))));
+      }
     } @else {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))));
+      @if ($scope == '') {
+        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))));
+      } @else {
+        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$scope}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd_#{$scope}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))))));
+      }
     }
   }
 }
 
-@mixin view ($component, $element, $mod: '') {
-  @include token('background', $component, $element, $mod);
-  @include token('color', $component, $element, $mod);
-  @include token('border', $component, $element, $mod);
-  @include token('backdrop-filter', $component, $element, $mod);
+@mixin view ($component, $element, $mod: '', $scope: '') {
+  @include token('background', $component, $element, $mod, $scope);
+  @include token('color', $component, $element, $mod, $scope);
+  @include token('border', $component, $element, $mod, $scope);
+  @include token('backdrop-filter', $component, $element, $mod, $scope);
 }
 
-@mixin outline ($component, $element, $mod: '') {
-  @include token('outline', $component, $element, $mod);
-  @include token('outline-offset', $component, $element, $mod);
+@mixin outline ($component, $element, $mod: '', $scope: '') {
+  @include token('outline', $component, $element, $mod, $scope);
+  @include token('outline-offset', $component, $element, $mod, $scope);
 }
 
 @mixin block ($component, $element, $mod: '') {
-  @include token('font-size', $component, block-#{$element}, $mod);
-  @include token('font-weight', $component, block-#{$element}, $mod);
-  @include token('padding', $component, block-#{$element}, $mod);
-  @include token('border-radius', $component, block-#{$element}, $mod);
-  @include token('height', $component, block-#{$element}, $mod, 'size');
-  @include token('min-height', $component, block-#{$element}, $mod, 'size');
-  @include token('min-width', $component, block-#{$element}, $mod, 'size');
+  @include token('height', $component, $element, $mod, 'block', 'size');
+  @include token('min-height', $component, $element, $mod, 'block', 'size');
+  @include token('min-width', $component, $element, $mod, 'block', 'size');
+  @include token('padding', $component, $element, $mod, 'block');
+  @include token('font-size', $component, $element, $mod, 'block');
+  @include token('font-weight', $component, $element, $mod, 'block');
+  @include token('border-radius', $component, $element, $mod, 'block');
+  @include token('border-width', $component, $element, $mod, 'block');
 }
 
 @mixin inline-size ($component, $element, $mod: '') {
-  @include token('height', $component, inline-#{$element}, $mod, 'size');
-  @include token('min-height', $component, inline-#{$element}, $mod, 'size');
-  @include token('min-width', $component, inline-#{$element}, $mod, 'size');
-  @include token('font-size', $component, inline-#{$element}, $mod);
-  @include token('padding', $component, inline-#{$element}, $mod);
+  @include token('height', $component, $element, $mod, 'inline', 'size');
+  @include token('min-height', $component, $element, $mod, 'inline', 'size');
+  @include token('min-width', $component, $element, $mod, 'inline', 'size');
+  @include token('font-size', $component, $element, $mod, 'inline');
+  @include token('padding', $component, $element, $mod, 'inline');
+  @include token('border-radius', $component, $element, $mod, 'inline');
+  @include token('border-width', $component, $element, $mod, 'inline');
 }
