@@ -16,7 +16,7 @@
 .primary {
   @include view('button', 'primary');
 
-  &:not(.disabled):hover {
+  &:hover {
     @include view('button', 'primary', 'hover');
   }
 }
@@ -24,7 +24,7 @@
 .secondary {
   @include view('button', 'secondary');
 
-  &:not(.disabled):hover {
+  &:hover {
     @include view('button', 'secondary', 'hover');
   }
 }

@@ -1,7 +1,7 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 
-export type DotSize = 'm' | 's'
+export type DotSize = 'm' | 's' | 'l'
 export type DotColor = 'error' | 'success' | 'warning' | 'disabled'
 
 import { classes } from 'html-classes'

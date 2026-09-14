@@ -1,3 +1,5 @@
+@use "src/styles/token" as *;
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -11,36 +13,37 @@
 
 .root {
   border-radius: var(--rd-ui-dot-radius, 50%);
-  background: var(--rd-ui-dot-color)
 }
 
 .s {
-  width: 8px;
-  height: 8px;
+  @include inline-size('dot', 's');
 }
 
 .m {
-  width: 12px;
-  height: 12px;
+  @include inline-size('dot', 'm');
+}
+
+.l {
+  @include inline-size('dot', 'l');
 }
 
 .success {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-success, var(--rd--success-color));
+  @include view('dot', 'success');
 }
 
 .error {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-error, var(--rd--error-color));
+  @include view('dot', 'error');
 }
 
 .warning {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-warn, var(--rd--warn-color));
+  @include view('dot', 'warning');
 }
 
 .disabled {
-  --rd-ui-dot-color: var(--rd-ui-dot-color-disabled, var(--rd--root-color-dim));
+  @include view('dot', 'disabled');
 }
 
 .pulse {
-  box-shadow: 0 0 8px var(--rd-ui-dot-color);
+  box-shadow: 0 0 8px currentColor;
   animation: pulse 2s ease-in-out infinite;
 }

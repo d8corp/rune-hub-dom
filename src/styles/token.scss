@@ -1,15 +1,15 @@
-@mixin token ($param, $component, $element, $mod: '') {
+@mixin token ($param, $component, $element, $mod: '', $param-name: $param) {
   @if ($element == 'root') {
     @if ($mod == '') {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}, var(--rd__#{$element}_#{$param}));
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd__#{$element}_#{$param-name}));
     } @else {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}_#{$mod}, var(--rd_#{$component}_#{$element}_#{$param}, var(--rd__#{$element}_#{$param}))));
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd__#{$element}_#{$param-name}))));
     }
   } @else {
     @if ($mod == '') {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}, var(--rd_#{$component}_root_#{$param}, var(--rd__#{$element}_#{$param}, var(--rd__root_#{$param}))));
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))));
     } @else {
-      #{$param}: var(--rd_#{$component}_#{$element}_#{$param}_#{$mod}, var(--rd_#{$component}_root_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}_#{$mod}, var(--rd__#{$element}_#{$param}, var(--rd__root_#{$param}_#{$mod}, var(--rd__root_#{$param}))))));
+      #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))));
     }
   }
 }
@@ -32,4 +32,11 @@
   @include token('padding', $component, block-#{$element}, $mod);
   @include token('border-radius', $component, block-#{$element}, $mod);
   @include token('height', $component, block-#{$element}, $mod);
+}
+
+@mixin inline-size ($component, $element, $mod: '') {
+  @include token('height', $component, inline-#{$element}, $mod, 'size');
+  @include token('width', $component, inline-#{$element}, $mod, 'size');
+  @include token('min-height', $component, inline-#{$element}, $mod, 'size');
+  @include token('min-width', $component, inline-#{$element}, $mod, 'size');
 }

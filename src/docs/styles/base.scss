@@ -61,6 +61,10 @@ body {
   --rd__block-s_height: 24px;
   --rd__block-s_font-weight: bold;
 
+  --rd__inline-s_size: 8px;
+  --rd__inline-m_size: 12px;
+  --rd__inline-l_size: 16px;
+
   --rd__secondary_backdrop-filter: blur(4px);
 
   --rd-color-bg-deep: light-dark(#fff, #0B0B15);
@@ -86,9 +90,13 @@ body {
   --rd--root-color: light-dark(#1E1B2E, #F1F5F9);
   --rd--root-color-muted: light-dark(#5B556E, #94A3B8);
   --rd--root-color-dim: light-dark(#8B85A0, #64748B);
-  --rd--success-color: light-dark(#059669, #34D399);
-  --rd--error-color: light-dark(#E11D48, #FB7185);
-  --rd--warn-color: light-dark(#EA580C, #FB923C);
+  --rd__success_color: light-dark(#059669, #34D399);
+  --rd__success_background: light-dark(#059669, #34D399);
+  --rd__error_color: light-dark(#E11D48, #FB7185);
+  --rd__error_background: light-dark(#E11D48, #FB7185);
+  --rd__warning_color: light-dark(#EA580C, #FB923C);
+  --rd__warning_background: light-dark(#EA580C, #FB923C);
+  --rd__disabled_background: light-dark(#8B85A0, #64748B);
   --rd--shine-color: light-dark(#7C3AED1A, #FFFFFF1A);
 
   --rd-gradient-shine: linear-gradient(135deg, transparent, var(--rd--shine-color), transparent);
