@@ -17,7 +17,7 @@ export type ButtonProps<T extends FlexElement = 'button', S extends ButtonStyles
 
 export function Button<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> ({
   size = 'm',
-  color = 'primary',
+  color = 'secondary',
   disabled = false,
   ...props
 }: ButtonProps<T, S>) {

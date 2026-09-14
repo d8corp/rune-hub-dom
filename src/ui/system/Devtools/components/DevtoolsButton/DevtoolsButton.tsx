@@ -13,6 +13,7 @@ export function DevtoolsButton () {
 
   return (
     <Button
+      color='primary'
       onclick={() => show.set(true)}
       class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}
     >

@@ -3,6 +3,7 @@ import { SlotStatus } from '../SlotStatus'
 import { Show } from '../../../../../components'
 import { CloseIcon } from '../../../../../docs/icons'
 import { SystemSlot } from '../../../../../utils'
+import { Button } from '../../../../action'
 import { Flex } from '../../../../layout'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
@@ -18,9 +19,9 @@ export function DevtoolsSlotPanel () {
     <Show when={selected}>
       <div class={styles.root}>
         <Flex gap={8} align='center'>
-          <button onclick={handleClose}>
+          <Button size='s' onclick={handleClose}>
             <CloseIcon />
-          </button>
+          </Button>
           <SlotStatus slot={selected} />
           {() => selected.value?.rune.name}
         </Flex>
