@@ -2,7 +2,7 @@
 
 @keyframes banner {
   from {
-    --rd-glow-x-offset: 0vh;
+    --rd-glow-y-offset: 0vh;
   }
   to {
     --rd-glow-y-offset: -100vh;
@@ -21,13 +21,13 @@
           radial-gradient(circle at 100px 100px, rgba(139, 92, 246, .08) 100px, transparent 350px),
           var(--rd-color-bg-deep);
 
-  animation-timeline: view(block 0 calc(100% - var(--header-size)));
-  animation-timing-function: linear;
-  animation-name: banner;
-
   &::before {
     --rd-proximity-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
-    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
+    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px) - var(--header-size));
+
+    animation-timeline: view(block 0 calc(100% - var(--header-size)));
+    animation-timing-function: linear;
+    animation-name: banner;
 
     content: '';
     position: absolute;
@@ -74,7 +74,7 @@
 
 .description {
   font-size: 20px;
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto 36px;

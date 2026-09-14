@@ -2,7 +2,7 @@
   border-top: 1px solid rgba(247,183,86,0.1);
   padding: 40px 24px;
   background: var(--rd-color-bg-surface);
-  color: var(--rd--root-color-dim);
+  color: var(--rd__root_color-dim);
   font-size: 14px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .link {
-  color: var(--rd--root-color-dim);
+  color: var(--rd__root_color-dim);
   text-decoration: none;
   transition: color 0.2s;
 

@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--color-bg);
-  color: var(--rd--root-color);
+  color: var(--rd__root_color);
   overflow-x: hidden;
 }
 
@@ -40,8 +40,17 @@ body {
   //    (outline | outline_offset | text_weight | text_decoration) [rest]
   // mod: hover | focus
 
-  --rd--root-outline-focus: 2px solid var(--rd__primary_background);
+  --rd__root_outline_focus: 2px solid var(--rd__primary_background);
   --rd__root_transition: all .2s;
+
+  --rd--alpha-color: #8B5CF614;
+  --rd--alpha-color-hover: #8B5CF626;
+  --rd__accent_color: white;
+  --rd__accent_background: light-dark(#DB2777, #F472B6);
+  --rd__root_color: light-dark(#1E1B2E, #F1F5F9);
+  --rd__root_color-muted: light-dark(#5B556E, #94A3B8);
+  --rd__root_color-dim: light-dark(#8B85A0, #64748B);
+  --rd__shine_color: light-dark(#7C3AED1A, #FFFFFF1A);
 
   --rd__block-l_size: 56px;
   --rd__block-l_font-size: 16px;
@@ -65,60 +74,58 @@ body {
 
   --rd__inline-s_size: 8px;
   --rd__inline-s_font-size: 6px;
-  --rd__inline-s_padding: 0 2px;
+  --rd__inline-s_padding: 0;
 
   --rd__inline-m_size: 12px;
   --rd__inline-m_font-size: 10px;
-  --rd__inline-m_padding: 1px 4px;
+  --rd__inline-m_padding: 1px;
 
   --rd__inline-l_size: 16px;
-  --rd__inline-l_font-size: 14px;
-  --rd__inline-l_padding: 2px 6px;
+  --rd__inline-l_font-size: 12px;
+  --rd__inline-l_padding: 2px;
 
+  --rd__primary_border: none;
+  --rd__primary_color: white;
+  --rd__primary_color-hover: white;
+  --rd__primary_background: light-dark(#7C3AED, #8B5CF6);
+  --rd__primary_background-hover: light-dark(#8B5CF6, #A78BFA);
+
+  --rd__secondary_background: var(--rd--alpha-color);
+  --rd__secondary_background-hover: var(--rd-button-secondary-color-hover, var(--rd--alpha-color-hover));
+  --rd__secondary_color: var(--rd__primary_background-hover);
+  --rd__secondary_color-hover: light-dark(var(--rd__primary_background), var(--rd__root_color));
   --rd__secondary_backdrop-filter: blur(4px);
+  --rd__secondary_border_hover: 1px solid light-dark(#7C3AED4D, #8B5CF64D);
+
+  --rd__success_color: light-dark(white, black);
+  --rd__success_background: light-dark(#059669, #34D399);
+
+  --rd__danger_color: light-dark(white, black);
+  --rd__danger_background: light-dark(#E11D48, #FB7185);
+
+  --rd__warning_color: light-dark(white, black);
+  --rd__warning_background: light-dark(#EA580C, #FB923C);
+
+  --rd__disabled_background: light-dark(#8B85A0, #64748B);
 
   --rd-color-bg-deep: light-dark(#fff, #0B0B15);
   --rd-color-bg-surface: light-dark(#f7f5fc, #12121F);
   --rd-color-bg-contrast: light-dark(#f7f5fc, #171426);
   --rd-color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
   --rd-color-bg-hover: light-dark(#f7f5fc, #252545);
-  --rd--alpha-color: #8B5CF614;
-  --rd--alpha-color-hover: #8B5CF626;
-  --rd__secondary_background: var(--rd--alpha-color);
-  --rd__secondary_background-hover: var(--rd-button-secondary-color-hover, var(--rd--alpha-color-hover));
-  --rd__secondary_color: var(--rd__primary_background-hover);
-  --rd__secondary_color-hover: light-dark(var(--rd__primary_background), var(--rd--root-color));
 
   --rd__root_border: 1px solid light-dark(#7C3AED1F, #8B5CF61F);
-  --rd__primary_border: none;
-  --rd__primary_color: white;
-  --rd__primary_color-hover: white;
-  --rd__primary_background: light-dark(#7C3AED, #8B5CF6);
-  --rd__primary_background-hover: light-dark(#8B5CF6, #A78BFA);
-  --rd__secondary_border_hover: 1px solid light-dark(#7C3AED4D, #8B5CF64D);
-  --rd--accent-color: light-dark(#DB2777, #F472B6);
-  --rd--root-color: light-dark(#1E1B2E, #F1F5F9);
-  --rd--root-color-muted: light-dark(#5B556E, #94A3B8);
-  --rd--root-color-dim: light-dark(#8B85A0, #64748B);
-  --rd__success_color: light-dark(white, black);
-  --rd__success_background: light-dark(#059669, #34D399);
-  --rd__danger_color: light-dark(white, black);
-  --rd__danger_background: light-dark(#E11D48, #FB7185);
-  --rd__warning_color: light-dark(white, black);
-  --rd__warning_background: light-dark(#EA580C, #FB923C);
-  --rd__disabled_background: light-dark(#8B85A0, #64748B);
-  --rd--shine-color: light-dark(#7C3AED1A, #FFFFFF1A);
 
-  --rd-gradient-shine: linear-gradient(135deg, transparent, var(--rd--shine-color), transparent);
+  --rd-gradient-shine: linear-gradient(135deg, transparent, var(--rd__shine_color), transparent);
 
-  --gradient-base: linear-gradient(135deg, var(--rd__primary_background), var(--rd--accent-color));
-  --gradient-accent: linear-gradient(135deg, light-dark(var(--rd--root-color), #fff) 0%, var(--rd__primary_background-hover) 50%, var(--rd--accent-color) 100%);
+  --gradient-base: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background));
+  --gradient-accent: linear-gradient(135deg, light-dark(var(--rd__root_color), #fff) 0%, var(--rd__primary_background-hover) 50%, var(--rd__accent_color) 100%);
 
   --shadow-accent: 0 0 12px light-dark(#AC7EFF80, #7C3AED);
   --header-size: 64px;
 
-  --rd_button_primary_background: linear-gradient(135deg, var(--rd__primary_background), var(--rd--accent-color)) 0% 0% / 100% 100%;
-  --rd_button_primary_background_hover: linear-gradient(135deg, var(--rd__primary_background), var(--rd--accent-color)) 0% 0% / 200% 200%;
+  --rd_button_primary_background: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background)) 0% 0% / 100% 100%;
+  --rd_button_primary_background_hover: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background)) 0% 0% / 200% 200%;
 }
 
 ::-webkit-scrollbar {
@@ -205,7 +212,7 @@ h4, h5, h6 {
 }
 
 p {
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
   line-height: 1.6;
   margin: 24px 0;
 
@@ -284,7 +291,7 @@ blockquote {
 }
 
 strong {
-  color: var(--rd--root-color);
+  color: var(--rd__root_color);
   transition: color .2s;
 
   a > & {
@@ -298,7 +305,7 @@ table {
   border-spacing: 0;
   font-size: 15px;
   padding-top: 10px;
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
 }
 
 thead {
@@ -449,7 +456,7 @@ td {
 @property --rd-glow-padding {
   syntax: '<length-percentage>+';
   initial-value: 1px;
-  inherits: true;
+  inherits: false;
 }
 
 @property --rd-glow-bg {

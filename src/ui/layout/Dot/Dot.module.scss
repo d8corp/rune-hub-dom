@@ -28,6 +28,10 @@
   @include view('dot', 'primary');
 }
 
+.accent {
+  @include view('dot', 'accent');
+}
+
 .secondary {
   @include view('dot', 'secondary');
 }

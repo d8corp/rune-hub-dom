@@ -12,7 +12,7 @@ export function Header () {
   const show = useShow(200)
 
   return (
-    <Flex element='header' class={() => classes([styles.root, show.value && styles.show])}>
+    <Flex data-glow element='header' class={() => classes([styles.root, show.value && styles.show])}>
       <Flex flex padding={[0, 24]} align='center' justify='between' class={styles.content}>
         <Flex element='a' exact href='/' gap={12} align='center' class={styles.logo}>
           Rundom

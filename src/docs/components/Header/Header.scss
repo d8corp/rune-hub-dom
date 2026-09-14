@@ -1,6 +1,10 @@
-@use "src/docs/styles/proximityGlow" as *;
-
 .root {
+  --rd-position: sticky;
+
+  &:before {
+    --rd-glow-padding: 0 0 1px;
+  }
+
   position: sticky;
   top: 0;
   background: var(--rd-color-bg-surface);
@@ -9,8 +13,6 @@
   transition: opacity .2s, transform .2s, background-color .2s, border-color .2s;
   height: 64px;
   z-index: 2;
-
-  @include proximityGlow(0 0 1px);
 }
 
 .show {
@@ -47,9 +49,9 @@
   font-size: 14px;
   font-weight: 500;
   transition: color 0.2s;
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
 
   &:hover {
-    color: var(--rd--root-color);
+    color: var(--rd__root_color);
   }
 }

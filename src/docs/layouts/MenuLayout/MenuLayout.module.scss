@@ -36,7 +36,7 @@
   background: transparent;
   border: none;
   border-radius: 50%;
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
   cursor: pointer;
   transition: .2s;
   display: flex;
@@ -45,7 +45,7 @@
 
   &:hover {
     background: var(--rd--alpha-color);
-    color: var(--rd--root-color);
+    color: var(--rd__root_color);
   }
 
   &:active {

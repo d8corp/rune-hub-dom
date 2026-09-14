@@ -2,7 +2,7 @@
 
 @keyframes highlight-link {
   0%, 100% {
-    color: var(--rd--root-color-dim);
+    color: var(--rd__root_color-dim);
   }
   10%, 90% {
     color: var(--rd__primary_background);
@@ -67,7 +67,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--rd--root-color-muted);
+  color: var(--rd__root_color-muted);
 }
 
 .content {
@@ -94,7 +94,7 @@
 }
 
 .item {
-  color: var(--rd--root-color-dim);
+  color: var(--rd__root_color-dim);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;

@@ -21,6 +21,14 @@
   }
 }
 
+.accent {
+  @include view('button', 'accent');
+
+  &:hover {
+    @include view('button', 'accent', 'hover');
+  }
+}
+
 .secondary {
   @include view('button', 'secondary');
 

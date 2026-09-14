@@ -48,7 +48,7 @@
 
   &:hover {
     background: var(--rd--alpha-color-hover);
-    color: light-dark(var(--rd__primary_background), var(--rd--root-color));
+    color: light-dark(var(--rd__primary_background), var(--rd__root_color));
   }
 }
 

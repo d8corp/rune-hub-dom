@@ -30,6 +30,7 @@ export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotSty
     <Flex
       element='span'
       align='center'
+      justify='center'
       {...props as FlexProps<T, S>}
       class={injectAll([
         styles.root,
