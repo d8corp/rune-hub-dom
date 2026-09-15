@@ -1,33 +1,42 @@
-@mixin token ($param, $component, $element, $mod: '', $scope: '', $param-name: $param) {
-  @if ($element == 'root') {
-    @if ($mod == '') {
-      @if ($scope == '') {
-        #{$param}: var(--rd_#{$component}_root_#{$param-name}, var(--rd__root_#{$param-name}));
+@mixin token ($param, $component, $element, $mod: '', $extends: '', $param-name: $param) {
+  $var: --rd-#{$component}_#{$element}_#{$param};
+  $parent: --rd-#{$extends}_#{$element}_#{$param};
+  $base: --rd_#{$component}_#{$element}_#{$param-name};
+  $root: --rd_#{$component}_root_#{$param-name};
+  $short: --rd__#{$element}_#{$param-name};
+  $rootShort: --rd__root_#{$param-name};
+
+  @if ($extends == '') {
+    @if ($element == 'root') {
+      @if ($mod == '') {
+        #{$var}: var(#{$root}, var(#{$rootShort}));
       } @else {
-        #{$param}: var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__root_#{$param-name})));
+        #{$var}: var(#{$root}_#{$mod}, var(#{$root}, var(#{$rootShort}_#{$mod}, var(#{$rootShort}))));
       }
     } @else {
-      @if ($scope == '') {
-        #{$param}: var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__root_#{$param-name}))));
+      @if ($mod == '') {
+        #{$var}: var(#{$base}, var(#{$root}, var(#{$short}, var(#{$rootShort}))));
       } @else {
-        #{$param}: var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd_#{$scope}_root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__root_#{$param-name}))))));
+        #{$var}: var(#{$base}_#{$mod}, var(#{$base}, var(#{$root}_#{$mod}, var(#{$root}, var(#{$short}_#{$mod}, var(#{$short}, var(#{$rootShort}_#{$mod}, var(#{$rootShort}))))))));
       }
     }
   } @else {
-    @if ($mod == '') {
-      @if ($scope == '') {
-        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))));
+    @if ($element == 'root') {
+      @if ($mod == '') {
+        #{$var}: var(#{$root}, var(#{$parent}));
       } @else {
-        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}, var(--rd_#{$scope}_#{$element}_#{$param-name}, var(--rd_#{$component}_root_#{$param-name}, var(--rd_#{$scope}_root_#{$param-name}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}))))));
+        #{$var}: var(#{$root}_#{$mod}, var(#{$root}, var(#{$parent})));
       }
     } @else {
-      @if ($scope == '') {
-        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))));
+      @if ($mod == '') {
+        #{$var}: var(#{$base}, var(#{$root}, var(#{$parent})));
       } @else {
-        #{$param}: var(--rd_#{$component}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$scope}_#{$element}_#{$param-name}_#{$mod}, var(--rd_#{$component}_root_#{$param-name}_#{$mod}, var(--rd_#{$scope}_root_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}_#{$mod}, var(--rd__#{$element}_#{$param-name}, var(--rd__root_#{$param-name}_#{$mod}, var(--rd__root_#{$param-name}))))))));
+        #{$var}: var(#{$base}_#{$mod}, var(#{$base}, var(#{$root}_#{$mod}, var(#{$root}, var(#{$parent})))));
       }
     }
   }
+
+  #{$param}: var(#{$var});
 }
 
 @mixin view ($component, $element, $mod: '', $scope: '') {
@@ -42,21 +51,21 @@
   @include token('outline-offset', $component, $element, $mod, $scope);
 }
 
-@mixin block ($component, $element, $mod: '') {
-  @include token('height', $component, $element, $mod, 'block', 'size');
-  @include token('min-height', $component, $element, $mod, 'block', 'size');
-  @include token('min-width', $component, $element, $mod, 'block', 'size');
-  @include token('padding', $component, $element, $mod, 'block');
-  @include token('font-size', $component, $element, $mod, 'block');
-  @include token('font-weight', $component, $element, $mod, 'block');
-  @include token('border-radius', $component, $element, $mod, 'block');
+@mixin block ($component, $element, $mod: '', $extends: 'block') {
+  @include token('height', $component, $element, $mod, $extends, 'size');
+  @include token('min-height', $component, $element, $mod, $extends, 'size');
+  @include token('min-width', $component, $element, $mod, $extends, 'size');
+  @include token('padding', $component, $element, $mod, $extends);
+  @include token('font-size', $component, $element, $mod, $extends);
+  @include token('font-weight', $component, $element, $mod, $extends);
+  @include token('border-radius', $component, $element, $mod, $extends);
 }
 
-@mixin inline-size ($component, $element, $mod: '') {
-  @include token('height', $component, $element, $mod, 'inline', 'size');
-  @include token('min-height', $component, $element, $mod, 'inline', 'size');
-  @include token('min-width', $component, $element, $mod, 'inline', 'size');
-  @include token('font-size', $component, $element, $mod, 'inline');
-  @include token('padding', $component, $element, $mod, 'inline');
-  @include token('border-radius', $component, $element, $mod, 'inline');
+@mixin inline-size ($component, $element, $mod: '', $extends: 'inline') {
+  @include token('height', $component, $element, $mod, $extends, 'size');
+  @include token('min-height', $component, $element, $mod, $extends, 'size');
+  @include token('min-width', $component, $element, $mod, $extends, 'size');
+  @include token('font-size', $component, $element, $mod, $extends);
+  @include token('padding', $component, $element, $mod, $extends);
+  @include token('border-radius', $component, $element, $mod, $extends);
 }

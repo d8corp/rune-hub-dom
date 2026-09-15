@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+  },
+  "include": [
+    "src/index.ts",
+    "src/jsx-runtime.ts",
+    "src/jsx-dev-runtime.ts",
+    "src/declaration.d.ts",
+  ]
+}

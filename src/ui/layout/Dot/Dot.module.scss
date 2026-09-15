@@ -25,31 +25,31 @@
 }
 
 .primary {
-  @include view('dot', 'primary');
+  @include view('dot', 'primary', '', 'inline');
 }
 
 .accent {
-  @include view('dot', 'accent');
+  @include view('dot', 'accent', '', 'inline');
 }
 
 .secondary {
-  @include view('dot', 'secondary');
+  @include view('dot', 'secondary', '', 'inline');
 }
 
 .success {
-  @include view('dot', 'success');
+  @include view('dot', 'success', '', 'inline');
 }
 
 .success {
-  @include view('dot', 'success');
+  @include view('dot', 'success', '', 'inline');
 }
 
 .warning {
-  @include view('dot', 'warning');
+  @include view('dot', 'warning', '', 'inline');
 }
 
 .danger {
-  @include view('dot', 'danger');
+  @include view('dot', 'danger', '', 'inline');
 }
 
 .s {
@@ -89,7 +89,7 @@
 
 .disabled {
   cursor: default;
-  @include view('dot', 'disabled');
+  @include view('dot', 'disabled', '', 'inline');
 }
 
 .pulse {

@@ -1,3 +1,5 @@
+export * from './Block'
 export * from './Dot'
 export * from './Flex'
+export * from './Inline'
 export * from './Link'

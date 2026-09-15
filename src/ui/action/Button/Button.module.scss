@@ -5,12 +5,7 @@
   background-clip: border-box;
 
   @include token('text-decoration', 'button', 'link');
-  @include token('transition', 'button', 'root');
-  @include outline('button', 'root');
-
-  &:focus-visible {
-    @include outline('button', 'root', 'focus');
-  }
+  @include token('transition', 'button', 'root', 'block');
 }
 
 .primary {

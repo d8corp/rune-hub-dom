@@ -6,7 +6,6 @@ import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
 import { For, Show, useHidden } from '../../../../../components'
 import { CloseIcon, SearchIcon } from '../../../../../docs/icons'
-import { Divider } from '../../../../../docs/ui'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { Ref } from '../../../../../utils'
@@ -107,7 +106,6 @@ export function DevtoolsPanel () {
                 System
               </Button>
             </Show>
-            <Divider vertical />
             <Button size='s' data-glow data-shine onclick={handleExport}>
               Export
             </Button>
