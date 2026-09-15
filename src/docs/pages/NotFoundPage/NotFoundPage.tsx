@@ -1,4 +1,5 @@
-import { Button, DelayPage, Title, Typography } from '../../ui'
+import { Button } from '../../../ui'
+import { DelayPage, Title, Typography } from '../../ui'
 import styles from './NotFoundPage.scss'
 
 export default function NotFoundPage () {
@@ -10,7 +11,7 @@ export default function NotFoundPage () {
         <p>
           The page you're looking for doesn't exist.
         </p>
-        <Button size='l' element='a' href='/'>
+        <Button color='accent' size='l' element='a' href='/'>
           Go Home
         </Button>
       </Typography>

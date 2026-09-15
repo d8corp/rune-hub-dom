@@ -90,3 +90,7 @@
     @include token('padding', 'button', 'l', 'square', 'block');
   }
 }
+
+.circle {
+  @include token('border-radius', 'button', 'circle', '', 'block');
+}

@@ -89,6 +89,7 @@ export function DevtoolsPanel () {
               <Button
                 size='s'
                 data-shine
+                circle
                 color={colorHandler(anonFilter)}
                 onclick={clickHandler(anonFilter)}
               >
@@ -98,6 +99,7 @@ export function DevtoolsPanel () {
             <Show when={props.system}>
               <Button
                 data-shine
+                circle
                 size='s'
                 color={colorHandler(systemFilter)}
                 onclick={clickHandler(systemFilter)}

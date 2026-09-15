@@ -14,6 +14,7 @@ export type ButtonProps<T extends FlexElement = 'button', S extends ButtonStyles
   size?: ObservableProp<RDSize>
   disabled?: ObservableProp<boolean>
   square?: ObservableProp<boolean>
+  circle?: ObservableProp<boolean>
 }>
 
 export function Button<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> ({
@@ -21,6 +22,7 @@ export function Button<T extends keyof HTMLElementTagNameMap = 'button', S exten
   color = 'secondary',
   disabled = false,
   square = false,
+  circle = false,
   ...props
 }: ButtonProps<T, S>) {
   const styles = useStyles($styles, props.class)
@@ -30,6 +32,7 @@ export function Button<T extends keyof HTMLElementTagNameMap = 'button', S exten
     inject(color, view => styles[view]),
     inject(size, size => styles[size]),
     inject(square, square => square && styles.square),
+    inject(circle, circle => circle && styles.circle),
   ], classes)
 
   return (

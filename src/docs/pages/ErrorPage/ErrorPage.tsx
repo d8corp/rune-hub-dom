@@ -1,6 +1,6 @@
 import type { ErrorProps } from '../../../components'
-import { Flex } from '../../../ui'
-import { Button, DelayPage, Typography } from '../../ui'
+import { Button, Flex } from '../../../ui'
+import { DelayPage, Typography } from '../../ui'
 import styles from './ErrorPage.scss'
 
 export function ErrorPage ({ error, retry }: ErrorProps) {
@@ -23,10 +23,10 @@ export function ErrorPage ({ error, retry }: ErrorProps) {
           </ul>
         </p>
         <Flex gap={8} wrap>
-          <Button size='l' element='a' href='/'>
+          <Button color='accent' size='l' element='a' href='/'>
             Go Home
           </Button>
-          <Button view='secondary' onclick={retry}>
+          <Button onclick={retry}>
             Retry
           </Button>
         </Flex>

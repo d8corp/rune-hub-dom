@@ -27,6 +27,7 @@ body {
 
 :root {
   color-scheme: light dark;
+  --color-alpha-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
 
   // --rd-[component_name]-[element_name]-[param_name]-[mod?]
   // component_name: button | dot | ...
@@ -54,9 +55,10 @@ body {
   --rd__shine_color: light-dark(#7C3AED1A, #FFFFFF1A);
 
   --rd_block_root_border: 1px solid light-dark(#7C3AED1F, #8B5CF61F);
-  --rd_block_root_border_hover: 1px solid light-dark(#7C3AED4D, #8B5CF64D);
+  --rd_block_root_border_hover: 1px solid var(--color-alpha-border-hover);
   --rd_block_accent_border: 0 solid transparent;
   --rd_block_accent_border_hover: 0 solid transparent;
+  --rd_block_circle_border-radius: 9999px;
 
   --rd_block_l_size: 56px;
   --rd_block_l_font-size: 16px;
@@ -107,7 +109,7 @@ body {
   --rd__secondary_color_hover: light-dark(var(--rd__primary_background), var(--rd__root_color));
   --rd__secondary_backdrop-filter: blur(4px);
   --rd__secondary_border: 1px solid light-dark(#7C3AED1F, #8B5CF61F);
-  --rd__secondary_border_hover: 1px solid light-dark(#7C3AED4D, #8B5CF64D);
+  --rd__secondary_border_hover: 1px solid var(--color-alpha-border-hover);
 
   --rd__success_color: light-dark(white, black);
   --rd__success_background: light-dark(#059669, #34D399);
@@ -136,6 +138,8 @@ body {
 
   --rd_button_accent_background: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background)) 0% 0% / 100% 100%;
   --rd_button_accent_background_hover: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background)) 0% 0% / 200% 200%;
+
+  --rd-glow-bg: var(--rd__secondary_border);
 }
 
 ::-webkit-scrollbar {
@@ -150,7 +154,7 @@ body {
   --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
 
   transition: background-color .2s;
-  background: var(--rd__secondary_border_hover) radial-gradient(
+  background: var(--color-alpha-border-hover) radial-gradient(
           circle 100px at var(--proximity-x) var(--proximity-y),
           var(--rd__primary_background) 0%,
           var(--rd__primary_background) 30%,

@@ -2,14 +2,13 @@ import { classes } from 'html-classes'
 import Prism from 'prismjs'
 import { Slot } from 'rune-hub'
 
-import { Button } from '../Button'
 import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 import { Typography } from '../Typography'
 
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
 import type { FlexElement, FlexProps } from '../../../ui'
-import { Flex } from '../../../ui'
+import { Button, Flex } from '../../../ui'
 import { inject, injectAll, Ref } from '../../../utils'
 import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'
@@ -90,7 +89,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
               <Typography class={styles.titleText} flex>
                 <BaseMarkdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
-              <Button size='s' view='secondary' onclick={copy}>
+              <Button size='s' color='secondary' onclick={copy}>
                 <IconCopy />
               </Button>
             </Flex>
@@ -146,7 +145,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
                 </span>
               ))}
             </Flex>
-            <Button size='s' view='secondary' onclick={copy}>
+            <Button size='s' square color='secondary' onclick={copy}>
               <IconCopy />
             </Button>
           </Flex>
