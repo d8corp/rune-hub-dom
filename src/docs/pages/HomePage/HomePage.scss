@@ -2,7 +2,7 @@
 
 @keyframes banner {
   from {
-    --rd-glow-y-offset: 0vh;
+    --rd-glow-y-offset: calc(0vh + var(--header-size));
   }
   to {
     --rd-glow-y-offset: -100vh;
@@ -23,7 +23,7 @@
 
   &::before {
     --rd-proximity-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
-    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px) - var(--header-size));
+    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
 
     animation-timeline: view(block 0 calc(100% - var(--header-size)));
     animation-timing-function: linear;

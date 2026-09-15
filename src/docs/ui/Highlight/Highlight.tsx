@@ -89,7 +89,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
               <Typography class={styles.titleText} flex>
                 <BaseMarkdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
-              <Button size='s' data-glow data-shine square color='secondary' onclick={copy}>
+              <Button size='s' data-glow={glow} data-shine square color='secondary' onclick={copy}>
                 <IconCopy />
               </Button>
             </Flex>
@@ -145,7 +145,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
                 </span>
               ))}
             </Flex>
-            <Button data-glow data-shine square color='secondary' size='s' onclick={copy}>
+            <Button data-glow={glow} data-shine square color='secondary' size='s' onclick={copy}>
               <IconCopy />
             </Button>
           </Flex>
