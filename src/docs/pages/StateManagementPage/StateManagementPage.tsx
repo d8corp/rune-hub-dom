@@ -1,6 +1,6 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './StateManagementPage.md'
 
 export default function StateManagementPage () {
-  return <MarkdownPage text={description} />
+  return <MarkdownTemplate text={description} />
 }

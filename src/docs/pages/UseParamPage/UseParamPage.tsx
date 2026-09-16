@@ -1,8 +1,8 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './UseParamPage.md'
 
 export default function UseParamPage () {
   return (
-    <MarkdownPage text={description} />
+    <MarkdownTemplate text={description} />
   )
 }

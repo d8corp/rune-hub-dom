@@ -31,37 +31,26 @@ export const menu: MenuItem[] = [
     children: [
       {
         href: '/portal',
-        exact: true,
         children: '<Portal>',
       },
       {
         href: '/show',
-        exact: true,
         children: '<Show>',
       },
       {
         href: '/hide',
-        exact: true,
         children: '<Hide>',
       },
       {
         href: '/for',
-        exact: true,
         children: '<For>',
       },
       {
         href: '/router',
-        exact: true,
         children: '<Router>',
       },
       {
-        href: '/link',
-        exact: true,
-        children: '<Link>',
-      },
-      {
         href: '/delay',
-        exact: true,
         children: '<Delay>',
       },
     ],
@@ -71,17 +60,14 @@ export const menu: MenuItem[] = [
     children: [
       {
         href: '/use-param',
-        exact: true,
         children: 'useParam',
       },
       {
         href: '/use-params',
-        exact: true,
         children: 'useParams',
       },
       {
         href: '/use-styles',
-        exact: true,
         children: 'useStyles',
       },
     ],
@@ -91,12 +77,10 @@ export const menu: MenuItem[] = [
     children: [
       {
         href: '/ref',
-        exact: true,
         children: 'Ref',
       },
       {
         href: '/context',
-        exact: true,
         children: 'Context',
       },
     ],

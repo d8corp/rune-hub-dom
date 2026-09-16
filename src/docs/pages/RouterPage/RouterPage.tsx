@@ -1,8 +1,8 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './RouterPage.md'
 
 export default function RouterPage () {
   return (
-    <MarkdownPage text={description} />
+    <MarkdownTemplate text={description} />
   )
 }

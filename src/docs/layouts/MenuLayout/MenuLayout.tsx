@@ -18,7 +18,7 @@ import {
   toggleIsShowSide,
 } from '../../state'
 import type { MenuItem } from '../../types'
-import { DelayPage } from '../../ui'
+import { BasePage } from '../../ui'
 import styles from './MenuLayout.module.scss'
 
 export interface MenuLayoutProps extends ChildrenProps {
@@ -27,7 +27,7 @@ export interface MenuLayoutProps extends ChildrenProps {
 
 export function MenuLayout ({ children, menu }: MenuLayoutProps) {
   return (
-    <DelayPage class={styles.root} padding={[40, 24]}>
+    <BasePage class={styles.root} padding={[40, 24]}>
       <Flex flex gap={24} style={{ 'timeline-scope': slot(titleTimelineScope) }}>
         <Flex element='main' flex class={styles.main}>
           <Try catch={ErrorPage}>
@@ -68,6 +68,6 @@ export function MenuLayout ({ children, menu }: MenuLayoutProps) {
           </Show>
         </Flex>
       </Show>
-    </DelayPage>
+    </BasePage>
   )
 }

@@ -18,7 +18,7 @@ export interface DelayPageProps extends PageProps {
   hide?: number
 }
 
-export function DelayPage ({
+export function BasePage ({
   show = usePageUpdated() ? 200 : 0,
   hide = 200,
   ...props

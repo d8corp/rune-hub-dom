@@ -1,3 +1,5 @@
+import { Code } from '@/jsx-runtime'
+
 import { SlotStatus } from '../SlotStatus'
 
 import { Show } from '../../../../../components'
@@ -27,22 +29,22 @@ export function DevtoolsSlotPanel () {
         </Flex>
         <div class={styles.content}>
           <div>
-            value: {() => selected.value && JSON.stringify(values.value.get(selected.value))}
+            value: <Code>{() => selected.value && JSON.stringify(values.value.get(selected.value))}</Code>
           </div>
           <div>
-            prev: {() => values.value && JSON.stringify(selected.value?.prev)}
+            prev: <Code>{() => values.value && JSON.stringify(selected.value?.prev)}</Code>
           </div>
           <div>
-            anon: {() => String(selected.value?.anon)}
+            anon: <Code>{() => String(selected.value?.anon)}</Code>
           </div>
           <div>
-            state: {() => String(selected.value?.state)}
+            state: <Code>{() => String(selected.value?.state)}</Code>
           </div>
           <div>
-            sets: {() => String(selected.value?.sets)}
+            sets: <Code>{() => String(selected.value?.sets)}</Code>
           </div>
           <div>
-            system: {() => selected.value ? String(selected.value instanceof SystemSlot) : undefined}
+            system: <Code>{() => selected.value ? String(selected.value instanceof SystemSlot) : undefined}</Code>
           </div>
           <div class={styles.codeBlock}>
             code:

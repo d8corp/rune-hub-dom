@@ -1,5 +1,5 @@
 import { Button, Code, Divider, Dot, Flex } from '../../../ui'
-import { DelayPage, Title } from '../../ui'
+import { BasePage, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -14,7 +14,7 @@ export default function HomePage () {
   const version = import.meta.env?.RD_PACKAGE_VERSION ?? '0.0.0'
 
   return (
-    <DelayPage class={styles.root}>
+    <BasePage class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <div data-glow class={styles.version}>
@@ -55,7 +55,7 @@ export default function HomePage () {
         <Divider />
         <RouterExample />
       </Flex>
-    </DelayPage>
+    </BasePage>
 
   )
 }

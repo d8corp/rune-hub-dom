@@ -1,5 +1,5 @@
 import { Button, Code, Divider, Flex } from '../../../ui'
-import { DelayPage, Title } from '../../ui'
+import { BasePage, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -12,17 +12,17 @@ import styles from './UIPage.scss'
 
 export default function UIPage () {
   return (
-    <DelayPage class={styles.root}>
+    <BasePage class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <Title title='Rundom UI' class={styles.title}>
             Rundom UI
           </Title>
           <p class={styles.description}>
-            <Code data-glow>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
+            <Code>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
           </p>
           <div class={styles.buttons}>
-            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/flex'>
+            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/link'>
               Get Started
             </Button>
           </div>
@@ -41,7 +41,7 @@ export default function UIPage () {
         <Divider />
         <RouterExample />
       </Flex>
-    </DelayPage>
+    </BasePage>
 
   )
 }

@@ -1,10 +1,10 @@
 import { Button } from '../../../ui'
-import { DelayPage, Title, Typography } from '../../ui'
+import { BasePage, Title, Typography } from '../../ui'
 import styles from './NotFoundPage.scss'
 
 export default function NotFoundPage () {
   return (
-    <DelayPage justify='center' align='center' class={styles.root}>
+    <BasePage justify='center' align='center' class={styles.root}>
       <Typography>
         <Title class={styles.h1}>404</Title>
         <h2>Page Not Found</h2>
@@ -15,6 +15,6 @@ export default function NotFoundPage () {
           Go Home
         </Button>
       </Typography>
-    </DelayPage>
+    </BasePage>
   )
 }

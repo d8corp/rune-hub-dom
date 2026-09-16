@@ -419,10 +419,9 @@ body {
 
 .rd_code {
   background: $color-secondary;
-  backdrop-filter: $filter-blur;
   border: 1px solid $color-border;
   color: $color-primary-hover;
-  padding: 2px 8px;
+  padding: 2px 4px;
   border-radius: 4px;
   font-size: 0.8em;
   cursor: pointer;

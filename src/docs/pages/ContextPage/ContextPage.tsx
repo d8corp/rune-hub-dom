@@ -1,8 +1,8 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './ContextPage.md'
 
 export default function ContextPage () {
   return (
-    <MarkdownPage text={description} />
+    <MarkdownTemplate text={description} />
   )
 }

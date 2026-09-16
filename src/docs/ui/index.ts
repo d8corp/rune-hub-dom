@@ -1,6 +1,5 @@
 export * from './Highlight'
 export * from './Markdown'
-export * from './MarkdownPage'
 export * from './Page'
 export * from './Title'
 export * from './Typography'

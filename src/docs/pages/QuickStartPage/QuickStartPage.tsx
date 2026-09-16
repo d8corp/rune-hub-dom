@@ -1,6 +1,6 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './QuickStartPage.md'
 
 export default function QuickStartPage () {
-  return <MarkdownPage text={description} />
+  return <MarkdownTemplate text={description} />
 }

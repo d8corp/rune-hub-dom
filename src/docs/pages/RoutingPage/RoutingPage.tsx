@@ -1,12 +1,12 @@
-import { DelayPage, Markdown, Typography } from '../../ui'
+import { BasePage, Markdown, Typography } from '../../ui'
 import description from './RoutingPage.md'
 
 export default function RoutingPage () {
   return (
-    <DelayPage>
+    <BasePage>
       <Typography>
         <Markdown text={description} />
       </Typography>
-    </DelayPage>
+    </BasePage>
   )
 }

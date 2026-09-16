@@ -1,6 +1,6 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './PortalPage.md'
 
 export default function PortalPage () {
-  return <MarkdownPage text={description} />
+  return <MarkdownTemplate text={description} />
 }

@@ -1,8 +1,8 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './DelayPage.md'
 
 export default function () {
   return (
-    <MarkdownPage text={description} />
+    <MarkdownTemplate text={description} />
   )
 }

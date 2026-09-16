@@ -27,9 +27,9 @@ export const routing = createRouting([
         children: [
           {
             index: true,
-            path: 'flex',
-            // fallback: <LoadingPage />,
-            component: () => 'Flex Page',
+            path: 'link',
+            fallback: <LoadingPage />,
+            component: lazy(() => import('./pages/LinkPage')),
           },
         ],
       },
@@ -95,12 +95,6 @@ export const routing = createRouting([
             path: 'router',
             fallback: <LoadingPage />,
             component: lazy(() => import('./pages/RouterPage')),
-          },
-          {
-            index: true,
-            path: 'link',
-            fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/LinkPage')),
           },
           {
             index: true,

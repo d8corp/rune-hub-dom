@@ -1,6 +1,6 @@
-import { MarkdownPage } from '../../ui'
+import { MarkdownTemplate } from '../../templates'
 import description from './JSXElementsPage.md'
 
 export default function JSXElementsPage () {
-  return <MarkdownPage text={description} />
+  return <MarkdownTemplate text={description} />
 }

@@ -15,12 +15,10 @@ export const uiMenu: MenuItem[] = [
     children: [
       {
         href: '/button',
-        exact: true,
         children: '<Button>',
       },
       {
         href: '/link',
-        exact: true,
         children: '<Link>',
       },
     ],

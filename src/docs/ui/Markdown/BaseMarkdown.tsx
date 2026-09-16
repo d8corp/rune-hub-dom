@@ -1,4 +1,4 @@
-import { inject, Link } from '@/jsx-runtime'
+import { Link } from '@/jsx-runtime'
 import type {
   ASTNodeTypes,
   TxtBlockQuoteNode,
@@ -119,7 +119,6 @@ export function BaseMarkdown ({ text, map, glow }: BaseMarkdownProps) {
     }),
     Code: ({ value }: TxtCodeNode) => new JSXNode(Code, {
       children: value,
-      'data-glow': inject(glow, glow => glow ? 'true' : ''),
     }),
     CodeBlock: ({ value }: TxtCodeBlockNode) => new JSXNode('pre', {
       children: value,
