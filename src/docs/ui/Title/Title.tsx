@@ -64,6 +64,7 @@ export function Title ({
 
     useClear(() => {
       raw(titleLinks).delete(link)
+      updateTitleLinks()
     })
 
     updateTitleLinks()
