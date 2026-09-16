@@ -11,7 +11,7 @@ import {
 import styles from './HomePage.scss'
 
 export default function HomePage () {
-  const version = process.env.INNETJS_PACKAGE_VERSION ?? '0.0.0'
+  const version = import.meta.env?.RD_PACKAGE_VERSION ?? '0.0.0'
 
   return (
     <DelayPage class={styles.root}>
@@ -19,7 +19,7 @@ export default function HomePage () {
         <div class={styles.content}>
           <div data-glow class={styles.version}>
             <Dot pulse size='s' color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'} />
-            v{process.env.INNETJS_PACKAGE_VERSION} is now available
+            v{import.meta.env?.RD_PACKAGE_VERSION} is now available
           </div>
           <Title title='Rundom — Frontend Framework' class={styles.title}>
             Welcome to Rundom

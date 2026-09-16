@@ -4,6 +4,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src/index.ts"
+    "src/index.ts",
+    "src/declaration.d.ts"
   ]
 }

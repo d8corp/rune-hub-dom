@@ -1,0 +1,232 @@
+$transition: all .2s;
+
+// colors
+$color-primary: light-dark(#7C3AED, #8B5CF6);
+$color-primary-light: light-dark(#8B5CF6, #A78BFA);
+$color-accent: light-dark(#DB2777, #F472B6);
+$color-secondary: #8B5CF614;
+$color-success: light-dark(#059669, #34D399);
+$color-danger: light-dark(#E11D48, #FB7185);
+$color-warning: light-dark(#EA580C, #FB923C);
+$color-disabled: light-dark(#8B85A0,#64748B);
+
+// sizes
+$size-infinite: 9999px;
+
+// animations
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+}
+
+// components
+.rd_link {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+    outline: none;
+  }
+}
+
+.rd_block {
+  transition: $transition;
+  background-clip: border-box;
+  border: 1px solid light-dark(#7C3AED1F, #8B5CF61F);
+  font-weight: bold;
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+
+  &__l {
+    height: 56px;
+    min-height: 56px;
+    min-width: 56px;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+
+    &.rd_block__square {
+      padding:14px;
+    }
+  }
+
+  &__m {
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+
+    &.rd_block__square {
+      padding: 8px;
+    }
+  }
+
+  &__s {
+    height: 24px;
+    min-height: 24px;
+    min-width: 24px;
+    font-size: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+
+    &.rd_block__square {
+      padding: 6px;
+    }
+  }
+
+  &__primary {
+    background: $color-primary;
+  }
+
+  &__accent {
+    background: $color-accent;
+  }
+
+  &__secondary {
+    background: $color-secondary;
+  }
+
+  &__success {
+    background: $color-success;
+  }
+
+  &__danger {
+    background: $color-danger;
+  }
+
+  &__warning {
+    background: $color-warning;
+  }
+
+  &__disabled {
+    background: $color-disabled;
+  }
+}
+
+.rd_button {
+  cursor: pointer;
+
+  &__accent {
+    background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 100% 100%;
+
+    &:hover{
+      background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 200% 200%;
+    }
+  }
+}
+
+.rd_inline {
+  border-radius: $size-infinite;
+  transition: $transition;
+  color: light-dark(white, black);
+
+  &:has(> svg:first-child) {
+    padding-left: 0;
+  }
+
+  &:has(> svg:last-child) {
+    padding-right: 0;
+  }
+
+  &__primary {
+    background: $color-primary;
+  }
+
+  &__accent {
+    background: $color-accent;
+  }
+
+  &__secondary {
+    background: $color-secondary;
+  }
+
+  &__success {
+    background: $color-success;
+  }
+
+  &__success {
+    background: $color-success;
+  }
+
+  &__warning {
+    background: $color-warning;
+  }
+
+  &__danger {
+    background: $color-danger;
+  }
+
+  &__disabled {
+    cursor: default;
+    background: $color-disabled;
+  }
+
+  &__s {
+    height: 8px;
+    min-height: 8px;
+    min-width: 8px;
+    font-size: 6px;
+    padding: 0;
+
+    &.rd_inline__square {
+      border-radius: 2px;
+    }
+  }
+
+  &__m {
+    height: 12px;
+    min-height: 12px;
+    min-width: 12px;
+    font-size: 10px;
+    padding: 1px;
+
+    &.rd_inline__square {
+      border-radius: 4px;
+    }
+  }
+
+  &__l {
+    height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    font-size: 12px;
+    padding: 2px;
+
+    &.rd_inline__square {
+      border-radius: 5px;
+    }
+  }
+
+  &__clickable {
+    cursor: pointer;
+  }
+
+  &__pulse {
+    box-shadow: 0 0 8px currentColor;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__hoverable:not(:hover) {
+      color: transparent;
+    }
+  }
+}
+

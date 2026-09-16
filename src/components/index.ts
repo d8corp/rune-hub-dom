@@ -1,4 +1,3 @@
-export * from './BaseLink'
 export * from './Delay'
 export * from './For'
 export * from './Hide'

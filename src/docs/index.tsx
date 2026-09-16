@@ -10,10 +10,10 @@ import './styles/base.scss'
 
 import { Hub, on } from 'rune-hub'
 
-import { linkBaseUrlContext, Router, Try } from '../components'
+import { Router, Try } from '../components'
 import { rundom } from '../rundom'
-import { Devtools } from '../ui'
-import { Context } from '../utils'
+import { Devtools, linkBaseUrlContext } from '../ui'
+import { addCSS, Context } from '../utils'
 import { BASE_URL } from './constants'
 import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/ErrorPage'
@@ -43,7 +43,11 @@ function App () {
   )
 }
 
-if (process.env.DEV) {
+if (import.meta.env?.RD_THEME__ROOT) {
+  addCSS(import.meta.env.RD_THEME__ROOT)
+}
+
+if (import.meta.env?.DEV) {
   rundom(<Devtools anon system />)
 }
 

@@ -1,3 +1,4 @@
+import { Link } from '@/jsx-runtime'
 import type {
   ASTNodeTypes,
   TxtBlockQuoteNode,
@@ -25,7 +26,6 @@ import { Title } from '../Title'
 
 import type { ObservableProp } from '../../../types'
 import { JSXNode } from '../../../types'
-import { Link } from '../../../ui'
 import { use } from '../../../utils'
 import { getAsideTimeline } from '../../state'
 import { slugify } from '../../utils'
