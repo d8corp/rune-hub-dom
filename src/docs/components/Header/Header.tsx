@@ -20,6 +20,7 @@ export function Header () {
         <Flex element='nav' align='center' gap={28}>
           <Hide when={slot(isSmallMobile)}>
             <Link href='/quick-start' class={styles.link}>Docs</Link>
+            <Link href='/ui' class={styles.link}>UI</Link>
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
             <Link href='https://github.com/d8corp/rundom' class={styles.link}>GitHub</Link>
           </Hide>

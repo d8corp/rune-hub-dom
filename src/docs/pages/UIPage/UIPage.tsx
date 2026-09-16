@@ -1,4 +1,4 @@
-import { Button, Dot, Flex } from '../../../ui'
+import { Button, Flex } from '../../../ui'
 import { Code, DelayPage, Divider, Title } from '../../ui'
 import {
   ComponentsExample,
@@ -8,21 +8,15 @@ import {
   JSXExample,
   RouterExample,
 } from '../../widgets'
-import styles from './HomePage.scss'
+import styles from './UIPage.scss'
 
-export default function HomePage () {
-  const version = import.meta.env?.RD_PACKAGE_VERSION ?? '0.0.0'
-
+export default function UIPage () {
   return (
     <DelayPage class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
-          <div data-glow class={styles.version}>
-            <Dot pulse size='s' color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'} />
-            v{import.meta.env?.RD_PACKAGE_VERSION} is now available
-          </div>
-          <Title title='Rundom — Frontend Framework' class={styles.title}>
-            Welcome to Rundom
+          <Title title='Rundom UI' class={styles.title}>
+            Rundom UI
           </Title>
           <p class={styles.description}>
             <Code glow>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
@@ -30,14 +24,6 @@ export default function HomePage () {
           <div class={styles.buttons}>
             <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/quick-start'>
               Get Started
-            </Button>
-            <Button
-              data-glow
-              size='l'
-              element='a'
-              href='/ui'
-            >
-              View Rundom UI
             </Button>
           </div>
         </div>

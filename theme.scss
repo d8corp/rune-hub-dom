@@ -1,11 +1,12 @@
-$transition: all .2s;
-
 // colors
+$color-bg: var(--color-bg);
+$color-bg-deep: light-dark(#fff, #0B0B15);
 $color-text: light-dark(#1E1B2E, #F1F5F9);
-$color-text-invert: light-dark(#F1F5F9, #1E1B2E);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
 $color-primary-hover: light-dark(#8B5CF6, #A78BFA);
 $color-accent: light-dark(#DB2777, #F472B6);
+$color-border: light-dark(#7C3AED1F, #8B5CF61F);
+$color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
 $color-secondary: #8B5CF614;
 $color-secondary-hover: #8B5CF626;
 $color-success: light-dark(#059669, #34D399);
@@ -24,6 +25,8 @@ $filter-blur: blur(4px);
 $size-infinite: 9999px;
 
 // animations
+$transition: all .2s;
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -33,6 +36,125 @@ $size-infinite: 9999px;
     opacity: 0.6;
     transform: scale(0.85);
   }
+}
+
+// base
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $color-bg-deep;
+}
+::-webkit-scrollbar-thumb {
+  --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
+  --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
+
+  transition: background-color .2s;
+  background: $color-secondary-hover radial-gradient(
+          circle 100px at var(--proximity-x) var(--proximity-y),
+          $color-primary 0%,
+          $color-primary 30%,
+          transparent 100%
+  ) fixed;
+  border-radius: 4px;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+@property --rd-glow-x-offset {
+  syntax: '<length-percentage>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --rd-glow-y-offset {
+  syntax: '<length-percentage>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --rd-glow-padding {
+  syntax: '<length-percentage>+';
+  initial-value: 1px;
+  inherits: false;
+}
+
+@property --rd-glow-bg {
+  syntax: '<color>';
+  initial-value: $color-border;
+  inherits: true;
+}
+
+@property --rd-glow-color {
+  syntax: '<color>';
+  initial-value: $color-primary;
+  inherits: true;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  @supports (mask-composite: exclude) {
+    [data-glow] {
+      --rd-glow-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
+      --rd-glow-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
+
+      position: var(--rd-position);
+      border: none !important;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        pointer-events: none;
+        inset: 0;
+        border-radius: inherit;
+        padding: var(--rd-glow-padding);
+        -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+        mask-image: linear-gradient(#fff, #fff), linear-gradient(#000, #000);
+        -webkit-mask-clip: content-box, padding-box;
+        mask-clip: content-box, padding-box;
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        background: var(--rd-glow-bg) radial-gradient(
+                circle 100px at var(--rd-glow-x) var(--rd-glow-y),
+                var(--rd-glow-color) 0%,
+                var(--rd-glow-color) 30%,
+                transparent 100%
+        ) fixed;
+      }
+    }
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  transition: background-color .2s;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: $color-text;
+  overflow-x: hidden;
 }
 
 // components
@@ -54,11 +176,13 @@ $size-infinite: 9999px;
 .rd_block {
   transition: $transition;
   background-clip: border-box;
-  border: 1px solid light-dark(#7C3AED1F, #8B5CF61F);
+  border: 1px solid $color-border;
   font-weight: bold;
   color: white;
 
   &:hover {
+    --rd-glow-bg: $color-border-hover;
+    border-color: $color-border-hover;
     color: white;
   }
 

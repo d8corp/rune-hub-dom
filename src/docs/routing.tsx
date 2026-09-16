@@ -16,6 +16,11 @@ export const routing = createRouting([
         component: lazy(() => import('./pages/HomePage')),
       },
       {
+        path: 'ui',
+        fallback: <LoadingPage />,
+        component: lazy(() => import('./pages/UIPage/UIPage')),
+      },
+      {
         component: MenuLayout,
         children: [
           {

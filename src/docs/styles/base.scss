@@ -2,41 +2,6 @@
 
 $mobileSize: 600px;
 
-// animations
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(0.85);
-  }
-}
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: 'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.6;
-  scroll-behavior: smooth;
-  transition: background-color .2s;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  background: var(--color-bg);
-  color: var(--rd__root_color);
-  overflow-x: hidden;
-}
-
 :root {
   color-scheme: light dark;
   --color-alpha-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
@@ -152,36 +117,6 @@ body {
   --rd_button_accent_background_hover: linear-gradient(135deg, var(--rd__primary_background), var(--rd__accent_background)) 0% 0% / 200% 200%;
 
   --rd-glow-bg: var(--rd__secondary_border);
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--rd-color-bg-deep);
-}
-::-webkit-scrollbar-thumb {
-  --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
-  --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
-
-  transition: background-color .2s;
-  background: var(--color-alpha-border-hover) radial-gradient(
-          circle 100px at var(--proximity-x) var(--proximity-y),
-          var(--rd__primary_background) 0%,
-          var(--rd__primary_background) 30%,
-          transparent 100%
-  ) fixed;
-  border-radius: 4px;
-  cursor: grab;
-
-  &:active {
-    cursor: grabbing;
-  }
-
-  &:hover {
-    background-color: var(--rd__primary_background);
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -467,72 +402,8 @@ td {
   }
 }
 
-@property --rd-glow-x-offset {
-  syntax: '<length-percentage>';
-  initial-value: 0;
-  inherits: true;
-}
-
-@property --rd-glow-y-offset {
-  syntax: '<length-percentage>';
-  initial-value: 0;
-  inherits: true;
-}
-
-@property --rd-glow-padding {
-  syntax: '<length-percentage>+';
-  initial-value: 1px;
-  inherits: false;
-}
-
-@property --rd-glow-bg {
-  syntax: '<color>';
-  initial-value: light-dark(#7C3AED1F, #8B5CF61F);
-  inherits: true;
-}
-
-@property --rd-glow-color {
-  syntax: '<color>';
-  initial-value: light-dark(#7C3AED, #8B5CF6);
-  inherits: true;
-}
-
 @property --rd-position {
   syntax: '*';
   initial-value: relative;
   inherits: false;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  @supports (mask-composite: exclude) {
-    [data-glow] {
-      --rd-glow-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
-      --rd-glow-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
-
-      position: var(--rd-position);
-      border: none !important;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        pointer-events: none;
-        inset: 0;
-        border-radius: inherit;
-        padding: var(--rd-glow-padding);
-        -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
-        mask-image: linear-gradient(#fff, #fff), linear-gradient(#000, #000);
-        -webkit-mask-clip: content-box, padding-box;
-        mask-clip: content-box, padding-box;
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        background: var(--rd-glow-bg) radial-gradient(
-                circle 100px at var(--rd-glow-x) var(--rd-glow-y),
-                var(--rd-glow-color) 0%,
-                var(--rd-glow-color) 30%,
-                transparent 100%
-        ) fixed;
-      }
-    }
-  }
 }
