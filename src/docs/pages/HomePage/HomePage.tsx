@@ -1,5 +1,5 @@
-import { Button, Dot, Flex } from '../../../ui'
-import { Code, DelayPage, Divider, Title } from '../../ui'
+import { Button, Divider, Dot, Flex } from '../../../ui'
+import { Code, DelayPage, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -44,15 +44,15 @@ export default function HomePage () {
       </Flex>
       <Flex vertical gap={64} padding={[80, 24]} align='center' class={styles.section}>
         <HelloWorldExample />
-        <Divider glow />
+        <Divider />
         <JSXExample />
-        <Divider glow />
+        <Divider />
         <ComponentsExample />
-        <Divider glow />
+        <Divider />
         <CountExample />
-        <Divider glow />
+        <Divider />
         <ControlFlowExample />
-        <Divider glow />
+        <Divider />
         <RouterExample />
       </Flex>
     </DelayPage>

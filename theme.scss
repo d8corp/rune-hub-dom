@@ -173,6 +173,131 @@ body {
   }
 }
 
+.rd_divider {
+  align-self: stretch;
+  border: 0 solid $color-border;
+
+  &:not(&__vertical) {
+    margin: 0 4px;
+    border-bottom-width: var(--rd-divider-size);
+  }
+
+  &__vertical {
+    margin: 4px 0;
+    border-left-width: var(--rd-divider-size);
+  }
+
+  &__s {
+    --rd-divider-size: 1px;
+  }
+
+  &__m {
+    --rd-divider-size: 2px;
+  }
+
+  &__l {
+    --rd-divider-size: 3px;
+  }
+}
+
+.rd_inline {
+  border-radius: $size-infinite;
+  transition: $transition;
+  color: light-dark(white, black);
+
+  &:has(> svg:first-child) {
+    padding-left: 0;
+  }
+
+  &:has(> svg:last-child) {
+    padding-right: 0;
+  }
+
+  &__primary {
+    background: $color-primary;
+  }
+
+  &__accent {
+    background: $color-accent;
+  }
+
+  &__secondary {
+    background: $color-secondary;
+  }
+
+  &__success {
+    background: $color-success;
+  }
+
+  &__success {
+    background: $color-success;
+  }
+
+  &__warning {
+    background: $color-warning;
+  }
+
+  &__danger {
+    background: $color-danger;
+  }
+
+  &__disabled {
+    cursor: default;
+    background: $color-disabled;
+  }
+
+  &__s {
+    height: 8px;
+    min-height: 8px;
+    min-width: 8px;
+    font-size: 6px;
+    padding: 0;
+
+    &.rd_inline__square {
+      border-radius: 2px;
+    }
+  }
+
+  &__m {
+    height: 12px;
+    min-height: 12px;
+    min-width: 12px;
+    font-size: 10px;
+    padding: 1px;
+
+    &.rd_inline__square {
+      border-radius: 4px;
+    }
+  }
+
+  &__l {
+    height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+    font-size: 12px;
+    padding: 2px;
+
+    &.rd_inline__square {
+      border-radius: 5px;
+    }
+  }
+
+  &__clickable {
+    cursor: pointer;
+  }
+
+  &__pulse {
+    box-shadow: 0 0 8px currentColor;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__hoverable:not(:hover) {
+      color: transparent;
+    }
+  }
+}
+
 .rd_block {
   transition: $transition;
   background-clip: border-box;
@@ -288,104 +413,6 @@ body {
 
     &:hover{
       background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 200% 200%;
-    }
-  }
-}
-
-.rd_inline {
-  border-radius: $size-infinite;
-  transition: $transition;
-  color: light-dark(white, black);
-
-  &:has(> svg:first-child) {
-    padding-left: 0;
-  }
-
-  &:has(> svg:last-child) {
-    padding-right: 0;
-  }
-
-  &__primary {
-    background: $color-primary;
-  }
-
-  &__accent {
-    background: $color-accent;
-  }
-
-  &__secondary {
-    background: $color-secondary;
-  }
-
-  &__success {
-    background: $color-success;
-  }
-
-  &__success {
-    background: $color-success;
-  }
-
-  &__warning {
-    background: $color-warning;
-  }
-
-  &__danger {
-    background: $color-danger;
-  }
-
-  &__disabled {
-    cursor: default;
-    background: $color-disabled;
-  }
-
-  &__s {
-    height: 8px;
-    min-height: 8px;
-    min-width: 8px;
-    font-size: 6px;
-    padding: 0;
-
-    &.rd_inline__square {
-      border-radius: 2px;
-    }
-  }
-
-  &__m {
-    height: 12px;
-    min-height: 12px;
-    min-width: 12px;
-    font-size: 10px;
-    padding: 1px;
-
-    &.rd_inline__square {
-      border-radius: 4px;
-    }
-  }
-
-  &__l {
-    height: 16px;
-    min-height: 16px;
-    min-width: 16px;
-    font-size: 12px;
-    padding: 2px;
-
-    &.rd_inline__square {
-      border-radius: 5px;
-    }
-  }
-
-  &__clickable {
-    cursor: pointer;
-  }
-
-  &__pulse {
-    box-shadow: 0 0 8px currentColor;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &__hoverable:not(:hover) {
-      color: transparent;
     }
   }
 }

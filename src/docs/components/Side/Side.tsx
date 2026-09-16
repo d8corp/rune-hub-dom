@@ -3,7 +3,7 @@ import { classes } from 'html-classes'
 import { useHidden } from '../../../components'
 import { useShow } from '../../../hooks'
 import { Flex, Link } from '../../../ui'
-import { menu } from '../../menu'
+import { menuContext } from '../../constants'
 import { hideSide } from '../../state'
 import styles from './Side.module.scss'
 
@@ -11,6 +11,7 @@ export function Side () {
   const show = useShow()
   const hide = useHidden()
   const itemClass = { root: styles.item, active: styles.itemSelected }
+  const currentMenu = menuContext.get()
 
   return (
     <Flex
@@ -24,7 +25,7 @@ export function Side () {
     >
       <div class={styles.background} onclick={hideSide} />
       <Flex vertical flex gap={24} class={styles.scrollbar}>
-        {menu.map(({ title, children }) => (
+        {currentMenu.map(({ title, children }) => (
           <Flex vertical gap={10}>
             <div class={styles.group}>{title}</div>
             <Flex vertical gap={4}>

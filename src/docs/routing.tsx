@@ -3,7 +3,9 @@ import { lazy } from '../utils'
 import { BASE_URL } from './constants'
 import { MainLayout } from './layouts/MainLayout'
 import { MenuLayout } from './layouts/MenuLayout'
+import { menu } from './menu'
 import { LoadingPage } from './pages/LoadingPage'
+import { uiMenu } from './uiMenu'
 
 export const routing = createRouting([
   {
@@ -21,7 +23,18 @@ export const routing = createRouting([
         component: lazy(() => import('./pages/UIPage/UIPage')),
       },
       {
-        component: MenuLayout,
+        component: ({ children }) => <MenuLayout menu={uiMenu} children={children} />,
+        children: [
+          {
+            index: true,
+            path: 'flex',
+            // fallback: <LoadingPage />,
+            component: () => 'Flex Page',
+          },
+        ],
+      },
+      {
+        component: ({ children }) => <MenuLayout menu={menu} children={children} />,
         children: [
           {
             index: true,

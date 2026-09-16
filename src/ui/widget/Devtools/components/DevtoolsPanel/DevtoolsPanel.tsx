@@ -10,7 +10,7 @@ import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { Ref } from '../../../../../utils'
 import { Button } from '../../../../block'
-import { Dot } from '../../../../inline'
+import { Divider, Dot } from '../../../../inline'
 import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsPanel.module.scss'
@@ -107,6 +107,7 @@ export function DevtoolsPanel () {
                 System
               </Button>
             </Show>
+            <Divider vertical />
             <Button size='s' data-glow data-shine onclick={handleExport}>
               Export
             </Button>

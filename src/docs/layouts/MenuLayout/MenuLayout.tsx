@@ -3,7 +3,9 @@ import { slot } from 'rune-hub'
 import { Delay, Hide, Show, Try } from '../../../components'
 import type { ChildrenProps } from '../../../types'
 import { Flex } from '../../../ui'
+import { Context } from '../../../utils'
 import { Aside, Side } from '../../components'
+import { menuContext } from '../../constants'
 import { AsideIcon, SideIcon } from '../../icons'
 import { ErrorPage } from '../../pages/ErrorPage'
 import {
@@ -15,10 +17,15 @@ import {
   toggleIsShowAside,
   toggleIsShowSide,
 } from '../../state'
+import type { MenuItem } from '../../types'
 import { DelayPage } from '../../ui'
 import styles from './MenuLayout.module.scss'
 
-export function MenuLayout ({ children }: ChildrenProps) {
+export interface MenuLayoutProps extends ChildrenProps {
+  menu: MenuItem[]
+}
+
+export function MenuLayout ({ children, menu }: MenuLayoutProps) {
   return (
     <DelayPage class={styles.root} padding={[40, 24]}>
       <Flex flex gap={24} style={{ 'timeline-scope': slot(titleTimelineScope) }}>
@@ -29,9 +36,11 @@ export function MenuLayout ({ children }: ChildrenProps) {
         </Flex>
 
         <Show when={slot(isShowSide)}>
-          <Delay hide={200}>
-            <Side />
-          </Delay>
+          <Context.Provider for={menuContext} set={menu}>
+            <Delay hide={200}>
+              <Side />
+            </Delay>
+          </Context.Provider>
         </Show>
 
         <Show when={slot(hasTitleLinks)}>

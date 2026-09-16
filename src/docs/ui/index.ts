@@ -1,5 +1,4 @@
 export * from './Code'
-export * from './Divider'
 export * from './Highlight'
 export * from './Markdown'
 export * from './MarkdownPage'

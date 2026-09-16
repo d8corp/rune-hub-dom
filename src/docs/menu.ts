@@ -1,9 +1,4 @@
-import type { LinkProps } from '../components'
-
-interface MenuItem {
-  title: string
-  children: LinkProps[]
-}
+import type { MenuItem } from './types'
 
 export const menu: MenuItem[] = [
   {

@@ -1,5 +1,5 @@
-import { Button, Flex } from '../../../ui'
-import { Code, DelayPage, Divider, Title } from '../../ui'
+import { Button, Divider, Flex } from '../../../ui'
+import { Code, DelayPage, Title } from '../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -22,7 +22,7 @@ export default function UIPage () {
             <Code glow>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
           </p>
           <div class={styles.buttons}>
-            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/quick-start'>
+            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/flex'>
               Get Started
             </Button>
           </div>
@@ -30,15 +30,15 @@ export default function UIPage () {
       </Flex>
       <Flex vertical gap={64} padding={[80, 24]} align='center' class={styles.section}>
         <HelloWorldExample />
-        <Divider glow />
+        <Divider />
         <JSXExample />
-        <Divider glow />
+        <Divider />
         <ComponentsExample />
-        <Divider glow />
+        <Divider />
         <CountExample />
-        <Divider glow />
+        <Divider />
         <ControlFlowExample />
-        <Divider glow />
+        <Divider />
         <RouterExample />
       </Flex>
     </DelayPage>
