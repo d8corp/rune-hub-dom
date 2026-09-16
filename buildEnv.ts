@@ -137,7 +137,7 @@ async function generateEnvFromScss () {
 
     if (componentCss) {
       const envKey = `${ENV_PREFIX}${comp.toUpperCase().replace(/-/g, '_')}`
-      envVariables[envKey] = JSON.stringify(componentCss)
+      envVariables[envKey] = `'${componentCss}'`
     }
   }
 
@@ -147,7 +147,7 @@ async function generateEnvFromScss () {
     const globalCss = await minifyCss(globalRoot.toResult().css)
 
     if (globalCss) {
-      envVariables[`${ENV_PREFIX}_ROOT`] = JSON.stringify(globalCss)
+      envVariables[`${ENV_PREFIX}_ROOT`] = `'${globalCss}'`
     }
   }
 

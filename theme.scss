@@ -9,6 +9,11 @@ $color-success: light-dark(#059669, #34D399);
 $color-danger: light-dark(#E11D48, #FB7185);
 $color-warning: light-dark(#EA580C, #FB923C);
 $color-disabled: light-dark(#8B85A0,#64748B);
+$color-shine: light-dark(#7C3AED1A, #FFFFFF1A);
+
+// gradients
+
+$gradient-shine: linear-gradient(135deg, transparent, $color-shine, transparent);
 
 // sizes
 $size-infinite: 9999px;
@@ -122,8 +127,26 @@ $size-infinite: 9999px;
 
 .rd_button {
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: $gradient-shine;
+    transform: translateX(-100%);
+  }
+
+  &:hover:after {
+    transform: translateX(100%);
+    transition: transform .3s;
+  }
 
   &__accent {
+    border: none;
     background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 100% 100%;
 
     &:hover{

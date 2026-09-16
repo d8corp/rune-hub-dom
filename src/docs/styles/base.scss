@@ -536,23 +536,3 @@ td {
     }
   }
 }
-
-[data-shine] {
-  position: var(--rd-position);
-  overflow: hidden;
-
-  &:after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background: var(--rd-gradient-shine);
-    transform: translateX(-100%);
-  }
-
-  &:hover:after {
-    transform: translateX(100%);
-    transition: transform .3s;
-  }
-}

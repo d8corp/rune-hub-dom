@@ -33,7 +33,6 @@ export default function HomePage () {
             </Button>
             <Button
               data-glow
-              data-shine
               size='l'
               element='a'
               href='https://github.com/d8corp/rundom'

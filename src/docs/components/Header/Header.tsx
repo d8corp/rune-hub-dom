@@ -23,7 +23,7 @@ export function Header () {
             <Link href='https://www.npmjs.com/package/rundom' class={styles.link}>NPM</Link>
             <Link href='https://github.com/d8corp/rundom' class={styles.link}>GitHub</Link>
           </Hide>
-          <Button data-glow data-shine square class={styles.themeButton} onclick={toggleTheme}>
+          <Button data-glow square class={styles.themeButton} onclick={toggleTheme}>
             {() => get(theme) === 'light dark' ? <SunIcon /> : get(theme) === 'light' ? <MoonIcon /> : <MonitorIcon />}
           </Button>
         </Flex>
