@@ -3,16 +3,18 @@ import { Slot } from 'rune-hub'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { ObservableProp } from '../../../types'
-import { use } from '../../../utils'
-import $styles from './Code.module.scss'
+import { injectCSS } from '../../../utils'
 
-export interface CodeProps extends HTMLStyleProps<HTMLElement, typeof $styles> {
-  glow?: ObservableProp<boolean>;
+export const codeStyles = injectCSS('rd_code', import.meta.env?.RD_THEME_CODE, [
+  'copied',
+])
+
+export interface CodeProps extends HTMLStyleProps<HTMLElement, typeof codeStyles> {
+
 }
 
-export function Code ({ onclick, style, glow, ...props }: CodeProps) {
-  const styles = useStyles($styles, props.class)
+export function Code ({ onclick, style, ...props }: CodeProps) {
+  const styles = useStyles(codeStyles, props.class)
   const x = new Slot(function x () { return '' })
   const y = new Slot(function y () { return '' })
   const copied = new Slot(function copied () { return false })
@@ -37,7 +39,6 @@ export function Code ({ onclick, style, glow, ...props }: CodeProps) {
   const root = () => classes([
     styles.root,
     copied.value && styles.copied,
-    use(glow) && styles.glow,
   ])
 
   return (

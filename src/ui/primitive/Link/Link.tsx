@@ -49,35 +49,30 @@ export function Link (props: LinkProps) {
     return result.startsWith('/') ? `${baseUrl}${result}` : result
   }
 
-  function createClassName () {
-    const linkRegString = () => {
-      const href = getHref()
+  const linkRegString = () => {
+    const href = getHref()
 
-      const prefix = href.startsWith('?')
-        ? '[^?]*'
-        : href.startsWith('#')
-          ? '[^#]*'
-          : ''
+    const prefix = href.startsWith('?')
+      ? '[^?]*'
+      : href.startsWith('#')
+        ? '[^#]*'
+        : ''
 
-      return `^${prefix}${clearHref(href)}${exact ? '$' : ''}`
-    }
-
-    const linkReg = () => new RegExp(regString.value)
-
-    const regString = new SystemSlot(linkRegString)
-    const reg = new SystemSlot(linkReg)
-
-    const linkClass = () => {
-      return classes([
-        styles.root,
-        reg.value.test(locationURL.value) && styles.active,
-      ])
-    }
-
-    return new SystemSlot(linkClass)
+    return `^${prefix}${clearHref(href)}${exact ? '$' : ''}`
   }
 
-  const className = rest.class ? createClassName() : undefined
+  const regString = new SystemSlot(linkRegString)
+  const linkReg = () => new RegExp(regString.value)
+  const reg = new SystemSlot(linkReg)
+
+  const linkClass = () => {
+    return classes([
+      styles.root,
+      reg.value.test(locationURL.value) && styles.active,
+    ])
+  }
+
+  const className = new SystemSlot(linkClass)
 
   function handleClick (e: MouseEvent) {
     if (use(rest.disabled)) {

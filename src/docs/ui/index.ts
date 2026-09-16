@@ -1,4 +1,3 @@
-export * from './Code'
 export * from './Highlight'
 export * from './Markdown'
 export * from './MarkdownPage'

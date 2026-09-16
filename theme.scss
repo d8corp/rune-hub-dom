@@ -417,3 +417,34 @@ body {
   }
 }
 
+.rd_code {
+  background: $color-secondary;
+  backdrop-filter: $filter-blur;
+  border: 1px solid $color-border;
+  color: $color-primary-hover;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+
+  &:after {
+    content: 'copied';
+    display: block;
+    position: absolute;
+    background: $color-secondary;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    transition: opacity .2s, transform .2s;
+    opacity: 0;
+    pointer-events: none;
+    padding: 4px 8px;
+    transform: translateX(-50%) translateY(-100%);
+  }
+
+
+  &__copied:after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-130%);
+  }
+}
+

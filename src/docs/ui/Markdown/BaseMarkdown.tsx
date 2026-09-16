@@ -1,4 +1,4 @@
-import { Link } from '@/jsx-runtime'
+import { inject, Link } from '@/jsx-runtime'
 import type {
   ASTNodeTypes,
   TxtBlockQuoteNode,
@@ -20,12 +20,11 @@ import type {
 } from '@textlint/ast-node-types'
 import { parse } from '@textlint/markdown-to-ast'
 
-import { Code } from '../Code'
 import { Title } from '../Title'
 
 import type { ObservableProp } from '../../../types'
 import { JSXNode } from '../../../types'
-import { Divider } from '../../../ui'
+import { Code, Divider } from '../../../ui'
 import { use } from '../../../utils'
 import { getAsideTimeline } from '../../state'
 import { slugify } from '../../utils'
@@ -120,7 +119,7 @@ export function BaseMarkdown ({ text, map, glow }: BaseMarkdownProps) {
     }),
     Code: ({ value }: TxtCodeNode) => new JSXNode(Code, {
       children: value,
-      glow,
+      'data-glow': inject(glow, glow => glow ? 'true' : ''),
     }),
     CodeBlock: ({ value }: TxtCodeBlockNode) => new JSXNode('pre', {
       children: value,
