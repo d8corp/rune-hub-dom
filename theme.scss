@@ -1,10 +1,13 @@
 $transition: all .2s;
 
 // colors
+$color-text: light-dark(#1E1B2E, #F1F5F9);
+$color-text-invert: light-dark(#F1F5F9, #1E1B2E);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
-$color-primary-light: light-dark(#8B5CF6, #A78BFA);
+$color-primary-hover: light-dark(#8B5CF6, #A78BFA);
 $color-accent: light-dark(#DB2777, #F472B6);
 $color-secondary: #8B5CF614;
+$color-secondary-hover: #8B5CF626;
 $color-success: light-dark(#059669, #34D399);
 $color-danger: light-dark(#E11D48, #FB7185);
 $color-warning: light-dark(#EA580C, #FB923C);
@@ -12,8 +15,10 @@ $color-disabled: light-dark(#8B85A0,#64748B);
 $color-shine: light-dark(#7C3AED1A, #FFFFFF1A);
 
 // gradients
-
 $gradient-shine: linear-gradient(135deg, transparent, $color-shine, transparent);
+
+// filters
+$filter-blur: blur(4px);
 
 // sizes
 $size-infinite: 9999px;
@@ -37,7 +42,7 @@ $size-infinite: 9999px;
   transition: color 0.2s;
 
   &:hover {
-    color: $color-primary-light;
+    color: $color-primary-hover;
   }
 
   &:focus-visible {
@@ -97,6 +102,7 @@ $size-infinite: 9999px;
   }
 
   &__primary {
+    color: white;
     background: $color-primary;
   }
 
@@ -105,7 +111,14 @@ $size-infinite: 9999px;
   }
 
   &__secondary {
+    color: $color-primary-hover;
     background: $color-secondary;
+    backdrop-filter: $filter-blur;
+
+    &:hover {
+      color: $color-primary;
+      background: $color-secondary-hover;
+    }
   }
 
   &__success {
