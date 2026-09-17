@@ -89,8 +89,8 @@
 
 .itemSelected {
   background: var(--rd--alpha-color);
-  color: var(--rd__primary_background-hover);
-  border-color: var(--rd--secondary-border);
+  color: var(--rd__primary_background_hover);
+  border-color: light-dark(#7C3AED1F, #8B5CF61F);
 
   &:before {
     display: block;

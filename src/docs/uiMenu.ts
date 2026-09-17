@@ -2,7 +2,7 @@ import type { MenuItem } from './types'
 
 export const uiMenu: MenuItem[] = [
   {
-    title: 'Get Started',
+    title: 'Rundom UI',
     children: [
       {
         href: '/ui/introduction',

@@ -27,17 +27,6 @@ $size-infinite: 9999px;
 // animations
 $transition: all .2s;
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(0.85);
-  }
-}
-
 // base
 
 * {
@@ -284,11 +273,6 @@ body {
 
   &__clickable {
     cursor: pointer;
-  }
-
-  &__pulse {
-    box-shadow: 0 0 8px currentColor;
-    animation: pulse 2s ease-in-out infinite;
   }
 
   @media (hover: hover) and (pointer: fine) {

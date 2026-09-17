@@ -4,7 +4,7 @@ import { BASE_URL } from './constants'
 import { MainLayout } from './layouts/MainLayout'
 import { MenuLayout } from './layouts/MenuLayout'
 import { menu } from './menu'
-import { LoadingPage } from './pages/LoadingPage'
+import { LoadingPage } from './pages/system/LoadingPage'
 import { uiMenu } from './uiMenu'
 
 export const routing = createRouting([
@@ -15,27 +15,29 @@ export const routing = createRouting([
       {
         index: true,
         fallback: <LoadingPage />,
-        component: lazy(() => import('./pages/HomePage')),
+        component: lazy(() => import('./pages/main/HomePage')),
       },
       {
         path: 'ui',
         index: true,
         fallback: <LoadingPage />,
-        component: lazy(() => import('./pages/UIPage/UIPage')),
+        component: lazy(() => import('./pages/ui/UIPage/UIPage')),
       },
       {
         path: 'ui',
         component: ({ children }) => <MenuLayout menu={uiMenu} children={children} />,
         children: [
           {
-            children: [
-              {
-                index: true,
-                path: 'link',
-                fallback: <LoadingPage />,
-                component: lazy(() => import('./pages/LinkPage')),
-              },
-            ],
+            index: true,
+            path: 'introduction',
+            fallback: <LoadingPage />,
+            component: lazy(() => import('./pages/ui/UIIntroductionPage')),
+          },
+          {
+            index: true,
+            path: 'link',
+            fallback: <LoadingPage />,
+            component: lazy(() => import('./pages/ui/LinkPage')),
           },
         ],
       },
@@ -46,108 +48,108 @@ export const routing = createRouting([
             index: true,
             path: 'quick-start',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/QuickStartPage')),
+            component: lazy(() => import('./pages/main/QuickStartPage')),
           },
           {
             index: true,
             path: 'jsx-elements',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/JSXElementsPage')),
+            component: lazy(() => import('./pages/main/JSXElementsPage')),
           },
           {
             index: true,
             path: 'jsx-dom-elements',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/JSXDOMElementsPage')),
+            component: lazy(() => import('./pages/main/JSXDOMElementsPage')),
           },
           {
             index: true,
             path: 'components',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/ComponentsPage')),
+            component: lazy(() => import('./pages/main/ComponentsPage')),
           },
           {
             index: true,
             path: 'state-management',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/StateManagementPage')),
+            component: lazy(() => import('./pages/main/StateManagementPage')),
           },
           {
             index: true,
             path: 'routing',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/RoutingPage')),
+            component: lazy(() => import('./pages/main/RoutingPage')),
           },
           {
             index: true,
             path: 'portal',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/PortalPage')),
+            component: lazy(() => import('./pages/main/PortalPage')),
           },
           {
             index: true,
             path: 'context',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/ContextPage')),
+            component: lazy(() => import('./pages/main/ContextPage')),
           },
           {
             index: true,
             path: 'for',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/ForPage')),
+            component: lazy(() => import('./pages/main/ForPage')),
           },
           {
             index: true,
             path: 'router',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/RouterPage')),
+            component: lazy(() => import('./pages/main/RouterPage')),
           },
           {
             index: true,
             path: 'delay',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/DelayPage')),
+            component: lazy(() => import('./pages/main/DelayPage')),
           },
           {
             index: true,
             path: 'show',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/ShowPage')),
+            component: lazy(() => import('./pages/main/ShowPage')),
           },
           {
             index: true,
             path: 'hide',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/HidePage')),
+            component: lazy(() => import('./pages/main/HidePage')),
           },
           {
             index: true,
             path: 'use-param',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/UseParamPage')),
+            component: lazy(() => import('./pages/main/UseParamPage')),
           },
           {
             index: true,
             path: 'use-params',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/UseParamsPage')),
+            component: lazy(() => import('./pages/main/UseParamsPage')),
           },
           {
             index: true,
             path: 'use-styles',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/UseStylesPage')),
+            component: lazy(() => import('./pages/main/UseStylesPage')),
           },
           {
             index: true,
             path: 'ref',
             fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/RefPage')),
+            component: lazy(() => import('./pages/main/RefPage')),
           },
         ],
       },
       {
-        component: lazy(() => import('./pages/NotFoundPage')),
+        component: lazy(() => import('./pages/system/NotFoundPage')),
       },
     ],
   },

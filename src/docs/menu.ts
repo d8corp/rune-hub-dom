@@ -2,7 +2,7 @@ import type { MenuItem } from './types'
 
 export const menu: MenuItem[] = [
   {
-    title: 'Getting Started',
+    title: 'Rundom',
     children: [
       {
         href: '/quick-start',

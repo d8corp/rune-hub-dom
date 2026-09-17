@@ -7,7 +7,7 @@ import { Context } from '../../../utils'
 import { Aside, Side } from '../../components'
 import { menuContext } from '../../constants'
 import { AsideIcon, SideIcon } from '../../icons'
-import { ErrorPage } from '../../pages/ErrorPage'
+import { ErrorPage } from '../../pages/system/ErrorPage'
 import {
   hasTitleLinks,
   isMobile,
