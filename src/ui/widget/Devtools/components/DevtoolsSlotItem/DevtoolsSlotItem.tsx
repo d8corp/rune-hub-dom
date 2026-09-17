@@ -3,6 +3,7 @@ import type { Slot } from 'rune-hub'
 
 import { SlotStatus } from '../SlotStatus'
 
+import { stringify } from '../../../../../utils'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotItem.module.scss'
 
@@ -22,7 +23,7 @@ export function DevtoolsSlotItem ({ slot }: DevtoolsSlotItemProps) {
       <SlotStatus slot={slot} />
       <strong>{() => `${slot.value.rune.name || '—'}:`}</strong>
       <div class={styles.value}>
-        {() => ` ${JSON.stringify(values.value.get(slot.value))}`}
+        {() => ` ${stringify(values.value.get(slot.value))}`}
       </div>
     </div>
   )

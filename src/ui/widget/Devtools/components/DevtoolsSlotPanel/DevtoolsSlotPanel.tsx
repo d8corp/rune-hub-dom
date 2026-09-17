@@ -1,4 +1,4 @@
-import { Code } from '@/jsx-runtime'
+import { Code, stringify } from '@/jsx-runtime'
 
 import { SlotStatus } from '../SlotStatus'
 
@@ -29,10 +29,10 @@ export function DevtoolsSlotPanel () {
         </Flex>
         <div class={styles.content}>
           <div>
-            value: <Code>{() => selected.value && JSON.stringify(values.value.get(selected.value))}</Code>
+            value: <Code>{() => selected.value && stringify(values.value.get(selected.value))}</Code>
           </div>
           <div>
-            prev: <Code>{() => values.value && JSON.stringify(selected.value?.prev)}</Code>
+            prev: <Code>{() => values.value && stringify(selected.value?.prev)}</Code>
           </div>
           <div>
             anon: <Code>{() => String(selected.value?.anon)}</Code>
