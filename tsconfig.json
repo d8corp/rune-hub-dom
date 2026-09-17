@@ -22,8 +22,8 @@
     "jsx": "react-jsxdev",
     "jsxImportSource": "@",
     "paths": {
-      "@/jsx-runtime": ["./src"],
-      "@/jsx-dev-runtime": ["./src"]
+      "@/jsx-runtime": ["./src/jsx-runtime"],
+      "@/jsx-dev-runtime": ["./src/jsx-dev-runtime"]
     }
   },
   "include": [

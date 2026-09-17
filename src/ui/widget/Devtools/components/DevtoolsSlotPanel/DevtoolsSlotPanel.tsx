@@ -1,11 +1,10 @@
-import { Code, stringify } from '@/jsx-runtime'
-
 import { SlotStatus } from '../SlotStatus'
 
 import { Show } from '../../../../../components'
 import { CloseIcon } from '../../../../../docs/icons'
-import { SystemSlot } from '../../../../../utils'
+import { stringify, SystemSlot } from '../../../../../utils'
 import { Button } from '../../../../block'
+import { Code } from '../../../../inline'
 import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'

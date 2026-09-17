@@ -1,6 +1,7 @@
 // colors
 $color-bg: var(--color-bg);
 $color-bg-deep: light-dark(#fff, #0B0B15);
+$color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
 $color-text: light-dark(#1E1B2E, #F1F5F9);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
 $color-primary-hover: light-dark(#8B5CF6, #A78BFA);
@@ -147,6 +148,9 @@ body {
 }
 
 // components
+.rd_flex {
+  display: flex;
+}
 .rd_link {
   color: $color-primary;
   text-decoration: none;
@@ -401,6 +405,10 @@ body {
       transition: transform .3s;
     }
   }
+
+  &__circle {
+    border-radius: $size-infinite;
+  }
 }
 
 .rd_code {
@@ -430,6 +438,31 @@ body {
   &__copied:after {
     opacity: 1;
     transform: translateX(-50%) translateY(-130%);
+  }
+}
+
+.rd_window {
+  gap: 8px;
+  padding: 8px;
+  background: $color-secondary;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+
+  &-header {
+    gap: 8px;
+  }
+
+  &-content {
+    gap: 8px;
+    background: $color-bg-elevated;
+    flex: 1;
+    min-height: 0;
+    padding: 8px;
+    border: 1px solid $color-border;
+    border-radius: 8px;
   }
 }
 

@@ -5,13 +5,14 @@ import { DevtoolsSlotItem } from '../DevtoolsSlotItem'
 import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
 import { For, Show, useHidden } from '../../../../../components'
-import { CloseIcon, SearchIcon } from '../../../../../docs/icons'
+import { SearchIcon } from '../../../../../docs/icons'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { Ref } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { Divider, Dot } from '../../../../inline'
-import { Flex } from '../../../../primitive'
+import { Window, WindowHeader } from '../../../../popup'
+import { WindowContent } from '../../../../popup/Window/WindowContent'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsPanel.module.scss'
 
@@ -52,18 +53,15 @@ export function DevtoolsPanel () {
   }
 
   return (
-    <div data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
-      <Flex gap={8} align='center'>
-        <Dot hoverable color='danger' onclick={() => show.set(false)}>
-          <CloseIcon />
-        </Dot>
+    <Window data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
+      <WindowHeader onClose={() => show.set(false)}>
         <Dot hoverable color='warning' />
         <Dot hoverable color='success' />
-      </Flex>
-      <div data-glow class={styles.main}>
+      </WindowHeader>
+      <WindowContent vertical data-glow>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
-            <label class={styles.search}>
+            <label data-glow class={styles.search}>
               <SearchIcon />
               <input _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
               {() => `${searchSlots.value.length} / ${slots.value.size}`}
@@ -123,7 +121,7 @@ export function DevtoolsPanel () {
           </div>
           <DevtoolsSlotPanel />
         </div>
-      </div>
-    </div>
+      </WindowContent>
+    </Window>
   )
 }

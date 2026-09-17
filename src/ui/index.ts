@@ -1,4 +1,5 @@
 export * from './block'
 export * from './inline'
+export * from './popup'
 export * from './primitive'
 export * from './widget'

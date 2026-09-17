@@ -6,28 +6,7 @@ import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { inject, injectAll, injectCSS } from '../../../utils'
 
-const flexStyles = injectCSS('rd_flex', `
-.rd_flex {
-  --rd-flex: flex;
-  --rd-flex-flex: none;
-  --rd-flex-gap: none;
-  --rd-flex-wrap: nowrap;
-  --rd-flex-direction: row;
-  --rd-flex-align: none;
-  --rd-flex-justify: unset;
-  --rd-flex-padding: 0;
-
-  box-sizing: border-box;
-  display: var(--rd-flex);
-  flex: var(--rd-flex-flex);
-  gap: var(--rd-flex-gap);
-  flex-wrap: var(--rd-flex-wrap);
-  flex-direction: var(--rd-flex-direction);
-  align-items: var(--rd-flex-align);
-  justify-content: var(--rd-flex-justify);
-  padding: var(--rd-flex-padding);
-}
-`, [])
+const flexStyles = injectCSS('rd_flex', import.meta.env?.RD_THEME_FLEX, [])
 
 export type FlexStyles = typeof flexStyles
 
@@ -89,15 +68,15 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
       {...props as any}
       class={styles.root}
       style={{
+        'justify-content': inject(justify, justify => justify && justify !== 'start' ? justifyMap[justify] : ''),
+        'align-items': inject(align, align => align && align !== 'start' ? alignMap[align as keyof typeof alignMap] : ''),
+        'flex-wrap': inject(wrap, wrap => wrap ? 'wrap' : ''),
+        flex: inject(flex, flex => String(flex === true ? 1 : flex || '')),
+        display: inject(inline, inline => inline ? 'inline-flex' : ''),
+        'flex-direction': injectAll([vertical, reverse], ([vertical, reverse]) => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
+        padding: inject(padding, padding => !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
+        gap: inject(gap, gap => !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
         ...(style as any),
-        '--rd-flex-justify': inject(justify, justify => justify && justify !== 'start' ? justifyMap[justify] : ''),
-        '--rd-flex-align': inject(align, align => align && align !== 'start' ? alignMap[align as keyof typeof alignMap] : ''),
-        '--rd-flex-wrap': inject(wrap, wrap => wrap ? 'wrap' : ''),
-        '--rd-flex-flex': inject(flex, flex => String(flex === true ? 1 : flex || '')),
-        '--rd-flex': inject(inline, inline => inline ? 'inline-flex' : ''),
-        '--rd-flex-direction': injectAll([vertical, reverse], ([vertical, reverse]) => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
-        '--rd-flex-padding': inject(padding, padding => !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
-        '--rd-flex-gap': inject(gap, gap => !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
       }}
     />
   )

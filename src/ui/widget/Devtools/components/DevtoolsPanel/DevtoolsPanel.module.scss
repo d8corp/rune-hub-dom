@@ -1,26 +1,15 @@
 .root {
   --rd-position: fixed;
 
-  display: flex;
   position: fixed;
-  flex-direction: column;
   bottom: 10px;
   left: 10px;
   right: 10px;
-  padding: 8px;
-  gap: 8px;
-  border-radius: 16px;
-  background: var(--rd--alpha-color);
-  border: 1px solid var(--rd--secondary-border);
   z-index: 999999;
   height: 50vh;
-  color: var(--rd__root_color);
-  backdrop-filter: blur(8px);
   opacity: 0;
   margin-bottom: -100px;
   transition: opacity .2s, margin .2s;
-  overflow: hidden;
-  overscroll-behavior: contain;
 }
 
 .show {
@@ -31,17 +20,6 @@
 .hide {
   opacity: 0;
   margin-bottom: -100px;
-}
-
-.main {
-  display: flex;
-  gap: 8px;
-  background: var(--rd-ui-devtools_panel-main-bg, var(--rd-color-bg-elevated));
-  flex: 1;
-  min-height: 0;
-  padding: 8px;
-  border: 1px solid var(--rd--secondary-border);
-  border-radius: 8px;
 }
 
 .filter {
