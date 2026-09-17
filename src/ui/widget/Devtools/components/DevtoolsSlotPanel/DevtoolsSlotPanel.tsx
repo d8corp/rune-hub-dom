@@ -11,7 +11,7 @@ import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
 
 export function DevtoolsSlotPanel () {
-  const { selected, values } = devtoolsStoreContext.get()!
+  const { selected, values, errors } = devtoolsStoreContext.get()!
 
   const handleClose = () => {
     selected.set(undefined)
@@ -45,6 +45,9 @@ export function DevtoolsSlotPanel () {
           </div>
           <div>
             system: <Code>{() => selected.value ? String(selected.value instanceof SystemSlot) : undefined}</Code>
+          </div>
+          <div>
+            error: <Code>{() => selected.value && stringify(errors.value.get(selected.value))}</Code>
           </div>
           <div class={styles.codeBlock}>
             code:

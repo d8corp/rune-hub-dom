@@ -13,6 +13,7 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   const search = new SystemSlot(() => '', devHub)
   const anonFilter = new SystemSlot<boolean | null>(() => false, devHub)
   const systemFilter = new SystemSlot<boolean | null>(() => false, devHub)
+  const errorFilter = new SystemSlot<boolean | null>(() => null, devHub)
   const selected = new SystemSlot<Slot | undefined>(() => {}, devHub)
   const show = new SystemSlot(() => false, devHub)
   const slots = new SystemSlot<Set<Slot>>(() => new Set(Array.from(hub.slots.values()).filter(slot => !(slot instanceof SystemSlot))), devHub)
@@ -20,8 +21,9 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   const filteredSlots = new SystemSlot(() => {
     const isSystem = systemFilter.value
     const isAnon = anonFilter.value
+    const isError = errorFilter.value
 
-    if (isSystem === null && isAnon === null) {
+    if (isSystem === null && isAnon === null && isError === null) {
       return Array.from(slots.value)
     }
 
@@ -40,6 +42,10 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
         if (!isAnon && !inHub) return false
       }
 
+      if (isError !== null) {
+        return Boolean(slot.err) === isError
+      }
+
       return true
     })
   }, devHub)
@@ -51,6 +57,7 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   }, devHub)
 
   const values = new SystemSlot<Map<Slot, unknown>>(() => new Map(Array.from(slots.raw).map(slot => [slot, slot.raw])), devHub)
+  const errors = new SystemSlot<Map<Slot, unknown>>(() => new Map(), devHub)
   const ups = new SystemSlot<Map<Slot, boolean>>(() => new Map(Array.from(slots.raw).map(slot => [slot, slot.up])), devHub)
 
   let isWillUpdate = false
@@ -81,6 +88,18 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
     return false
   }
 
+  const clear = (slot: Slot) => {
+    slots.raw.delete(slot)
+    values.raw.delete(slot)
+    errors.raw.delete(slot)
+    ups.raw.delete(slot)
+
+    update(slots)
+    update(values)
+    update(errors)
+    update(ups)
+  }
+
   hub.on('init', slot => {
     if (check(slot)) return
 
@@ -99,6 +118,12 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
       values.raw.set(slot, slot.raw)
       update(values)
     }
+  })
+
+  hub.on('error', slot => {
+    console.log('ERROR', slot.err)
+    errors.raw.set(slot, slot.err)
+    update(errors)
   })
 
   hub.on('up', slot => {
@@ -127,25 +152,13 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
       return
     }
 
-    slots.raw.delete(slot)
-    values.raw.delete(slot)
-    ups.raw.delete(slot)
-
-    update(slots)
-    update(values)
-    update(ups)
+    clear(slot)
   })
 
   hub.on('destroy', slot => {
     if (check(slot)) return
 
-    slots.raw.delete(slot)
-    values.raw.delete(slot)
-    ups.raw.delete(slot)
-
-    update(slots)
-    update(values)
-    update(ups)
+    clear(slot)
   })
 
   return {
@@ -155,10 +168,12 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
     slots,
     searchSlots,
     values,
+    errors,
     ups,
     hub,
     props,
     systemFilter,
+    errorFilter,
     anonFilter,
   }
 }

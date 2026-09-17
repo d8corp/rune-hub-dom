@@ -19,7 +19,7 @@ export function DevtoolsPanel () {
   const list = new Ref<HTMLDivElement>()
   const shown = useShow()
   const hidden = useHidden()
-  const { show, search, searchSlots, slots, props, systemFilter, anonFilter } = devtoolsStoreContext.get()!
+  const { show, search, searchSlots, slots, props, systemFilter, errorFilter, anonFilter, errors } = devtoolsStoreContext.get()!
 
   const { virtualList, offsetTop, offsetBottom } = useVirtualList({
     list: searchSlots,
@@ -39,7 +39,7 @@ export function DevtoolsPanel () {
   }
 
   const colorHandler = (slot: Slot<boolean | null>) => (): RDColor => {
-    return slot.value ? 'success' : slot.value === false ? 'danger' : 'secondary'
+    return slot.value ? 'accent' : slot.value === false ? 'primary' : 'secondary'
   }
 
   const handleExport = () => {
@@ -107,6 +107,15 @@ export function DevtoolsPanel () {
                 System
               </Button>
             </Show>
+            <Button
+              data-shine
+              circle
+              size='s'
+              color={colorHandler(errorFilter)}
+              onclick={clickHandler(errorFilter)}
+            >
+              Errors: {() => errors.value.size}
+            </Button>
             <Divider vertical />
             <Button size='s' data-glow data-shine onclick={handleExport}>
               Export

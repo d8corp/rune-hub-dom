@@ -9,7 +9,13 @@ export interface SlotStatusProps extends Omit<DotProps, 'slot'> {
 }
 
 export function SlotStatus ({ slot, ...props }: SlotStatusProps) {
-  const { ups } = devtoolsStoreContext.get()!
+  const { ups, errors } = devtoolsStoreContext.get()!
 
-  return <Dot {...props} color={() => slot.value && ups.value.get(slot.value) ? 'success' : 'disabled'} />
+  const color = () => {
+    if (!slot.value) return 'warning'
+
+    return errors.value.get(slot.value) ? 'danger' : ups.value.get(slot.value) ? 'success' : 'disabled'
+  }
+
+  return <Dot {...props} color={color} />
 }
