@@ -19,17 +19,23 @@ export const routing = createRouting([
       },
       {
         path: 'ui',
+        index: true,
         fallback: <LoadingPage />,
         component: lazy(() => import('./pages/UIPage/UIPage')),
       },
       {
+        path: 'ui',
         component: ({ children }) => <MenuLayout menu={uiMenu} children={children} />,
         children: [
           {
-            index: true,
-            path: 'link',
-            fallback: <LoadingPage />,
-            component: lazy(() => import('./pages/LinkPage')),
+            children: [
+              {
+                index: true,
+                path: 'link',
+                fallback: <LoadingPage />,
+                component: lazy(() => import('./pages/LinkPage')),
+              },
+            ],
           },
         ],
       },

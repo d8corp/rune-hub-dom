@@ -24,6 +24,10 @@ export const menu: MenuItem[] = [
         href: '/state-management',
         children: 'State Management',
       },
+      {
+        href: '/changelog',
+        children: 'Changelog',
+      },
     ],
   },
   {

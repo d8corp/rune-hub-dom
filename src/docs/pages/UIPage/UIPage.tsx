@@ -22,7 +22,7 @@ export default function UIPage () {
             <Code>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
           </p>
           <div class={styles.buttons}>
-            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/link'>
+            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/ui/link'>
               Get Started
             </Button>
           </div>
