@@ -11,6 +11,7 @@ $color-border: light-dark(#7C3AED1F, #8B5CF61F);
 $color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
 $color-secondary: #8B5CF614;
 $color-secondary-hover: #8B5CF626;
+$color-secondary-active: rgb(116 66 229 / 0.3);
 $color-success: light-dark(#059669, #34D399);
 $color-danger: light-dark(#E11D48, #FB7185);
 $color-warning: light-dark(#EA580C, #FB923C);
@@ -404,6 +405,10 @@ body {
     &:hover:after {
       transform: translateX(100%);
       transition: transform .3s;
+    }
+
+    &:active {
+      background: $color-secondary-active;
     }
   }
 
