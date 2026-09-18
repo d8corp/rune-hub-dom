@@ -4,7 +4,7 @@ import { injectCSS } from '../../../../utils'
 import type { FlexElement, FlexProps } from '../../../primitive'
 import { Flex } from '../../../primitive'
 
-export const windowContentStyles = injectCSS('rd_window-content', import.meta.env?.RD_THEME_WINDOW_CONTENT, [])
+export const windowContentStyles = injectCSS('rd_window-content', import.meta.env?.RD_THEME_WINDOW_CONTENT)
 
 export type WindowContentStyles = typeof windowContentStyles
 

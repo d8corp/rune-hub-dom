@@ -1,6 +1,6 @@
 import type { ErrorProps } from '../../../../components'
-import { Button, Flex } from '../../../../ui'
-import { BasePage, Typography } from '../../../ui'
+import { Button, Flex, Typography } from '../../../../ui'
+import { BasePage } from '../../../ui'
 import styles from './ErrorPage.scss'
 
 export function ErrorPage ({ error, retry }: ErrorProps) {

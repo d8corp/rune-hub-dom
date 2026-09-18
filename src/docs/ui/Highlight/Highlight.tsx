@@ -3,12 +3,11 @@ import Prism from 'prismjs'
 import { Slot } from 'rune-hub'
 
 import { BaseMarkdown } from '../Markdown/BaseMarkdown'
-import { Typography } from '../Typography'
 
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
 import type { FlexElement, FlexProps } from '../../../ui'
-import { Button, Flex } from '../../../ui'
+import { Button, Flex, Typography } from '../../../ui'
 import { inject, injectAll, Ref } from '../../../utils'
 import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'

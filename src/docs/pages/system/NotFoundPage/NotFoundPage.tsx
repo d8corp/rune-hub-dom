@@ -1,5 +1,5 @@
-import { Button } from '../../../../ui'
-import { BasePage, Title, Typography } from '../../../ui'
+import { Button, Typography } from '../../../../ui'
+import { BasePage, Title } from '../../../ui'
 import styles from './NotFoundPage.scss'
 
 export default function NotFoundPage () {

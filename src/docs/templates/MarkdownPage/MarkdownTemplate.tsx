@@ -1,4 +1,5 @@
-import { BasePage, Markdown, Typography } from '../../ui'
+import { Typography } from '../../../ui'
+import { BasePage, Markdown } from '../../ui'
 
 export interface MarkdownTemplateProps {
   text: string;

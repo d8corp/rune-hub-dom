@@ -3,7 +3,7 @@ import { injectCSS } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
 
-export const windowStyles = injectCSS('rd_window', import.meta.env?.RD_THEME_WINDOW, [])
+export const windowStyles = injectCSS('rd_window', import.meta.env?.RD_THEME_WINDOW)
 
 export type WindowStyles = typeof windowStyles
 

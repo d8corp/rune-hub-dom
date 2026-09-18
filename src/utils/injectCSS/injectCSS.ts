@@ -1,6 +1,6 @@
 import { addCSS } from '../addCSS'
 
-export function injectCSS<T extends string> (block: string, css: string, styles: T[] = []): { [k in T | 'root']: string } {
+export function injectCSS<T extends string = never> (block: string, css: string, styles: T[] = []): { [k in T | 'root']: string } {
   const result: any = {
     root: block,
   }

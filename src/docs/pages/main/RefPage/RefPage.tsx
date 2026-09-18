@@ -1,4 +1,5 @@
-import { BasePage, Markdown, Typography } from '../../../ui'
+import { Typography } from '../../../../ui'
+import { BasePage, Markdown } from '../../../ui'
 import description from './RefPage.md'
 
 export default function RefPage () {

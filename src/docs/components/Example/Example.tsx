@@ -2,10 +2,10 @@ import { slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
 import type { ChildrenProps } from '../../../types'
-import { Flex } from '../../../ui'
+import { Flex, Typography } from '../../../ui'
 import { isLaptop } from '../../state'
 import type { ViewProps } from '../../ui'
-import { Markdown, Typography, View } from '../../ui'
+import { Markdown, View } from '../../ui'
 import styles from './Example.module.scss'
 
 export interface ExampleProps extends ChildrenProps {
