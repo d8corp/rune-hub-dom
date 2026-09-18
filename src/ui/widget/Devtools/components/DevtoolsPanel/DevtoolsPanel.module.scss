@@ -42,6 +42,7 @@
   flex-direction: column;
   overflow: auto;
   padding-right: 8px;
+  overscroll-behavior: contain;
 }
 
 .virtualList {

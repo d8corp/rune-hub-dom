@@ -20,22 +20,6 @@
   }
 }
 
-@keyframes root {
-  from, to {
-    background: fixed no-repeat radial-gradient(ellipse 50% 50% at 70% 50%, rgba(244, 114, 182, 0.08), transparent, transparent) center 0 / 0 0;
-  }
-  50% {
-    background: fixed no-repeat radial-gradient(ellipse 50% 50% at 70% 50%, rgba(244, 114, 182, 0.08), transparent, transparent) center 0 / 100% 100%;
-  }
-}
-
-.root {
-  @media (min-width: 1024px) {
-    animation: root ease both;
-    animation-timeline: view(block);
-  }
-}
-
 .wrapper {
   max-width: 100%;
   margin: 0 auto;
@@ -64,6 +48,7 @@
   animation-timeline: view(block 80% 0);
   animation-timing-function: ease;
   animation-name: description;
+  animation-fill-mode: both;
 
   @media (min-width: 1024px) {
     width: 320px;

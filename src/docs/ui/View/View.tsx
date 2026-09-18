@@ -5,6 +5,7 @@ import type { FlexProps } from '../../../ui'
 import { Dot, Window, WindowHeader } from '../../../ui'
 import { WindowContent } from '../../../ui/popup/Window/WindowContent'
 import { inject } from '../../../utils'
+import styles from '././View.module.scss'
 
 export type ViewProps = FlexProps
 
@@ -19,7 +20,7 @@ export function View ({ title, ...props }: ViewProps) {
           <BaseMarkdown text={inject(title, (title = '') => title)} />
         </Typography>
       </WindowHeader>
-      <WindowContent>
+      <WindowContent class={styles.content}>
         <div>
           {props.children}
         </div>

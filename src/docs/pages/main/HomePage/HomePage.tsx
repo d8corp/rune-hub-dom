@@ -7,6 +7,7 @@ import {
   HelloWorldExample,
   JSXExample,
   RouterExample,
+  UIExample,
 } from '../../../widgets'
 import styles from './HomePage.scss'
 
@@ -54,6 +55,8 @@ export default function HomePage () {
         <ControlFlowExample />
         <Divider />
         <RouterExample />
+        <Divider />
+        <UIExample />
       </Flex>
     </BasePage>
 
