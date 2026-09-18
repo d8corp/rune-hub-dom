@@ -1,32 +1,29 @@
 import { BaseMarkdown } from '../Markdown'
 import { Typography } from '../Typography'
 
-import { useStyles } from '../../../hooks'
 import type { FlexProps } from '../../../ui'
-import { Dot, Flex } from '../../../ui'
-import { use } from '../../../utils'
-import $styles from './View.module.scss'
+import { Dot, Window, WindowHeader } from '../../../ui'
+import { WindowContent } from '../../../ui/popup/Window/WindowContent'
+import { inject } from '../../../utils'
 
-export type ViewProps = FlexProps<'div', typeof $styles>
+export type ViewProps = FlexProps
 
 export function View ({ title, ...props }: ViewProps) {
-  const styles = useStyles($styles, props.class)
-
   return (
-    <Flex {...props} vertical class={styles.root}>
-      <Flex padding={[12, 16]} class={styles.title} gap={12} align='center'>
-        <Flex gap={6}>
-          <Dot color='danger' />
-          <Dot color='warning' />
-          <Dot color='success' />
-        </Flex>
+    <Window {...props}>
+      <WindowHeader>
+        <Dot color='danger' />
+        <Dot color='warning' />
+        <Dot color='success' />
         <Typography flex>
-          <BaseMarkdown text={() => use(title) ?? ''} />
+          <BaseMarkdown text={inject(title, (title = '') => title)} />
         </Typography>
-      </Flex>
-      <div class={styles.code}>
-        {props.children}
-      </div>
-    </Flex>
+      </WindowHeader>
+      <WindowContent>
+        <div>
+          {props.children}
+        </div>
+      </WindowContent>
+    </Window>
   )
 }

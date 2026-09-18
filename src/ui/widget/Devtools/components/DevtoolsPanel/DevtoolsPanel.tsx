@@ -58,7 +58,7 @@ export function DevtoolsPanel () {
         <Dot hoverable color='warning' />
         <Dot hoverable color='success' />
       </WindowHeader>
-      <WindowContent vertical data-glow>
+      <WindowContent data-glow>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
             <label data-glow class={styles.search}>

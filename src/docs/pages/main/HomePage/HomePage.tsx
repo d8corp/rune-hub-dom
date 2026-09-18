@@ -42,7 +42,7 @@ export default function HomePage () {
           </div>
         </div>
       </Flex>
-      <Flex vertical gap={64} padding={[80, 24]} align='center' class={styles.section}>
+      <Flex vertical>
         <HelloWorldExample />
         <Divider />
         <JSXExample />

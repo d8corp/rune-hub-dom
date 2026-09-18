@@ -3,6 +3,7 @@ $color-bg: var(--color-bg);
 $color-bg-deep: light-dark(#fff, #0B0B15);
 $color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
 $color-text: light-dark(#1E1B2E, #F1F5F9);
+$color-text-muted: light-dark(#5B556E, #94A3B8);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
 $color-primary-hover: light-dark(#8B5CF6, #A78BFA);
 $color-accent: light-dark(#DB2777, #F472B6);
@@ -448,14 +449,16 @@ body {
   border: 1px solid $color-border;
   border-radius: 16px;
   backdrop-filter: blur(8px);
-  overflow: hidden;
-  overscroll-behavior: contain;
 
   &-header {
+    color: $color-text-muted;
+    font-size: 12px;
     gap: 8px;
+    align-items: center;
   }
 
   &-content {
+    font-size: 14px;
     gap: 8px;
     background: $color-bg-elevated;
     flex: 1;

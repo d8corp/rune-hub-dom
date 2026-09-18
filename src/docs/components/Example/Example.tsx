@@ -15,17 +15,19 @@ export interface ExampleProps extends ChildrenProps {
 
 export function Example ({ description, children, views }: ExampleProps) {
   return (
-    <Flex gap={32} align='center' vertical={slot(isLaptop)} class={styles.root}>
-      <Typography class={styles.description}>
-        <Markdown text={description} />
-      </Typography>
-      <Flex vertical gap={16} class={styles.viewContainer}>
-        <Hide when={!children}>
-          <View title='View' class={styles.view}>
-            {children}
-          </View>
-        </Hide>
-        {views?.map(view => <View class={styles.view} {...view} />)}
+    <Flex padding={[32, 0]} class={styles.root}>
+      <Flex gap={32} align='center' vertical={slot(isLaptop)} class={styles.wrapper}>
+        <Typography class={styles.description}>
+          <Markdown text={description} />
+        </Typography>
+        <Flex vertical gap={16} class={styles.viewContainer}>
+          <Hide when={!children}>
+            <View title='Example' class={styles.view}>
+              {children}
+            </View>
+          </Hide>
+          {views?.map(view => <View class={styles.view} {...view} />)}
+        </Flex>
       </Flex>
     </Flex>
   )
