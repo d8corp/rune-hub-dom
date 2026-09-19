@@ -294,6 +294,7 @@ body {
   border: 1px solid $color-border;
   font-weight: bold;
   color: white;
+  gap: 8px;
 
   &:hover {
     --rd-glow-bg: $color-border-hover;
@@ -375,12 +376,19 @@ body {
   &__disabled {
     background: $color-disabled;
   }
+
+  &__circle {
+    border-radius: $size-infinite;
+  }
 }
 
 .rd_button {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
 
   &__accent {
     border: none;
@@ -410,10 +418,6 @@ body {
     &:active {
       background: $color-secondary-active;
     }
-  }
-
-  &__circle {
-    border-radius: $size-infinite;
   }
 }
 
@@ -481,6 +485,15 @@ body {
 
   & > :last-child {
     margin-bottom: 0;
+  }
+}
+
+.rd_field {
+  align-items: center;
+  justify-content: center;
+
+  &:focus-visible {
+    background: red;
   }
 }
 

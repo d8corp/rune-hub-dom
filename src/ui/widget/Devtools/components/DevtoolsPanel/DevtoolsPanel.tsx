@@ -9,7 +9,7 @@ import { SearchIcon } from '../../../../../docs/icons'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { Ref } from '../../../../../utils'
-import { Button } from '../../../../block'
+import { Button, Field } from '../../../../block'
 import { Divider, Dot } from '../../../../inline'
 import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/Window/WindowContent'
@@ -61,11 +61,11 @@ export function DevtoolsPanel () {
       <WindowContent data-glow>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
-            <label data-glow class={styles.search}>
+            <Field data-glow flex size='s' circle class={styles.search}>
               <SearchIcon />
               <input _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
               {() => `${searchSlots.value.length} / ${slots.value.size}`}
-            </label>
+            </Field>
           </div>
           <div class={styles.list} ref={list}>
             <div

@@ -7,7 +7,7 @@ import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, RDColor, RDSize } from '../../../types'
 import { inject, injectAll, injectCSS } from '../../../utils'
 
-export const blockStyles = injectCSS('rd_block', import.meta.env?.RD_THEME_BLOCK, [
+export const blockClasses = [
   'primary',
   'accent',
   'secondary',
@@ -20,7 +20,9 @@ export const blockStyles = injectCSS('rd_block', import.meta.env?.RD_THEME_BLOCK
   'm',
   's',
   'l',
-])
+] as const satisfies string[]
+
+export const blockStyles = injectCSS('rd_block', import.meta.env?.RD_THEME_BLOCK, blockClasses)
 
 export type BlockStyles = typeof blockStyles
 

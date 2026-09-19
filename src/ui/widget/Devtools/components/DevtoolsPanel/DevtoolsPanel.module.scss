@@ -64,16 +64,6 @@
 }
 
 .search {
-  flex: 1;
-  background: var(--rd--alpha-color);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 6px;
-  border: 1px solid var(--rd--secondary-border);
-  border-radius: 12px;
-  height: 24px;
-  font-size: 12px;
   cursor: text;
   transition: background-color .2s ease, border .2s ease;
 

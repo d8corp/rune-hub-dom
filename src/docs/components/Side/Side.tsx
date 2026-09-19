@@ -1,10 +1,10 @@
 import { classes } from 'html-classes'
 
-import { useHidden } from '../../../components'
+import { Show, useHidden } from '../../../components'
 import { useShow } from '../../../hooks'
 import { Flex, Link } from '../../../ui'
 import { menuContext } from '../../constants'
-import { hideSide } from '../../state'
+import { hideSide, isMobile } from '../../state'
 import styles from './Side.module.scss'
 
 export function Side () {
@@ -23,7 +23,9 @@ export function Side () {
         hide?.value && styles.hide,
       ])}
     >
-      <div class={styles.background} onclick={hideSide} />
+      <Show when={isMobile}>
+        <div class={styles.background} onclick={hideSide} />
+      </Show>
       <Flex vertical flex gap={24} class={styles.scrollbar}>
         {currentMenu.map(({ title, children }) => (
           <Flex vertical gap={10}>

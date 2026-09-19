@@ -1,22 +1,13 @@
 import { useStyles } from '../../../hooks'
 import { injectCSS } from '../../../utils'
 import type { BlockProps, FlexElement } from '../../primitive'
-import { Block } from '../../primitive'
+import { Block, blockClasses } from '../../primitive'
 
-export const buttonStyles = injectCSS('rd_button', import.meta.env?.RD_THEME_BUTTON, [
-  'primary',
-  'accent',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'disabled',
-  'square',
-  'circle',
-  'm',
-  's',
-  'l',
-])
+export const buttonClasses = [
+  ...blockClasses,
+] as const satisfies string[]
+
+export const buttonStyles = injectCSS('rd_button', import.meta.env?.RD_THEME_BUTTON, buttonClasses)
 
 export type ButtonStyles = typeof buttonStyles
 
@@ -27,14 +18,5 @@ export function Button<T extends keyof HTMLElementTagNameMap = 'button', S exten
 ) {
   const styles = useStyles(buttonStyles, props.class)
 
-  return (
-    <Block
-      inline
-      justify='center'
-      align='center'
-      element='button'
-      {...props}
-      class={styles}
-    />
-  )
+  return <Block element='button' {...props} class={styles} />
 }

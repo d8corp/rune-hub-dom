@@ -13,29 +13,71 @@ export const uiMenu: MenuItem[] = [
         children: 'Overview',
       },
       {
-        href: '/ui/typography',
-        children: 'Typography',
-      },
-      {
         href: '/ui/icons',
         children: 'Icons',
       },
     ],
   },
   {
-    title: 'Primitive',
+    title: 'Typography',
     children: [
+      {
+        href: '/ui/typography',
+        children: '<Typography>',
+      },
+      {
+        href: '/ui/divider',
+        children: '<Divider>',
+      },
+      {
+        href: '/ui/markdown',
+        children: '<Markdown>',
+      },
+      {
+        href: '/ui/section',
+        children: '<Section>',
+      },
+      {
+        href: '/ui/title',
+        children: '<Title>',
+      },
+    ],
+  },
+  {
+    title: 'Layout',
+    children: [
+      {
+        href: '/ui/details',
+        children: '<Details>',
+      },
       {
         href: '/ui/flex',
         children: '<Flex>',
       },
       {
-        href: '/ui/inline',
-        children: '<Inline>',
+        href: '/ui/image',
+        children: '<Image>',
       },
       {
-        href: '/ui/block',
-        children: '<Block>',
+        href: '/ui/layout',
+        children: '<Layout>',
+      },
+      {
+        href: '/ui/space',
+        children: '<Space>',
+      },
+    ],
+  },
+  {
+    title: 'Popups',
+    children: [
+      {
+        href: '/ui/alert',
+        children: '<Alert>',
+      },
+      {
+        href: '/ui/notifications',
+        children: '<Notifications>',
       },
     ],
   },
