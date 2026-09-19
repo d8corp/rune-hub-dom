@@ -3,11 +3,18 @@ import { classes } from 'html-classes'
 import { type HTMLStyleProps, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import type { LinkToParams } from '../../../utils'
-import { Context, inject, injectCSS, linkTo, locationURL, SystemSlot, use } from '../../../utils'
+import { addCSS, Context, inject, linkTo, locationURL, SystemSlot, use } from '../../../utils'
 
-export const linkStyles = injectCSS('link', import.meta.env?.RD_THEME_LINK, [
-  'active',
-])
+if (import.meta.env?.RD_THEME_LINK) {
+  addCSS(import.meta.env.RD_THEME_LINK, 'link')
+}
+
+export const linkStyles = {
+  root: import.meta.env?.RD_THEME_LINK__ROOT,
+  active: import.meta.env?.RD_THEME_LINK__ACTIVE,
+}
+
+export type LinkStyles = typeof linkStyles
 
 const CLEAR_HREF = /([?#].*)?$/
 
@@ -17,7 +24,7 @@ function clearHref (url: string) {
 
 export const linkBaseUrlContext = new Context('')
 
-export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, typeof linkStyles>, LinkToParams {
+export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, LinkStyles>, LinkToParams {
   target?: '_blank' | '_parent' | '_self' | '_top'
   exact?: boolean
   disabled?: ObservableProp<boolean>

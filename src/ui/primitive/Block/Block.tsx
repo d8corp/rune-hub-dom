@@ -5,24 +5,27 @@ import { Flex } from '../Flex'
 
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, RDColor, RDSize } from '../../../types'
-import { inject, injectAll, injectCSS } from '../../../utils'
+import { addCSS, inject, injectAll } from '../../../utils'
 
-export const blockClasses = [
-  'primary',
-  'accent',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'disabled',
-  'square',
-  'circle',
-  'm',
-  's',
-  'l',
-] as const satisfies string[]
+if (import.meta.env?.RD_THEME_BLOCK) {
+  addCSS(import.meta.env.RD_THEME_BLOCK, 'block')
+}
 
-export const blockStyles = injectCSS('block', import.meta.env?.RD_THEME_BLOCK, blockClasses)
+export const blockStyles = {
+  root: import.meta.env?.RD_THEME_BLOCK__ROOT,
+  primary: import.meta.env?.RD_THEME_BLOCK__PRIMARY,
+  accent: import.meta.env?.RD_THEME_BLOCK__ACCENT,
+  secondary: import.meta.env?.RD_THEME_BLOCK__SECONDARY,
+  success: import.meta.env?.RD_THEME_BLOCK__SUCCESS,
+  warning: import.meta.env?.RD_THEME_BLOCK__WARNING,
+  danger: import.meta.env?.RD_THEME_BLOCK__DANGER,
+  disabled: import.meta.env?.RD_THEME_BLOCK__DISABLED,
+  square: import.meta.env?.RD_THEME_BLOCK__SQUARE,
+  circle: import.meta.env?.RD_THEME_BLOCK__CIRCLE,
+  m: import.meta.env?.RD_THEME_BLOCK__M,
+  s: import.meta.env?.RD_THEME_BLOCK__S,
+  l: import.meta.env?.RD_THEME_BLOCK__L,
+}
 
 export type BlockStyles = typeof blockStyles
 

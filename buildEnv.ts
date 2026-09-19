@@ -8,11 +8,13 @@ import * as sass from 'sass'
 
 const INPUT_SCSS = 'theme.scss'
 const OUTPUT_ENV = '.env'
-const RD_PREFIX = process.env.RD_THEME__PREFIX ?? 'rd_'
+const RD_PREFIX = process.env.RD_THEME__PREFIX || 'rd_'
 const ENV_PREFIX = 'RD_THEME_'
 const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset']
 
 const componentRegex = new RegExp(`^\\.${RD_PREFIX}((?:[a-zA-Z0-9-]|(?!_))+)`)
+
+const fullClassList: Record<string, string> = {}
 
 const globalTransformer = selectorParser((selectors) => {
   selectors.walkClasses((classNode) => {
@@ -29,7 +31,9 @@ const globalTransformer = selectorParser((selectors) => {
     }
 
     if (!isInsideGlobal) {
+      const [component, element = 'root'] = classNode.value.split('_')
       classNode.value = RD_PREFIX + classNode.value
+      fullClassList[`RD_THEME_${component.toUpperCase().replace(/-/g, '_')}__${element.toUpperCase().replace(/-/g, '_')}`] = classNode.value
     }
   })
 
@@ -194,6 +198,10 @@ async function generateEnvFromScss () {
 
   for (const [key, value] of Object.entries(envVariables)) {
     setVar(key, value)
+  }
+
+  for (const key in fullClassList) {
+    setVar(key, fullClassList[key])
   }
 
   for (const key of deletedKeys) {

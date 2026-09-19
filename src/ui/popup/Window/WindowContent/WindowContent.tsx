@@ -1,10 +1,16 @@
 import { useStyles } from '../../../../hooks'
 import type { Merge } from '../../../../types'
-import { injectCSS } from '../../../../utils'
+import { addCSS } from '../../../../utils'
 import type { FlexElement, FlexProps } from '../../../primitive'
 import { Flex } from '../../../primitive'
 
-export const windowContentStyles = injectCSS('window-content', import.meta.env?.RD_THEME_WINDOW_CONTENT)
+if (import.meta.env?.RD_THEME_WINDOW_CONTENT) {
+  addCSS(import.meta.env.RD_THEME_WINDOW_CONTENT, 'window-content')
+}
+
+export const windowContentStyles = {
+  root: import.meta.env?.RD_THEME_WINDOW_CONTENT__ROOT,
+}
 
 export type WindowContentStyles = typeof windowContentStyles
 

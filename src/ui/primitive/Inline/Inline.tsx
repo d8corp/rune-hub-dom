@@ -5,25 +5,28 @@ import { Flex } from '../Flex'
 
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, RDColor, RDSize } from '../../../types'
-import { inject, injectAll, injectCSS } from '../../../utils'
+import { addCSS, inject, injectAll } from '../../../utils'
 
-export const inlineClasses = [
-  'primary',
-  'accent',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'disabled',
-  'square',
-  'm',
-  's',
-  'l',
-  'hoverable',
-  'clickable',
-] as const satisfies string[]
+if (import.meta.env?.RD_THEME_INLINE) {
+  addCSS(import.meta.env.RD_THEME_INLINE, 'inline')
+}
 
-export const inlineStyles = injectCSS('inline', import.meta.env?.RD_THEME_INLINE, inlineClasses)
+export const inlineStyles = {
+  root: import.meta.env?.RD_THEME_INLINE__ROOT,
+  primary: import.meta.env?.RD_THEME_INLINE__PRIMARY,
+  accent: import.meta.env?.RD_THEME_INLINE__ACCENT,
+  secondary: import.meta.env?.RD_THEME_INLINE__SECONDARY,
+  success: import.meta.env?.RD_THEME_INLINE__SUCCESS,
+  warning: import.meta.env?.RD_THEME_INLINE__WARNING,
+  danger: import.meta.env?.RD_THEME_INLINE__DANGER,
+  disabled: import.meta.env?.RD_THEME_INLINE__DISABLED,
+  square: import.meta.env?.RD_THEME_INLINE__SQUARE,
+  m: import.meta.env?.RD_THEME_INLINE__M,
+  s: import.meta.env?.RD_THEME_INLINE__S,
+  l: import.meta.env?.RD_THEME_INLINE__L,
+  hoverable: import.meta.env?.RD_THEME_INLINE__HOVERABLE,
+  clickable: import.meta.env?.RD_THEME_INLINE__CLICKABLE,
+}
 
 export type InlineStyles = typeof inlineStyles
 

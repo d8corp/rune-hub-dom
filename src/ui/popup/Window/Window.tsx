@@ -1,9 +1,15 @@
 import { useStyles } from '../../../hooks'
-import { injectCSS } from '../../../utils'
+import { addCSS } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
 
-export const windowStyles = injectCSS('window', import.meta.env?.RD_THEME_WINDOW)
+if (import.meta.env?.RD_THEME_WINDOW) {
+  addCSS(import.meta.env.RD_THEME_WINDOW, 'window')
+}
+
+export const windowStyles = {
+  root: import.meta.env?.RD_THEME_WINDOW__ROOT,
+}
 
 export type WindowStyles = typeof windowStyles
 

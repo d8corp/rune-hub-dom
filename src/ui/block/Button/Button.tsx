@@ -1,13 +1,27 @@
 import { useStyles } from '../../../hooks'
-import { injectCSS } from '../../../utils'
+import { addCSS } from '../../../utils'
 import type { BlockProps, FlexElement } from '../../primitive'
-import { Block, blockClasses } from '../../primitive'
+import { Block } from '../../primitive'
 
-export const buttonClasses = [
-  ...blockClasses,
-] as const satisfies string[]
+if (import.meta.env?.RD_THEME_BUTTON) {
+  addCSS(import.meta.env.RD_THEME_BUTTON, 'button')
+}
 
-export const buttonStyles = injectCSS('button', import.meta.env?.RD_THEME_BUTTON, buttonClasses)
+export const buttonStyles = {
+  root: import.meta.env?.RD_THEME_BUTTON__ROOT,
+  primary: import.meta.env?.RD_THEME_BUTTON__PRIMARY,
+  accent: import.meta.env?.RD_THEME_BUTTON__ACCENT,
+  secondary: import.meta.env?.RD_THEME_BUTTON__SECONDARY,
+  success: import.meta.env?.RD_THEME_BUTTON__SUCCESS,
+  warning: import.meta.env?.RD_THEME_BUTTON__WARNING,
+  danger: import.meta.env?.RD_THEME_BUTTON__DANGER,
+  disabled: import.meta.env?.RD_THEME_BUTTON__DISABLED,
+  square: import.meta.env?.RD_THEME_BUTTON__SQUARE,
+  circle: import.meta.env?.RD_THEME_BUTTON__CIRCLE,
+  m: import.meta.env?.RD_THEME_BUTTON__M,
+  s: import.meta.env?.RD_THEME_BUTTON__S,
+  l: import.meta.env?.RD_THEME_BUTTON__L,
+}
 
 export type ButtonStyles = typeof buttonStyles
 

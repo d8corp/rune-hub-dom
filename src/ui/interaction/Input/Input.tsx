@@ -5,17 +5,31 @@ import { Show } from '../../../components'
 import { CloseIcon } from '../../../docs/icons'
 import { useClear, useDebounceSlotEvent, useStyles } from '../../../hooks'
 import type { JSXElement, Merge, ObservableProp } from '../../../types'
-import { getSlotEvent, inject, injectCSS, Ref } from '../../../utils'
+import { addCSS, getSlotEvent, inject, Ref } from '../../../utils'
 import type { FieldProps } from '../../block'
-import { Field, fieldClasses } from '../../block'
+import { Field } from '../../block'
 
-export const inputClasses = [
-  'input',
-  'clear',
-  ...fieldClasses,
-] as const satisfies string[]
+if (import.meta.env?.RD_THEME_INPUT) {
+  addCSS(import.meta.env.RD_THEME_INPUT, 'input')
+}
 
-export const inputStyles = injectCSS('input', import.meta.env?.RD_THEME_INPUT, inputClasses)
+export const inputStyles = {
+  root: import.meta.env?.RD_THEME_INPUT__ROOT,
+  primary: import.meta.env?.RD_THEME_INPUT__PRIMARY,
+  accent: import.meta.env?.RD_THEME_INPUT__ACCENT,
+  secondary: import.meta.env?.RD_THEME_INPUT__SECONDARY,
+  success: import.meta.env?.RD_THEME_INPUT__SUCCESS,
+  warning: import.meta.env?.RD_THEME_INPUT__WARNING,
+  danger: import.meta.env?.RD_THEME_INPUT__DANGER,
+  disabled: import.meta.env?.RD_THEME_INPUT__DISABLED,
+  square: import.meta.env?.RD_THEME_INPUT__SQUARE,
+  circle: import.meta.env?.RD_THEME_INPUT__CIRCLE,
+  m: import.meta.env?.RD_THEME_INPUT__M,
+  s: import.meta.env?.RD_THEME_INPUT__S,
+  l: import.meta.env?.RD_THEME_INPUT__L,
+  clear: import.meta.env?.RD_THEME_INPUT__CLEAR,
+  input: import.meta.env?.RD_THEME_INPUT__INPUT,
+}
 
 export type InputStyles = typeof inputStyles
 

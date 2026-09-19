@@ -1,9 +1,15 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { inject, injectCSS } from '../../../utils'
+import { addCSS, inject } from '../../../utils'
 
-export const typographyStyles = injectCSS('typography', import.meta.env?.RD_THEME_TYPOGRAPHY)
+if (import.meta.env?.RD_THEME_TYPOGRAPHY) {
+  addCSS(import.meta.env.RD_THEME_TYPOGRAPHY, 'typography')
+}
+
+export const typographyStyles = {
+  root: import.meta.env.RD_THEME_TYPOGRAPHY,
+}
 
 export type TypographyStyles = typeof typographyStyles
 

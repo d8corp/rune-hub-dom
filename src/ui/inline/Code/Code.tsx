@@ -3,15 +3,20 @@ import { Slot } from 'rune-hub'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import { injectCSS } from '../../../utils'
+import { addCSS } from '../../../utils'
 
-export const codeStyles = injectCSS('code', import.meta.env?.RD_THEME_CODE, [
-  'copied',
-])
-
-export interface CodeProps extends HTMLStyleProps<HTMLElement, typeof codeStyles> {
-
+if (import.meta.env?.RD_THEME_CODE) {
+  addCSS(import.meta.env.RD_THEME_CODE, 'code')
 }
+
+export const codeStyles = {
+  root: import.meta.env?.RD_THEME_CODE__ROOT,
+  copied: import.meta.env?.RD_THEME_CODE__COPIED,
+}
+
+export type CodeStyles = typeof codeStyles
+
+export interface CodeProps extends HTMLStyleProps<HTMLElement, CodeStyles> {}
 
 export function Code ({ onclick, style, ...props }: CodeProps) {
   const styles = useStyles(codeStyles, props.class)

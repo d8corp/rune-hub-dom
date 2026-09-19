@@ -2,14 +2,19 @@ import { Show } from '../../../../components'
 import { CloseIcon } from '../../../../docs/icons'
 import { useStyles } from '../../../../hooks'
 import type { Merge } from '../../../../types'
-import { injectCSS } from '../../../../utils'
+import { addCSS } from '../../../../utils'
 import { Dot } from '../../../inline'
 import type { FlexElement, FlexProps } from '../../../primitive'
 import { Flex } from '../../../primitive'
 
-export const windowHeaderStyles = injectCSS('window-header', import.meta.env?.RD_THEME_WINDOW_HEADER, [
-  'close',
-])
+if (import.meta.env?.RD_THEME_WINDOW_HEADER) {
+  addCSS(import.meta.env.RD_THEME_WINDOW_HEADER, 'window-header')
+}
+
+export const windowHeaderStyles = {
+  root: import.meta.env?.RD_THEME_WINDOW_HEADER__ROOT,
+  close: import.meta.env?.RD_THEME_WINDOW_HEADER__CLOSE,
+}
 
 export type WindowHeaderStyles = typeof windowHeaderStyles
 

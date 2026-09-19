@@ -3,16 +3,23 @@ import { classes } from 'html-classes'
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp, RDSize } from '../../../types'
-import { inject, injectAll, injectCSS } from '../../../utils'
+import { addCSS, inject, injectAll } from '../../../utils'
 
-export const dividerStyles = injectCSS('divider', import.meta.env?.RD_THEME_DIVIDER, [
-  'vertical',
-  's',
-  'm',
-  'l',
-])
+if (import.meta.env?.RD_THEME_DIVIDER) {
+  addCSS(import.meta.env.RD_THEME_DIVIDER, 'divider')
+}
 
-interface DividerPros extends HTMLStyleProps<HTMLHRElement, typeof dividerStyles> {
+export const dividerStyles = {
+  root: import.meta.env?.RD_THEME_DIVIDER__ROOT,
+  vertical: import.meta.env?.RD_THEME_DIVIDER__VERTICAL,
+  s: import.meta.env?.RD_THEME_DIVIDER__S,
+  m: import.meta.env?.RD_THEME_DIVIDER__M,
+  l: import.meta.env?.RD_THEME_DIVIDER__L,
+}
+
+export type DividerStyle = typeof dividerStyles
+
+interface DividerPros extends HTMLStyleProps<HTMLHRElement, DividerStyle> {
   size?: ObservableProp<RDSize>
   vertical?: ObservableProp<boolean>
 }

@@ -1,11 +1,28 @@
 import { useStyles } from '../../../hooks'
-import { injectCSS } from '../../../utils'
+import { addCSS } from '../../../utils'
 import type { FlexElement, InlineProps } from '../../primitive'
-import { Inline, inlineClasses } from '../../primitive'
+import { Inline } from '../../primitive'
 
-export const dotClasses = [...inlineClasses]
+if (import.meta.env?.RD_THEME_DOT) {
+  addCSS(import.meta.env.RD_THEME_DOT, 'dot')
+}
 
-export const dotStyles = injectCSS('dot', import.meta.env?.RD_THEME_DOT, dotClasses)
+export const dotStyles = {
+  root: import.meta.env?.RD_THEME_DOT__ROOT,
+  primary: import.meta.env?.RD_THEME_DOT__PRIMARY,
+  accent: import.meta.env?.RD_THEME_DOT__ACCENT,
+  secondary: import.meta.env?.RD_THEME_DOT__SECONDARY,
+  success: import.meta.env?.RD_THEME_DOT__SUCCESS,
+  warning: import.meta.env?.RD_THEME_DOT__WARNING,
+  danger: import.meta.env?.RD_THEME_DOT__DANGER,
+  disabled: import.meta.env?.RD_THEME_DOT__DISABLED,
+  square: import.meta.env?.RD_THEME_DOT__SQUARE,
+  m: import.meta.env?.RD_THEME_DOT__M,
+  s: import.meta.env?.RD_THEME_DOT__S,
+  l: import.meta.env?.RD_THEME_DOT__L,
+  hoverable: import.meta.env?.RD_THEME_DOT__HOVERABLE,
+  clickable: import.meta.env?.RD_THEME_DOT__CLICKABLE,
+}
 
 export type DotStyles = typeof dotStyles
 

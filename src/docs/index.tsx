@@ -44,7 +44,7 @@ function App () {
 }
 
 if (import.meta.env?.RD_THEME__ROOT) {
-  addCSS(import.meta.env.RD_THEME__ROOT)
+  addCSS(import.meta.env.RD_THEME__ROOT, 'root')
 }
 
 if (import.meta.env?.DEV) {

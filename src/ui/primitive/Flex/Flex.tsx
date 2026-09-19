@@ -4,9 +4,15 @@ import { Link } from '../Link'
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { inject, injectAll, injectCSS } from '../../../utils'
+import { addCSS, inject, injectAll } from '../../../utils'
 
-const flexStyles = injectCSS('flex', import.meta.env?.RD_THEME_FLEX)
+if (import.meta.env?.RD_THEME_FLEX) {
+  addCSS(import.meta.env.RD_THEME_FLEX, 'flex')
+}
+
+const flexStyles = {
+  root: import.meta.env?.RD_THEME_FLEX__ROOT,
+}
 
 export type FlexStyles = typeof flexStyles
 
