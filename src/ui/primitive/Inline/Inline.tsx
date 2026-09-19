@@ -23,7 +23,7 @@ export const inlineClasses = [
   'clickable',
 ] as const satisfies string[]
 
-export const inlineStyles = injectCSS('rd_inline', import.meta.env?.RD_THEME_INLINE, inlineClasses)
+export const inlineStyles = injectCSS('inline', import.meta.env?.RD_THEME_INLINE, inlineClasses)
 
 export type InlineStyles = typeof inlineStyles
 

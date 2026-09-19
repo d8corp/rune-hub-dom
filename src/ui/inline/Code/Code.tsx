@@ -5,7 +5,7 @@ import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import { injectCSS } from '../../../utils'
 
-export const codeStyles = injectCSS('rd_code', import.meta.env?.RD_THEME_CODE, [
+export const codeStyles = injectCSS('code', import.meta.env?.RD_THEME_CODE, [
   'copied',
 ])
 

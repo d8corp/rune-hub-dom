@@ -5,7 +5,7 @@ import type { ObservableProp } from '../../../types'
 import type { LinkToParams } from '../../../utils'
 import { Context, inject, injectCSS, linkTo, locationURL, SystemSlot, use } from '../../../utils'
 
-export const linkStyles = injectCSS('rd_link', import.meta.env?.RD_THEME_LINK, [
+export const linkStyles = injectCSS('link', import.meta.env?.RD_THEME_LINK, [
   'active',
 ])
 

@@ -15,7 +15,7 @@ export const inputClasses = [
   ...fieldClasses,
 ] as const satisfies string[]
 
-export const inputStyles = injectCSS('rd_input', import.meta.env?.RD_THEME_INPUT, inputClasses)
+export const inputStyles = injectCSS('input', import.meta.env?.RD_THEME_INPUT, inputClasses)
 
 export type InputStyles = typeof inputStyles
 

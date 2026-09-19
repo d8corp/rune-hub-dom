@@ -6,7 +6,7 @@ import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { inject, injectAll, injectCSS } from '../../../utils'
 
-const flexStyles = injectCSS('rd_flex', import.meta.env?.RD_THEME_FLEX)
+const flexStyles = injectCSS('flex', import.meta.env?.RD_THEME_FLEX)
 
 export type FlexStyles = typeof flexStyles
 

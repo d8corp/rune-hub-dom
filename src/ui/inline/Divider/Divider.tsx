@@ -5,7 +5,7 @@ import { useStyles } from '../../../hooks'
 import type { ObservableProp, RDSize } from '../../../types'
 import { inject, injectAll, injectCSS } from '../../../utils'
 
-export const dividerStyles = injectCSS('rd_divider', import.meta.env?.RD_THEME_DIVIDER, [
+export const dividerStyles = injectCSS('divider', import.meta.env?.RD_THEME_DIVIDER, [
   'vertical',
   's',
   'm',

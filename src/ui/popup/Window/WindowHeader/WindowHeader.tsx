@@ -7,7 +7,7 @@ import { Dot } from '../../../inline'
 import type { FlexElement, FlexProps } from '../../../primitive'
 import { Flex } from '../../../primitive'
 
-export const windowHeaderStyles = injectCSS('rd_window-header', import.meta.env?.RD_THEME_WINDOW_HEADER, [
+export const windowHeaderStyles = injectCSS('window-header', import.meta.env?.RD_THEME_WINDOW_HEADER, [
   'close',
 ])
 

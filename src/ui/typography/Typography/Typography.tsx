@@ -3,7 +3,7 @@ import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { inject, injectCSS } from '../../../utils'
 
-export const typographyStyles = injectCSS('rd_typography', import.meta.env?.RD_THEME_TYPOGRAPHY)
+export const typographyStyles = injectCSS('typography', import.meta.env?.RD_THEME_TYPOGRAPHY)
 
 export type TypographyStyles = typeof typographyStyles
 

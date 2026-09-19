@@ -5,7 +5,7 @@ import { Inline, inlineClasses } from '../../primitive'
 
 export const dotClasses = [...inlineClasses]
 
-export const dotStyles = injectCSS('rd_dot', import.meta.env?.RD_THEME_DOT, dotClasses)
+export const dotStyles = injectCSS('dot', import.meta.env?.RD_THEME_DOT, dotClasses)
 
 export type DotStyles = typeof dotStyles
 

@@ -7,7 +7,7 @@ export const buttonClasses = [
   ...blockClasses,
 ] as const satisfies string[]
 
-export const buttonStyles = injectCSS('rd_button', import.meta.env?.RD_THEME_BUTTON, buttonClasses)
+export const buttonStyles = injectCSS('button', import.meta.env?.RD_THEME_BUTTON, buttonClasses)
 
 export type ButtonStyles = typeof buttonStyles
 

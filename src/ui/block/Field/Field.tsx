@@ -7,7 +7,7 @@ export const fieldClasses = [
   ...blockClasses,
 ] as const satisfies string[]
 
-export const fieldStyles = injectCSS('rd_field', import.meta.env?.RD_THEME_FIELD, fieldClasses)
+export const fieldStyles = injectCSS('field', import.meta.env?.RD_THEME_FIELD, fieldClasses)
 
 export type FieldStyles = typeof fieldStyles
 

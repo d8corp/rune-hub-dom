@@ -8,10 +8,29 @@ import * as sass from 'sass'
 
 const INPUT_SCSS = 'theme.scss'
 const OUTPUT_ENV = '.env'
-const PREFIX = 'rd_'
+const RD_THEME__PREFIX = process.env.RD_THEME__PREFIX ?? 'rd_'
 const ENV_PREFIX = 'RD_THEME_'
+const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset']
 
 const globalTransformer = selectorParser((selectors) => {
+  selectors.walkClasses((classNode) => {
+    let isInsideGlobal = false
+    let parent = classNode.parent
+
+    while (parent) {
+      if (parent.type === 'pseudo' && parent.value === ':global') {
+        isInsideGlobal = true
+        break
+      }
+
+      parent = parent.parent
+    }
+
+    if (!isInsideGlobal) {
+      classNode.value = RD_THEME__PREFIX + classNode.value
+    }
+  })
+
   selectors.walkPseudos((pseudo) => {
     if (pseudo.value === ':global') {
       if (pseudo.nodes && pseudo.nodes.length > 0) {
@@ -46,11 +65,11 @@ async function generateEnvFromScss () {
 
   const globalNodes: postcss.ChildNode[] = []
 
-  const componentRegex = new RegExp(`^\\.${PREFIX}((?:[a-zA-Z0-9-]|_(?!_))+)`)
+  const componentRegex = new RegExp(`^\\.${RD_THEME__PREFIX}((?:[a-zA-Z0-9-]|_(?!_))+)`)
 
   root.walk(node => {
     if (node.type === 'atrule') {
-      if (node.name === 'keyframes' || node.name === 'font-face') {
+      if (GLOBAL_AT_RULES.includes(node.name)) {
         globalNodes.push(node.clone())
         node.remove()
       }
@@ -117,7 +136,7 @@ async function generateEnvFromScss () {
 
         if (!regex) {
           const escapedComp = comp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
-          regex = new RegExp(`^\\.${PREFIX}${escapedComp}(?:__|[^a-zA-Z0-9_-]|$)`)
+          regex = new RegExp(`^\\.${RD_THEME__PREFIX}${escapedComp}(?:__|[^a-zA-Z0-9_-]|$)`)
           filterRegexCache.set(comp, regex)
         }
 
@@ -141,16 +160,6 @@ async function generateEnvFromScss () {
     }
   }
 
-  if (globalNodes.length > 0) {
-    const globalRoot = postcss.root()
-    globalRoot.append(globalNodes)
-    const globalCss = await minifyCss(globalRoot.toResult().css)
-
-    if (globalCss) {
-      envVariables[`${ENV_PREFIX}_ROOT`] = `'${globalCss}'`
-    }
-  }
-
   const existingContent = fs.existsSync(OUTPUT_ENV) ? fs.readFileSync(OUTPUT_ENV, 'utf-8') : ''
   const existingVars = dotenv.parse(existingContent)
   const finalVars = { ...existingVars }
@@ -163,6 +172,18 @@ async function generateEnvFromScss () {
 
     finalVars[key] = value
   }
+
+  if (globalNodes.length > 0) {
+    const globalRoot = postcss.root()
+    globalRoot.append(globalNodes)
+    const globalCss = await minifyCss(globalRoot.toResult().css)
+
+    if (globalCss) {
+      finalVars[`${ENV_PREFIX}_ROOT`] = `'${globalCss}'`
+    }
+  }
+
+  finalVars[`${ENV_PREFIX}_PREFIX`] = RD_THEME__PREFIX
 
   const finalContent = Object.entries(finalVars)
     .map(([key, value]) => {

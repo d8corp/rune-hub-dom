@@ -150,10 +150,10 @@ body {
 }
 
 // components
-.rd_flex {
+.flex {
   display: flex;
 }
-.rd_link {
+.link {
   color: $color-primary;
   text-decoration: none;
   transition: color 0.2s;
@@ -168,7 +168,7 @@ body {
   }
 }
 
-.rd_divider {
+.divider {
   align-self: stretch;
   border: 0 solid $color-border;
 
@@ -195,7 +195,7 @@ body {
   }
 }
 
-.rd_inline {
+.inline {
   border-radius: $size-infinite;
   transition: $transition;
   color: light-dark(white, black);
@@ -248,7 +248,7 @@ body {
     font-size: 6px;
     padding: 0;
 
-    &.rd_inline__square {
+    &.inline__square {
       border-radius: 2px;
     }
   }
@@ -260,7 +260,7 @@ body {
     font-size: 10px;
     padding: 1px;
 
-    &.rd_inline__square {
+    &.inline__square {
       border-radius: 4px;
     }
   }
@@ -272,7 +272,7 @@ body {
     font-size: 12px;
     padding: 2px;
 
-    &.rd_inline__square {
+    &.inline__square {
       border-radius: 5px;
     }
   }
@@ -288,7 +288,7 @@ body {
   }
 }
 
-.rd_block {
+.block {
   transition: $transition;
   background-clip: border-box;
   border: 1px solid $color-border;
@@ -310,7 +310,7 @@ body {
     padding: 14px 28px;
     border-radius: 12px;
 
-    &.rd_block__square {
+    &.block__square {
       padding:14px;
     }
   }
@@ -323,7 +323,7 @@ body {
     padding: 8px 16px;
     border-radius: 8px;
 
-    &.rd_block__square {
+    &.block__square {
       padding: 8px;
     }
   }
@@ -336,7 +336,7 @@ body {
     padding: 6px 8px;
     border-radius: 6px;
 
-    &.rd_block__square {
+    &.block__square {
       padding: 6px;
     }
   }
@@ -382,7 +382,7 @@ body {
   }
 }
 
-.rd_button {
+.button {
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -421,7 +421,7 @@ body {
   }
 }
 
-.rd_code {
+.code {
   background: $color-secondary;
   border: 1px solid $color-border;
   color: $color-primary-hover;
@@ -451,7 +451,7 @@ body {
   }
 }
 
-.rd_window {
+.window {
   gap: 8px;
   padding: 8px;
   background: $color-secondary;
@@ -478,7 +478,7 @@ body {
   }
 }
 
-.rd_typography {
+.typography {
   & > :first-child {
     margin-top: 0;
   }
@@ -488,7 +488,7 @@ body {
   }
 }
 
-.rd_field {
+.field {
   align-items: center;
   justify-content: center;
 
@@ -497,14 +497,14 @@ body {
   }
 }
 
-.rd_input {
+.input {
   cursor: text;
 
   &__clear {
     cursor: pointer;
   }
 
-  &__secondary:has(.rd_input__input:focus) {
+  &__secondary:has(.input__input:focus) {
     background: $color-secondary-hover;
     border-color: $color-secondary-hover;
   }

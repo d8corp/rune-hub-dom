@@ -22,7 +22,7 @@ export const blockClasses = [
   'l',
 ] as const satisfies string[]
 
-export const blockStyles = injectCSS('rd_block', import.meta.env?.RD_THEME_BLOCK, blockClasses)
+export const blockStyles = injectCSS('block', import.meta.env?.RD_THEME_BLOCK, blockClasses)
 
 export type BlockStyles = typeof blockStyles
 
