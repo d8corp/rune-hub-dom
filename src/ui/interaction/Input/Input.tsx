@@ -5,7 +5,7 @@ import { Show } from '../../../components'
 import { CloseIcon } from '../../../docs/icons'
 import { useClear, useDebounceSlotEvent, useStyles } from '../../../hooks'
 import type { JSXElement, Merge, ObservableProp } from '../../../types'
-import { inject, injectCSS, Ref } from '../../../utils'
+import { getSlotEvent, inject, injectCSS, Ref } from '../../../utils'
 import type { FieldProps } from '../../block'
 import { Field, fieldClasses } from '../../block'
 
@@ -48,10 +48,11 @@ export function Input<T extends string = '', S extends InputStyles = InputStyles
   ...props
 }: InputProps<T, S>) {
   const styles = useStyles(inputStyles, props.class)
-  const setValue = useDebounceSlotEvent(value, onChange, debounce)
+  const setValue = getSlotEvent(value, onChange)
+  const setDebouncedValue = useDebounceSlotEvent(value, onChange, debounce)
 
   const handleInput = (e: any) => {
-    setValue?.(e.target.value)
+    setDebouncedValue?.(e.target.value)
   }
 
   if (autofocus) {
