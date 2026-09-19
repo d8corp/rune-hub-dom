@@ -8,9 +8,11 @@ import * as sass from 'sass'
 
 const INPUT_SCSS = 'theme.scss'
 const OUTPUT_ENV = '.env'
-const RD_THEME__PREFIX = process.env.RD_THEME__PREFIX ?? 'rd_'
+const RD_PREFIX = process.env.RD_THEME__PREFIX ?? 'rd_'
 const ENV_PREFIX = 'RD_THEME_'
 const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset']
+
+const componentRegex = new RegExp(`^\\.${RD_PREFIX}((?:[a-zA-Z0-9-]|(?!_))+)`)
 
 const globalTransformer = selectorParser((selectors) => {
   selectors.walkClasses((classNode) => {
@@ -27,7 +29,7 @@ const globalTransformer = selectorParser((selectors) => {
     }
 
     if (!isInsideGlobal) {
-      classNode.value = RD_THEME__PREFIX + classNode.value
+      classNode.value = RD_PREFIX + classNode.value
     }
   })
 
@@ -65,11 +67,11 @@ async function generateEnvFromScss () {
 
   const globalNodes: postcss.ChildNode[] = []
 
-  const componentRegex = new RegExp(`^\\.${RD_THEME__PREFIX}((?:[a-zA-Z0-9-]|_(?!_))+)`)
-
   root.walk(node => {
     if (node.type === 'atrule') {
-      if (GLOBAL_AT_RULES.includes(node.name)) {
+      if (node.nodes && node.nodes.length === 0) {
+        node.remove()
+      } else if (GLOBAL_AT_RULES.includes(node.name)) {
         globalNodes.push(node.clone())
         node.remove()
       }
@@ -102,12 +104,6 @@ async function generateEnvFromScss () {
     }
   })
 
-  root.walk(node => {
-    if (node.type === 'atrule' && node.nodes && node.nodes.length === 0) {
-      node.remove()
-    }
-  })
-
   const components = new Set<string>()
 
   root.walkRules(rule => {
@@ -136,7 +132,7 @@ async function generateEnvFromScss () {
 
         if (!regex) {
           const escapedComp = comp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
-          regex = new RegExp(`^\\.${RD_THEME__PREFIX}${escapedComp}(?:__|[^a-zA-Z0-9_-]|$)`)
+          regex = new RegExp(`^\\.${RD_PREFIX}${escapedComp}(?:_|[^a-zA-Z0-9_-]|$)`)
           filterRegexCache.set(comp, regex)
         }
 
@@ -163,15 +159,28 @@ async function generateEnvFromScss () {
   const existingContent = fs.existsSync(OUTPUT_ENV) ? fs.readFileSync(OUTPUT_ENV, 'utf-8') : ''
   const existingVars = dotenv.parse(existingContent)
   const finalVars = { ...existingVars }
+  const deletedKeys = new Set<string>()
+  let addedCount = 0
   let updatedCount = 0
 
-  for (const [key, value] of Object.entries(envVariables)) {
-    if (finalVars[key] !== undefined) {
+  const setVar = (key: string, value: string) => {
+    if (deletedKeys.has(key)) {
+      deletedKeys.delete(key)
       updatedCount++
+    } else {
+      addedCount++
     }
 
     finalVars[key] = value
   }
+
+  for (const key in finalVars) {
+    if (key.startsWith('RD_THEME_')) {
+      deletedKeys.add(key)
+    }
+  }
+
+  setVar(`${ENV_PREFIX}_PREFIX`, RD_PREFIX)
 
   if (globalNodes.length > 0) {
     const globalRoot = postcss.root()
@@ -179,11 +188,17 @@ async function generateEnvFromScss () {
     const globalCss = await minifyCss(globalRoot.toResult().css)
 
     if (globalCss) {
-      finalVars[`${ENV_PREFIX}_ROOT`] = `'${globalCss}'`
+      setVar(`${ENV_PREFIX}_ROOT`, `'${globalCss}'`)
     }
   }
 
-  finalVars[`${ENV_PREFIX}_PREFIX`] = RD_THEME__PREFIX
+  for (const [key, value] of Object.entries(envVariables)) {
+    setVar(key, value)
+  }
+
+  for (const key of deletedKeys) {
+    delete finalVars[key]
+  }
 
   const finalContent = Object.entries(finalVars)
     .map(([key, value]) => {
@@ -197,7 +212,7 @@ async function generateEnvFromScss () {
 
   fs.writeFileSync(OUTPUT_ENV, finalContent, 'utf-8')
 
-  console.log(`✅ Successful updated ${OUTPUT_ENV} (Updated: ${updatedCount}, Added: ${Object.keys(envVariables).length - updatedCount})`)
+  console.log(`✅ Successful updated ${OUTPUT_ENV} (Updated: ${updatedCount}, Added: ${addedCount}, Removed: ${deletedKeys.size})`)
 }
 
 generateEnvFromScss().catch(console.error)

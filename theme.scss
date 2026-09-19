@@ -172,25 +172,25 @@ body {
   align-self: stretch;
   border: 0 solid $color-border;
 
-  &:not(&__vertical) {
+  &:not(&_vertical) {
     margin: 0 4px;
     border-bottom-width: var(--rd-divider-size);
   }
 
-  &__vertical {
+  &_vertical {
     margin: 4px 0;
     border-left-width: var(--rd-divider-size);
   }
 
-  &__s {
+  &_s {
     --rd-divider-size: 1px;
   }
 
-  &__m {
+  &_m {
     --rd-divider-size: 2px;
   }
 
-  &__l {
+  &_l {
     --rd-divider-size: 3px;
   }
 }
@@ -208,81 +208,81 @@ body {
     padding-right: 0;
   }
 
-  &__primary {
+  &_primary {
     background: $color-primary;
   }
 
-  &__accent {
+  &_accent {
     background: $color-accent;
   }
 
-  &__secondary {
+  &_secondary {
     background: $color-secondary;
   }
 
-  &__success {
+  &_success {
     background: $color-success;
   }
 
-  &__success {
+  &_success {
     background: $color-success;
   }
 
-  &__warning {
+  &_warning {
     background: $color-warning;
   }
 
-  &__danger {
+  &_danger {
     background: $color-danger;
   }
 
-  &__disabled {
+  &_disabled {
     cursor: default;
     background: $color-disabled;
   }
 
-  &__s {
+  &_s {
     height: 8px;
     min-height: 8px;
     min-width: 8px;
     font-size: 6px;
     padding: 0;
 
-    &.inline__square {
+    &.inline_square {
       border-radius: 2px;
     }
   }
 
-  &__m {
+  &_m {
     height: 12px;
     min-height: 12px;
     min-width: 12px;
     font-size: 10px;
     padding: 1px;
 
-    &.inline__square {
+    &.inline_square {
       border-radius: 4px;
     }
   }
 
-  &__l {
+  &_l {
     height: 16px;
     min-height: 16px;
     min-width: 16px;
     font-size: 12px;
     padding: 2px;
 
-    &.inline__square {
+    &.inline_square {
       border-radius: 5px;
     }
   }
 
-  &__clickable {
+  &_clickable {
     cursor: pointer;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    &__hoverable:not(:hover) {
+    &_hoverable:not(:hover) {
       color: transparent;
     }
   }
@@ -302,7 +302,7 @@ body {
     color: white;
   }
 
-  &__l {
+  &_l {
     height: 56px;
     min-height: 56px;
     min-width: 56px;
@@ -310,12 +310,12 @@ body {
     padding: 14px 28px;
     border-radius: 12px;
 
-    &.block__square {
+    &.block_square {
       padding:14px;
     }
   }
 
-  &__m {
+  &_m {
     height: 36px;
     min-height: 36px;
     min-width: 36px;
@@ -323,12 +323,12 @@ body {
     padding: 8px 16px;
     border-radius: 8px;
 
-    &.block__square {
+    &.block_square {
       padding: 8px;
     }
   }
 
-  &__s {
+  &_s {
     height: 24px;
     min-height: 24px;
     min-width: 24px;
@@ -336,21 +336,21 @@ body {
     padding: 6px 8px;
     border-radius: 6px;
 
-    &.block__square {
+    &.block_square {
       padding: 6px;
     }
   }
 
-  &__primary {
+  &_primary {
     color: white;
     background: $color-primary;
   }
 
-  &__accent {
+  &_accent {
     background: $color-accent;
   }
 
-  &__secondary {
+  &_secondary {
     color: $color-primary-hover;
     background: $color-secondary;
     backdrop-filter: $filter-blur;
@@ -361,23 +361,23 @@ body {
     }
   }
 
-  &__success {
+  &_success {
     background: $color-success;
   }
 
-  &__danger {
+  &_danger {
     background: $color-danger;
   }
 
-  &__warning {
+  &_warning {
     background: $color-warning;
   }
 
-  &__disabled {
+  &_disabled {
     background: $color-disabled;
   }
 
-  &__circle {
+  &_circle {
     border-radius: $size-infinite;
   }
 }
@@ -390,7 +390,7 @@ body {
   justify-content: center;
   display: inline-flex;
 
-  &__accent {
+  &_accent {
     border: none;
     background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 100% 100%;
 
@@ -399,7 +399,7 @@ body {
     }
   }
 
-  &__secondary {
+  &_secondary {
     &:after {
       content: '';
       position: absolute;
@@ -445,7 +445,7 @@ body {
   }
 
 
-  &__copied:after {
+  &_copied:after {
     opacity: 1;
     transform: translateX(-50%) translateY(-130%);
   }
@@ -500,16 +500,16 @@ body {
 .input {
   cursor: text;
 
-  &__clear {
+  &_clear {
     cursor: pointer;
   }
 
-  &__secondary:has(.input__input:focus) {
+  &_secondary:has(.input_input:focus) {
     background: $color-secondary-hover;
     border-color: $color-secondary-hover;
   }
 
-  &__input {
+  &_input {
     min-width: 0;
     flex: 1;
     background: transparent;

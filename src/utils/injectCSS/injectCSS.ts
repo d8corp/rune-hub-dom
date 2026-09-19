@@ -8,7 +8,7 @@ export function injectCSS<T extends string = never> (block: string, css: string,
   }
 
   for (const element of styles) {
-    result[element] = element === 'root' ? root : `${root}__${element}`
+    result[element] = element === 'root' ? root : `${root}_${element}`
   }
 
   const style = addCSS(css)
