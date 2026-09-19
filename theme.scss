@@ -497,3 +497,27 @@ body {
   }
 }
 
+.rd_input {
+  cursor: text;
+
+  &__clear {
+    cursor: pointer;
+  }
+
+  &__secondary:has(.rd_input__input:focus) {
+    background: $color-secondary-hover;
+    border-color: $color-secondary-hover;
+  }
+
+  &__input {
+    min-width: 0;
+    flex: 1;
+    background: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+

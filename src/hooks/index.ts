@@ -1,6 +1,7 @@
 export * from './useAction'
 export * from './useClear'
 export * from './useCtx'
+export * from './useDebounceSlotEvent'
 export * from './useEffect'
 export * from './useOn'
 export * from './useOnce'

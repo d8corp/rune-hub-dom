@@ -1,5 +1,6 @@
 export * from './block'
 export * from './inline'
+export * from './interaction'
 export * from './popup'
 export * from './primitive'
 export * from './typography'

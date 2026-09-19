@@ -9,8 +9,9 @@ import { SearchIcon } from '../../../../../docs/icons'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { Ref } from '../../../../../utils'
-import { Button, Field } from '../../../../block'
+import { Button } from '../../../../block'
 import { Divider, Dot } from '../../../../inline'
+import { Input } from '../../../../interaction'
 import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/Window/WindowContent'
 import { devtoolsStoreContext } from '../../hooks'
@@ -61,11 +62,19 @@ export function DevtoolsPanel () {
       <WindowContent data-glow>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
-            <Field data-glow flex size='s' circle class={styles.search}>
-              <SearchIcon />
-              <input _value={search} oninput={(e: any) => { search.set(e.target.value) }} />
-              {() => `${searchSlots.value.length} / ${slots.value.size}`}
-            </Field>
+            <Input
+              data-glow
+              flex
+              size='s'
+              circle
+              autofocus
+              clearable
+              debounce
+              value={search}
+              name='search'
+              before={<SearchIcon />}
+              after={() => `${searchSlots.value.length} / ${slots.value.size}`}
+            />
           </div>
           <div class={styles.list} ref={list}>
             <div

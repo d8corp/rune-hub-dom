@@ -63,31 +63,6 @@
   gap: 8px;
 }
 
-.search {
-  cursor: text;
-  transition: background-color .2s ease, border .2s ease;
-
-  &:hover {
-    border-color: var(--rd__secondary_border_hover);
-  }
-
-  &:has(>input:focus) {
-    border-color: var(--rd__secondary_border_hover);
-    background: var(--rd--alpha-color-hover);
-  }
-
-  & > input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    height: 24px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
 .filterButton {
   border: none;
   cursor: pointer;
