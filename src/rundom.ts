@@ -100,12 +100,18 @@ export function runNode (target: JSXNode) {
               const value = rawValue()
 
               if (value === prev) return
-              element.style.setProperty(property, value)
+
+              if (value === undefined) {
+                element.style.removeProperty(property)
+              } else {
+                element.style.setProperty(property, value)
+              }
+
               prev = value
             }
 
             new SystemSlot(styleParamEffect).on()
-          } else {
+          } else if (rawValue !== undefined) {
             element.style.setProperty(property, rawValue)
           }
         }

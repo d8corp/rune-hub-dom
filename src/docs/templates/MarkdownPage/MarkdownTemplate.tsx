@@ -1,5 +1,5 @@
 import { Typography } from '../../../ui'
-import { BasePage, Markdown } from '../../ui'
+import { Markdown, Page } from '../../ui'
 
 export interface MarkdownTemplateProps {
   text: string;
@@ -7,10 +7,10 @@ export interface MarkdownTemplateProps {
 
 export function MarkdownTemplate ({ text }: MarkdownTemplateProps) {
   return (
-    <BasePage>
+    <Page>
       <Typography>
         <Markdown text={text} glow />
       </Typography>
-    </BasePage>
+    </Page>
   )
 }

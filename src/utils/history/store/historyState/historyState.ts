@@ -19,5 +19,3 @@ export const historyState = new SystemSlot(getHistoryStateRaw)
 export function updateHistoryState () {
   historyState.set(getHistoryStateRaw())
 }
-
-window.addEventListener('popstate', updateHistoryState)

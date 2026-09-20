@@ -1,69 +1,32 @@
-import { classes } from 'html-classes'
 import { get } from 'rune-hub'
 
-import { Delay, For, useHidden } from '../../../components'
-import { useCtx, useShow } from '../../../hooks'
+import { For } from '../../../components'
 import { Flex, Link } from '../../../ui'
-import type { TitleLink } from '../../state'
 import { getAsideTimeline, hideAside, titleLinks } from '../../state'
 import styles from './Aside.module.scss'
 
-interface ContentProps {
-  links: Set<TitleLink>
-}
-
-function Content ({ links }: ContentProps) {
-  const show = useShow()
-  const hidden = useHidden()
-
-  return (
-    <Flex
-      vertical gap={8} class={() => classes([
-        styles.content,
-        show.value && styles.show,
-        hidden?.value && styles.hide,
-      ])}
-    >
-      <For of={links} key='id'>
-        {(value) => (
-          <Link
-            onclick={hideAside}
-            href={`#${value.id}`}
-            class={styles.item}
-            style={{ 'animation-timeline': getAsideTimeline(value.id) }}
-          >
-            {value.title}
-          </Link>
-        )}
-      </For>
-    </Flex>
-  )
-}
-
 export function Aside () {
-  const show = useShow()
-  const hidden = useHidden()
-
   return (
-    <Flex
-      element='aside'
-      vertical
-      class={() => classes([
-        styles.root,
-        show.value && styles.show,
-        hidden?.value && styles.hide,
-      ])}
-    >
+    <Flex element='aside' vertical class={styles.root}>
       <div class={styles.background} onclick={hideAside} />
       <Flex flex vertical gap={12} class={styles.scrollbar}>
         <div class={styles.title}>
           On this page
         </div>
-        {() => (
-          <Delay show={useCtx()?.inited ? 200 : 0} hide={200}>
-            <Content links={get(titleLinks)} />
-          </Delay>
-        )}
+        <Flex vertical gap={8} class={styles.content}>
+          <For of={() => get(titleLinks)} key='id'>
+            {(value) => (
+              <Link
+                onclick={hideAside}
+                href={() => `#${value.value.id}`}
+                class={styles.item}
+                style={{ 'animation-timeline': () => getAsideTimeline(value.value.id) }}
+              >
+                {() => value.value.title}
+              </Link>
+            )}
+          </For>
+        </Flex>
       </Flex>
     </Flex>
   )

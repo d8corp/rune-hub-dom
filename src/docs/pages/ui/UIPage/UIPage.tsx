@@ -1,5 +1,5 @@
 import { Button, Code, Divider, Flex } from '../../../../ui'
-import { BasePage, Title } from '../../../ui'
+import { Page, Title } from '../../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -12,7 +12,7 @@ import styles from './UIPage.scss'
 
 export default function UIPage () {
   return (
-    <BasePage class={styles.root}>
+    <Page class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <Title justify='center' title='Rundom UI' class={styles.title}>
@@ -41,7 +41,7 @@ export default function UIPage () {
         <Divider />
         <RouterExample />
       </Flex>
-    </BasePage>
+    </Page>
 
   )
 }

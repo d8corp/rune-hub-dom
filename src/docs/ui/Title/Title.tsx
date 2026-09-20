@@ -1,7 +1,7 @@
 import { raw, Slot, update } from 'rune-hub'
 
-import { Show, useHidden } from '../../../components'
-import { useClear, useShow, useStyles } from '../../../hooks'
+import { Show } from '../../../components'
+import { useClear, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { Flex, type FlexProps, Link } from '../../../ui'
 import { use } from '../../../utils'
@@ -49,8 +49,6 @@ export function Title ({
   id = title && link ? slugify(title) : undefined,
   ...props
 }: TitleProps = {}) {
-  const show = useShow()
-  const hide = useHidden()
   const styles = useStyles($styles, props.class)
   const showSubtitle = subtitle ? new Slot(function showSubtitle () { return Boolean(use(subtitle)) }) : null
 
@@ -77,14 +75,12 @@ export function Title ({
       {...props}
       id={id}
       style={{
-        'view-timeline': h === 1 ? id && getAsideTimeline(id) : undefined,
+        'view-timeline': h === 1 ? id && getAsideTimeline(id) : '',
         ...props.style,
       }}
       class={() => [
         styles.root,
         title && link && styles.withLink,
-        show.value && styles.show,
-        hide?.value && styles.hide,
       ]}
     >
       {children}

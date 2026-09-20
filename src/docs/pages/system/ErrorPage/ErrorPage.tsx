@@ -1,6 +1,6 @@
 import type { ErrorProps } from '../../../../components'
 import { Button, Flex, Typography } from '../../../../ui'
-import { BasePage } from '../../../ui'
+import { Page } from '../../../ui'
 import styles from './ErrorPage.scss'
 
 export function ErrorPage ({ error, retry }: ErrorProps) {
@@ -13,7 +13,7 @@ export function ErrorPage ({ error, retry }: ErrorProps) {
   }
 
   return (
-    <BasePage justify='center' align='center' class={styles.root}>
+    <Page justify='center' align='center' class={styles.root}>
       <Typography>
         <h2>Page With Error</h2>
         <p>
@@ -31,6 +31,6 @@ export function ErrorPage ({ error, retry }: ErrorProps) {
           </Button>
         </Flex>
       </Typography>
-    </BasePage>
+    </Page>
   )
 }

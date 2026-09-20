@@ -1,15 +1,10 @@
 .root {
-  transform: scale(0.95);
-  transition: transform .2s;
-  transform-origin: left center;
-}
+  transition: opacity .2s, transform .2s;
 
-.show {
-  transform: scale(1);
-}
-
-.hide {
-  transform: scale(1.1);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
 }
 
 .subTitle {

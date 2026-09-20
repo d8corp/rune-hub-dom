@@ -2,6 +2,11 @@
 
 $mobileSize: 600px;
 
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-timing-function: ease;
+}
+
 :root {
   color-scheme: light dark;
   --color-alpha-border-hover: light-dark(#7C3AED4D, #8B5CF64D);

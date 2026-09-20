@@ -1,5 +1,35 @@
 @use "src/docs/styles/proximityGlow" as *;
 
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+::view-transition-old(aside):only-child {
+  animation: hide .2s ease both;
+}
+
+::view-transition-new(aside):only-child {
+  animation: show .2s ease both;
+}
+
 @keyframes highlight-link {
   0%, 100% {
     color: var(--rd__root_color-dim);
@@ -16,15 +46,12 @@
   position: sticky;
   top: calc(40px + var(--header-size));
   max-height: calc(100vh - var(--header-size) - 80px);
-  transition: margin-right .1s, opacity .1s;
-  margin-right: -224px;
+  transition: opacity .2s, transform .2s;
+  view-transition-name: aside;
 
-  &.show {
-    margin-right: 0;
-  }
-
-  &.hide {
-    margin-right: -224px;
+  @starting-style {
+    opacity: 0;
+    transform: translateX(100px);
   }
 
   @media (max-width: 1023px) {
@@ -54,7 +81,6 @@
 .background {
   position: absolute;
   cursor: pointer;
-  transition: all .3s;
 }
 
 .scrollbar {
@@ -72,8 +98,6 @@
 
 .content {
   padding-left: 12px;
-  opacity: 0;
-  transition: opacity .3s;
   position: relative;
 
   @media (min-width: 1024px) {
@@ -83,14 +107,6 @@
   @media (max-width: 1023px) {
     border-left: none;
   }
-}
-
-.show {
-  opacity: 1;
-}
-
-.hide {
-  opacity: 0;
 }
 
 .item {

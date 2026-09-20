@@ -1,6 +1,5 @@
 import { createRouting } from '../components'
 import { lazy } from '../utils'
-import { BASE_URL } from './constants'
 import { MainLayout } from './layouts/MainLayout'
 import { MenuLayout } from './layouts/MenuLayout'
 import { menu } from './menu'
@@ -9,7 +8,6 @@ import { uiMenu } from './uiMenu'
 
 export const routing = createRouting([
   {
-    path: BASE_URL,
     component: MainLayout,
     children: [
       {

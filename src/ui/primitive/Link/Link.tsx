@@ -3,7 +3,7 @@ import { classes } from 'html-classes'
 import { type HTMLStyleProps, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import type { LinkToParams } from '../../../utils'
-import { addCSS, Context, inject, linkTo, locationURL, SystemSlot, use } from '../../../utils'
+import { addCSS, inject, linkTo, locationURL, startViewTransition, SystemSlot, use } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_LINK) {
   addCSS(import.meta.env.RD_THEME_LINK, 'link')
@@ -22,18 +22,17 @@ function clearHref (url: string) {
   return url.replace(CLEAR_HREF, '')
 }
 
-export const linkBaseUrlContext = new Context('')
-
 export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, LinkStyles>, LinkToParams {
   target?: '_blank' | '_parent' | '_self' | '_top'
   exact?: boolean
+  transition?: boolean
   disabled?: ObservableProp<boolean>
   children?: JSX.Element
 }
 
 export function Link (props: LinkProps) {
   const styles = useStyles(linkStyles, props.class)
-  const { onclick, href, scroll = 'before', scrollTo, replace, exact, ...rest } = props
+  const { onclick, href, scroll = 'before', scrollTo, replace, exact, transition, ...rest } = props
 
   if (!href || (typeof href === 'string' && href.startsWith('http'))) {
     return (
@@ -48,12 +47,10 @@ export function Link (props: LinkProps) {
     )
   }
 
-  const baseUrl = linkBaseUrlContext.get()
-
   const getHref = () => {
     const result = use(href) || ''
 
-    return result.startsWith('/') ? `${baseUrl}${result}` : result
+    return result.startsWith('/') ? `${import.meta.env?.RD_BASE_URL || ''}${result}` : result
   }
 
   const linkRegString = () => {
@@ -93,12 +90,22 @@ export function Link (props: LinkProps) {
       return onclick?.call(this, e)
     }
 
-    if (!linkTo(getHref(), { scroll, replace, scrollTo })) return
+    const currentHref = getHref()
 
     e.preventDefault()
 
-    // @ts-expect-error TODO: fix types
-    onclick?.call(this, e)
+    const run = () => {
+      linkTo(currentHref, { scroll, replace, scrollTo })
+
+      // @ts-expect-error TODO: fix types
+      onclick?.call(this, e)
+    }
+
+    if (transition ?? import.meta.env?.RD_VIEW_TRANSITION === 'true') {
+      startViewTransition(run)
+    } else {
+      run()
+    }
   }
 
   return <a {...rest} class={className} href={getHref} onclick={handleClick} />

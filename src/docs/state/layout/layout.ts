@@ -3,6 +3,8 @@ import { batch, get, raw, set } from 'rune-hub'
 
 import { isLaptop, isMobile } from '../window'
 
+import { startViewTransition } from '../../../utils'
+
 export interface TitleLink {
   id: string
   title?: string
@@ -25,46 +27,56 @@ export const isShowAside = () => get(isLaptop) ? get(isShowAsideMobile) : get(is
 export const hasTitleLinks = () => get(titleLinks).size > 1
 
 export const hideSide = () => {
-  set(isShowSideMobile, false)
+  startViewTransition(() => {
+    set(isShowSideMobile, false)
+  })
 }
 
 export const hideAside = () => {
-  if (raw(isLaptop)) {
-    set(isShowAsideMobile, false)
-  }
+  startViewTransition(() => {
+    if (raw(isLaptop)) {
+      set(isShowAsideMobile, false)
+    }
+  })
 }
 
 export const toggleIsShowSide = () => {
-  batch(() => {
-    hideAside()
-    set(isShowSideMobile, !raw(isShowSideMobile))
+  startViewTransition(() => {
+    batch(() => {
+      hideAside()
+      set(isShowSideMobile, !raw(isShowSideMobile))
+    })
   })
 }
 
 export const toggleIsShowAside = () => {
-  batch(() => {
-    hideSide()
+  startViewTransition(() => {
+    batch(() => {
+      set(isShowSideMobile, false)
 
-    if (raw(isLaptop)) {
-      set(isShowAsideMobile, !raw(isShowAsideMobile))
-    } else {
-      set(isShowAsideDesktop, !raw(isShowAsideDesktop))
-    }
+      if (raw(isLaptop)) {
+        set(isShowAsideMobile, !raw(isShowAsideMobile))
+      } else {
+        set(isShowAsideDesktop, !raw(isShowAsideDesktop))
+      }
+    })
   })
 }
 
 export const toggleTheme = () => {
   const current = raw(theme)
 
-  if (current === 'light') {
-    set(theme, 'dark')
-  } else if (current === 'dark') {
-    set(theme, 'light dark')
-  } else {
-    set(theme, 'light')
-  }
+  startViewTransition(() => {
+    if (current === 'light') {
+      set(theme, 'dark')
+    } else if (current === 'dark') {
+      set(theme, 'light dark')
+    } else {
+      set(theme, 'light')
+    }
+  })
 }
 
-export const applyTheme = () => {
+export const applyThemeEffect = () => {
   document.body.style.colorScheme = get(theme)
 }

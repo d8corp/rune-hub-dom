@@ -1,28 +1,15 @@
-import { classes } from 'html-classes'
-
-import { Show, useHidden } from '../../../components'
-import { useShow } from '../../../hooks'
+import { Show } from '../../../components'
 import { Flex, Link } from '../../../ui'
 import { menuContext } from '../../constants'
 import { hideSide, isMobile } from '../../state'
 import styles from './Side.module.scss'
 
 export function Side () {
-  const show = useShow()
-  const hide = useHidden()
   const itemClass = { root: styles.item, active: styles.itemSelected }
   const currentMenu = menuContext.get()
 
   return (
-    <Flex
-      element='aside'
-      vertical
-      class={() => classes([
-        styles.root,
-        show.value && styles.show,
-        hide?.value && styles.hide,
-      ])}
-    >
+    <Flex element='aside' vertical class={styles.root}>
       <Show when={isMobile}>
         <div class={styles.background} onclick={hideSide} />
       </Show>

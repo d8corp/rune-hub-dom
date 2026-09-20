@@ -1,18 +1,14 @@
-import { classes } from 'html-classes'
 import { get, slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
-import { useShow } from '../../../hooks'
 import { Button, Flex, Link } from '../../../ui'
 import { MonitorIcon, MoonIcon, SunIcon } from '../../icons'
 import { isSmallMobile, theme, toggleTheme } from '../../state'
 import styles from './Header.scss'
 
 export function Header () {
-  const show = useShow(200)
-
   return (
-    <Flex data-glow element='header' class={() => classes([styles.root, show.value && styles.show])}>
+    <Flex data-glow element='header' class={styles.root}>
       <Flex flex padding={[0, 24]} align='center' justify='between' class={styles.content}>
         <Flex element='a' exact href='/' gap={12} align='center' class={styles.logo}>
           Rundom

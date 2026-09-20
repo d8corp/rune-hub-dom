@@ -1,5 +1,35 @@
 @use "src/docs/styles/proximityGlow" as *;
 
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+::view-transition-old(side):only-child {
+  animation: hide .2s ease both;
+}
+
+::view-transition-new(side):only-child {
+  animation: show .2s ease both;
+}
+
 .root {
   order: -1;
   width: 260px;
@@ -7,35 +37,23 @@
   top: calc(40px + var(--header-size));
   max-height: calc(100vh - var(--header-size) - 80px);
   padding-top: 18px;
+  view-transition-name: side;
 
   @media (max-width: 801px) {
     position: fixed;
     top: var(--header-size);
     left: 0;
     bottom: 0;
-    opacity: 0;
     max-height: none;
     background: var(--rd-color-bg-deep);
     padding: 58px 24px 0;
     width: 309px;
-    transition: opacity .2s, transform .2s;
-    transform: translateX(-50px);
     z-index: 1;
 
     @include proximityGlow(0 1px 0 0);
 
-    &.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    &.hide {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-
     & > .background {
-      width: calc(100vw - 100%);
+      width: 100vw;
       left: 100%;
       top: 0;
       bottom: 0;

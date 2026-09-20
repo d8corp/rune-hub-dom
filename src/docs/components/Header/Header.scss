@@ -8,16 +8,9 @@
   position: sticky;
   top: 0;
   background: var(--rd-color-bg-surface);
-  opacity: 0;
-  transform: translateY(-30px);
-  transition: opacity .2s, transform .2s, background-color .2s, border-color .2s;
   height: 64px;
   z-index: 2;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
+  view-transition-name: header;
 }
 
 .themeButton {

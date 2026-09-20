@@ -1,5 +1,5 @@
 import { Button, Code, Divider, Dot, Flex } from '../../../../ui'
-import { BasePage, Title } from '../../../ui'
+import { Page, Title } from '../../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -15,7 +15,7 @@ export default function HomePage () {
   const version = import.meta.env?.RD_PACKAGE_VERSION ?? '0.0.0'
 
   return (
-    <BasePage class={styles.root}>
+    <Page class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <div data-glow class={styles.version}>
@@ -58,7 +58,7 @@ export default function HomePage () {
         <Divider />
         <UIExample />
       </Flex>
-    </BasePage>
+    </Page>
 
   )
 }

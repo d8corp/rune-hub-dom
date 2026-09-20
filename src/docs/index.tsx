@@ -11,14 +11,14 @@ import './styles/base.scss'
 import { Hub, on } from 'rune-hub'
 
 import { Router, Try } from '../components'
+import { useUpdateHistory } from '../hooks'
 import { rundom } from '../rundom'
-import { Devtools, linkBaseUrlContext } from '../ui'
-import { addCSS, Context } from '../utils'
-import { BASE_URL } from './constants'
+import { Devtools } from '../ui'
+import { addCSS } from '../utils'
 import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/system/ErrorPage'
 import { routing } from './routing'
-import { applyTheme } from './state'
+import { applyThemeEffect } from './state'
 // import { listenScrolling } from './state'
 
 removeLoading()
@@ -32,13 +32,12 @@ Hub.root.on('error', (slot) => {
 })
 
 function App () {
-  on(applyTheme)
+  useUpdateHistory()
+  on(applyThemeEffect)
 
   return (
     <Try catch={ErrorPage}>
-      <Context.Provider for={linkBaseUrlContext} set={`/${BASE_URL}`}>
-        <Router routing={routing} />
-      </Context.Provider>
+      <Router routing={routing} />
     </Try>
   )
 }

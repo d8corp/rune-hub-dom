@@ -19,7 +19,15 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
 
   const currentRoute = () => {
     const newParams: Record<string, string> = {}
-    const route = findRoute(use(routing), locationPath.value.split('/').filter(Boolean), newParams, use(permissions))
+    let path = locationPath.value
+
+    if (import.meta.env?.RD_BASE_URL) {
+      if (!path.startsWith(import.meta.env.RD_BASE_URL)) return
+
+      path = path.slice(import.meta.env.RD_BASE_URL.length)
+    }
+
+    const route = findRoute(use(routing), path.split('/').filter(Boolean), newParams, use(permissions))
     params.value = newParams
 
     return route
