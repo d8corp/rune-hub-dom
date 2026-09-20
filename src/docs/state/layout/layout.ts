@@ -3,7 +3,7 @@ import { batch, get, raw, set } from 'rune-hub'
 
 import { isLaptop, isMobile } from '../window'
 
-import { startViewTransition } from '../../../utils'
+import { viewTransition } from '../../../utils'
 
 export interface TitleLink {
   id: string
@@ -27,13 +27,13 @@ export const isShowAside = () => get(isLaptop) ? get(isShowAsideMobile) : get(is
 export const hasTitleLinks = () => get(titleLinks).size > 1
 
 export const hideSide = () => {
-  startViewTransition(() => {
+  viewTransition(() => {
     set(isShowSideMobile, false)
   })
 }
 
 export const hideAside = () => {
-  startViewTransition(() => {
+  viewTransition(() => {
     if (raw(isLaptop)) {
       set(isShowAsideMobile, false)
     }
@@ -41,7 +41,7 @@ export const hideAside = () => {
 }
 
 export const toggleIsShowSide = () => {
-  startViewTransition(() => {
+  viewTransition(() => {
     batch(() => {
       hideAside()
       set(isShowSideMobile, !raw(isShowSideMobile))
@@ -50,7 +50,7 @@ export const toggleIsShowSide = () => {
 }
 
 export const toggleIsShowAside = () => {
-  startViewTransition(() => {
+  viewTransition(() => {
     batch(() => {
       set(isShowSideMobile, false)
 
@@ -66,7 +66,7 @@ export const toggleIsShowAside = () => {
 export const toggleTheme = () => {
   const current = raw(theme)
 
-  startViewTransition(() => {
+  viewTransition(() => {
     if (current === 'light') {
       set(theme, 'dark')
     } else if (current === 'dark') {

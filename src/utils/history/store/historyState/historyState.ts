@@ -6,11 +6,15 @@ export interface HistoryStep {
 
 export interface HistoryState {
   steps: HistoryStep[]
+  scrollX: number
+  scrollY: number
 }
 
 export function getHistoryStateRaw (): HistoryState {
   return window.history.state ?? {
     steps: [],
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
   }
 }
 

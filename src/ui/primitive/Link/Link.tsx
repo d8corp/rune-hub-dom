@@ -32,7 +32,7 @@ export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, LinkStyles>
 
 export function Link (props: LinkProps) {
   const styles = useStyles(linkStyles, props.class)
-  const { onclick, href, scroll = 'before', scrollTo, replace, exact, transition, ...rest } = props
+  const { onclick, href, scroll = 'after', scrollTo, replace, exact, transition, ...rest } = props
 
   if (!href || (typeof href === 'string' && href.startsWith('http'))) {
     return (

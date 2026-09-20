@@ -8,7 +8,7 @@ export interface LinkToParams {
   replace?: boolean
 }
 
-export function linkTo (href: string, { scroll = 'before', scrollTo, replace }: LinkToParams = {}) {
+export function linkTo (href: string, { scroll = 'after', scrollTo, replace }: LinkToParams = {}) {
   const page = href?.startsWith('/')
   let url = href
 

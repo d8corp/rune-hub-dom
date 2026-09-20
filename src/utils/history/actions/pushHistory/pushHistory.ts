@@ -1,3 +1,4 @@
+import type { HistoryState } from '../../store/historyState'
 import { updateHistoryState } from '../../store/historyState'
 
 export function pushHistory (url: string): void {
@@ -5,12 +6,16 @@ export function pushHistory (url: string): void {
 
   if (url === currentUrl) return
 
+  const state = window.history.state as HistoryState | undefined
+
   window.history.pushState({
     steps: [
-      ...(window.history.state?.steps || []),
+      ...(state?.steps || []),
       { url },
     ],
-  }, '', url)
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
+  } satisfies HistoryState, '', url)
 
   updateHistoryState()
 }
