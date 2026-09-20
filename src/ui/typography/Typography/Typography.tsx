@@ -8,7 +8,7 @@ if (import.meta.env?.RD_THEME_TYPOGRAPHY) {
 }
 
 export const typographyStyles = {
-  root: import.meta.env.RD_THEME_TYPOGRAPHY,
+  root: import.meta.env.RD_THEME_TYPOGRAPHY__ROOT,
 }
 
 export type TypographyStyles = typeof typographyStyles
