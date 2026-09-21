@@ -17,7 +17,13 @@ export function startViewTransition (fn: () => void) {
     return
   }
 
-  if (ready) {
+  if (!ready) {
+    queue.push(fn)
+  } else if (document.activeViewTransition) {
+    document.activeViewTransition.finished.then(() => {
+      startViewTransition(fn)
+    })
+  } else {
     ready = false
     queue.push(fn)
 
@@ -28,7 +34,5 @@ export function startViewTransition (fn: () => void) {
       ready = true
       running = false
     })
-  } else {
-    queue.push(fn)
   }
 }

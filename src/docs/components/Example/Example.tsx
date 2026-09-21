@@ -15,7 +15,7 @@ export interface ExampleProps extends ChildrenProps {
 
 export function Example ({ description, children, views }: ExampleProps) {
   return (
-    <Flex padding={[32, 0]}>
+    <Flex padding={[32, 24]}>
       <Flex gap={32} align='center' vertical={slot(isLaptop)} class={styles.wrapper}>
         <Typography class={styles.description}>
           <Markdown text={description} />

@@ -37,9 +37,9 @@
   top: calc(40px + var(--header-size));
   max-height: calc(100vh - var(--header-size) - 80px);
   padding-top: 18px;
-  view-transition-name: side;
 
   @media (max-width: 801px) {
+    view-transition-name: side;
     position: fixed;
     top: var(--header-size);
     left: 0;
@@ -74,6 +74,10 @@
   overflow-y: auto;
   padding-bottom: 80px;
   padding-right: 8px;
+
+  @media (min-width: 802px) {
+    view-transition-name: side;
+  }
 }
 
 .group {

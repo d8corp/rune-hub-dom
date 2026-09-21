@@ -1,3 +1,7 @@
+::view-transition-group(devtools-button) {
+  z-index: 1;
+}
+
 .root {
   position: fixed;
   cursor: pointer;

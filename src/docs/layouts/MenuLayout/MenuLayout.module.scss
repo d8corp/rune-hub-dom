@@ -1,3 +1,7 @@
+::view-transition-group(menu-layout-buttons) {
+  z-index: 1;
+}
+
 .root {
   width: 100%;
   max-width: 1440px;
@@ -17,22 +21,20 @@
   position: sticky;
   bottom: 12px;
   margin: 0 auto;
-  background: var(--rd--alpha-color);
-  backdrop-filter: blur(8px);
+  background: var(--color-bg);
   padding: 8px;
   border-radius: 32px;
-  border: 1px solid var(--rd--secondary-border);
   z-index: 1;
+  view-transition-name: menu-layout-buttons;
+
+  &:empty {
+    padding: 0;
+  }
 }
 
 .button {
   font-size: 24px;
   padding: 12px;
-}
-
-.button,
-.asideButton,
-.sideButton {
   background: transparent;
   border: none;
   border-radius: 50%;
@@ -51,16 +53,4 @@
   &:active {
     background: var(--rd--secondary-border);
   }
-}
-
-.asideButton {
-  right: 8px;
-}
-
-.asideButton,
-.sideButton {
-  position: fixed;
-  top: calc(var(--header-size) + 24px);
-  padding: 5px;
-  z-index: 1;
 }

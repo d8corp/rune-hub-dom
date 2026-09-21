@@ -1,6 +1,6 @@
 import { slot } from 'rune-hub'
 
-import { Hide, Show, Try } from '../../../components'
+import { Show, Try } from '../../../components'
 import type { ChildrenProps } from '../../../types'
 import { Flex } from '../../../ui'
 import { Context } from '../../../utils'
@@ -10,6 +10,7 @@ import { AsideIcon, SideIcon } from '../../icons'
 import { ErrorPage } from '../../pages/system/ErrorPage'
 import {
   hasTitleLinks,
+  isLaptop,
   isMobile,
   isShowAside,
   isShowSide,
@@ -45,18 +46,15 @@ export function MenuLayout ({ children, menu }: MenuLayoutProps) {
           <Show when={slot(isShowAside)}>
             <Aside />
           </Show>
-          <Hide when={slot(isMobile)}>
-            <button class={styles.asideButton} onclick={toggleIsShowAside}>
-              <AsideIcon />
-            </button>
-          </Hide>
         </Show>
       </Flex>
-      <Show when={slot(isMobile)}>
+      <Show when={slot(isLaptop)}>
         <Flex gap={24} class={styles.buttons}>
-          <button class={styles.button} onclick={toggleIsShowSide}>
-            <SideIcon />
-          </button>
+          <Show when={slot(isMobile)}>
+            <button class={styles.button} onclick={toggleIsShowSide}>
+              <SideIcon />
+            </button>
+          </Show>
           <Show when={slot(hasTitleLinks)}>
             <button class={styles.button} onclick={toggleIsShowAside}>
               <AsideIcon />

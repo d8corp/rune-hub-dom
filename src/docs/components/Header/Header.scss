@@ -1,12 +1,18 @@
+::view-transition-group(header) {
+  z-index: 2;
+}
+
 .root {
-  --rd-position: sticky;
+  --rd-position: fixed;
 
   &:before {
     --rd-glow-padding: 0 0 1px;
   }
 
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background: var(--rd-color-bg-surface);
   height: 64px;
   z-index: 2;

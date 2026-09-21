@@ -47,14 +47,9 @@
   top: calc(40px + var(--header-size));
   max-height: calc(100vh - var(--header-size) - 80px);
   transition: opacity .2s, transform .2s;
-  view-transition-name: aside;
-
-  @starting-style {
-    opacity: 0;
-    transform: translateX(100px);
-  }
 
   @media (max-width: 1023px) {
+    view-transition-name: aside;
     position: fixed;
     top: var(--header-size);
     padding: 58px 24px 0;
@@ -86,6 +81,10 @@
 .scrollbar {
   overflow-y: auto;
   padding-bottom: 80px;
+
+  @media (min-width: 1024px) {
+    view-transition-name: aside;
+  }
 }
 
 .title {

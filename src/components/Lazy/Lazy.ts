@@ -3,7 +3,7 @@ import type { Rune, Slot } from 'rune-hub'
 import type { Component, JSXTypeProps, ObservableProp } from '../../types'
 import { JSXNode } from '../../types'
 import type { LazyResult } from '../../utils'
-import { SystemSlot, use } from '../../utils'
+import { SystemSlot, use, viewTransition } from '../../utils'
 
 export interface LazyProps<C extends Component = Component> {
   component: Rune<LazyResult<C> | C> | Slot<LazyResult<C> | C>
@@ -35,7 +35,10 @@ export function Lazy<C extends Component = Component> ({
 
       currentComponent.then((component) => {
         loadedComponents.set(currentComponent, typeof component === 'function' ? component : component.default)
-        loading.set(false)
+
+        viewTransition(() => {
+          loading.set(false)
+        })
       })
     }
   }

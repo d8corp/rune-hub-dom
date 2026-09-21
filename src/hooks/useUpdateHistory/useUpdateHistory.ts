@@ -3,17 +3,25 @@ import { useClear } from '../useClear'
 import { type HistoryState, startViewTransition, updateHistoryState } from '../../utils'
 
 export function useUpdateHistory () {
-  let listener = updateHistoryState
+  let listener: (e: any) => void = updateHistoryState
 
   if (import.meta.env?.RD_VIEW_TRANSITION === 'true') {
-    listener = () => startViewTransition(() => {
+    const update = () => {
       updateHistoryState()
       const state = history.state as HistoryState | undefined
 
       if (state) {
-        window.scrollTo({ top: state.scrollY, left: state.scrollX, behavior: 'instant' })
+        window.scrollTo({ top: state.scrollY, left: state.scrollX })
       }
-    })
+    }
+
+    listener = (e) => {
+      if (e.hasUAVisualTransition) {
+        update()
+      } else {
+        startViewTransition(update)
+      }
+    }
 
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual'
