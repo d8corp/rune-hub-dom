@@ -296,11 +296,13 @@ body {
 }
 
 .block {
+  --block-color: white;
+
   transition: $transition;
   background-clip: border-box;
   border: 1px solid $color-border;
   font-weight: bold;
-  color: white;
+  color: var(--block-color);
   gap: 8px;
 
   &:hover {
@@ -349,7 +351,6 @@ body {
   }
 
   &_primary {
-    color: white;
     background: $color-primary;
   }
 
@@ -358,12 +359,12 @@ body {
   }
 
   &_secondary {
-    color: $color-primary-hover;
+    --block-color: $color-primary-hover;
     background: $color-secondary;
     backdrop-filter: $filter-blur;
 
     &:hover {
-      color: light-dark($color-primary, white);
+      --block-color: light-dark($color-primary, white);
       background: $color-secondary-hover;
     }
   }
@@ -396,6 +397,25 @@ body {
   align-items: center;
   justify-content: center;
   display: inline-flex;
+
+  &_loading {
+    &, &:hover {
+      color: transparent;
+    }
+  }
+
+  &_spin {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--block-color);
+    font-size: 1.43em;
+  }
+
+  &_l > .button_spin {
+    font-size: 28px;
+  }
 
   &_accent {
     border: none;

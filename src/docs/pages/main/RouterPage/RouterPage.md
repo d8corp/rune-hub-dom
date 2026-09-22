@@ -320,5 +320,5 @@ export const Content = () => (
 ## What's Next?
 ---
 
-- Discover component [Link](/link)
+- Discover UI Component [Link](/ui/link)
 - Explore hooks [useParam](/use-param) and [useParams](/use-params)

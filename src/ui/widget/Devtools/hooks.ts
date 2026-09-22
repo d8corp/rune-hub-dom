@@ -121,7 +121,6 @@ export function useCreateDevtoolsStore (props: DevtoolsProps, devHub: Hub) {
   })
 
   hub.on('error', slot => {
-    console.log('ERROR', slot.err)
     errors.raw.set(slot, slot.err)
     update(errors)
   })
