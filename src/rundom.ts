@@ -2,7 +2,7 @@ import { type Rune, Slot } from 'rune-hub'
 
 import { catchContext, parentContext } from './constants'
 import { useClear } from './hooks'
-import type { HTMLProps, JSXElement, JSXSource } from './types'
+import type { HTMLProps, JSXElement, JSXSource, ObservableProp } from './types'
 import { JSXNode } from './types'
 import { append, Content, Context, observablePropToRuneProp, remove, SystemSlot, use } from './utils'
 
@@ -237,7 +237,11 @@ declare global {
       },
       path: {
         d?: string
-      }
+      },
+      circle: {
+        fill?: ObservableProp<string>
+        opacity?: ObservableProp<string>
+      },
     }
   }
 }

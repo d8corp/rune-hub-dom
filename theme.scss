@@ -131,6 +131,15 @@ $transition: all .2s;
   }
 }
 
+@keyframes spin {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -515,6 +524,60 @@ body {
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+@keyframes spin-rotate {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.6, 0.1, 0.1, 0.6);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-fade {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.6, 0.1, 0.1, 0.6);
+  }
+  50% {
+    opacity: var(--spin-dot-opacity);
+    animation-timing-function: cubic-bezier(0.6, 0.1, 0.1, 0.6);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.spin {
+  --spin-duration: 1.8s;
+  stroke: none;
+  fill: currentColor;
+
+  &_dot {
+    --spin-dot-size: max(calc(3px - 0.01em), 10%);
+    --spin-dot-to: 1.5625%;
+    --spin-dot-from: calc(var(--spin-dot-size) / 2);
+    --spin-dot-count: calc(sibling-count() - 2);
+    --spin-dot-index: calc(sibling-index() - 2);
+    --spin-dot-offset: calc((var(--spin-dot-from) - var(--spin-dot-to)) / var(--spin-dot-count));
+    --spin-dot-opacity: calc(1 - (var(--spin-dot-index) * (0.9 / var(--spin-dot-count))));
+    --spin-dot-delay-offset: calc(var(--spin-duration) / 18);
+
+    cx: 50%;
+    cy: var(--spin-dot-size);
+    transform-origin: 50%;
+    animation: spin-rotate var(--spin-duration) infinite both, spin-fade var(--spin-duration) infinite both;
+    r: calc(var(--spin-dot-from) - (var(--spin-dot-offset) * var(--spin-dot-index)));
+    animation-delay: calc(var(--spin-dot-index) * var(--spin-dot-delay-offset));
+
+    &:first-child {
+      r: var(--spin-dot-size);
+      --spin-dot-opacity: 0.22;
+      animation-delay: 0s, 0s;
     }
   }
 }

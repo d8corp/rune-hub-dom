@@ -14,43 +14,25 @@ const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset
 
 const componentRegex = new RegExp(`^\\.${RD_PREFIX}((?:[a-zA-Z0-9-]|(?!_))+)`)
 
-const fullClassList: Record<string, string> = {}
+// ---------- small helpers ----------
 
-const globalTransformer = selectorParser((selectors) => {
-  selectors.walkClasses((classNode) => {
-    let isInsideGlobal = false
-    let parent = classNode.parent
+const toEnvKey = (name: string): string => name.toUpperCase().replace(/-/g, '_')
 
-    while (parent) {
-      if (parent.type === 'pseudo' && parent.value === ':global') {
-        isInsideGlobal = true
-        break
-      }
+const escapeRegExp = (str: string): string => str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
 
-      parent = parent.parent
+/** True if `node` sits anywhere inside one of GLOBAL_AT_RULES (e.g. a `to {}` rule inside `@keyframes`). */
+function isInsideGlobalAtRule (node: postcss.Node): boolean {
+  let parent = node.parent
+
+  while (parent) {
+    if (parent.type === 'atrule' && GLOBAL_AT_RULES.includes((parent as postcss.AtRule).name)) {
+      return true
     }
 
-    if (!isInsideGlobal) {
-      const [component, element = 'root'] = classNode.value.split('_')
-      classNode.value = RD_PREFIX + classNode.value
-      fullClassList[`RD_THEME_${component.toUpperCase().replace(/-/g, '_')}__${element.toUpperCase().replace(/-/g, '_')}`] = classNode.value
-    }
-  })
+    parent = parent.parent
+  }
 
-  selectors.walkPseudos((pseudo) => {
-    if (pseudo.value === ':global') {
-      if (pseudo.nodes && pseudo.nodes.length > 0) {
-        const clones = pseudo.nodes.map(n => n.clone())
-        pseudo.replaceWith(...clones)
-      } else {
-        pseudo.remove()
-      }
-    }
-  })
-})
-
-function transformSelector (sel: string): string {
-  return globalTransformer.processSync(sel)
+  return false
 }
 
 async function minifyCss (css: string): Promise<string> {
@@ -59,19 +41,60 @@ async function minifyCss (css: string): Promise<string> {
   return result.css
 }
 
-async function generateEnvFromScss () {
-  console.log('Starting env from scss')
+// ---------- selector transform (:global unwrapping + rd_ prefixing) ----------
 
-  const compiledCss = sass.compile(INPUT_SCSS).css
-  const root = postcss.parse(compiledCss)
+function makeSelectorTransformer (fullClassList: Record<string, string>) {
+  return selectorParser((selectors) => {
+    selectors.walkClasses((classNode) => {
+      let insideGlobal = false
+      let parent = classNode.parent
 
-  root.walkRules(rule => {
-    rule.selectors = rule.selectors.map(transformSelector)
+      while (parent) {
+        if (parent.type === 'pseudo' && parent.value === ':global') {
+          insideGlobal = true
+          break
+        }
+
+        parent = parent.parent
+      }
+
+      if (!insideGlobal) {
+        const [component, element = 'root'] = classNode.value.split('_')
+
+        classNode.value = RD_PREFIX + classNode.value
+        fullClassList[`${ENV_PREFIX}${toEnvKey(component)}__${toEnvKey(element)}`] = classNode.value
+      }
+    })
+
+    selectors.walkPseudos((pseudo) => {
+      if (pseudo.value === ':global') {
+        if (pseudo.nodes && pseudo.nodes.length > 0) {
+          pseudo.replaceWith(...pseudo.nodes.map(n => n.clone()))
+        } else {
+          pseudo.remove()
+        }
+      }
+    })
   })
+}
 
+// ---------- split root into "global" nodes and per-component rules ----------
+
+interface SplitResult {
+  globalNodes: postcss.ChildNode[]
+  components: Set<string>
+}
+
+function splitGlobalAndComponentRules (root: postcss.Root): SplitResult {
   const globalNodes: postcss.ChildNode[] = []
+  const components = new Set<string>()
 
-  root.walk(node => {
+  root.walk((node) => {
+    // Already handled as part of a global at-rule clone above us — nothing left to do.
+    if (isInsideGlobalAtRule(node)) {
+      return
+    }
+
     if (node.type === 'atrule') {
       if (node.nodes && node.nodes.length === 0) {
         node.remove()
@@ -79,112 +102,129 @@ async function generateEnvFromScss () {
         globalNodes.push(node.clone())
         node.remove()
       }
-    } else if (node.type === 'rule') {
-      const globalSelectors = node.selectors.filter(sel => !componentRegex.test(sel))
-      const componentSelectors = node.selectors.filter(sel => componentRegex.test(sel))
 
-      if (globalSelectors.length > 0) {
-        let globalRule: postcss.ChildNode = node.clone()
-        globalRule.selectors = globalSelectors
-
-        let parent = node.parent
-
-        while (parent && parent.type === 'atrule') {
-          const wrapper = parent.clone()
-          wrapper.removeAll()
-          wrapper.append(globalRule)
-          globalRule = wrapper
-          parent = parent.parent
-        }
-
-        globalNodes.push(globalRule)
-      }
-
-      if (componentSelectors.length > 0) {
-        node.selectors = componentSelectors
-      } else {
-        node.remove()
-      }
+      return
     }
-  })
 
-  const components = new Set<string>()
+    if (node.type !== 'rule') {
+      return
+    }
 
-  root.walkRules(rule => {
-    rule.selectors.forEach(sel => {
+    const globalSelectors = node.selectors.filter(sel => !componentRegex.test(sel))
+    const componentSelectors = node.selectors.filter(sel => componentRegex.test(sel))
+
+    if (globalSelectors.length > 0) {
+      let globalRule: postcss.ChildNode = node.clone()
+      globalRule.selectors = globalSelectors
+
+      let parent = node.parent
+
+      while (parent && parent.type === 'atrule') {
+        const wrapper = parent.clone()
+        wrapper.removeAll()
+        wrapper.append(globalRule)
+        globalRule = wrapper
+        parent = parent.parent
+      }
+
+      globalNodes.push(globalRule)
+    }
+
+    if (componentSelectors.length === 0) {
+      node.remove()
+
+      return
+    }
+
+    node.selectors = componentSelectors
+
+    for (const sel of componentSelectors) {
       const match = sel.match(componentRegex)
 
       if (match) {
         components.add(match[1])
       }
-    })
+    }
   })
+
+  return { globalNodes, components }
+}
+
+// ---------- per-component CSS extraction ----------
+
+async function extractComponentCss (root: postcss.Root, component: string): Promise<string> {
+  const clonedRoot = root.clone()
+  const regex = new RegExp(`^\\.${RD_PREFIX}${escapeRegExp(component)}(?:_|[^a-zA-Z0-9_-]|$)`)
+
+  clonedRoot.walk((node) => {
+    if (node.type === 'rule') {
+      const validSelectors = node.selectors.filter(sel => regex.test(sel))
+
+      if (validSelectors.length === 0) {
+        node.remove()
+      } else {
+        node.selectors = validSelectors
+      }
+    } else if (node.type === 'atrule' && node.nodes && node.nodes.length === 0) {
+      node.remove()
+    }
+  })
+
+  return minifyCss(clonedRoot.toResult().css)
+}
+
+// ---------- .env read/write ----------
+
+function readExistingEnv (path: string): Record<string, string> {
+  return fs.existsSync(path) ? dotenv.parse(fs.readFileSync(path, 'utf-8')) : {}
+}
+
+/**
+ * Values always come from CSS, so they routinely contain `#`, spaces, `(`, `,` etc.
+ * Without quotes `#` would be read as the start of a comment by dotenv-style parsers
+ * (and by editors' syntax highlighting), silently truncating the value. So every
+ * value is always wrapped in double quotes here; `dotenv.parse` understands that
+ * quoting (and its `\n`/`\"` escapes) out of the box.
+ */
+function quoteEnvValue (value: string): string {
+  const escaped = value
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+
+  return `"${escaped}"`
+}
+
+function writeEnv (path: string, vars: Record<string, string>): void {
+  const content = Object.entries(vars)
+    .map(([key, value]) => `${key}=${quoteEnvValue(value)}`)
+    .join('\n')
+
+  fs.writeFileSync(path, content, 'utf-8')
+}
+
+// ---------- main ----------
+
+async function generateEnvFromScss () {
+  console.log('Starting env from scss')
+
+  const compiledCss = sass.compile(INPUT_SCSS).css
+  const root = postcss.parse(compiledCss)
+  const fullClassList: Record<string, string> = {}
+
+  root.walkRules(rule => {
+    rule.selectors = rule.selectors.map(sel => makeSelectorTransformer(fullClassList).processSync(sel))
+  })
+
+  const { globalNodes, components } = splitGlobalAndComponentRules(root)
 
   console.log(`Found components: ${components.size}`)
   console.log(`Found global nodes: ${globalNodes.length}`)
 
-  const envVariables: Record<string, string> = {}
-
-  const filterRegexCache = new Map<string, RegExp>()
-
-  for (const comp of components) {
-    const clonedRoot = root.clone()
-
-    clonedRoot.walk(node => {
-      if (node.type === 'rule') {
-        let regex = filterRegexCache.get(comp)
-
-        if (!regex) {
-          const escapedComp = comp.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
-          regex = new RegExp(`^\\.${RD_PREFIX}${escapedComp}(?:_|[^a-zA-Z0-9_-]|$)`)
-          filterRegexCache.set(comp, regex)
-        }
-
-        const validSelectors = node.selectors.filter(sel => regex.test(sel))
-
-        if (!validSelectors.length) {
-          node.remove()
-        } else {
-          node.selectors = validSelectors
-        }
-      } else if (node.type === 'atrule' && node.nodes && !node.nodes.length) {
-        node.remove()
-      }
-    })
-
-    const componentCss = await minifyCss(clonedRoot.toResult().css)
-
-    if (componentCss) {
-      const envKey = `${ENV_PREFIX}${comp.toUpperCase().replace(/-/g, '_')}`
-      envVariables[envKey] = `'${componentCss}'`
-    }
+  const nextVars: Record<string, string> = {
+    [`${ENV_PREFIX}_PREFIX`]: RD_PREFIX,
+    ...fullClassList,
   }
-
-  const existingContent = fs.existsSync(OUTPUT_ENV) ? fs.readFileSync(OUTPUT_ENV, 'utf-8') : ''
-  const existingVars = dotenv.parse(existingContent)
-  const finalVars = { ...existingVars }
-  const deletedKeys = new Set<string>()
-  let addedCount = 0
-  let updatedCount = 0
-
-  const setVar = (key: string, value: string) => {
-    if (deletedKeys.has(key)) {
-      deletedKeys.delete(key)
-      updatedCount++
-    } else {
-      addedCount++
-    }
-
-    finalVars[key] = value
-  }
-
-  for (const key in finalVars) {
-    if (key.startsWith('RD_THEME_')) {
-      deletedKeys.add(key)
-    }
-  }
-
-  setVar(`${ENV_PREFIX}_PREFIX`, RD_PREFIX)
 
   if (globalNodes.length > 0) {
     const globalRoot = postcss.root()
@@ -192,35 +232,45 @@ async function generateEnvFromScss () {
     const globalCss = await minifyCss(globalRoot.toResult().css)
 
     if (globalCss) {
-      setVar(`${ENV_PREFIX}_ROOT`, `'${globalCss}'`)
+      nextVars[`${ENV_PREFIX}_ROOT`] = globalCss
     }
   }
 
-  for (const [key, value] of Object.entries(envVariables)) {
-    setVar(key, value)
+  for (const component of components) {
+    const componentCss = await extractComponentCss(root, component)
+
+    if (componentCss) {
+      nextVars[`${ENV_PREFIX}${toEnvKey(component)}`] = componentCss
+    }
   }
 
-  for (const key in fullClassList) {
-    setVar(key, fullClassList[key])
+  const existingVars = readExistingEnv(OUTPUT_ENV)
+  const finalVars: Record<string, string> = { ...existingVars }
+
+  let addedCount = 0
+  let updatedCount = 0
+  let removedCount = 0
+
+  for (const key of Object.keys(existingVars)) {
+    if (key.startsWith(ENV_PREFIX) && !(key in nextVars) && !key.startsWith(`${ENV_PREFIX}_`)) {
+      delete finalVars[key]
+      removedCount++
+    }
   }
 
-  for (const key of deletedKeys) {
-    delete finalVars[key]
+  for (const [key, value] of Object.entries(nextVars)) {
+    if (!(key in existingVars)) {
+      addedCount++
+    } else if (existingVars[key] !== value) {
+      updatedCount++
+    }
+
+    finalVars[key] = value
   }
 
-  const finalContent = Object.entries(finalVars)
-    .map(([key, value]) => {
-      if (value.includes('\n')) {
-        return `${key}="${value.replace(/"/g, '\\"')}"`
-      }
+  writeEnv(OUTPUT_ENV, finalVars)
 
-      return `${key}=${value}`
-    })
-    .join('\n')
-
-  fs.writeFileSync(OUTPUT_ENV, finalContent, 'utf-8')
-
-  console.log(`✅ Successful updated ${OUTPUT_ENV} (Updated: ${updatedCount}, Added: ${addedCount}, Removed: ${deletedKeys.size})`)
+  console.log(`✅ Successful updated ${OUTPUT_ENV} (Updated: ${updatedCount}, Added: ${addedCount}, Removed: ${removedCount})`)
 }
 
 generateEnvFromScss().catch(console.error)
