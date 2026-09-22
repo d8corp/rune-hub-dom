@@ -11,7 +11,9 @@ export function useUpdateHistory () {
       const state = history.state as HistoryState | undefined
 
       if (state) {
-        window.scrollTo({ top: state.scrollY, left: state.scrollX })
+        document.activeViewTransition?.ready.then(() => {
+          window.scrollTo({ top: state.scrollY, left: state.scrollX })
+        })
       }
     }
 
