@@ -179,25 +179,9 @@ function readExistingEnv (path: string): Record<string, string> {
   return fs.existsSync(path) ? dotenv.parse(fs.readFileSync(path, 'utf-8')) : {}
 }
 
-/**
- * Values always come from CSS, so they routinely contain `#`, spaces, `(`, `,` etc.
- * Without quotes `#` would be read as the start of a comment by dotenv-style parsers
- * (and by editors' syntax highlighting), silently truncating the value. So every
- * value is always wrapped in double quotes here; `dotenv.parse` understands that
- * quoting (and its `\n`/`\"` escapes) out of the box.
- */
-function quoteEnvValue (value: string): string {
-  const escaped = value
-    .replace(/\\/g, '\\\\')
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, '\\n')
-
-  return `"${escaped}"`
-}
-
 function writeEnv (path: string, vars: Record<string, string>): void {
   const content = Object.entries(vars)
-    .map(([key, value]) => `${key}=${quoteEnvValue(value)}`)
+    .map(([key, value]) => `${key}='${value.replace(/'/g, "\\'")}'`)
     .join('\n')
 
   fs.writeFileSync(path, content, 'utf-8')
