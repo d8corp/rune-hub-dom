@@ -359,12 +359,12 @@ body {
   }
 
   &_secondary {
-    --block-color: $color-primary-hover;
+    --block-color: #{$color-primary-hover};
     background: $color-secondary;
     backdrop-filter: $filter-blur;
 
     &:hover {
-      --block-color: light-dark($color-primary, white);
+      --block-color: #{light-dark($color-primary, white)};
       background: $color-secondary-hover;
     }
   }
