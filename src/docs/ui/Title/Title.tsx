@@ -1,10 +1,11 @@
+import { classes } from 'html-classes'
 import { raw, Slot, update } from 'rune-hub'
 
 import { Show } from '../../../components'
+import type { HTMLStyleProps } from '../../../hooks'
 import { useClear, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import type { FlexProps, FlexStyles } from '../../../ui'
-import { Flex, Link } from '../../../ui'
+import { Link } from '../../../ui'
 import { use } from '../../../utils'
 import { LinkIcon } from '../../icons'
 import type { TitleLink } from '../../state'
@@ -33,7 +34,7 @@ const updateTitleLinks = () => {
   })
 }
 
-export interface TitleProps extends FlexProps<'h1', typeof $styles & FlexStyles> {
+export interface TitleProps extends HTMLStyleProps<HTMLHeadingElement, typeof $styles> {
   h?: 1 | 2 | 3 | 4 | 5 | 6
   title?: string
   subtitle?: ObservableProp<string>
@@ -69,20 +70,20 @@ export function Title ({
     updateTitleLinks()
   }
 
+  const H = `h${h}`
+
   return (
-    <Flex
-      element={`h${h}`}
-      wrap
+    <H
       {...props}
       id={id}
       style={{
         'view-timeline': h === 1 ? id && getAsideTimeline(id) : '',
         ...props.style,
       }}
-      class={() => [
+      class={() => classes([
         styles.root,
         title && link && styles.withLink,
-      ]}
+      ])}
     >
       {children}
       {title && link && (
@@ -93,6 +94,6 @@ export function Title ({
           {subtitle}
         </div>
       </Show>
-    </Flex>
+    </H>
   )
 }
