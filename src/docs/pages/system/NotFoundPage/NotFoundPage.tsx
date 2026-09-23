@@ -6,7 +6,7 @@ export default function NotFoundPage () {
   return (
     <Page justify='center' align='center' class={styles.root}>
       <Typography>
-        <Title class={styles.h1}>404</Title>
+        <Title justify='center' class={styles.h1}>404</Title>
         <h2>Page Not Found</h2>
         <p>
           The page you're looking for doesn't exist.
