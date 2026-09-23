@@ -6,7 +6,7 @@ import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
-import type { FlexElement, FlexProps } from '../../../ui'
+import type { FlexElement, FlexProps, FlexStyles } from '../../../ui'
 import { Button, Flex, Typography } from '../../../ui'
 import { inject, injectAll, Ref } from '../../../utils'
 import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
@@ -20,7 +20,7 @@ const icons = {
   json: <JsonIcon />,
 } satisfies Record<string, JSXElement>
 
-export type HighlightProps<T extends FlexElement = 'div'> = FlexProps<T, typeof $styles> & {
+export type HighlightProps<T extends FlexElement = 'div'> = FlexProps<T, typeof $styles & FlexStyles> & {
   code: string
   lang: string
   glow?: ObservableProp<boolean>

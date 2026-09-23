@@ -3,7 +3,8 @@ import { raw, Slot, update } from 'rune-hub'
 import { Show } from '../../../components'
 import { useClear, useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { Flex, type FlexProps, Link } from '../../../ui'
+import type { FlexProps, FlexStyles } from '../../../ui'
+import { Flex, Link } from '../../../ui'
 import { use } from '../../../utils'
 import { LinkIcon } from '../../icons'
 import type { TitleLink } from '../../state'
@@ -32,7 +33,7 @@ const updateTitleLinks = () => {
   })
 }
 
-export interface TitleProps extends FlexProps<'h1', typeof $styles> {
+export interface TitleProps extends FlexProps<'h1', typeof $styles & FlexStyles> {
   h?: 1 | 2 | 3 | 4 | 5 | 6
   title?: string
   subtitle?: ObservableProp<string>

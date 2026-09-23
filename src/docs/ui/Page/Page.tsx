@@ -1,12 +1,12 @@
 import { useEffect, useStyles } from '../../../hooks'
-import type { FlexProps } from '../../../ui'
+import type { FlexProps, FlexStyles } from '../../../ui'
 import { Flex } from '../../../ui'
 import { Context } from '../../../utils'
 import type { PageUpdatedData } from '../../hooks'
 import { pageUpdated } from '../../hooks'
 import $styles from './Page.module.scss'
 
-export type PageProps = FlexProps<'div', typeof $styles>
+export type PageProps = FlexProps<'div', typeof $styles & FlexStyles>
 
 export function Page ({ ...props }: PageProps) {
   const styles = useStyles($styles, props.class)
