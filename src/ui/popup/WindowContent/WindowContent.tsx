@@ -1,8 +1,8 @@
-import { useStyles } from '../../../../hooks'
-import type { Merge } from '../../../../types'
-import { addCSS } from '../../../../utils'
-import type { FlexElement, FlexProps } from '../../../primitive'
-import { Flex } from '../../../primitive'
+import { useStyles } from '../../../hooks'
+import type { Merge } from '../../../types'
+import { addCSS } from '../../../utils'
+import type { FlexElement, FlexProps } from '../../primitive'
+import { Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_WINDOW_CONTENT) {
   addCSS(import.meta.env.RD_THEME_WINDOW_CONTENT, 'window-content')

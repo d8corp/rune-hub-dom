@@ -12,6 +12,7 @@ export type Parent = DomElement | Content | DocumentFragment
 export type Child = Parent | Text
 export type RuneProp<T = unknown> = T | Rune<T>
 export type ObservableProp<T = unknown> = RuneProp<T> | Slot<T>
+export type UITransformer<P extends Props> = (Component: Component<P>) => Component<P>
 
 export interface JSXSource {
   fileName: string

@@ -30,6 +30,9 @@ $size-infinite: 9999px;
 // animations
 $transition: all .2s;
 
+// breakpoints
+$laptop: 1024px;
+
 // base
 
 * {
@@ -306,9 +309,9 @@ body {
   gap: 8px;
 
   &:hover {
-    --rd-glow-bg: $color-border-hover;
+    --block-color: white;
+    --rd-glow-bg: #{$color-border-hover};
     border-color: $color-border-hover;
-    color: white;
   }
 
   &_l {
@@ -364,7 +367,7 @@ body {
     backdrop-filter: $filter-blur;
 
     &:hover {
-      --block-color: #{light-dark($color-primary, white)};
+      color: light-dark(#7C3AED, white);
       background: $color-secondary-hover;
     }
   }
@@ -545,6 +548,169 @@ body {
     &:focus {
       outline: none;
     }
+  }
+}
+
+::view-transition-group(messages) {
+  z-index: 3;
+}
+
+.messages {
+  font-size: 12px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 30%;
+  width: 40%;
+  height: 1px;
+  top: 4px;
+  perspective: 250px;
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 3;
+  view-transition-name: messages;
+
+  @media (max-width: $laptop) {
+    right: 14px;
+    width: calc(100% - 28px);
+  }
+
+  &:hover .message_timeout:before {
+    animation-play-state: paused;
+  }
+}
+
+@property --message-progress {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes message-time {
+  from {
+    --message-progress: 0deg;
+  }
+  to {
+    --message-progress: 360deg;
+  }
+}
+
+@keyframes show-message {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes hide-message {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+::view-transition-group(.message_1) {
+  z-index: 3;
+}
+
+::view-transition-group(.message_2) {
+  z-index: 2;
+}
+
+::view-transition-group(.message_3) {
+  z-index: 1;
+}
+
+::view-transition-old(.message):only-child {
+  animation: hide-message .2s ease both;
+}
+
+::view-transition-new(.message):only-child {
+  animation: show-message .2s ease both;
+}
+
+.message {
+  view-transition-class: rd_message rd_message_1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  width: auto;
+  pointer-events: all;
+  top: 10px;
+  position: absolute;
+  padding: 6px 20px;
+  opacity: 1;
+  cursor: pointer;
+  border: 1px solid #0003;
+  z-index: 3;
+  border-radius: 24px;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+
+  & ~ & {
+    pointer-events: none;
+  }
+
+  & + .message {
+    z-index: 2;
+    top: 5px;
+    transform: translateZ(-100px);
+    view-transition-class: rd_message rd_message_2;
+
+    & + .message {
+      top: 0;
+      z-index: 1;
+      transform: translateZ(-200px);
+      view-transition-class: rd_message rd_message_3;
+
+      & ~ .message {
+        display: none;
+      }
+    }
+  }
+
+  &_success {
+    background-color: $color-success;
+  }
+
+  &_error {
+    background-color: $color-danger;
+  }
+
+  &_warning {
+    background-color: $color-warning;
+  }
+
+  &_info {
+    background-color: $color-primary;
+  }
+
+  &_timeout {
+    padding-left: 12px;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: conic-gradient(#fff var(--message-progress), #fff4 0);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+
+    }
+  }
+
+  &:first-child:before {
+    animation: message-time linear both;
+    animation-duration: var(--rd-message-timeout);
   }
 }
 

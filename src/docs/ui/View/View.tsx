@@ -2,7 +2,7 @@ import { BaseMarkdown } from '../Markdown'
 
 import type { FlexProps } from '../../../ui'
 import { Dot, Typography, Window, WindowHeader } from '../../../ui'
-import { WindowContent } from '../../../ui/popup/Window/WindowContent'
+import { WindowContent } from '../../../ui/popup/WindowContent'
 import { inject } from '../../../utils'
 import styles from '././View.module.scss'
 

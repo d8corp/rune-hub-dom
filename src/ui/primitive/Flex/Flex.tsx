@@ -3,7 +3,7 @@ import { Link } from '../Link'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { ObservableProp } from '../../../types'
+import type { HTMLStyleProp, ObservableProp } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_FLEX) {
@@ -50,6 +50,7 @@ export interface BaseFlexProps {
 
 export type FlexProps<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> = HTMLStyleProps<HTMLElementTagNameMap[T], S> & {
   element?: T
+  style?: HTMLStyleProp
 } & BaseFlexProps & (T extends 'a' ? LinkProps : object)
 
 export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> ({

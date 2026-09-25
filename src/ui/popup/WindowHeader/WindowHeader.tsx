@@ -1,11 +1,11 @@
-import { Show } from '../../../../components'
-import { CloseIcon } from '../../../../docs/icons'
-import { useStyles } from '../../../../hooks'
-import type { Merge } from '../../../../types'
-import { addCSS } from '../../../../utils'
-import { Dot } from '../../../inline'
-import type { FlexElement, FlexProps } from '../../../primitive'
-import { Flex } from '../../../primitive'
+import { Show } from '../../../components'
+import { CloseIcon } from '../../../docs/icons'
+import { useStyles } from '../../../hooks'
+import type { Merge } from '../../../types'
+import { addCSS } from '../../../utils'
+import { Dot } from '../../inline'
+import type { FlexElement, FlexProps } from '../../primitive'
+import { Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_WINDOW_HEADER) {
   addCSS(import.meta.env.RD_THEME_WINDOW_HEADER, 'window-header')

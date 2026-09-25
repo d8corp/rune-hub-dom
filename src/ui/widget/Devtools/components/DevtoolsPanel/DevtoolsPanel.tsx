@@ -13,7 +13,7 @@ import { Button } from '../../../../block'
 import { Divider, Dot } from '../../../../inline'
 import { Input } from '../../../../interaction'
 import { Window, WindowHeader } from '../../../../popup'
-import { WindowContent } from '../../../../popup/Window/WindowContent'
+import { WindowContent } from '../../../../popup/WindowContent'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsPanel.module.scss'
 

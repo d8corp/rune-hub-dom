@@ -1,12 +1,11 @@
+import { Show } from '@/components'
+import { useStyles } from '@/hooks'
+import type { Merge, ObservableProp } from '@/types'
+import type { BlockProps, FlexElement } from '@/ui/primitive'
+import { Block, Spin } from '@/ui/primitive'
+import { addCSS, inject, injectAll, SystemSlot } from '@/utils'
 import { classes } from 'html-classes'
 import { Slot } from 'rune-hub'
-
-import { Show } from '../../../components'
-import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp } from '../../../types'
-import { addCSS, inject, injectAll, SystemSlot } from '../../../utils'
-import type { BlockProps, FlexElement } from '../../primitive'
-import { Block, Spin } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_BUTTON) {
   addCSS(import.meta.env.RD_THEME_BUTTON, 'button')

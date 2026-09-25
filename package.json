@@ -2,7 +2,6 @@
   "name": "@rune-hub/dom",
   "version": "0.0.1",
   "description": "Tools to build Web Site",
-  "main": "index.js",
   "module": "index.mjs",
   "esnext": "index.mjs",
   "jsnext:main": "index.mjs",
@@ -10,8 +9,7 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "import": "./index.mjs"
     },
     "./jsx-runtime": {
       "types": "./jsx-runtime.d.ts",
@@ -69,7 +67,7 @@
     "eslint-plugin-jest": "^29.16.0",
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
-    "innetjs": "^4.0.0-beta.6",
+    "innetjs": "^4.0.0-beta.7",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "jest-util": "^29.5.0",
