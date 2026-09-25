@@ -1,7 +1,10 @@
-import { useStyles } from '../../../hooks'
-import { addCSS } from '../../../utils'
-import type { BlockProps, BlockStyles, FlexElement } from '../../primitive'
-import { Block } from '../../primitive'
+import { useStyles } from '@/hooks'
+import type { BlockProps, BlockStyles, FlexElement } from '@/ui/primitive'
+import { Block } from '@/ui/primitive'
+import { addCSS } from '@/utils'
+
+const transform = import.meta.env?.RD_THEME__TRANSFORM__FIELD &&
+  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__FIELD).default
 
 if (import.meta.env?.RD_THEME_FIELD) {
   addCSS(import.meta.env.RD_THEME_FIELD, 'field')
@@ -27,10 +30,14 @@ export type FieldStyles = typeof fieldStyles
 
 export type FieldProps<T extends FlexElement = 'label', S extends FieldStyles = FieldStyles> = BlockProps<T, S>
 
-export function Field<T extends keyof HTMLElementTagNameMap = 'label', S extends FieldStyles = FieldStyles> (
+function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S extends FieldStyles = FieldStyles> (
   props: FieldProps<T, S>,
 ) {
   const styles = useStyles(fieldStyles, props.class)
 
   return <Block element='label' {...props} class={styles} />
 }
+
+export const Field = transform
+  ? transform(FieldComponent) as typeof FieldComponent
+  : FieldComponent

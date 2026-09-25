@@ -1,7 +1,10 @@
-import type { HTMLStyleProps } from '../../../hooks'
-import { useStyles } from '../../../hooks'
-import type { ObservableProp } from '../../../types'
-import { addCSS, inject } from '../../../utils'
+import type { HTMLStyleProps } from '@/hooks'
+import { useStyles } from '@/hooks'
+import type { ObservableProp } from '@/types'
+import { addCSS, inject } from '@/utils'
+
+const transform = import.meta.env?.RD_THEME__TRANSFORM__TYPOGRAPHY &&
+  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__TYPOGRAPHY).default
 
 if (import.meta.env?.RD_THEME_TYPOGRAPHY) {
   addCSS(import.meta.env.RD_THEME_TYPOGRAPHY, 'typography')
@@ -17,7 +20,7 @@ export interface TypographyProps extends HTMLStyleProps <HTMLDivElement, Typogra
   flex?: ObservableProp<number | boolean>
 }
 
-export function Typography ({ flex, style, ...props }: TypographyProps) {
+function TypographyComponent ({ flex, style, ...props }: TypographyProps) {
   const styles = useStyles(typographyStyles, props.class)
 
   return (
@@ -31,3 +34,7 @@ export function Typography ({ flex, style, ...props }: TypographyProps) {
     />
   )
 }
+
+export const Typography = transform
+  ? transform(TypographyComponent) as typeof TypographyComponent
+  : TypographyComponent

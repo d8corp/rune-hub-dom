@@ -1,13 +1,16 @@
 import { Slot } from 'rune-hub'
 import SyncTimer from 'sync-timer'
 
-import { Show } from '../../../components'
-import { CloseIcon } from '../../../docs/icons'
-import { useClear, useDebounceSlotEvent, useStyles } from '../../../hooks'
-import type { JSXElement, Merge, ObservableProp } from '../../../types'
-import { addCSS, getSlotEvent, inject, Ref } from '../../../utils'
-import type { FieldProps } from '../../block'
-import { Field } from '../../block'
+import { Show } from '@/components'
+import { CloseIcon } from '@/docs/icons'
+import { useClear, useDebounceSlotEvent, useStyles } from '@/hooks'
+import type { JSXElement, Merge, ObservableProp } from '@/types'
+import type { FieldProps } from '@/ui/block'
+import { Field } from '@/ui/block'
+import { addCSS, getSlotEvent, inject, Ref } from '@/utils'
+
+const transform = import.meta.env?.RD_THEME__TRANSFORM__INPUT &&
+  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__INPUT).default
 
 if (import.meta.env?.RD_THEME_INPUT) {
   addCSS(import.meta.env.RD_THEME_INPUT, 'input')
@@ -49,7 +52,7 @@ export type InputProps<T extends string = string, S extends InputStyles = InputS
   onChange?: (newValue: string) => void
 }>
 
-export function Input<T extends string = '', S extends InputStyles = InputStyles> ({
+function InputComponent<T extends string = '', S extends InputStyles = InputStyles> ({
   value = new Slot<T>(() => '' as T),
   inputRef,
   before,
@@ -105,3 +108,7 @@ export function Input<T extends string = '', S extends InputStyles = InputStyles
     </Field>
   )
 }
+
+export const Input = transform
+  ? transform(InputComponent) as typeof InputComponent
+  : InputComponent
