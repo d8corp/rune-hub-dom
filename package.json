@@ -2,6 +2,8 @@
   "name": "@rune-hub/dom",
   "version": "0.0.1",
   "description": "Tools to build Web Site",
+  "type": "module",
+  "main": "index.mjs",
   "module": "index.mjs",
   "esnext": "index.mjs",
   "jsnext:main": "index.mjs",

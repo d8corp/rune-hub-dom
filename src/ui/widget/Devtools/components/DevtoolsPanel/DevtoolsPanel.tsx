@@ -7,7 +7,7 @@ import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 import { For, Show, useHidden } from '../../../../../components'
 import { useShow, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
-import { Ref } from '../../../../../utils'
+import { Ref, viewTransition } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { SearchIcon } from '../../../../icons'
 import { Divider, Dot } from '../../../../inline'
@@ -53,9 +53,15 @@ export function DevtoolsPanel () {
     navigator.clipboard.writeText(JSON.stringify(result, null, 2))
   }
 
+  const close = () => {
+    viewTransition(() => {
+      show.set(false)
+    })
+  }
+
   return (
     <Window data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
-      <WindowHeader onClose={() => show.set(false)}>
+      <WindowHeader onClose={close}>
         <Dot hoverable color='warning' />
         <Dot hoverable color='success' />
       </WindowHeader>

@@ -1,9 +1,9 @@
-import type { CodeProps, UITransformer } from '../..'
-import { message, viewTransition } from '../..'
+import type { CodeProps } from '../..'
+import { CodeComponent, message, viewTransition } from '../..'
 
-const transformer: UITransformer<CodeProps> = (Code) => (props) => {
+export function Code (props: CodeProps) {
   return (
-    <Code
+    <CodeComponent
       {...props}
       onclick={(e: PointerEvent) => {
         navigator.clipboard.writeText((e.target as HTMLDivElement).innerText)
@@ -18,5 +18,3 @@ const transformer: UITransformer<CodeProps> = (Code) => (props) => {
     />
   )
 }
-
-export default transformer
