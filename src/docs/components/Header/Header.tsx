@@ -1,8 +1,7 @@
 import { get, slot } from 'rune-hub'
 
 import { Hide } from '../../../components'
-import { Button, Flex, Link } from '../../../ui'
-import { MonitorIcon, MoonIcon, SunIcon } from '../../icons'
+import { Button, Flex, Link, MonitorIcon, MoonIcon, SunIcon } from '../../../ui'
 import { isSmallMobile, theme, toggleTheme } from '../../state'
 import styles from './Header.scss'
 

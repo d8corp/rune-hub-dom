@@ -1,4 +1,5 @@
 export * from './block'
+export * from './icons'
 export * from './inline'
 export * from './interaction'
 export * from './popup'

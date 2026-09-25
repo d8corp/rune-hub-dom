@@ -2,11 +2,10 @@ import { slot } from 'rune-hub'
 
 import { Show, Try } from '../../../components'
 import type { ChildrenProps } from '../../../types'
-import { Flex } from '../../../ui'
+import { AsideIcon, Flex, SideIcon } from '../../../ui'
 import { Context } from '../../../utils'
 import { Aside, Side } from '../../components'
 import { menuContext } from '../../constants'
-import { AsideIcon, SideIcon } from '../../icons'
 import { ErrorPage } from '../../pages/system/ErrorPage'
 import {
   hasTitleLinks,

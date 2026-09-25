@@ -1,8 +1,8 @@
-import type { BaseIconProps } from '../../../docs/icons/BaseIcon'
-import { BaseIcon } from '../../../docs/icons/BaseIcon'
 import type { StyledProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import { addCSS } from '../../../utils'
+import type { BaseIconProps } from '../../icons'
+import { BaseIcon } from '../../icons'
 
 if (import.meta.env?.RD_THEME_SPIN) {
   addCSS(import.meta.env.RD_THEME_SPIN, 'spin')

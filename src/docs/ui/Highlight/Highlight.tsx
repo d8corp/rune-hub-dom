@@ -7,9 +7,8 @@ import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
 import type { FlexElement, FlexProps, FlexStyles } from '../../../ui'
-import { Button, Flex, Typography } from '../../../ui'
+import { Button, CopyIcon, Flex, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon, Typography } from '../../../ui'
 import { inject, injectAll, Ref } from '../../../utils'
-import { CopyIcon, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon } from '../../icons'
 import $styles from './Highlight.module.scss'
 
 const icons = {

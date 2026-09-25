@@ -2,12 +2,12 @@ import { Slot } from 'rune-hub'
 import SyncTimer from 'sync-timer'
 
 import { Show } from '../../../components'
-import { CloseIcon } from '../../../docs/icons'
 import { useClear, useDebounceSlotEvent, useStyles } from '../../../hooks'
 import type { JSXElement, Merge, ObservableProp } from '../../../types'
 import { addCSS, getSlotEvent, inject, Ref } from '../../../utils'
 import type { FieldProps } from '../../block'
 import { Field } from '../../block'
+import { CloseIcon } from '../../icons'
 
 const transform = import.meta.env?.RD_THEME__TRANSFORM__INPUT &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__INPUT).default

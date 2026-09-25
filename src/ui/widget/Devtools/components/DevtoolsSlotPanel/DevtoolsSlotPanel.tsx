@@ -1,9 +1,9 @@
 import { SlotStatus } from '../SlotStatus'
 
 import { Show } from '../../../../../components'
-import { CloseIcon } from '../../../../../docs/icons'
 import { stringify, SystemSlot } from '../../../../../utils'
 import { Button } from '../../../../block'
+import { CloseIcon } from '../../../../icons'
 import { Code } from '../../../../inline'
 import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
