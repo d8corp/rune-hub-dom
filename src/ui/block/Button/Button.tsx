@@ -7,6 +7,9 @@ import { addCSS, inject, injectAll, SystemSlot } from '@/utils'
 import { classes } from 'html-classes'
 import { Slot } from 'rune-hub'
 
+const transform = import.meta.env?.RD_THEME__TRANSFORM__BUTTOM &&
+  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__BUTTOM).default
+
 if (import.meta.env?.RD_THEME_BUTTON) {
   addCSS(import.meta.env.RD_THEME_BUTTON, 'button')
 }
@@ -36,7 +39,7 @@ export type ButtonProps<T extends FlexElement = 'button', S extends ButtonStyles
   onclick?: (e: PointerEvent) => void | Promise<void>;
 }>
 
-export function Button<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> ({
+function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> ({
   loading = new SystemSlot(() => false),
   onclick,
   children,
@@ -62,12 +65,7 @@ export function Button<T extends keyof HTMLElementTagNameMap = 'button', S exten
   }
 
   return (
-    <Block
-      element='button'
-      {...(props as BlockProps<T, S>)}
-      class={{ ...styles, root }}
-      onclick={handleClick}
-    >
+    <Block element='button' {...(props as BlockProps<T, S>)} class={{ ...styles, root }} onclick={handleClick}>
       {children}
       <Show when={loading}>
         <Spin class={styles.spin} />
@@ -75,3 +73,7 @@ export function Button<T extends keyof HTMLElementTagNameMap = 'button', S exten
     </Block>
   )
 }
+
+export const Button = transform
+  ? transform(ButtonComponent) as typeof ButtonComponent
+  : ButtonComponent

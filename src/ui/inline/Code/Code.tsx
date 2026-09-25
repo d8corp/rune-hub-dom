@@ -3,7 +3,7 @@ import { useStyles } from '../../../hooks'
 import { addCSS } from '../../../utils'
 
 const transform = import.meta.env?.RD_THEME__TRANSFORM__CODE &&
-  import.meta.require?.(import.meta.env?.RD_THEME__TRANSFORM__CODE).default
+  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__CODE).default
 
 if (import.meta.env?.RD_THEME_CODE) {
   addCSS(import.meta.env.RD_THEME_CODE, 'code')
@@ -23,4 +23,6 @@ function CodeComponent (props: CodeProps) {
   return <code {...props} class={styles.root} />
 }
 
-export const Code = transform ? transform(CodeComponent) : CodeComponent
+export const Code = transform
+  ? transform(CodeComponent) as typeof CodeComponent
+  : CodeComponent

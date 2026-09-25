@@ -1,8 +1,8 @@
-import { useStyles } from '../../../hooks'
-import type { Merge } from '../../../types'
-import { addCSS, inject } from '../../../utils'
-import type { FlexElement, FlexProps } from '../../primitive'
-import { Flex } from '../../primitive'
+import { useStyles } from '@/hooks'
+import type { Merge } from '@/types'
+import type { FlexElement, FlexProps } from '@/ui/primitive'
+import { Flex } from '@/ui/primitive'
+import { addCSS, inject } from '@/utils'
 
 export type MessageType = 'success' | 'error' | 'warning' | 'info'
 
@@ -45,4 +45,6 @@ function MessageComponent<T extends keyof HTMLElementTagNameMap = 'div', S exten
   return <Flex<T, S> {...props as FlexProps<T, S>} class={root} />
 }
 
-export const Message = transform ? transform(MessageComponent) : MessageComponent
+export const Message = transform
+  ? transform(MessageComponent) as typeof MessageComponent
+  : MessageComponent

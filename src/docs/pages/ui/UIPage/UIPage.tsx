@@ -15,7 +15,7 @@ export default function UIPage () {
     <Page class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
-          <Title justify='center' title='Rundom UI' class={styles.title}>
+          <Title title='Rundom UI' class={styles.title}>
             Rundom UI
           </Title>
           <p class={styles.description}>
