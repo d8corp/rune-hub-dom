@@ -1,5 +1,4 @@
-import type { UITransformer } from '@/types'
-import type { MessageProps } from '@/ui'
+import type { MessageProps, UITransformer } from '../..'
 
 const transformer: UITransformer<MessageProps> = (Message) => (props) => {
   return (

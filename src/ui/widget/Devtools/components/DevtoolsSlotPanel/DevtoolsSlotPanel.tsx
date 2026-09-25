@@ -1,12 +1,11 @@
-import { Show } from '@/components'
-import { CloseIcon } from '@/docs/icons'
-import { Button } from '@/ui/block'
-import { Code } from '@/ui/inline'
-import { Flex } from '@/ui/primitive'
-import { stringify, SystemSlot } from '@/utils'
-
 import { SlotStatus } from '../SlotStatus'
 
+import { Show } from '../../../../../components'
+import { CloseIcon } from '../../../../../docs/icons'
+import { stringify, SystemSlot } from '../../../../../utils'
+import { Button } from '../../../../block'
+import { Code } from '../../../../inline'
+import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 import styles from './DevtoolsSlotPanel.module.scss'
 

@@ -1,7 +1,7 @@
-import { useStyles } from '@/hooks'
-import type { BlockProps, BlockStyles, FlexElement } from '@/ui/primitive'
-import { Block } from '@/ui/primitive'
-import { addCSS } from '@/utils'
+import { useStyles } from '../../../hooks'
+import { addCSS } from '../../../utils'
+import type { BlockProps, BlockStyles, FlexElement } from '../../primitive'
+import { Block } from '../../primitive'
 
 const transform = import.meta.env?.RD_THEME__TRANSFORM__FIELD &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__FIELD).default

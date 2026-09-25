@@ -1,7 +1,5 @@
-import { message } from '@/helpers'
-import type { UITransformer } from '@/types'
-import type { CodeProps } from '@/ui'
-import { viewTransition } from '@/utils'
+import type { CodeProps, UITransformer } from '../..'
+import { message, viewTransition } from '../..'
 
 const transformer: UITransformer<CodeProps> = (Code) => (props) => {
   return (

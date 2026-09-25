@@ -1,12 +1,12 @@
 import { classes } from 'html-classes'
 import { Slot } from 'rune-hub'
 
-import { Show } from '@/components'
-import { useStyles } from '@/hooks'
-import type { Merge, ObservableProp } from '@/types'
-import type { BlockProps, FlexElement } from '@/ui/primitive'
-import { Block, Spin } from '@/ui/primitive'
-import { addCSS, inject, injectAll, SystemSlot } from '@/utils'
+import { Show } from '../../../components'
+import { useStyles } from '../../../hooks'
+import type { Merge, ObservableProp } from '../../../types'
+import { addCSS, inject, injectAll, SystemSlot } from '../../../utils'
+import type { BlockProps, FlexElement } from '../../primitive'
+import { Block, Spin } from '../../primitive'
 
 const transform = import.meta.env?.RD_THEME__TRANSFORM__BUTTOM &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__BUTTOM).default

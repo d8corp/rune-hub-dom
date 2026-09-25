@@ -1,7 +1,7 @@
-import type { HTMLStyleProps } from '@/hooks'
-import { useStyles } from '@/hooks'
-import type { ObservableProp } from '@/types'
-import { addCSS, inject } from '@/utils'
+import type { HTMLStyleProps } from '../../../hooks'
+import { useStyles } from '../../../hooks'
+import type { ObservableProp } from '../../../types'
+import { addCSS, inject } from '../../../utils'
 
 const transform = import.meta.env?.RD_THEME__TRANSFORM__TYPOGRAPHY &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__TYPOGRAPHY).default
