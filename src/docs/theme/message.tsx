@@ -1,8 +1,9 @@
-import type { MessageProps, UITransformer } from '../..'
+import type { MessageProps } from '../..'
+import { MessageComponent } from '../..'
 
-const transformer: UITransformer<MessageProps> = (Message) => (props) => {
+export function Message (props: MessageProps) {
   return (
-    <Message
+    <MessageComponent
       {...props}
       style={{
         ...(props.style as any),
@@ -12,5 +13,3 @@ const transformer: UITransformer<MessageProps> = (Message) => (props) => {
     />
   )
 }
-
-export default transformer

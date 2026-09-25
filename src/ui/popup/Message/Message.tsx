@@ -6,9 +6,6 @@ import { Flex } from '../../primitive'
 
 export type MessageType = 'success' | 'error' | 'warning' | 'info'
 
-const transform = import.meta.env?.RD_THEME__TRANSFORM__MESSAGE &&
-  import.meta.require?.(import.meta.env?.RD_THEME__TRANSFORM__MESSAGE).default
-
 if (import.meta.env?.RD_THEME_MESSAGE) {
   addCSS(import.meta.env.RD_THEME_MESSAGE, 'message')
 }
@@ -29,7 +26,7 @@ export type MessageProps<T extends FlexElement = 'div', S extends MessageStyles 
   timeout?: number
 }>
 
-function MessageComponent<T extends keyof HTMLElementTagNameMap = 'div', S extends MessageStyles = MessageStyles> ({
+export function MessageComponent<T extends keyof HTMLElementTagNameMap = 'div', S extends MessageStyles = MessageStyles> ({
   type = 'info',
   timeout,
   ...props
@@ -45,6 +42,6 @@ function MessageComponent<T extends keyof HTMLElementTagNameMap = 'div', S exten
   return <Flex<T, S> {...props as FlexProps<T, S>} class={root} />
 }
 
-export const Message = transform
-  ? transform(MessageComponent) as typeof MessageComponent
+export const Message = import.meta.env?.RD_UI_MESSAGE
+  ? import.meta.require?.(import.meta.env.RD_UI_MESSAGE).Message as typeof MessageComponent
   : MessageComponent

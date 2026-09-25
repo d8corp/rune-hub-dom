@@ -20,6 +20,6 @@ export function CodeComponent (props: CodeProps) {
   return <code {...props} class={styles.root} />
 }
 
-export const Code = import.meta.env?.RD_THEME__TRANSFORM__CODE
-  ? import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__CODE).Code as typeof CodeComponent
+export const Code = import.meta.env?.RD_UI_CODE
+  ? import.meta.require?.(import.meta.env.RD_UI_CODE).Code as typeof CodeComponent
   : CodeComponent

@@ -7,7 +7,7 @@ import selectorParser from 'postcss-selector-parser'
 import * as sass from 'sass'
 
 const INPUT_SCSS = 'theme.scss'
-const OUTPUT_ENV = '.env'
+const OUTPUT_ENV = '.env.theme'
 const RD_PREFIX = process.env.RD_THEME__PREFIX || 'rd_'
 const ENV_PREFIX = 'RD_THEME_'
 const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset']

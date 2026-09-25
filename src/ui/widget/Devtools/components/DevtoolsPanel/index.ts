@@ -1,1 +1,1 @@
-export * from './DevtoolsPanel'
+export * from './DevtoolsWindow'

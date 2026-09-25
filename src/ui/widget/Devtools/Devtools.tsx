@@ -1,9 +1,8 @@
 import { Hub } from 'rune-hub'
 
-import { DevtoolsPanel } from './components/DevtoolsPanel'
+import { DevtoolsWindow } from './components/DevtoolsPanel'
 import { devtoolsStoreContext, useCreateDevtoolsStore } from './hooks'
 
-import { Delay } from '../../../components/Delay'
 import { HubProvider } from '../../../components/HubProvider'
 import { Show } from '../../../components/Show'
 import type { StyledProps } from '../../../hooks'
@@ -26,7 +25,7 @@ export interface DevtoolsProps extends StyledProps<DevtoolsStyles> {
   system?: boolean
 }
 
-export function Devtools (props: DevtoolsProps) {
+export function DevtoolsComponent (props: DevtoolsProps) {
   const hub = new Hub()
   const styles = useStyles(devtoolsStyles, props.class)
   const store = useCreateDevtoolsStore(props, hub)
@@ -51,11 +50,13 @@ export function Devtools (props: DevtoolsProps) {
     <HubProvider hub={hub}>
       <Context.Provider for={devtoolsStoreContext} set={store}>
         <Show when={store.show} fallback={button}>
-          <Delay hide={200}>
-            <DevtoolsPanel />
-          </Delay>
+          <DevtoolsWindow />
         </Show>
       </Context.Provider>
     </HubProvider>
   )
 }
+
+export const Devtools = import.meta.env?.RD_UI_DEVTOOLS
+  ? import.meta.require?.(import.meta.env.RD_UI_DEVTOOLS).Devtools as typeof DevtoolsComponent
+  : DevtoolsComponent

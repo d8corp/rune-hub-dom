@@ -4,7 +4,9 @@ import type { MessageProps } from '../../ui'
 import { Message } from '../../ui'
 import { addCSS, Ref, SystemSlot, viewTransition } from '../../utils'
 
-addCSS(import.meta.env.RD_THEME_MESSAGES, 'messages')
+if (import.meta.env?.RD_THEME_MESSAGES) {
+  addCSS(import.meta.env.RD_THEME_MESSAGES, 'messages')
+}
 
 class Timer {
   start?: number

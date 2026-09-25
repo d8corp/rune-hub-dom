@@ -1,27 +1,47 @@
-import { classes } from 'html-classes'
 import type { Slot } from 'rune-hub'
 
 import { DevtoolsSlotItem } from '../DevtoolsSlotItem'
 import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 
-import { For, Show, useHidden } from '../../../../../components'
-import { useShow, useVirtualList } from '../../../../../hooks'
+import { For, Show } from '../../../../../components'
+import { useStyles, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
-import { Ref, viewTransition } from '../../../../../utils'
+import { addCSS, Ref, viewTransition } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { SearchIcon } from '../../../../icons'
 import { Divider, Dot } from '../../../../inline'
 import { Input } from '../../../../interaction'
+import type { WindowProps } from '../../../../popup'
 import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/WindowContent'
+import type { FlexElement } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
-import styles from './DevtoolsPanel.module.scss'
 
-export function DevtoolsPanel () {
+if (import.meta.env?.RD_THEME_DEVTOOLS_WINDOW) {
+  addCSS(import.meta.env.RD_THEME_DEVTOOLS_WINDOW, 'devtools-window')
+}
+
+export const devtoolsWindowStyles = {
+  root: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ROOT,
+  filter: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER,
+  content: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__CONTENT,
+  list: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__LIST,
+  virtualList: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__WIRTUAL_LIST,
+  aside: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ASIDE,
+  asideHeader: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ASIDE_HEADER,
+  filterButton: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER_BUTTON,
+  filterOnButton: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER_ON_BUTTON,
+  filterOffButton: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER_OFF_BUTTON,
+}
+
+export type DevtoolsWindowStyles = typeof devtoolsWindowStyles
+
+export type DevtoolsWindowProps<T extends FlexElement = 'div', S extends DevtoolsWindowStyles = DevtoolsWindowStyles> = WindowProps<T, S>
+
+export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends DevtoolsWindowStyles = DevtoolsWindowStyles> (props: DevtoolsWindowProps<T, S>) {
   const list = new Ref<HTMLDivElement>()
-  const shown = useShow()
-  const hidden = useHidden()
-  const { show, search, searchSlots, slots, props, systemFilter, errorFilter, anonFilter, errors } = devtoolsStoreContext.get()!
+  const styles = useStyles(devtoolsWindowStyles, props.class)
+  const { show, search, searchSlots, slots, props: devtoolsProps, systemFilter, errorFilter, anonFilter, errors } = devtoolsStoreContext.get()!
 
   const { virtualList, offsetTop, offsetBottom } = useVirtualList({
     list: searchSlots,
@@ -60,7 +80,7 @@ export function DevtoolsPanel () {
   }
 
   return (
-    <Window data-glow class={() => classes([styles.root, shown.value && styles.show, hidden?.value && styles.hide])}>
+    <Window {...props} class={styles.root}>
       <WindowHeader onClose={close}>
         <Dot hoverable color='warning' />
         <Dot hoverable color='success' />
@@ -98,7 +118,7 @@ export function DevtoolsPanel () {
         </div>
         <div class={styles.content}>
           <div class={styles.filter}>
-            <Show when={props.anon}>
+            <Show when={devtoolsProps.anon}>
               <Button
                 size='s'
                 data-shine
@@ -109,7 +129,7 @@ export function DevtoolsPanel () {
                 Anon
               </Button>
             </Show>
-            <Show when={props.system}>
+            <Show when={devtoolsProps.system}>
               <Button
                 data-shine
                 circle
@@ -140,3 +160,7 @@ export function DevtoolsPanel () {
     </Window>
   )
 }
+
+export const DevtoolsWindow = import.meta.env?.RD_UI_DEVTOOLS_WINDOW
+  ? import.meta.require?.(import.meta.env.RD_UI_DEVTOOLS_WINDOW).DevtoolsWindow as typeof DevtoolsWindowComponent
+  : DevtoolsWindowComponent
