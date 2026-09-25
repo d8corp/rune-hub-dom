@@ -11,6 +11,7 @@ $color-border: light-dark(#7C3AED1F, #8B5CF61F);
 $color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
 $color-secondary: #8B5CF614;
 $color-secondary-hover: #8B5CF626;
+$color-secondary-bg: light-dark(#d9d1f6, #332958);
 $color-secondary-active: rgb(116 66 229 / 0.3);
 $color-success: light-dark(#059669, #34D399);
 $color-danger: light-dark(#E11D48, #FB7185);
@@ -485,10 +486,9 @@ body {
 .window {
   gap: 8px;
   padding: 8px;
-  background: $color-secondary;
+  background: $color-secondary-bg;
   border: 1px solid $color-border;
   border-radius: 16px;
-  backdrop-filter: blur(8px);
 
   &-header {
     color: $color-text-muted;
@@ -601,6 +601,7 @@ body {
   from {
     opacity: 0;
     transform: translateY(-20px);
+    filter: blur(8px);
   }
 }
 
@@ -608,8 +609,10 @@ body {
   from {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
   to {
+    filter: blur(8px);
     opacity: 0;
     transform: translateY(10px);
   }
@@ -794,22 +797,26 @@ body {
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(100px);
+    top: 100px;
+    filter: blur(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    top: 0;
+    filter: blur(0);
   }
 }
 
 @keyframes fade-in-down {
   from {
     opacity: 1;
-    transform: translateY(0);
+    top: 0;
+    filter: blur(0);
   }
   to {
     opacity: 0;
-    transform: translateY(100px);
+    top: 100px;
+    filter: blur(8px);
   }
 }
 
