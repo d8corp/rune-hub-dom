@@ -426,7 +426,8 @@ body {
     border: none;
     background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 100% 100%;
 
-    &:hover{
+    &:hover {
+      color: white;
       background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 200% 200%;
     }
   }
