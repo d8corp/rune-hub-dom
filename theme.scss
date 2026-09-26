@@ -620,15 +620,15 @@ body {
 }
 
 ::view-transition-group(.message_1) {
-  z-index: 3;
+  z-index: 4;
 }
 
 ::view-transition-group(.message_2) {
-  z-index: 2;
+  z-index: 3;
 }
 
 ::view-transition-group(.message_3) {
-  z-index: 1;
+  z-index: 2;
 }
 
 ::view-transition-old(.message):only-child {
