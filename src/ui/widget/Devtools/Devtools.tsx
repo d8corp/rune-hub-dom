@@ -1,6 +1,6 @@
 import { Hub } from 'rune-hub'
 
-import { DevtoolsWindow } from './components/DevtoolsPanel'
+import { DevtoolsWindow } from './components/DevtoolsWindow'
 import { devtoolsStoreContext, useCreateDevtoolsStore } from './hooks'
 
 import { HubProvider } from '../../../components/HubProvider'

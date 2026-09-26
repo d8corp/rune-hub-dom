@@ -917,5 +917,62 @@ body {
       background: red;
     }
   }
+
+  &-slot-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    height: 34px;
+    gap: 8px;
+    border: 1px solid transparent;
+    transition: background-color .2s ease, border-color .2s ease;
+
+    &:hover {
+      background: var(--rd--alpha-color);
+    }
+
+    &_selected {
+      background: var(--rd--alpha-color);
+      border-color: var(--rd--secondary-border);
+    }
+
+    &_value {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &-slot-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
+
+    &_code-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &_code {
+      flex: 1;
+      min-height: fit-content;
+      background: var(--rd-color-bg-contrast);
+      border: 1px solid var(--rd--secondary-border);
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+  }
 }
 

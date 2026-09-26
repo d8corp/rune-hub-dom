@@ -3,9 +3,6 @@ import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { addCSS, inject } from '../../../utils'
 
-const transform = import.meta.env?.RD_THEME__TRANSFORM__TYPOGRAPHY &&
-  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__TYPOGRAPHY).default
-
 if (import.meta.env?.RD_THEME_TYPOGRAPHY) {
   addCSS(import.meta.env.RD_THEME_TYPOGRAPHY, 'typography')
 }
@@ -35,6 +32,6 @@ function TypographyComponent ({ flex, style, ...props }: TypographyProps) {
   )
 }
 
-export const Typography = transform
-  ? transform(TypographyComponent) as typeof TypographyComponent
+export const Typography = import.meta.env?.RD_UI_TYPOGRAPHY
+  ? import.meta.require?.(import.meta.env.RD_UI_TYPOGRAPHY).Typography as typeof TypographyComponent
   : TypographyComponent

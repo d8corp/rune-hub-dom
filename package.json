@@ -15,13 +15,11 @@
     },
     "./jsx-runtime": {
       "types": "./jsx-runtime.d.ts",
-      "import": "./jsx-runtime.mjs",
-      "require": "./jsx-runtime.js"
+      "import": "./jsx-runtime.mjs"
     },
     "./jsx-dev-runtime": {
       "types": "./jsx-dev-runtime.d.ts",
-      "import": "./jsx-dev-runtime.mjs",
-      "require": "./jsx-dev-runtime.js"
+      "import": "./jsx-dev-runtime.mjs"
     }
   },
   "private": true,

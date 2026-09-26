@@ -1,15 +1,32 @@
 import { SlotStatus } from '../SlotStatus'
 
 import { Show } from '../../../../../components'
-import { stringify, SystemSlot } from '../../../../../utils'
+import type { HTMLStyleProps } from '../../../../../hooks'
+import { useStyles } from '../../../../../hooks'
+import { addCSS, stringify, SystemSlot } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { CloseIcon } from '../../../../icons'
 import { Code } from '../../../../inline'
 import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
-import styles from './DevtoolsSlotPanel.module.scss'
 
-export function DevtoolsSlotPanel () {
+if (import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL) {
+  addCSS(import.meta.env.RD_THEME_DEVTOOLS_SLOT_PANEL, 'devtools-slot-panel')
+}
+
+export const devtoolsSlotPanelStyles = {
+  root: import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL__ROOT,
+  content: import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL__CONTENT,
+  code: import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL__CODE,
+  codeBlock: import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL__CODE_BLOCK,
+}
+
+export type DevtoolsSlotPanelStyles = typeof devtoolsSlotPanelStyles
+
+export type DevtoolsSlotPanelProps = HTMLStyleProps<HTMLDivElement, DevtoolsSlotPanelStyles>
+
+export function DevtoolsSlotPanelComponent (props: DevtoolsSlotPanelProps) {
+  const styles = useStyles(devtoolsSlotPanelStyles, props.class)
   const { selected, values, errors } = devtoolsStoreContext.get()!
 
   const handleClose = () => {
@@ -18,7 +35,7 @@ export function DevtoolsSlotPanel () {
 
   return (
     <Show when={selected}>
-      <div class={styles.root}>
+      <div {...props} class={styles.root}>
         <Flex gap={8} align='center'>
           <Button data-glow data-shine size='s' onclick={handleClose}>
             <CloseIcon />
@@ -59,3 +76,7 @@ export function DevtoolsSlotPanel () {
     </Show>
   )
 }
+
+export const DevtoolsSlotPanel = import.meta.env?.RD_UI_DEVTOOLS_SLOT_PANEL
+  ? import.meta.require?.(import.meta.env.RD_UI_DEVTOOLS_SLOT_PANEL).DevtoolsSlotPanel as typeof DevtoolsSlotPanelComponent
+  : DevtoolsSlotPanelComponent
