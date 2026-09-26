@@ -5,11 +5,17 @@ Rundom ships with a ready-to-use set of components to accelerate your developmen
 
 ```tsx
 //! index.tsx
-import { rundom, Button } from 'rundom'
+import { rundom, Button, Flex } from 'rundom'
 
-function MyComponent () {
-  return <Button>I am Button</Button>
-}
-
-rundom(<MyComponent />)
+rundom(
+  <Flex gap={8}>
+    <Button>Button</Button>
+    <Button color='primary'>
+      Button
+    </Button>
+    <Button color='accent'>
+      Button
+    </Button>
+  </Flex>
+)
 ```

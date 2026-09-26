@@ -46,6 +46,7 @@ export type InputProps<T extends string = string, S extends InputStyles = InputS
   before?: JSXElement
   after?: JSXElement
   name?: ObservableProp<string>
+  placeholder?: ObservableProp<string>
   clearable?: ObservableProp<boolean>
   autofocus?: boolean | number | InputFocusOptions
   debounce?: ObservableProp<boolean | number>
@@ -58,6 +59,7 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
   before,
   after,
   name,
+  placeholder,
   autofocus,
   clearable,
   debounce,
@@ -102,7 +104,14 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
   return (
     <Field element='label' {...props} class={styles}>
       {before}
-      <input name={name} class={styles.input} ref={inputRef} _value={value} oninput={handleInput} />
+      <input
+        placeholder={placeholder}
+        name={name}
+        class={styles.input}
+        ref={inputRef}
+        _value={value}
+        oninput={handleInput}
+      />
       {clearContent}
       {after}
     </Field>

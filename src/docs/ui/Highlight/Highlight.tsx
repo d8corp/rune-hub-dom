@@ -4,11 +4,12 @@ import { Slot } from 'rune-hub'
 
 import { BaseMarkdown } from '../Markdown/BaseMarkdown'
 
+import { message } from '../../../helpers'
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
 import type { FlexElement, FlexProps, FlexStyles } from '../../../ui'
 import { Button, CopyIcon, Flex, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon, Typography } from '../../../ui'
-import { inject, injectAll, Ref } from '../../../utils'
+import { inject, injectAll, Ref, viewTransition } from '../../../utils'
 import $styles from './Highlight.module.scss'
 
 const icons = {
@@ -52,6 +53,21 @@ export function Highlight<T extends FlexElement = 'div'> ({
 
   const hasTabs = Boolean(sharedCode) || Boolean(tabs.length > 1)
 
+  const copy = (codeText: string) => () => {
+    navigator.clipboard.writeText(codeText)
+
+    viewTransition(() => {
+      copied.value = true
+      message('Copied to clipboard')
+    })
+
+    clearTimeout(copyTimer)
+
+    copyTimer = setTimeout(() => {
+      copied.value = false
+    }, 1000)
+  }
+
   const IconCopy = () => () => {
     return copied.value ? <SuccessIcon /> : <CopyIcon />
   }
@@ -68,17 +84,6 @@ export function Highlight<T extends FlexElement = 'div'> ({
         })
       }
 
-      const copy = () => {
-        navigator.clipboard.writeText(codeText)
-        copied.value = true
-
-        clearTimeout(copyTimer)
-
-        copyTimer = setTimeout(() => {
-          copied.value = false
-        }, 1000)
-      }
-
       return (
         <>
           <Flex vertical class={styles.header}>
@@ -87,7 +92,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
               <Typography class={styles.titleText} flex>
                 <BaseMarkdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
-              <Button size='s' data-glow={glow} square color='secondary' onclick={copy}>
+              <Button size='s' data-glow={glow} square color='secondary' onclick={copy(codeText)}>
                 <IconCopy />
               </Button>
             </Flex>
@@ -106,17 +111,6 @@ export function Highlight<T extends FlexElement = 'div'> ({
 
     const tab = new Slot(function highlightTab () { return 0 })
     let fullCode = ''
-
-    const copy = () => {
-      navigator.clipboard.writeText(fullCode)
-      copied.value = true
-
-      clearTimeout(copyTimer)
-
-      copyTimer = setTimeout(() => {
-        copied.value = false
-      }, 1000)
-    }
 
     useEffect(() => {
       return new Slot(function renderPrisma () {
@@ -143,7 +137,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
                 </span>
               ))}
             </Flex>
-            <Button data-glow={glow} square color='secondary' size='s' onclick={copy}>
+            <Button data-glow={glow} square color='secondary' size='s' onclick={copy(fullCode)}>
               <IconCopy />
             </Button>
           </Flex>
