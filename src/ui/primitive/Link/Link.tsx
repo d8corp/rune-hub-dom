@@ -30,7 +30,7 @@ export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, LinkStyles>
   children?: JSX.Element
 }
 
-export function Link (props: LinkProps) {
+export function LinkComponent (props: LinkProps) {
   const styles = useStyles(linkStyles, props.class)
   const { onclick, href, scroll = 'after', scrollTo, replace, exact, transition, ...rest } = props
 
@@ -110,3 +110,7 @@ export function Link (props: LinkProps) {
 
   return <a {...rest} class={className} href={getHref} onclick={handleClick} />
 }
+
+export const Link = import.meta.env?.RD_UI_LINK
+  ? import.meta.require?.(import.meta.env.RD_UI_LINK).Link as typeof LinkComponent
+  : LinkComponent
