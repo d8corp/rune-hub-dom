@@ -11,6 +11,7 @@ const OUTPUT_ENV = '.env.theme'
 const RD_PREFIX = process.env.RD_THEME__PREFIX || 'rd_'
 const ENV_PREFIX = 'RD_THEME_'
 const GLOBAL_AT_RULES = ['keyframes', 'font-face', 'property', 'layer', 'charset']
+const VIEW_TRANSITION_PSEUDO_RE = /^::?view-transition-/
 
 const componentRegex = new RegExp(`^\\.${RD_PREFIX}((?:[a-zA-Z0-9-]|(?!_))+)`)
 
@@ -50,7 +51,7 @@ function makeSelectorTransformer (fullClassList: Record<string, string>) {
       let parent = classNode.parent
 
       while (parent) {
-        if (parent.type === 'pseudo' && parent.value === ':global') {
+        if (parent.type === 'pseudo' && (parent.value === ':global' || VIEW_TRANSITION_PSEUDO_RE.test(parent.value))) {
           insideGlobal = true
           break
         }

@@ -640,7 +640,7 @@ body {
 }
 
 .message {
-  view-transition-class: rd_message rd_message_1;
+  view-transition-class: message message_1;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -667,13 +667,13 @@ body {
     z-index: 2;
     top: 5px;
     transform: translateZ(-100px);
-    view-transition-class: rd_message rd_message_2;
+    view-transition-class: message message_2;
 
     & + .message {
       top: 0;
       z-index: 1;
       transform: translateZ(-200px);
-      view-transition-class: rd_message rd_message_3;
+      view-transition-class: message message_3;
 
       & ~ .message {
         display: none;
