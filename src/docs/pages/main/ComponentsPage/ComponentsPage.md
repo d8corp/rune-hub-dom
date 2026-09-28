@@ -199,10 +199,48 @@ export function Counter () {
 }
 ```
 
+## Async Components
+---
+
+In `rundom`, components can be `async` functions that return a `Promise<BaseJSXElement>`.
+You can fetch data directly within the component using `await` without extra data-fetching hooks:
+
+```tsx
+//! src/UserProfile.tsx
+export async function UserProfile () {
+  const response = await fetch('/api/user')
+  const user = await response.json()
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+    </div>
+  )
+}
+```
+
+You can render async components directly, or wrap them in [\<Suspense>](/suspense) to display fallback content (such as a loader or placeholder) while the data is loading:
+
+```tsx
+//! src/App.tsx
+import { Suspense } from 'rundom'
+import { UserProfile } from './UserProfile'
+
+export function App () {
+  return (
+    <Suspense fallback={<div>Loading profile...</div>}>
+      <UserProfile />
+    </Suspense>
+  )
+}
+```
+
 ## What's Next?
 ---
 
 - **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`.
+- **[\<Suspense>](/suspense)** — Display fallback content while asynchronous components are loading.
 - **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
 - **[Context](/context)** — Share state across components without prop drilling.
 - **[Ref](/ref)** — Access DOM elements directly.

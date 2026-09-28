@@ -4,7 +4,7 @@ import { Show } from '../Show'
 import { Suspense } from './Suspense'
 
 import { rundom } from '../../rundom'
-import type { SimpleJSXElement } from '../../types'
+import type { BaseJSXElement } from '../../types'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -12,7 +12,7 @@ afterEach(() => {
 
 describe('Suspense', () => {
   it('should render without fallback', async () => {
-    const { promise, resolve } = Promise.withResolvers<SimpleJSXElement>()
+    const { promise, resolve } = Promise.withResolvers<BaseJSXElement>()
 
     rundom(<Suspense>{promise}</Suspense>)
     expect(document.body.innerHTML).toBe('')
@@ -25,7 +25,7 @@ describe('Suspense', () => {
   })
 
   it('should render with fallback', async () => {
-    const { promise, resolve } = Promise.withResolvers<SimpleJSXElement>()
+    const { promise, resolve } = Promise.withResolvers<BaseJSXElement>()
 
     rundom(<Suspense fallback='Loading'>{promise}</Suspense>)
 

@@ -39,7 +39,7 @@ export default () => (
 ## Promises as Children
 ---
 
-`rundom` natively supports rendering `Promise<JSXElement>`.
+`rundom` natively supports rendering `Promise<BaseJSXElement>`.
 `<Suspense>` automatically tracks pending promises and displays the fallback until they resolve:
 
 ```tsx
