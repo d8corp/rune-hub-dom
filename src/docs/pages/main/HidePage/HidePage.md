@@ -25,3 +25,12 @@ export default (
   </Hide>
 )
 ```
+
+## What's Next?
+---
+
+- Learn about the [\<Show>](/show) component for conditional rendering
+- Explore [\<For>](/for) component for rendering dynamic lists with conditional items
+- Discover [\<Router>](/router) for route-based conditional rendering
+- Understand [State Management](/state-management) for managing reactive conditions
+
