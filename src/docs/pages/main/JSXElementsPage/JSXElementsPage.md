@@ -1,6 +1,6 @@
 # JSX Elements
 
-`JSXElement` is the core return type that components produce and that `rundom()` accepts as an argument.
+`JSXElement` (equivalent to global `JSX.Element`) is the core return type that components produce and that `rundom()` accepts as an argument.
 Understanding what values are considered valid JSX elements is essential for building efficient, predictable applications.
 
 JSX is a syntax extension for JavaScript that allows you to write HTML-like markup inside JavaScript files.
@@ -14,9 +14,13 @@ The framework handles different types intelligently, converting them into DOM no
 
 ```tsx
 //! Valid JSX Elements
-import { rundom, type JSXElement } from 'rundom'
+import {
+  rundom,
+  type JSXElement,
+  type BaseJSXElement
+} from 'rundom'
 
-function App (): JSXElement {}      // Components return JSXElement
+function App (): JSXElement {}      // Components return JSXElement (or JSX.Element)
 
 // rundom(element: JSXElement)
 rundom(<div>Hello</div>)            // JSX DOM element
@@ -25,7 +29,26 @@ rundom(document.createElement('p')) // Raw HTMLElement
 rundom('Hello World')               // string
 rundom(42)                          // number
 rundom(null)                        // null (renders nothing)
+rundom(Promise.resolve(42))         // Promise<BaseJSXElement>
 ```
+
+### BaseJSXElement vs JSXElement
+
+Under the hood, `rundom` defines `JSXElement` as a union of synchronous and asynchronous renderables:
+
+```ts
+type JSXElement = BaseJSXElement | Promise<BaseJSXElement>
+```
+
+`JSXElement` is also declared globally as `JSX.Element` (`namespace JSX { type Element = JSXElement }`), so both types are interchangeable in TypeScript:
+
+- **`BaseJSXElement`** represents all synchronous values that can be rendered directly into the DOM:
+  - Primitives: `string`, `number`, `boolean`, `null`, `undefined`, `void`
+  - DOM nodes: `HTMLElement`, `SVGElement`, `DocumentFragment`, `Text`
+  - JSX nodes and components
+  - Reactive containers: `Slot<JSXElement>`, `Rune`
+  - Collections: `JSXElement[]`
+- **`JSXElement`** extends `BaseJSXElement` with `Promise<BaseJSXElement>`, providing native support for `async` components and promises.
 
 ## JSX DOM Element
 ---
@@ -66,7 +89,7 @@ For a detailed guide on JSX DOM Elements, their attributes, events, and styling,
 ## JSX Component
 ---
 
-Components are functions that return `JSXElement` values.
+Components are functions that return `JSXElement` (or `JSX.Element`) values.
 When you use a component in JSX syntax, it creates a JSX component element.
 
 ```tsx
@@ -84,7 +107,19 @@ function Greeting ({ name }: GreetingProps) {
 rundom(<Greeting name="World" />)
 ```
 
-For a comprehensive guide on component patterns, props, children, and lifecycle, see **[Components](/components)**.
+Components can also be **asynchronous** (`async` functions returning a promise):
+
+```tsx
+//! Async Component
+async function AsyncGreeting () {
+  const user = await fetch('/api/user').then(res => res.json())
+  return <h1>Hello, {user.name}!</h1>
+}
+
+rundom(<AsyncGreeting />)
+```
+
+For a comprehensive guide on component patterns, props, children, async components, and lifecycle, see **[Components](/components)**.
 
 ## HTML Element
 ---
@@ -384,13 +419,72 @@ const SurgicalUpdate = () => {
 When you click the button, the paragraph's color changes instantly, but the component function is **not** called again.
 `rundom` directly updates the `style.color` property in the real DOM.
 
+## Promise
+---
+
+Promises that resolve to a valid `BaseJSXElement` are supported directly.
+`rundom` awaits the promise and automatically inserts the resolved content into the DOM once it is available.
+
+```tsx
+//! Direct Promise
+import { rundom } from 'rundom'
+
+const message = fetch('/api/message')
+  .then(res => res.json())
+  .then(data => <p>{data.message}</p>)
+
+rundom(message)
+```
+
+Promises can also be embedded directly within JSX expressions:
+
+```tsx
+//! Embedded Promise
+import { rundom } from 'rundom'
+
+const stats = fetch('/api/stats')
+  .then(res => res.json())
+  .then(stats => <span>Total: {stats.count}</span>)
+
+rundom(
+  <div>
+    <h2>Dashboard</h2>
+    {stats}
+  </div>
+)
+```
+
+### Suspense Integration
+
+To display a loading indicator or fallback UI while promises or async components are pending, wrap them in [\<Suspense>](/suspense):
+
+```tsx
+//! With Suspense
+import { rundom, Suspense } from 'rundom'
+
+function UserProfile () {
+  const userName = fetch('/api/user')
+    .then(res => res.json())
+    .then(user => user.name)
+
+  return <div>{userName}</div>
+}
+
+rundom(
+  <Suspense fallback={<p>Loading profile...</p>}>
+    <UserProfile />
+  </Suspense>
+)
+```
+
 ## What's Next?
 ---
 
 Now that you understand `JSXElement` types, explore related concepts:
 
 - **[JSX DOM Elements](/jsx-dom-elements)** — Detailed guide on HTML elements, attributes, events, and styling.
-- **[Components](/components)** — Build reusable component patterns with props and children.
+- **[Components](/components)** — Build reusable component patterns with props, children, and async functions.
+- **[\<Suspense>](/suspense)** — Display fallback content while asynchronous operations or promises are pending.
 - **[State Management](/state-management)** — Master reactive state with `rune-hub`.
 - **[\<Show>](/show) / [\<Hide>](/hide)** — Conditionally render or hide content based on reactive state.
 - **[\<For>](/for)** — Efficiently render lists with automatic DOM reconciliation.
