@@ -140,6 +140,18 @@ export function dissolve (target: Content) {
   target._parent = undefined
 }
 
+export function extract (target: Child) {
+  virtualRemove(target)
+
+  if (target instanceof Content) {
+    getElements(target).forEach(el => {
+      el.remove()
+    })
+  } else if (!(target instanceof DocumentFragment)) {
+    target.remove()
+  }
+}
+
 export function remove (target: Child) {
   if (target instanceof Content) {
     dissolve(target)
@@ -152,7 +164,7 @@ export function remove (target: Child) {
   }
 }
 
-export function append (parent: Parent, target: Parent) {
+export function append (parent: Parent, target: Child) {
   virtualRemove(target)
 
   target._parent = parent

@@ -1,4 +1,4 @@
-import { type Rune, Slot } from 'rune-hub'
+import { Hub, type Rune, Slot } from 'rune-hub'
 
 import { catchContext, parentContext } from './constants'
 import { useClear } from './hooks'
@@ -16,6 +16,7 @@ function getSourceUrl (source?: JSXSource): string {
   return ''
 }
 
+export const promiseCounterContext = new Context<Slot<number> | undefined>(undefined)
 export const svgNamespaceContext = new Context<string>('')
 
 export function runReactive (target: Slot<JSXElement> | Rune<JSXElement>) {
@@ -184,11 +185,63 @@ export function runNode (target: JSXNode) {
   }
 }
 
+export function runPromise (target: Promise<JSXElement>) {
+  const content = new Content()
+  const context = Context.nest()
+  const counter = promiseCounterContext.get()
+  const slot = Hub.ctx
+
+  let done = false
+
+  parentContext.set(content, context)
+
+  if (counter) {
+    counter.set(counter.raw + 1)
+  }
+
+  useClear(() => {
+    if (!done) {
+      done = true
+
+      if (counter) {
+        counter.set(counter.raw - 1)
+      }
+    }
+  })
+
+  runElement(content)
+
+  target.then(children => {
+    if (done) return
+    done = true
+
+    Context.use(() => {
+      if (slot) {
+        slot.use(() => {
+          rundom(children)
+        })
+      } else {
+        rundom(children)
+      }
+    }, context)
+
+    if (counter) {
+      counter.set(counter.raw - 1)
+    }
+  })
+}
+
 export function rundom (target: JSXElement) {
   if (target === undefined) return
 
   if (Array.isArray(target)) {
     runArray(target)
+
+    return
+  }
+
+  if (target instanceof Promise) {
+    runPromise(target)
 
     return
   }
