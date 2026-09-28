@@ -181,6 +181,7 @@ Now that you have a working [Rundom](/) application, explore more advanced featu
 - **[\<Show>](/show) / [\<Hide>](/hide)** — Conditionally render or hide content based on reactive state.
 - **[\<For>](/for)** — Efficiently render lists with automatic DOM reconciliation.
 - **[\<Delay>](/delay)** — Delay rendering of components.
+- **[\<Suspense>](/suspense)** — Display fallback content while asynchronous operations are pending.
 - **[\<Lazy>](/lazy)** — Lazy load components with code splitting.
 
 ### Advanced Topics
