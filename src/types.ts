@@ -1,19 +1,23 @@
-import type { Rune, Slot } from 'rune-hub'
+import type { Fn, Slot } from 'rune-hub'
 
 import type { Content, Ref } from './utils'
 
+export type ReactiveElement = () => JSXElement
+export type ObservableElement = ReactiveElement | Slot<JSXElement>
+export type BaseJSXElement = undefined | void | null | boolean | number | string | Child | JSXNode | JSXElement[] | ObservableElement
+export type JSXElement = BaseJSXElement | Promise<BaseJSXElement>
+
 export type JSXType = Component | string | undefined
 export type JSXTypeProps<T extends JSXType> = T extends string ? Record<string, any> : T extends Component<infer P> ? P : never
-export type BaseJSXElement = undefined | void | null | boolean | number | string | Rune | Child | JSXNode | Slot<JSXElement> | JSXElement[]
-export type JSXElement = BaseJSXElement | Promise<BaseJSXElement>
 export type Props = Record<string, any>
 export type Component<P extends Props = any, R extends JSXElement = JSXElement> = (props: P) => R
 export type DomElement = HTMLElement | SVGElement
 export type Parent = DomElement | Content | DocumentFragment
 export type Child = Parent | Text
-export type RuneProp<T = unknown> = T | Rune<T>
-export type ObservableProp<T = unknown> = RuneProp<T> | Slot<T>
-export type UITransformer<P extends Props> = (Component: Component<P>) => Component<P>
+export type StaticOrReactive<T = unknown> = T | Reactive<T>
+export type ObservableProp<T = unknown> = StaticOrReactive<T> | Slot<T>
+export type ReactiveProp<T = unknown> = Reactive<T> | Slot<T>
+export type Reactive<T = unknown> = Fn<[], T>
 
 export interface JSXSource {
   fileName: string

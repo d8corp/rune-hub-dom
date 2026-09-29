@@ -14,7 +14,7 @@ import {
   Context,
   dissolve,
   lcs,
-  observablePropToRuneProp,
+  observablePropToStaticOrReactive,
   prepend,
   SystemSlot,
 } from '../../utils'
@@ -51,7 +51,7 @@ export function For<O extends ObservableProp<Iterable<any>>> ({
 }: ForProps<O>) {
   if (!children || !ofPropRaw) return
 
-  const ofProp = observablePropToRuneProp(ofPropRaw)
+  const ofProp = observablePropToStaticOrReactive(ofPropRaw)
 
   if (typeof ofProp !== 'function') return Array.from(ofProp).map<JSX.Element>(children as any)
 

@@ -1,10 +1,10 @@
-import { Hub, type Rune, Slot } from 'rune-hub'
+import { Hub, Slot } from 'rune-hub'
 
 import { catchContext, parentContext } from './constants'
 import { useClear } from './hooks'
-import type { HTMLProps, JSXElement, JSXSource, ObservableProp } from './types'
+import type { HTMLProps, JSXElement, JSXSource, ObservableProp, ReactiveProp } from './types'
 import { JSXNode } from './types'
-import { append, Content, Context, observablePropToRuneProp, remove, SystemSlot, use } from './utils'
+import { append, Content, Context, observablePropToStaticOrReactive, remove, SystemSlot, use } from './utils'
 
 Context.render = rundom
 
@@ -19,7 +19,7 @@ function getSourceUrl (source?: JSXSource): string {
 export const promiseCounterContext = new Context<Slot<number> | undefined>(undefined)
 export const svgNamespaceContext = new Context<string>('')
 
-export function runReactive (target: Slot<JSXElement> | Rune<JSXElement>) {
+export function runReactive (target: ReactiveProp<JSXElement>) {
   const content = new Content()
   const context = Context.nest()
   parentContext.set(content, context)
@@ -92,7 +92,7 @@ export function runNode (target: JSXNode) {
 
       if (prop === 'style') {
         for (const property in value) {
-          const rawValue = observablePropToRuneProp(value[property])
+          const rawValue = observablePropToStaticOrReactive(value[property])
 
           if (typeof rawValue === 'function') {
             let prev: unknown
