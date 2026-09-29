@@ -275,19 +275,22 @@ table {
 }
 
 thead {
-  position: sticky;
   top: calc(var(--header-size) + 10px);
   margin-bottom: 53px;
   z-index: 1;
 
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    inset: 0;
-    top: -10px;
-    background: var(--color-bg);
-    transition: background-color .2s;
+  @supports not (-apple-pay-button-style: black) {
+    position: sticky;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      top: -10px;
+      background: var(--color-bg);
+      transition: background-color .2s;
+    }
   }
 
   & > tr {
