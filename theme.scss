@@ -602,7 +602,10 @@ body {
   from {
     opacity: 0;
     top: -20px;
-    filter: blur(8px);
+
+    @supports not (-apple-pay-button-style: black) {
+      filter: blur(8px);
+    }
   }
 }
 
@@ -615,7 +618,7 @@ body {
   to {
     filter: blur(8px);
     opacity: 0;
-    top: 10px;
+    top: 20px;
   }
 }
 
@@ -799,7 +802,10 @@ body {
   from {
     opacity: 0;
     top: 100px;
-    filter: blur(8px);
+
+    @supports not (-apple-pay-button-style: black) {
+      filter: blur(8px);
+    }
   }
   to {
     opacity: 1;
@@ -836,12 +842,10 @@ body {
 
 ::view-transition-old(devtools-window):only-child {
   animation: fade-in-down .2s ease both;
-  backdrop-filter: blur(0);
 }
 
 ::view-transition-new(devtools-window):only-child {
   animation: fade-in-up .2s ease both;
-  backdrop-filter: blur(4px);
 }
 
 .devtools {

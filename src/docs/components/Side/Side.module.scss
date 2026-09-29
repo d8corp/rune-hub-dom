@@ -4,7 +4,10 @@
   from {
     opacity: 0;
     transform: translateX(-100px);
-    filter: blur(8px);
+
+    @supports not (-apple-pay-button-style: black) {
+      filter: blur(8px);
+    }
   }
   to {
     opacity: 1;

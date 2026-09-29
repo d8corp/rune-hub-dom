@@ -347,13 +347,13 @@ tr:hover {
 }
 
 th {
-  background: var(--rd--secondary-border);
+  background: light-dark(#7C3AED1F, #8B5CF61F);
   font-weight: 900;
   text-align: left;
   padding: 12px 18px;
   font-size: 14px;
   letter-spacing: 0.02em;
-  color: var(--rd__primary_background-hover);
+  color: var(--rd__primary_background_hover);
   position: relative;
   @include proximityGlow(1px 0);
 
