@@ -46,7 +46,7 @@ type JSXElement = BaseJSXElement | Promise<BaseJSXElement>
   - Primitives: `string`, `number`, `boolean`, `null`, `undefined`, `void`
   - DOM nodes: `HTMLElement`, `SVGElement`, `DocumentFragment`, `Text`
   - JSX nodes and components
-  - Reactive containers: `Slot<JSXElement>`, `Rune`
+  - Reactive containers: `Slot<JSXElement>`, `() => JSXElement`
   - Collections: `JSXElement[]`
 - **`JSXElement`** extends `BaseJSXElement` with `Promise<BaseJSXElement>`, providing native support for `async` components and promises.
 

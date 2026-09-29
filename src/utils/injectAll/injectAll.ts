@@ -1,7 +1,8 @@
-import type { Rune } from 'rune-hub'
 import { Slot } from 'rune-hub'
 
 import { use } from '../use'
+
+import type { Reactive } from '../../types'
 
 type UnwrapStateProp<X> = X extends Slot<infer V>
   ? V
@@ -24,7 +25,7 @@ type HasDynamic<T extends readonly any[]> = true extends {
 export function injectAll<T extends readonly any[], R> (
   values: readonly [...T],
   callback: (values: { [K in keyof T]: UnwrapStateProp<T[K]> }) => R,
-): HasDynamic<T> extends true ? Rune<R> : R {
+): HasDynamic<T> extends true ? Reactive<R> : R {
   const hasDynamic = values.some((v: any) => v instanceof Slot || v instanceof Function)
 
   if (hasDynamic) {

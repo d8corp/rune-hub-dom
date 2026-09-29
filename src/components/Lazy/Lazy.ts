@@ -1,12 +1,12 @@
-import type { Rune, Slot } from 'rune-hub'
+import type { Slot } from 'rune-hub'
 
-import type { Component, JSXTypeProps, ObservableProp } from '../../types'
+import type { Component, JSXTypeProps, ObservableProp, Reactive } from '../../types'
 import { JSXNode } from '../../types'
 import type { LazyResult } from '../../utils'
 import { SystemSlot, use, viewTransition } from '../../utils'
 
 export interface LazyProps<C extends Component = Component> {
-  component: Rune<LazyResult<C> | C> | Slot<LazyResult<C> | C>
+  component: Reactive<LazyResult<C> | C> | Slot<LazyResult<C> | C>
   fallback?: JSX.Element
   show?: ObservableProp<boolean>
   render?: (Component: C) => JSX.Element

@@ -61,6 +61,10 @@ export const menu: MenuItem[] = [
         href: '/suspense',
         children: '<Suspense>',
       },
+      {
+        href: '/lazy',
+        children: '<Lazy>',
+      },
     ],
   },
   {

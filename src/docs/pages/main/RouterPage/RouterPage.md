@@ -1,11 +1,11 @@
 # Router
 
+You can render content based on the current URL.
+
 | Prop               | Type                     | Description                                          |
 |--------------------|--------------------------|------------------------------------------------------|
 | **routing** [*](#) | `StateProp<Routing>`     | Routing object that defines the route structure      |
 | **permissions**    | `StateProp<Set<string>>` | Set of permissions required to access certain routes |
-
-You can render content based on the current URL.
 
 Use `component` to specify the component for a route.
 Use `path` to define URL path segments.

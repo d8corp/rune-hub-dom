@@ -165,26 +165,31 @@ Now that you have a working [Rundom](/) application, explore more advanced featu
 
 ### Core Concepts
 
+- **[JSX Elements](/jsx-elements)** — Understand renderable values, `BaseJSXElement`, and reactivity.
+- **[JSX DOM Elements](/jsx-dom-elements)** — Work with HTML/SVG elements, attributes, styling, and events.
 - **[Components](/components)** — Learn about component patterns, props, children, and lifecycle hooks like `useEffect`.
 - **[State Management](/state-management)** — Deep dive into reactive state with `rune-hub`.
-- **[Styling](/styling)** — CSS Modules, dynamic styles, and theming patterns.
+
+### Control Flow
+
+- **[\<Show>](/show) / [\<Hide>](/hide)** — Conditionally render or hide content based on reactive state.
+- **[\<For>](/for)** — Efficiently render lists with automatic DOM reconciliation.
 
 ### Routing & Navigation
 
 - **[\<Router>](/router)** — Build multi-page apps with nested routes, permissions, and lazy loading.
-- **[\<Link>](/link)** — Navigate between pages without full page reloads.
+- **[\<Link>](/ui/link)** — Navigate between pages without full page reloads.
 - **[useParam](/use-param)** / **[useParams](/use-params)** — Access route parameters in components.
 
-### Built-in Components
+### Async & Layout
 
-- **[\<Portal>](/portal)** — Render content in different DOM locations (modals, tooltips).
-- **[\<Show>](/show) / [\<Hide>](/hide)** — Conditionally render or hide content based on reactive state.
-- **[\<For>](/for)** — Efficiently render lists with automatic DOM reconciliation.
-- **[\<Delay>](/delay)** — Delay rendering of components.
+- **[\<Lazy>](/lazy)** — Lazy load components on demand with fallback support.
 - **[\<Suspense>](/suspense)** — Display fallback content while asynchronous operations are pending.
-- **[\<Lazy>](/lazy)** — Lazy load components with code splitting.
+- **[\<Delay>](/delay)** — Delay showing or hiding components.
+- **[\<Portal>](/portal)** — Render content in different DOM locations (modals, tooltips).
 
-### Advanced Topics
+### Styling & Utilities
 
+- **[useStyles](/use-styles)** — Scoped and dynamic styling for components.
 - **[Context](/context)** — Share state across component trees without prop drilling.
 - **[Ref](/ref)** — Access DOM elements directly.

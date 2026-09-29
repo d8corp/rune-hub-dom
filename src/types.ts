@@ -1,4 +1,4 @@
-import type { Fn, Slot } from 'rune-hub'
+import type { Slot } from 'rune-hub'
 
 import type { Content, Ref } from './utils'
 
@@ -17,7 +17,7 @@ export type Child = Parent | Text
 export type StaticOrReactive<T = unknown> = T | Reactive<T>
 export type ObservableProp<T = unknown> = StaticOrReactive<T> | Slot<T>
 export type ReactiveProp<T = unknown> = Reactive<T> | Slot<T>
-export type Reactive<T = unknown> = Fn<[], T>
+export type Reactive<T = unknown> = () => T
 
 export interface JSXSource {
   fileName: string

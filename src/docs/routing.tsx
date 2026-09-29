@@ -111,6 +111,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'lazy',
+            component: lazy(() => import('./pages/main/LazyPage')),
+          },
+          {
+            index: true,
             path: 'use-param',
             component: lazy(() => import('./pages/main/UseParamPage')),
           },
