@@ -51,7 +51,7 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
 
   const components = new SystemSlot(routeComponents)
 
-  const loadedComponents = new Map()
+  const cache = new Map()
 
   return new JSXNode(Context.Provider, {
     for: paramsContext,
@@ -62,7 +62,7 @@ export function Router ({ routing, permissions = EMPTY_SET }: RouterProps) {
         fallback: new SystemSlot(function routeFallback () { return route.value?.fallback?.[index] }),
         show: new SystemSlot(function routeShow () { return components.value.length > index }),
         render: (Component) => new JSXNode(Component, { children }),
-        loadedComponents,
+        cache,
       }),
     }),
   })

@@ -5,6 +5,7 @@ $color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
 $color-text: light-dark(#1E1B2E, #F1F5F9);
 $color-text-muted: light-dark(#5B556E, #94A3B8);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
+$color-primary-light: light-dark(#c9b3ff, #382574);
 $color-primary-hover: light-dark(#8B5CF6, #A78BFA);
 $color-accent: light-dark(#DB2777, #F472B6);
 $color-border: light-dark(#7C3AED1F, #8B5CF61F);
@@ -978,6 +979,41 @@ body {
       border-radius: 4px;
     }
 
+  }
+}
+
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $color-secondary;
+    background-clip: padding-box;
+    border-radius: 6px;
+    border: 2px solid transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    cursor: grab;
+    background: $color-primary-light radial-gradient(
+            circle 100px at var(--cursor-x, -999px) var(--cursor-y, -999px),
+            $color-primary 0%,
+            $color-primary 30%,
+            transparent 100%
+    ) fixed;
+    background-clip: padding-box;
+    border-radius: 6px;
+    border: 2px solid transparent;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:hover {
+      background-color: $color-primary;
+    }
   }
 }
 

@@ -1,12 +1,12 @@
 # Lazy
 
-| Prop                 | Type                                                         | Default      | Description                                                               |
-|----------------------|--------------------------------------------------------------|--------------|---------------------------------------------------------------------------|
-| **component** [*](#) | `Reactive<LazyResult<C> \| C>` \| `Slot<LazyResult<C> \| C>` |              | Reactive slot or function returning a component or promise of a component |
-| **fallback**         | `JSX.Element`                                                | `undefined`  | Element to render while the component is loading                          |
-| **show**             | `ObservableProp<boolean>`                                    | `true`       | Condition to determine whether to load and render the component           |
-| **render**           | `(Component: C) => JSX.Element`                              | `C => <C />` | Custom render function for the loaded component                           |
-| **loadedComponents** | `Map<LazyResult, Component>`                                 | `new Map()`  | Optional cache map of already loaded components                           |
+| Prop                 | Type                                                         | Description                                                               |
+|----------------------|--------------------------------------------------------------|---------------------------------------------------------------------------|
+| **component** [*](#) | `Reactive<LazyResult<C> \| C>` \| `Slot<LazyResult<C> \| C>` | Reactive slot or function returning a component or promise of a component |
+| **fallback**         | `JSX.Element`                                                | Element to render while the component is loading                          |
+| **show**             | `ObservableProp<boolean>`                                    | Condition to determine whether to load and render the component           |
+| **render**           | `(Component: C) => JSX.Element`                              | Custom render function for the loaded component                           |
+| **cache**            | `Map<LazyResult, Component>`                                 | Optional cache map of already loaded components                           |
 
 The `<Lazy>` component enables code-splitting and dynamic component loading.
 It defers loading a component's code until it is actually needed, reducing the initial bundle size and improving startup performance.
@@ -28,7 +28,7 @@ rundom(
 )
 ```
 
-The component loaded with `import()` can use either `export default`:
+The component loaded with `import()` can use `export default`:
 
 ```tsx
 //! src/UserProfile.tsx

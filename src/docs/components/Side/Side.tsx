@@ -1,5 +1,5 @@
 import { Show } from '../../../components'
-import { Flex, Link } from '../../../ui'
+import { Flex, Link, Scrollbar } from '../../../ui'
 import { menuContext } from '../../constants'
 import { hideSide, isMobile } from '../../state'
 import styles from './Side.module.scss'
@@ -13,7 +13,7 @@ export function Side () {
       <Show when={isMobile}>
         <div class={styles.background} onclick={hideSide} />
       </Show>
-      <Flex vertical flex gap={24} class={styles.scrollbar}>
+      <Scrollbar vertical flex gap={24} class={styles.scrollbar}>
         {currentMenu.map(({ title, children }) => (
           <Flex vertical gap={10}>
             <div class={styles.group}>{title}</div>
@@ -22,7 +22,7 @@ export function Side () {
             </Flex>
           </Flex>
         ))}
-      </Flex>
+      </Scrollbar>
     </Flex>
   )
 }

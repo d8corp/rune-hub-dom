@@ -10,7 +10,7 @@ export interface LazyProps<C extends Component = Component> {
   fallback?: JSX.Element
   show?: ObservableProp<boolean>
   render?: (Component: C) => JSX.Element
-  loadedComponents?: Map<LazyResult, Component>
+  cache?: Map<LazyResult, Component>
 }
 
 export function Lazy<C extends Component = Component> ({
@@ -18,7 +18,7 @@ export function Lazy<C extends Component = Component> ({
   fallback,
   show = true,
   render = (component) => new JSXNode(component, {} as JSXTypeProps<C>),
-  loadedComponents = new Map(),
+  cache = new Map(),
 }: LazyProps<C>) {
   if (!show) return
 
@@ -30,11 +30,11 @@ export function Lazy<C extends Component = Component> ({
 
     const currentComponent = use(component)
 
-    if (currentComponent instanceof Promise && !loadedComponents.has(currentComponent)) {
+    if (currentComponent instanceof Promise && !cache.has(currentComponent)) {
       loading.value = true
 
       currentComponent.then((component) => {
-        loadedComponents.set(currentComponent, typeof component === 'function' ? component : component.default)
+        cache.set(currentComponent, typeof component === 'function' ? component : component.default)
 
         viewTransition(() => {
           loading.set(false)
@@ -52,7 +52,7 @@ export function Lazy<C extends Component = Component> ({
 
     if (typeof currentComponent === 'function') return render(currentComponent)
 
-    const loadedComponent = loadedComponents.get(currentComponent) as C
+    const loadedComponent = cache.get(currentComponent) as C
 
     if (loadedComponent) {
       return render(loadedComponent)
