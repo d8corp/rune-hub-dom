@@ -5,7 +5,7 @@ import type { ChildrenProps } from '../../../types'
 import { Flex, Typography } from '../../../ui'
 import { isLaptop } from '../../state'
 import type { ViewProps } from '../../ui'
-import { Markdown, View } from '../../ui'
+import { DocMarkdown, View } from '../../ui'
 import styles from './Example.module.scss'
 
 export interface ExampleProps extends ChildrenProps {
@@ -18,7 +18,7 @@ export function Example ({ description, children, views }: ExampleProps) {
     <Flex padding={[32, 24]}>
       <Flex gap={32} align='center' vertical={slot(isLaptop)} class={styles.wrapper}>
         <Typography class={styles.description}>
-          <Markdown text={description} />
+          <DocMarkdown text={description} />
         </Typography>
         <Flex vertical gap={16} class={styles.viewContainer}>
           <Hide when={!children}>

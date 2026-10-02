@@ -1,13 +1,7 @@
-import { Typography } from '../../../../ui'
-import { Markdown, Page } from '../../../ui'
+import { MarkdownTemplate } from '@docs/templates'
+
 import description from './RoutingPage.md'
 
 export default function RoutingPage () {
-  return (
-    <Page>
-      <Typography>
-        <Markdown text={description} />
-      </Typography>
-    </Page>
-  )
+  return <MarkdownTemplate text={description} />
 }

@@ -2,15 +2,16 @@ import { classes } from 'html-classes'
 import Prism from 'prismjs'
 import { Slot } from 'rune-hub'
 
-import { BaseMarkdown } from '../Markdown/BaseMarkdown'
-
+import { Show } from '../../../components'
 import { message } from '../../../helpers'
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
 import type { FlexElement, FlexProps, FlexStyles } from '../../../ui'
-import { Button, CopyIcon, Flex, HtmlIcon, JsonIcon, SuccessIcon, TerminalIcon, TypeScriptIcon, Typography } from '../../../ui'
-import { inject, injectAll, Ref, viewTransition } from '../../../utils'
+import { Button, CopyIcon, Flex, HtmlIcon, JsonIcon, Markdown, SuccessIcon, TerminalIcon, TypeScriptIcon, Typography } from '../../../ui'
+import { inject, injectAll, Ref, use, viewTransition } from '../../../utils'
 import $styles from './Highlight.module.scss'
+
+export type HighlightExamples = Record<string, JSXElement>
 
 const icons = {
   ts: <TypeScriptIcon />,
@@ -24,17 +25,20 @@ export type HighlightProps<T extends FlexElement = 'div'> = FlexProps<T, typeof 
   code: string
   lang: string
   glow?: ObservableProp<boolean>
+  examples?: HighlightExamples
 }
 
 export function Highlight<T extends FlexElement = 'div'> ({
   code,
   lang,
   glow,
+  examples,
   ...props
 }: HighlightProps<T>) {
   const styles = useStyles($styles, props.class)
   const ref = new Ref<HTMLPreElement>()
   const copied = new Slot(function copied () { return false })
+  const example = new Slot(function example () { return '' })
   let copyTimer: any
 
   const hasLand = lang in Prism.languages
@@ -53,8 +57,8 @@ export function Highlight<T extends FlexElement = 'div'> ({
 
   const hasTabs = Boolean(sharedCode) || Boolean(tabs.length > 1)
 
-  const copy = (codeText: string) => () => {
-    navigator.clipboard.writeText(codeText)
+  const copy = (codeText: ObservableProp<string>) => () => {
+    navigator.clipboard.writeText(use(codeText))
 
     viewTransition(() => {
       copied.value = true
@@ -90,7 +94,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
             <Flex padding={[12, 16]} class={styles.title} gap={8} align='center'>
               {inject(lang, lang => icons[lang as keyof typeof icons])}
               <Typography class={styles.titleText} flex>
-                <BaseMarkdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
+                <Markdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
               <Button size='s' data-glow={glow} square color='secondary' onclick={copy(codeText)}>
                 <IconCopy />
@@ -110,15 +114,31 @@ export function Highlight<T extends FlexElement = 'div'> ({
     }
 
     const tab = new Slot(function highlightTab () { return 0 })
-    let fullCode = ''
+
+    const code = new Slot(function highlightFullCode () {
+      const [, currentCode] = tabs[tab.value]
+
+      return sharedCode ? `${sharedCode}${currentCode.trim()}` : currentCode.trim()
+    })
 
     useEffect(() => {
       return new Slot(function renderPrisma () {
         if (!ref.value) return
 
-        const [, currentCode] = tabs[tab.value]
-        fullCode = sharedCode ? `${sharedCode}${currentCode.trim()}` : currentCode.trim()
+        const fullCode = code.value
 
+        if (fullCode.startsWith('//>')) {
+          const key = fullCode.slice(3).trim()
+
+          if (examples?.[key]) {
+            example.set(key)
+            ref.value.innerHTML = ''
+
+            return
+          }
+        }
+
+        example.set('')
         ref.value.innerHTML = hasLand ? Prism.highlight(fullCode, Prism.languages[lang], lang) : fullCode
       }).on()
     })
@@ -137,12 +157,15 @@ export function Highlight<T extends FlexElement = 'div'> ({
                 </span>
               ))}
             </Flex>
-            <Button data-glow={glow} square color='secondary' size='s' onclick={copy(fullCode)}>
-              <IconCopy />
-            </Button>
+            <Show when={() => code.value && !code.value.startsWith('//>')}>
+              <Button data-glow={glow} square color='secondary' size='s' onclick={copy(code)}>
+                <IconCopy />
+              </Button>
+            </Show>
           </Flex>
         </Flex>
         <div class={styles.code}>
+          {() => examples?.[example.value]}
           <pre class={inject(lang, lang => `language-${lang}`)} ref={ref} />
         </div>
       </>

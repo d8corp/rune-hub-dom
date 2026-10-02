@@ -1,7 +1,7 @@
 import Timer from 'sync-timer'
 
 export function removeLoading () {
-  const loading = document.getElementById('loading')
+  const loading = document.getElementById('main-loader')
 
   if (loading) {
     loading.style.opacity = '0'

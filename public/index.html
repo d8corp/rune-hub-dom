@@ -17,11 +17,11 @@
             background: var(--color-bg);
         }
 
-        #loading {
+        #main-loader {
             height: 9999px;
             transition: opacity .2s;
         }
-        #loading > img {
+        #main-loader > img {
             position: fixed;
             left: 50%;
             top: 50%;
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-<div id="loading"><img src="/rundom/loading.svg" /></div>
+<div id="main-loader"><img src="/rundom/loading.svg" /></div>
 <script>
     document.body.style.colorScheme = localStorage.getItem('theme')
 </script>

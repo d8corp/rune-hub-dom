@@ -1,15 +1,16 @@
 import { Typography } from '../../../ui'
-import { Markdown, Page } from '../../ui'
+import { DocMarkdown, type HighlightExamples, Page } from '../../ui'
 
 export interface MarkdownTemplateProps {
   text: string;
+  examples?: HighlightExamples
 }
 
-export function MarkdownTemplate ({ text }: MarkdownTemplateProps) {
+export function MarkdownTemplate ({ text, examples }: MarkdownTemplateProps) {
   return (
     <Page>
       <Typography>
-        <Markdown text={text} glow />
+        <DocMarkdown text={text} glow examples={examples} />
       </Typography>
     </Page>
   )
