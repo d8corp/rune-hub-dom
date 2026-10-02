@@ -11,6 +11,7 @@ import { Button } from '../../../../block'
 import { SearchIcon } from '../../../../icons'
 import { Divider, Dot } from '../../../../inline'
 import { Input } from '../../../../interaction'
+import { Scrollbar } from '../../../../layout'
 import type { WindowProps } from '../../../../popup'
 import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/WindowContent'
@@ -26,7 +27,7 @@ export const devtoolsWindowStyles = {
   filter: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER,
   content: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__CONTENT,
   list: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__LIST,
-  virtualList: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__WIRTUAL_LIST,
+  virtualList: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__VIRTUAL_LIST,
   aside: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ASIDE,
   asideHeader: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ASIDE_HEADER,
   filterButton: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER_BUTTON,
@@ -102,7 +103,7 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
               after={() => `${searchSlots.value.length} / ${slots.value.size}`}
             />
           </div>
-          <div class={styles.list} ref={list}>
+          <Scrollbar class={styles.list} ref={list}>
             <div
               class={styles.virtualList}
               style={{
@@ -114,7 +115,7 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
                 {(slot: Slot<Slot>) => <DevtoolsSlotItem slot={slot} />}
               </For>
             </div>
-          </div>
+          </Scrollbar>
         </div>
         <div class={styles.content}>
           <div class={styles.filter}>

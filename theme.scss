@@ -42,36 +42,6 @@ $laptop: 1024px;
   -webkit-tap-highlight-color: transparent;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: $color-bg-deep;
-}
-::-webkit-scrollbar-thumb {
-  --proximity-x: calc(var(--cursor-x, -999px) - var(--proximity-x-offset, 0px));
-  --proximity-y: calc(var(--cursor-y, -999px) - var(--proximity-y-offset, 0px));
-
-  transition: background-color .2s;
-  background: $color-secondary-hover radial-gradient(
-          circle 100px at var(--proximity-x) var(--proximity-y),
-          $color-primary 0%,
-          $color-primary 30%,
-          transparent 100%
-  ) fixed;
-  border-radius: 4px;
-  cursor: grab;
-
-  &:active {
-    cursor: grabbing;
-  }
-
-  &:hover {
-    background-color: $color-primary;
-  }
-}
-
 @property --rd-glow-x-offset {
   syntax: '<length-percentage>';
   initial-value: 0;
@@ -134,15 +104,6 @@ $laptop: 1024px;
         ) fixed;
       }
     }
-  }
-}
-
-@keyframes spin {
-  0% {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 
@@ -887,7 +848,6 @@ body {
       display: flex;
       flex: 1;
       flex-direction: column;
-      overflow: auto;
       padding-right: 8px;
       overscroll-behavior: contain;
     }
