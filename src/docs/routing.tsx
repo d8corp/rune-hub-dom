@@ -36,6 +36,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'markdown',
+            component: lazy(() => import('./pages/ui/MarkdownPage')),
+          },
+          {
+            index: true,
             path: 'button',
             component: lazy(() => import('./pages/ui/ButtonPage')),
           },
