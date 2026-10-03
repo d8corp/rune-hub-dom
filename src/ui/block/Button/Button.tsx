@@ -8,9 +8,6 @@ import { addCSS, inject, injectAll, SystemSlot } from '../../../utils'
 import type { BlockProps, FlexElement } from '../../primitive'
 import { Block, Spin } from '../../primitive'
 
-const transform = import.meta.env?.RD_THEME__TRANSFORM__BUTTOM &&
-  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__BUTTOM).default
-
 if (import.meta.env?.RD_THEME_BUTTON) {
   addCSS(import.meta.env.RD_THEME_BUTTON, 'button')
 }
@@ -75,6 +72,6 @@ function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S ext
   )
 }
 
-export const Button = transform
-  ? transform(ButtonComponent) as typeof ButtonComponent
+export const Button = import.meta.env?.RD_UI_BUTTON
+  ? import.meta.require?.(import.meta.env.RD_UI_BUTTON).Button as typeof ButtonComponent
   : ButtonComponent
