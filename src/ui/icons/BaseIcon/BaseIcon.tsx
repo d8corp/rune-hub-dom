@@ -18,6 +18,11 @@ export function BaseIcon ({ size = '1em', ...props }: BaseIconProps) {
       stroke-linecap='round'
       stroke-linejoin='round'
       {...props}
+      style={{
+        'min-width': inject(size, size => typeof size === 'number' ? `${size}px` : size),
+        'min-height': inject(size, size => typeof size === 'number' ? `${size}px` : size),
+        ...props.style,
+      }}
     />
   )
 }

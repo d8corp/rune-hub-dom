@@ -43,10 +43,10 @@ type KeysToKebabCase<T> = {
 
 export type HTMLStyleKeys = keyof KeysToKebabCase<Omit<
   HTMLElement['style'],
-  'getPropertyPriority' | 'getPropertyValue' | 'item' | 'removeProperty' | 'setProperty'
->> | `--${string}`
+  'getPropertyPriority' | 'getPropertyValue' | 'item' | 'removeProperty' | 'setProperty' | 'cssText' | 'cssFloat'
+>> | `--${string}` | '-webkit-line-clamp'
 
-export type HTMLStyleProp = Partial<Record<HTMLStyleKeys, ObservableProp<string>>>
+export type HTMLStyleProp = Partial<Record<HTMLStyleKeys, ObservableProp<string | undefined> | undefined>>
 
 export interface ChildrenProps {
   children?: JSXElement

@@ -22,6 +22,8 @@ export const buttonStyles = {
   danger: import.meta.env?.RD_THEME_BUTTON__DANGER,
   disabled: import.meta.env?.RD_THEME_BUTTON__DISABLED,
   square: import.meta.env?.RD_THEME_BUTTON__SQUARE,
+  squareLeft: import.meta.env?.RD_THEME_BUTTON__SQUARE_LEFT,
+  squareRight: import.meta.env?.RD_THEME_BUTTON__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_BUTTON__CIRCLE,
   loading: import.meta.env?.RD_THEME_BUTTON__LOADING,
   spin: import.meta.env?.RD_THEME_BUTTON__SPIN,

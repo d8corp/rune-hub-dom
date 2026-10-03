@@ -81,8 +81,8 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
         flex: inject(flex, flex => String(flex === true ? 1 : flex || '')),
         display: inject(inline, inline => inline ? 'inline-flex' : ''),
         'flex-direction': injectAll([vertical, reverse], ([vertical, reverse]) => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
-        padding: inject(padding, padding => !padding ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
-        gap: inject(gap, gap => !gap ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
+        padding: inject(padding, padding => padding === undefined ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
+        gap: inject(gap, gap => gap === undefined ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
         ...(style as any),
       }}
     />

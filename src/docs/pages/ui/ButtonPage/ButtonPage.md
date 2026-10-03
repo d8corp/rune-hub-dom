@@ -196,6 +196,10 @@ rundom(
     <Button circle square>
       <SearchIcon />
     </Button>
+    <Button circle square='left'>
+      <SearchIcon />
+      Square left
+    </Button>
   </Flex>
 )
 ```
@@ -275,6 +279,35 @@ rundom(
 )
 ```
 
+## Inherited from Flex
+---
+
+`<Button>` inherits from the [\<Flex>](/ui/flex) component, so all Flex properties are available on Button.
+This means you can use layout props like `flex`, `gap`, `align`, `vertical`, `wrap`, and others directly on the button to control the layout of its content:
+
+```tsx
+//! View
+//> flexProps
+//! Code
+import { rundom, Button, SearchIcon, Flex, Text } from 'rundom'
+
+rundom(
+  <Flex gap={8} wrap>
+    <Button flex>
+      Flex button
+    </Button>
+    <Button vertical gap={0}>
+      <SearchIcon />
+      <Text size={10}>
+        Vertical
+      </Text>
+    </Button>
+  </Flex>
+)
+```
+
+This makes it easy to arrange icons, text, and other elements inside the button without wrapping them in additional containers.
+
 ## Theme
 ---
 
@@ -282,24 +315,26 @@ The default styles of `<Button>` come from the theme and are configured with env
 The theme sets them at build time, so you don't need to change the component.
 The `class` prop overrides them for a particular button.
 
-| Variable                         | Description                                                                          |
-|----------------------------------|--------------------------------------------------------------------------------------|
-| `RD_THEME_BUTTON`                | CSS of the component that is added to the page                                       |
-| `RD_THEME_BUTTON__ROOT`          | Class name(s) of the button itself, always applied                                   |
-| `RD_THEME_BUTTON__PRIMARY`       | Applied when `color` is `'primary'`                                                  |
-| `RD_THEME_BUTTON__ACCENT`        | Applied when `color` is `'accent'`                                                   |
-| `RD_THEME_BUTTON__SECONDARY`     | Applied when `color` is `'secondary'`                                                |
-| `RD_THEME_BUTTON__SUCCESS`       | Applied when `color` is `'success'`                                                  |
-| `RD_THEME_BUTTON__WARNING`       | Applied when `color` is `'warning'`                                                  |
-| `RD_THEME_BUTTON__DANGER`        | Applied when `color` is `'danger'`                                                   |
-| `RD_THEME_BUTTON__DISABLED`      | Applied when `color` is `'disabled'` or the button is disabled                       |
-| `RD_THEME_BUTTON__S`             | Applied when `size` is `'s'`                                                         |
-| `RD_THEME_BUTTON__M`             | Applied when `size` is `'m'`                                                         |
-| `RD_THEME_BUTTON__L`             | Applied when `size` is `'l'`                                                         |
-| `RD_THEME_BUTTON__SQUARE`        | Applied when `square` is enabled                                                     |
-| `RD_THEME_BUTTON__CIRCLE`        | Applied when `circle` is enabled                                                     |
-| `RD_THEME_BUTTON__LOADING`       | Applied while `loading` is `true`                                                    |
-| `RD_THEME_BUTTON__SPIN`          | Class name(s) of the loading spinner                                                 |
+| Variable                        | Description                                                    |
+|---------------------------------|----------------------------------------------------------------|
+| `RD_THEME_BUTTON`               | CSS of the component that is added to the page                 |
+| `RD_THEME_BUTTON__ROOT`         | Class name(s) of the button itself, always applied             |
+| `RD_THEME_BUTTON__PRIMARY`      | Applied when `color` is `'primary'`                            |
+| `RD_THEME_BUTTON__ACCENT`       | Applied when `color` is `'accent'`                             |
+| `RD_THEME_BUTTON__SECONDARY`    | Applied when `color` is `'secondary'`                          |
+| `RD_THEME_BUTTON__SUCCESS`      | Applied when `color` is `'success'`                            |
+| `RD_THEME_BUTTON__WARNING`      | Applied when `color` is `'warning'`                            |
+| `RD_THEME_BUTTON__DANGER`       | Applied when `color` is `'danger'`                             |
+| `RD_THEME_BUTTON__DISABLED`     | Applied when `color` is `'disabled'` or the button is disabled |
+| `RD_THEME_BUTTON__S`            | Applied when `size` is `'s'`                                   |
+| `RD_THEME_BUTTON__M`            | Applied when `size` is `'m'`                                   |
+| `RD_THEME_BUTTON__L`            | Applied when `size` is `'l'`                                   |
+| `RD_THEME_BUTTON__SQUARE`       | Applied when `square` is `true`                                |
+| `RD_THEME_BUTTON__SQUARE_LEFT`  | Applied when `square` is `'left'`                              |
+| `RD_THEME_BUTTON__SQUARE_RIGHT` | Applied when `square` is `'right'`                             |
+| `RD_THEME_BUTTON__CIRCLE`       | Applied when `circle` is enabled                               |
+| `RD_THEME_BUTTON__LOADING`      | Applied while `loading` is `true`                              |
+| `RD_THEME_BUTTON__SPIN`         | Class name(s) of the loading spinner                           |
 
 Each variable is optional. Set only the ones you need, for example, minimal styles with a base class for all buttons and a class for the primary color:
 

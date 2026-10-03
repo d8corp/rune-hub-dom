@@ -1,7 +1,7 @@
 import type { HighlightExamples } from '@docs/ui'
 import { Slot } from 'rune-hub'
 
-import { Button, Flex, SearchIcon } from '../../../../ui'
+import { Button, Flex, SearchIcon, Text } from '../../../../ui'
 import { MarkdownTemplate } from '../../../templates'
 import description from './ButtonPage.md'
 
@@ -19,6 +19,19 @@ export default function ButtonPage () {
   const handleAlert = () => alert('Clicked!')
 
   const examples: HighlightExamples = {
+    flexProps: (
+      <Flex gap={8} wrap>
+        <Button flex>
+          Flex button
+        </Button>
+        <Button vertical gap={0}>
+          <SearchIcon />
+          <Text size={10}>
+            Vertical
+          </Text>
+        </Button>
+      </Flex>
+    ),
     onclick: (
       <Button onclick={handleAlert}>
         Click Me
@@ -74,6 +87,10 @@ export default function ButtonPage () {
         </Button>
         <Button circle square>
           <SearchIcon />
+        </Button>
+        <Button circle square='left'>
+          <SearchIcon />
+          Square left
         </Button>
       </Flex>
     ),

@@ -21,6 +21,8 @@ export const blockStyles = {
   danger: import.meta.env?.RD_THEME_BLOCK__DANGER,
   disabled: import.meta.env?.RD_THEME_BLOCK__DISABLED,
   square: import.meta.env?.RD_THEME_BLOCK__SQUARE,
+  squareLeft: import.meta.env?.RD_THEME_BLOCK__SQUARE_LEFT,
+  squareRight: import.meta.env?.RD_THEME_BLOCK__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_BLOCK__CIRCLE,
   m: import.meta.env?.RD_THEME_BLOCK__M,
   s: import.meta.env?.RD_THEME_BLOCK__S,
@@ -33,7 +35,7 @@ export type BlockProps<T extends FlexElement = 'div', S extends BlockStyles = Bl
   color?: ObservableProp<RDColor>
   size?: ObservableProp<RDSize>
   disabled?: ObservableProp<boolean>
-  square?: ObservableProp<boolean>
+  square?: ObservableProp<boolean | 'left' | 'right'>
   circle?: ObservableProp<boolean>
 }>
 
@@ -51,7 +53,7 @@ export function Block<T extends keyof HTMLElementTagNameMap = 'div', S extends B
     styles.root,
     inject(color, view => styles[view]),
     inject(size, size => styles[size]),
-    inject(square, square => square && styles.square),
+    inject(square, square => square === 'left' ? styles.squareLeft : square === 'right' ? styles.squareRight : square && styles.square),
     inject(circle, circle => circle && styles.circle),
   ], classes)
 

@@ -20,6 +20,8 @@ export const fieldStyles = {
   danger: import.meta.env?.RD_THEME_FIELD__DANGER,
   disabled: import.meta.env?.RD_THEME_FIELD__DISABLED,
   square: import.meta.env?.RD_THEME_FIELD__SQUARE,
+  squareLeft: import.meta.env?.RD_THEME_FIELD__SQUARE_LEFT,
+  squareRight: import.meta.env?.RD_THEME_FIELD__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_FIELD__CIRCLE,
   m: import.meta.env?.RD_THEME_FIELD__M,
   s: import.meta.env?.RD_THEME_FIELD__S,

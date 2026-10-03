@@ -102,10 +102,10 @@ export function runNode (target: JSXNode) {
 
               if (value === prev) return
 
-              if (value === undefined) {
-                element.style.removeProperty(property)
-              } else {
+              if (value) {
                 element.style.setProperty(property, value)
+              } else {
+                element.style.removeProperty(property)
               }
 
               prev = value
@@ -274,7 +274,6 @@ declare global {
     type Element = JSXElement
 
     interface ElementChildrenAttribute {
-
       children: {}
     }
 

@@ -26,6 +26,8 @@ export const inputStyles = {
   danger: import.meta.env?.RD_THEME_INPUT__DANGER,
   disabled: import.meta.env?.RD_THEME_INPUT__DISABLED,
   square: import.meta.env?.RD_THEME_INPUT__SQUARE,
+  squareLeft: import.meta.env?.RD_THEME_INPUT__SQUARE_LEFT,
+  squareRight: import.meta.env?.RD_THEME_INPUT__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_INPUT__CIRCLE,
   m: import.meta.env?.RD_THEME_INPUT__M,
   s: import.meta.env?.RD_THEME_INPUT__S,

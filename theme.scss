@@ -287,7 +287,15 @@ body {
     border-radius: 12px;
 
     &.block_square {
-      padding:14px;
+      padding: 14px;
+    }
+
+    &.block_square-left {
+      padding-left: 14px;
+    }
+
+    &.block_square-right {
+      padding-right: 14px;
     }
   }
 
@@ -302,6 +310,14 @@ body {
     &.block_square {
       padding: 8px;
     }
+
+    &.block_square-left {
+      padding-left: 8px;
+    }
+
+    &.block_square-right {
+      padding-right: 8px;
+    }
   }
 
   &_s {
@@ -314,6 +330,14 @@ body {
 
     &.block_square {
       padding: 6px;
+    }
+
+    &.block_square-left {
+      padding-left: 6px;
+    }
+
+    &.block_square-right {
+      padding-right: 6px;
     }
   }
 
