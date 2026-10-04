@@ -1,5 +1,5 @@
 import type { HTMLProps, ObservableProp } from '../../../types'
-import { inject } from '../../../utils'
+import { inject, injectAll } from '../../../utils'
 
 export type BaseTextStyleValue = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | BaseTextStyleValue
@@ -54,7 +54,8 @@ export function Text ({
         '-webkit-line-clamp': inject(nowrap, nowrap => typeof nowrap === 'number' ? String(nowrap) : nowrap ? '1' : undefined),
         display: inject(nowrap, nowrap => nowrap ? '-webkit-box' : undefined),
         '-webkit-box-orient': inject(nowrap, nowrap => nowrap ? 'vertical' : undefined),
-        overflow: inject(nowrap, nowrap => nowrap ? 'hidden' : undefined),
+        overflow: injectAll([nowrap, wrap], ([nowrap, wrap]) => nowrap || wrap === 'nowrap' ? 'hidden' : undefined),
+        'text-overflow': inject(wrap, wrap => wrap === 'nowrap' ? 'ellipsis' : undefined),
         'white-space': inject(nowrap, nowrap => nowrap ? 'normal' : undefined),
         height: inject(nowrap, nowrap => nowrap ? 'fit-content' : undefined),
         ...props.style,

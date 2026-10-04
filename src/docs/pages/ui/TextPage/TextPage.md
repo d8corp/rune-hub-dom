@@ -172,7 +172,8 @@ import { rundom, Text, Flex, HTMLStyleProp } from 'rundom'
 
 const nowrapStyle: HTMLStyleProp = {
   width: '100px',
-  border: '1px solid green',
+  border: '1px dashed #06f',
+  padding: '2px 8px',
 }
 
 rundom(
@@ -199,14 +200,24 @@ The `wrap` prop controls the text wrapping behavior using [`text-wrap`](https://
 //! View
 //> wrap
 //! Code
-import { rundom, Text, Flex } from 'rundom'
+import { rundom, Text, Flex, HTMLStyleProp } from 'rundom'
+
+const nowrapStyle: HTMLStyleProp = {
+  width: '100px',
+  border: '1px dashed #06f',
+  padding: '2px 8px',
+}
 
 rundom(
   <Flex gap={8} wrap>
-    <Text wrap='wrap'>Normal wrap</Text>
-    <Text wrap='nowrap'>No wrap</Text>
-    <Text wrap='balance' style={{ width: '120px' }}>
-      Balanced text that wraps with balanced lines
+    <Text wrap='nowrap' style={nowrapStyle}>
+      No wrap for this text
+    </Text>
+    <Text wrap='wrap' style={nowrapStyle}>
+      This is text that wraps with normalized lines
+    </Text>
+    <Text wrap='balance' style={nowrapStyle}>
+      This is text that wraps with balanced lines
     </Text>
   </Flex>
 )
@@ -221,21 +232,32 @@ The `break` prop controls how long words break across lines using [`word-break`]
 //! View
 //> break
 //! Code
-import { rundom, Text, Flex } from 'rundom'
+import { rundom, Text, Flex, HTMLStyleProp } from 'rundom'
+
+const style: HTMLStyleProp = {
+  width: '100px',
+  border: '1px dashed #06f',
+  padding: '2px 8px',
+  overflow: 'hidden',
+}
 
 rundom(
-  <Flex gap={8} vertical>
-    <Text break="normal" style={{ width: '120px' }}>
-      Longwordwithoutextraspace
+  <Flex gap={8} wrap>
+    <Text break='normal' style={style}>
+      (normal)
+      Longwordwithoutspace
     </Text>
-    <Text break="break-all" style={{ width: '120px' }}>
-      Longwordwithoutextraspace
+    <Text break='break-all' style={style}>
+      (break-all)
+      Longwordwithoutspace
     </Text>
-    <Text break="keep-all" style={{ width: '120px' }}>
-      Longwordwithoutextraspace
+    <Text break='keep-all' style={style}>
+      (keep-all)
+      Longwordwithoutspace
     </Text>
-    <Text break="break-word" style={{ width: '120px' }}>
-      Longwordwithoutextraspace
+    <Text break='break-word' style={style}>
+      (break-word)
+      Longwordwithoutspace
     </Text>
   </Flex>
 )
