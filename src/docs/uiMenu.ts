@@ -34,6 +34,10 @@ export const uiMenu: MenuItem[] = [
         children: '<Markdown>',
       },
       {
+        href: '/ui/text',
+        children: '<Text>',
+      },
+      {
         href: '/ui/section',
         children: '<Section>',
       },

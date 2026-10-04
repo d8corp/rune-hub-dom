@@ -44,7 +44,7 @@ type KeysToKebabCase<T> = {
 export type HTMLStyleKeys = keyof KeysToKebabCase<Omit<
   HTMLElement['style'],
   'getPropertyPriority' | 'getPropertyValue' | 'item' | 'removeProperty' | 'setProperty' | 'cssText' | 'cssFloat'
->> | `--${string}` | '-webkit-line-clamp'
+>> | `--${string}` | '-webkit-line-clamp' | '-webkit-box-orient'
 
 export type HTMLStyleProp = Partial<Record<HTMLStyleKeys, ObservableProp<string | undefined> | undefined>>
 
