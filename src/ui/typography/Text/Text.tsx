@@ -1,5 +1,7 @@
-import type { HTMLProps, ObservableProp } from '../../../types'
-import { inject, injectAll } from '../../../utils'
+import type { HTMLStyleProps } from '../../../hooks'
+import { useStyles } from '../../../hooks'
+import type { ObservableProp } from '../../../types'
+import { addCSS, inject, injectAll } from '../../../utils'
 
 export type BaseTextStyleValue = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | BaseTextStyleValue
@@ -8,7 +10,17 @@ export type TextBreak = 'normal' | 'break-all' | 'keep-all' | 'break-word' | 'au
 export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty' | 'stable' | BaseTextStyleValue
 export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | BaseTextStyleValue | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
-export interface TextProps extends HTMLProps<HTMLSpanElement> {
+if (import.meta.env?.RD_THEME_TEXT) {
+  addCSS(import.meta.env.RD_THEME_TEXT, 'text')
+}
+
+export const textStyles = {
+  root: import.meta.env?.RD_THEME_TEXT__ROOT,
+}
+
+export type TextStyles = typeof textStyles
+
+export interface TextProps extends HTMLStyleProps<HTMLSpanElement, TextStyles> {
   align?: ObservableProp<TextAlign | undefined>
   break?: ObservableProp<TextBreak | undefined>
   color?: ObservableProp<string | undefined>
@@ -25,7 +37,7 @@ function asIs<T> (value: T): T {
   return value
 }
 
-export function Text ({
+export function TextComponent ({
   color,
   cursor,
   weight,
@@ -38,9 +50,12 @@ export function Text ({
   wrap,
   ...props
 }: TextProps) {
+  const styles = useStyles(textStyles, props.class)
+
   return (
     <span
       {...props}
+      class={styles.root}
       style={{
         color: inject(color, asIs),
         cursor: inject(cursor, asIs),
@@ -63,3 +78,7 @@ export function Text ({
     />
   )
 }
+
+export const Text = import.meta.env?.RD_UI_TEXT
+  ? import.meta.require?.(import.meta.env.RD_UI_TEXT).Text as typeof TextComponent
+  : TextComponent

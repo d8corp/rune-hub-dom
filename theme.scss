@@ -6,7 +6,8 @@ $color-text: light-dark(#1E1B2E, #F1F5F9);
 $color-text-muted: light-dark(#5B556E, #94A3B8);
 $color-primary: light-dark(#7C3AED, #8B5CF6);
 $color-primary-light: light-dark(#c9b3ff, #382574);
-$color-primary-hover: light-dark(#8B5CF6, #A78BFA);
+$color-primary-hover: light-dark(#8B5CF6, #916dfc);
+$color-primary-active: light-dark(#6c41c9, #7e56dc);
 $color-accent: light-dark(#DB2777, #F472B6);
 $color-border: light-dark(#7C3AED1F, #8B5CF61F);
 $color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
@@ -343,6 +344,14 @@ body {
 
   &_primary {
     background: $color-primary;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+
+    &:active {
+      background: $color-primary-active;
+    }
   }
 
   &_accent {
@@ -410,11 +419,16 @@ body {
 
   &_accent {
     border: none;
-    background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 100% 100%;
+    background: $color-primary linear-gradient(135deg, transparent, $color-accent) 0 0 / 100% 100%;
 
     &:hover {
       color: white;
-      background: linear-gradient(135deg, $color-primary, $color-accent) 0 0 / 200% 200%;
+      background: $color-primary linear-gradient(135deg, transparent, $color-accent) 0 0 / 200% 200%;
+    }
+
+    &:active {
+      color: white;
+      background-color: $color-primary-active;
     }
   }
 
