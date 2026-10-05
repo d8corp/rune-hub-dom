@@ -284,6 +284,31 @@ rundom(
 )
 ```
 
+## Theme
+---
+
+The default styles of `<Text>` come from the theme and are configured with environment variables:
+
+| Variable              | Description                                       |
+|-----------------------|---------------------------------------------------|
+| `RD_THEME_TEXT`       | CSS of the component that is added to the page    |
+| `RD_THEME_TEXT__ROOT` | Class name(s) of the text element, always applied |
+
+### Replacing the component
+
+Set `RD_UI_TEXT` to a module alias, and `<Text>` will be taken from the `Text` export of that module:
+
+```tsx
+//! .env
+RD_UI_TEXT='@theme/text'
+//! theme/text.tsx
+import { TextComponent, TextProps } from 'rundom'
+
+export function Text (props: TextProps) {
+  return <TextComponent {...props} data-testid="text" />
+}
+```
+
 ## What's Next?
 ---
 
