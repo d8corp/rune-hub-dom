@@ -26,16 +26,21 @@ export const uiMenu: MenuItem[] = [
         children: '<Typography>',
       },
       {
-        href: '/ui/divider',
-        children: '<Divider>',
-      },
-      {
         href: '/ui/markdown',
         children: '<Markdown>',
       },
       {
         href: '/ui/text',
         children: '<Text>',
+      },
+    ],
+  },
+  {
+    title: 'Layout',
+    children: [
+      {
+        href: '/ui/divider',
+        children: '<Divider>',
       },
       {
         href: '/ui/section',
@@ -45,11 +50,6 @@ export const uiMenu: MenuItem[] = [
         href: '/ui/title',
         children: '<Title>',
       },
-    ],
-  },
-  {
-    title: 'Layout',
-    children: [
       {
         href: '/ui/details',
         children: '<Details>',

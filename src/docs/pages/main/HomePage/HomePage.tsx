@@ -1,4 +1,4 @@
-import { Button, Code, Divider, Dot, Flex } from '../../../../ui'
+import { Button, Code, Divider, Dot, Flex, Typography } from '../../../../ui'
 import { Page, Title } from '../../../ui'
 import {
   ComponentsExample,
@@ -22,12 +22,14 @@ export default function HomePage () {
             <Dot size='s' color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'} />
             v{import.meta.env?.RD_PACKAGE_VERSION} is now available
           </div>
-          <Title title='Rundom — Frontend Framework' class={styles.title}>
-            Welcome to Rundom
-          </Title>
-          <p class={styles.description}>
-            <Code data-glow class={styles.code}>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
-          </p>
+          <Typography>
+            <Title title='Rundom — Frontend Framework' class={styles.title}>
+              Welcome to Rundom
+            </Title>
+            <p class={styles.description}>
+              <Code data-glow class={styles.code}>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
+            </p>
+          </Typography>
           <div class={styles.buttons}>
             <Button color='accent' style={{ width: '182px' }} element='a' size='l' href='/quick-start'>
               Get Started

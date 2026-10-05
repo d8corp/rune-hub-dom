@@ -1,4 +1,4 @@
-import { Button, Code, Divider, Flex } from '../../../../ui'
+import { Button, Code, Divider, Flex, Typography } from '../../../../ui'
 import { Page, Title } from '../../../ui'
 import {
   ComponentsExample,
@@ -15,12 +15,14 @@ export default function UIPage () {
     <Page class={styles.root}>
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
-          <Title title='Rundom UI' class={styles.title}>
-            Rundom UI
-          </Title>
-          <p class={styles.description}>
-            <Code>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
-          </p>
+          <Typography>
+            <Title title='Rundom UI' class={styles.title}>
+              Rundom UI
+            </Title>
+            <p class={styles.description}>
+              <Code>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
+            </p>
+          </Typography>
           <div class={styles.buttons}>
             <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/ui/introduction'>
               Get Started

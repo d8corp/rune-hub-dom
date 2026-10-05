@@ -1,4 +1,3 @@
-import { Title } from '@docs/ui'
 import type { AnyTxtNode, ASTNodeTypes, TypeofTxtNode } from '@textlint/ast-node-types'
 import { parse } from '@textlint/markdown-to-ast'
 
@@ -31,12 +30,9 @@ export const markdownMap = {
   ListItem: ({ children }, render) => new JSXNode('li', {
     children: children?.map(child => render(child, render)),
   }),
-  Header: ({ children, depth }, render) => {
-    const jsxChildren = children?.map(child => render(child, render))
-    const text = jsxChildren?.length === 1 && typeof jsxChildren[0] === 'string' ? jsxChildren[0] : undefined
-
-    return new JSXNode(Title, { h: depth, title: text, children: text ? undefined : jsxChildren, link: depth < 3 })
-  },
+  Header: ({ children, depth }, render) => new JSXNode(`h${depth}`, {
+    children: children?.map(child => render(child, render)),
+  }),
   HorizontalRule: () => new JSXNode('hr', {}),
   Strong: ({ children }, render) => new JSXNode('strong', {
     children: children?.map(child => render(child, render)),
@@ -61,18 +57,24 @@ export const markdownMap = {
     src: url,
   }),
   Break: () => new JSXNode('br', {}),
-  Table: ({ children: [header, ...rows] }, render) => new JSXNode('table', {
+  Table: ({ children: [header, ...rows], align }, render) => new JSXNode('table', {
     children: [
       new JSXNode('thead', {
         children: [new JSXNode('tr', {
-          children: header.children.map(({ children }) => new JSXNode('th', {
+          children: header.children.map(({ children }, index) => new JSXNode('th', {
+            style: {
+              'text-align': align?.[index],
+            },
             children: children?.map(child => render(child, render)),
           })),
         })],
       }),
       new JSXNode('tbody', {
         children: rows?.map(({ children }) => new JSXNode('tr', {
-          children: children.map(({ children }) => new JSXNode('td', {
+          children: children.map(({ children }, index) => new JSXNode('td', {
+            style: {
+              'text-align': align?.[index],
+            },
             children: children?.map(child => render(child, render)),
           })),
         })),

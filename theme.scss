@@ -518,6 +518,63 @@ body {
   & > :last-child {
     margin-bottom: 0;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $color-primary;
+    transition: color .2s;
+
+    &:has(+ hr) {
+      margin-bottom: 0;
+    }
+  }
+
+  h1 {
+    font-size: clamp(40px, 8vw, 72px);
+    margin: 24px 0;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, $color-text 0%, $color-primary 50%, $color-accent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.3));
+  }
+
+  h2 {
+    font-size: clamp(32px, 6vw, 36px);
+    margin: 24px 0 12px;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, $color-primary, $color-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h3 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    margin: 24px 0 12px;
+    background: $color-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h4, h5, h6 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: var(--rd__root_color-muted);
+    line-height: 1.6;
+    margin: 24px 0;
+  }
+
+  li > p, h4 + p {
+    margin: 0;
+  }
 }
 
 .field {
