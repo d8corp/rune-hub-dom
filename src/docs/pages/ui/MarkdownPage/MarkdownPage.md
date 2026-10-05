@@ -103,6 +103,6 @@ rundom(
 
 ## What's next?
 
-- [Typography](/typography) — styles for text content, including rendered Markdown
-- [Flex](/flex) — layout for arranging components
-- [Button](/button) — handling user actions such as updating reactive text
+- [\<Typography>](/ui/typography) — styles for text content, including rendered Markdown
+- [\<Flex>](/ui/flex) — layout for arranging components
+- [\<Button>](/ui/button) — handling user actions such as updating reactive text
