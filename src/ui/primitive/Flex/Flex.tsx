@@ -3,7 +3,7 @@ import { Link } from '../Link'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { HTMLStyleProp, ObservableProp } from '../../../types'
+import type { GlobalCSSValue, HTMLStyleProp, ObservableProp } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_FLEX) {
@@ -15,37 +15,27 @@ const flexStyles = {
 }
 
 export type FlexStyles = typeof flexStyles
-
-export const alignJustifyMap = {
-  start: 'flex-start',
-  end: 'flex-end',
-  center: 'center',
-  stretch: 'stretch',
-} as const
-
-export const alignMap = {
-  ...alignJustifyMap,
-  baseline: 'baseline',
-} as const
-
-export const justifyMap = {
-  ...alignMap,
-  between: 'space-between',
-  around: 'space-around',
-} as const
-
 export type FlexElement = keyof HTMLElementTagNameMap
+export type FlexPadding = number | [number, number] | [number, number, number] | [number, number, number, number]
+export type FlexGap = number | [number, number]
+export type FlexBaseAlign = 'normal' | 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'safe center' | 'unsafe center' | GlobalCSSValue
+export type FlexJustify = 'space-between' | 'space-around' | 'space-evenly' | FlexBaseAlign
+export type FlexAlign = 'self-start' | 'self-end' | 'anchor-center' | 'baseline' | 'first baseline' | 'last baseline' | FlexBaseAlign
+
+function asIs<T> (value: T): T {
+  return value
+}
 
 export interface BaseFlexProps {
-  align?: ObservableProp<keyof typeof alignMap>
-  flex?: ObservableProp<number | boolean>
-  gap?: ObservableProp<number | [number, number]>
-  inline?: ObservableProp<boolean>
-  justify?: ObservableProp<keyof typeof justifyMap>
-  padding?: ObservableProp<number | [number, number] | [number, number, number] | [number, number, number, number]>
-  reverse?: ObservableProp<boolean>
-  vertical?: ObservableProp<boolean>
-  wrap?: ObservableProp<boolean>
+  align?: ObservableProp<FlexAlign | undefined>
+  flex?: ObservableProp<number | boolean | undefined>
+  gap?: ObservableProp<FlexGap | undefined>
+  inline?: ObservableProp<boolean | undefined>
+  justify?: ObservableProp<FlexJustify | undefined>
+  padding?: ObservableProp<FlexPadding | undefined>
+  reverse?: ObservableProp<boolean | undefined>
+  vertical?: ObservableProp<boolean | undefined>
+  wrap?: ObservableProp<boolean | undefined>
 }
 
 export type FlexProps<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> = HTMLStyleProps<HTMLElementTagNameMap[T], S> & {
@@ -75,14 +65,14 @@ export function FlexComponent<T extends FlexElement = 'div', S extends FlexStyle
       {...props as any}
       class={styles.root}
       style={{
-        'justify-content': inject(justify, justify => justify && justify !== 'start' ? justifyMap[justify] : ''),
-        'align-items': inject(align, align => align && align !== 'start' ? alignMap[align as keyof typeof alignMap] : ''),
-        'flex-wrap': inject(wrap, wrap => wrap ? 'wrap' : ''),
-        flex: inject(flex, flex => String(flex === true ? 1 : flex || '')),
-        display: inject(inline, inline => inline ? 'inline-flex' : ''),
+        'justify-content': inject(justify, asIs),
+        'align-items': inject(align, asIs),
+        'flex-wrap': inject(wrap, wrap => wrap ? 'wrap' : undefined),
+        flex: inject(flex, flex => String(flex === true ? 1 : flex || undefined)),
+        display: inject(inline, inline => inline ? 'inline-flex' : undefined),
         'flex-direction': injectAll([vertical, reverse], ([vertical, reverse]) => vertical ? (reverse ? 'column-reverse' : 'column') : reverse ? 'row-reverse' : ''),
-        padding: inject(padding, padding => padding === undefined ? '' : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
-        gap: inject(gap, gap => gap === undefined ? '' : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
+        padding: inject(padding, padding => padding === undefined ? undefined : Array.isArray(padding) ? `${padding.join('px ')}px` : `${padding}px`),
+        gap: inject(gap, gap => gap === undefined ? undefined : Array.isArray(gap) ? `${gap[0]}px ${gap[1]}px` : `${gap}px`),
         ...(style as any),
       }}
     />

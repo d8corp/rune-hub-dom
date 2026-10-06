@@ -1,7 +1,10 @@
+import { classes } from 'html-classes'
+
 import { useStyles } from '../../../hooks'
-import { addCSS } from '../../../utils'
-import type { FlexElement, InlineProps } from '../../primitive'
-import { Inline } from '../../primitive'
+import type { Merge, ObservableProp, RDColor, RDSize } from '../../../types'
+import { addCSS, inject, injectAll } from '../../../utils'
+import type { FlexElement, FlexProps } from '../../primitive'
+import { Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_DOT) {
   addCSS(import.meta.env.RD_THEME_DOT, 'dot')
@@ -26,20 +29,40 @@ export const dotStyles = {
 
 export type DotStyles = typeof dotStyles
 
-export type DotProps<T extends FlexElement = 'span', S extends DotStyles = DotStyles> = InlineProps<T, S>
+export type DotProps<T extends FlexElement = 'span', S extends DotStyles = DotStyles> = Merge<FlexProps<T, S>, {
+  size?: ObservableProp<RDSize>
+  color?: ObservableProp<RDColor>
+  hoverable?: ObservableProp<boolean>
+  square?: ObservableProp<boolean>
+  clickable?: ObservableProp<boolean>
+}>
 
-export function DotComponent<T extends FlexElement = 'span', S extends DotStyles = DotStyles> (
-  props: DotProps<T, S>,
-) {
+export function DotComponent<T extends FlexElement = 'span', S extends DotStyles = DotStyles> ({
+  size = 'm',
+  color = 'primary',
+  square,
+  clickable,
+  hoverable,
+  ...props
+}: DotProps<T, S>) {
   const styles = useStyles(dotStyles, props.class)
 
+  const classNames = injectAll([
+    styles.root,
+    inject(size, size => styles[size]),
+    inject(color, color => styles[color]),
+    inject(hoverable, hoverable => hoverable && styles.hoverable),
+    inject(square, square => square && styles.square),
+    inject(clickable, clickable => (clickable ?? Boolean(props.onclick)) && styles.clickable),
+  ], classes)
+
   return (
-    <Inline
+    <Flex
       element='span'
       align='center'
       justify='center'
-      {...props as InlineProps<T, S>}
-      class={styles}
+      {...props as FlexProps<T, S>}
+      class={classNames}
     />
   )
 }

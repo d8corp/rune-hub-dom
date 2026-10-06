@@ -13,7 +13,7 @@ export default function DotPage () {
       </Flex>
     ),
     content: (
-      <Flex gap={8} align='center'>
+      <Flex gap={8} align='center' wrap>
         <Dot>1</Dot>
         <Dot>13</Dot>
         <Dot>420</Dot>
@@ -32,7 +32,7 @@ export default function DotPage () {
       </Flex>
     ),
     size: (
-      <Flex gap={16} align='center'>
+      <Flex gap={16} align='center' wrap>
         <Dot size='s'>1</Dot>
         <Dot size='m'>1</Dot>
         <Dot size='l'>1</Dot>

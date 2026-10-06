@@ -61,6 +61,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'scrollbar',
+            component: lazy(() => import('./pages/ui/ScrollbarPage')),
+          },
+          {
+            index: true,
             path: 'dot',
             component: lazy(() => import('./pages/ui/DotPage')),
           },

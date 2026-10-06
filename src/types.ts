@@ -82,6 +82,7 @@ export type Merge<A, B> = B & Omit<A, keyof B>
 
 export type RDColor = 'primary' | 'accent' | 'secondary' | 'success' | 'warning' | 'danger' | 'disabled'
 export type RDSize = 's' | 'm' | 'l'
+export type GlobalCSSValue = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'
 
 declare global {
   interface Element extends IContent {}

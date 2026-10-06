@@ -1,5 +1,6 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
+import type { ObservableProp } from '../../../types'
 import { addCSS } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_CODE) {
@@ -13,7 +14,7 @@ export const codeStyles = {
 export type CodeStyles = typeof codeStyles
 
 export interface CodeProps extends HTMLStyleProps<HTMLElement, CodeStyles> {
-  children?: string
+  children?: ObservableProp<string | undefined>
 }
 
 export function CodeComponent (props: CodeProps) {

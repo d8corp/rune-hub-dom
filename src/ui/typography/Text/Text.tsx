@@ -1,14 +1,13 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { ObservableProp } from '../../../types'
+import type { GlobalCSSValue, ObservableProp } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 
-export type BaseTextStyleValue = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'
-export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | BaseTextStyleValue
-export type TextDecoration = 'auto' | 'unset' | 'line-through' | 'overline' | 'underline' | BaseTextStyleValue
-export type TextBreak = 'normal' | 'break-all' | 'keep-all' | 'break-word' | 'auto-phrase' | BaseTextStyleValue
-export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty' | 'stable' | BaseTextStyleValue
-export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | BaseTextStyleValue | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | GlobalCSSValue
+export type TextDecoration = 'auto' | 'unset' | 'line-through' | 'overline' | 'underline' | GlobalCSSValue
+export type TextBreak = 'normal' | 'break-all' | 'keep-all' | 'break-word' | 'auto-phrase' | GlobalCSSValue
+export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty' | 'stable' | GlobalCSSValue
+export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | GlobalCSSValue | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
 if (import.meta.env?.RD_THEME_TEXT) {
   addCSS(import.meta.env.RD_THEME_TEXT, 'text')

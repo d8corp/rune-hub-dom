@@ -8,7 +8,7 @@ import styles from './Header.scss'
 export function Header () {
   return (
     <Flex data-glow element='header' class={styles.root}>
-      <Flex flex padding={[0, 24]} align='center' justify='between' class={styles.content}>
+      <Flex flex padding={[0, 24]} align='center' justify='space-between' class={styles.content}>
         <Flex element='a' exact href='/' gap={12} align='center' class={styles.logo}>
           Rundom
         </Flex>
