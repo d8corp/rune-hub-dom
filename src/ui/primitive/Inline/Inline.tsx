@@ -36,6 +36,7 @@ export type InlineProps<T extends FlexElement = 'span', S extends InlineStyles =
   pulse?: ObservableProp<boolean>
   hoverable?: ObservableProp<boolean>
   square?: ObservableProp<boolean>
+  clickable?: ObservableProp<boolean>
 }>
 
 export function Inline<T extends FlexElement = 'span', S extends InlineStyles = InlineStyles> ({
@@ -43,6 +44,7 @@ export function Inline<T extends FlexElement = 'span', S extends InlineStyles = 
   color = 'warning',
   hoverable,
   square,
+  clickable,
   ...props
 }: InlineProps<T, S>) {
   const styles = useStyles(inlineStyles, props.class)
@@ -53,11 +55,11 @@ export function Inline<T extends FlexElement = 'span', S extends InlineStyles = 
       {...props as FlexProps<T, S>}
       class={injectAll([
         styles.root,
-        props.onclick && styles.clickable,
         inject(size, size => styles[size]),
         inject(color, color => styles[color]),
         inject(hoverable, hoverable => hoverable && styles.hoverable),
         inject(square, square => square && styles.square),
+        inject(clickable, clickable => (clickable ?? Boolean(props.onclick)) && styles.clickable),
       ], classes)}
     />
   )

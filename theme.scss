@@ -146,14 +146,19 @@ body {
 .divider {
   align-self: stretch;
   border: 0 solid $color-border;
+  --rd-divider-offset: 4px;
+
+  &_flush {
+    --rd-divider-offset: 0;
+  }
 
   &:not(&_vertical) {
-    margin: 0 4px;
+    margin: 0 var(--rd-divider-offset);
     border-bottom-width: var(--rd-divider-size);
   }
 
   &_vertical {
-    margin: 4px 0;
+    margin: var(--rd-divider-offset) 0;
     border-left-width: var(--rd-divider-size);
   }
 

@@ -12,7 +12,9 @@ export const codeStyles = {
 
 export type CodeStyles = typeof codeStyles
 
-export interface CodeProps extends HTMLStyleProps<HTMLElement, CodeStyles> {}
+export interface CodeProps extends HTMLStyleProps<HTMLElement, CodeStyles> {
+  children?: string
+}
 
 export function CodeComponent (props: CodeProps) {
   const styles = useStyles(codeStyles, props.class)

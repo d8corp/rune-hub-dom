@@ -51,6 +51,26 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'code',
+            component: lazy(() => import('./pages/ui/CodePage')),
+          },
+          {
+            index: true,
+            path: 'divider',
+            component: lazy(() => import('./pages/ui/DividerPage')),
+          },
+          {
+            index: true,
+            path: 'dot',
+            component: lazy(() => import('./pages/ui/DotPage')),
+          },
+          {
+            index: true,
+            path: 'flex',
+            component: lazy(() => import('./pages/ui/FlexPage')),
+          },
+          {
+            index: true,
             path: 'text',
             component: lazy(() => import('./pages/ui/TextPage')),
           },

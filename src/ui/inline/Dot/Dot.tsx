@@ -28,7 +28,7 @@ export type DotStyles = typeof dotStyles
 
 export type DotProps<T extends FlexElement = 'span', S extends DotStyles = DotStyles> = InlineProps<T, S>
 
-export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotStyles> (
+export function DotComponent<T extends FlexElement = 'span', S extends DotStyles = DotStyles> (
   props: DotProps<T, S>,
 ) {
   const styles = useStyles(dotStyles, props.class)
@@ -43,3 +43,7 @@ export function Dot<T extends FlexElement = 'span', S extends DotStyles = DotSty
     />
   )
 }
+
+export const Dot = import.meta.env?.RD_UI_DOT
+  ? import.meta.require?.(import.meta.env.RD_UI_DOT).Dot as typeof DotComponent
+  : DotComponent

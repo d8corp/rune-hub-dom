@@ -93,10 +93,6 @@ export const uiMenu: MenuItem[] = [
         children: '<Code>',
       },
       {
-        href: '/ui/divider',
-        children: '<Divider>',
-      },
-      {
         href: '/ui/dot',
         children: '<Dot>',
       },

@@ -37,15 +37,15 @@ export const justifyMap = {
 export type FlexElement = keyof HTMLElementTagNameMap
 
 export interface BaseFlexProps {
-  vertical?: ObservableProp<boolean>
   align?: ObservableProp<keyof typeof alignMap>
-  justify?: ObservableProp<keyof typeof justifyMap>
-  gap?: ObservableProp<number | [number, number]>
   flex?: ObservableProp<number | boolean>
-  wrap?: ObservableProp<boolean>
+  gap?: ObservableProp<number | [number, number]>
   inline?: ObservableProp<boolean>
-  reverse?: ObservableProp<boolean>
+  justify?: ObservableProp<keyof typeof justifyMap>
   padding?: ObservableProp<number | [number, number] | [number, number, number] | [number, number, number, number]>
+  reverse?: ObservableProp<boolean>
+  vertical?: ObservableProp<boolean>
+  wrap?: ObservableProp<boolean>
 }
 
 export type FlexProps<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> = HTMLStyleProps<HTMLElementTagNameMap[T], S> & {
@@ -53,17 +53,17 @@ export type FlexProps<T extends FlexElement = 'div', S extends FlexStyles = Flex
   style?: HTMLStyleProp
 } & BaseFlexProps & (T extends 'a' ? LinkProps : object)
 
-export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> ({
-  vertical,
+export function FlexComponent<T extends FlexElement = 'div', S extends FlexStyles = FlexStyles> ({
   align,
-  justify,
-  gap,
   flex,
-  wrap,
+  gap,
   inline,
-  reverse,
-  style,
+  justify,
   padding,
+  reverse,
+  vertical,
+  wrap,
+  style,
   element = 'div' as T,
   ...props
 }: FlexProps<T, S>) {
@@ -88,3 +88,7 @@ export function Flex<T extends FlexElement = 'div', S extends FlexStyles = FlexS
     />
   )
 }
+
+export const Flex = import.meta.env?.RD_UI_FLEX
+  ? import.meta.require?.(import.meta.env.RD_UI_FLEX).Flex as typeof FlexComponent
+  : FlexComponent
