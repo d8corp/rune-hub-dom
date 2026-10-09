@@ -1,7 +1,7 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { GlobalCSSValue, ObservableProp } from '../../../types'
-import { addCSS, inject, injectAll } from '../../../utils'
+import { addCSS, inject, injectAll, injectAsIs } from '../../../utils'
 
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | GlobalCSSValue
 export type TextDecoration = 'auto' | 'unset' | 'line-through' | 'overline' | 'underline' | GlobalCSSValue
@@ -19,7 +19,7 @@ export const textStyles = {
 
 export type TextStyles = typeof textStyles
 
-export interface TextProps extends HTMLStyleProps<HTMLSpanElement, TextStyles> {
+export interface TextProps extends HTMLStyleProps<'span', TextStyles> {
   align?: ObservableProp<TextAlign | undefined>
   break?: ObservableProp<TextBreak | undefined>
   color?: ObservableProp<string | undefined>
@@ -30,10 +30,6 @@ export interface TextProps extends HTMLStyleProps<HTMLSpanElement, TextStyles> {
   size?: ObservableProp<number | string | undefined>
   weight?: ObservableProp<TextWeight | undefined>
   wrap?: ObservableProp<TextWrap | undefined>
-}
-
-function asIs<T> (value: T): T {
-  return value
 }
 
 export function TextComponent ({
@@ -56,13 +52,13 @@ export function TextComponent ({
       {...props}
       class={styles.root}
       style={{
-        color: inject(color, asIs),
-        cursor: inject(cursor, asIs),
-        'font-weight': inject(weight, asIs),
-        'word-break': inject(propsBreak, asIs),
-        'text-align': inject(align, asIs),
-        'text-decoration': inject(decoration, asIs),
-        'text-wrap': inject(wrap, asIs),
+        color: injectAsIs(color),
+        cursor: injectAsIs(cursor),
+        'font-weight': injectAsIs(weight),
+        'word-break': injectAsIs(propsBreak),
+        'text-align': injectAsIs(align),
+        'text-decoration': injectAsIs(decoration),
+        'text-wrap': injectAsIs(wrap),
         'font-size': inject(size, size => typeof size === 'number' ? `${size}px` : size),
         'font-style': inject(italic, italic => italic ? 'italic' : undefined),
         '-webkit-line-clamp': inject(nowrap, nowrap => typeof nowrap === 'number' ? String(nowrap) : nowrap ? '1' : undefined),

@@ -13,7 +13,7 @@ export const codeStyles = {
 
 export type CodeStyles = typeof codeStyles
 
-export interface CodeProps extends HTMLStyleProps<HTMLElement, CodeStyles> {
+export interface CodeProps extends HTMLStyleProps<'code', CodeStyles> {
   children?: ObservableProp<string | undefined>
 }
 

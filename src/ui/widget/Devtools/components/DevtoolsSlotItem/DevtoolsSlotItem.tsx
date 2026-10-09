@@ -21,7 +21,7 @@ export const devtoolsSlotItemStyles = {
 
 export type DevtoolsSlotItemStyles = typeof devtoolsSlotItemStyles
 
-export type DevtoolsSlotItemProps = Merge<HTMLStyleProps<HTMLDivElement, DevtoolsSlotItemStyles>, {
+export type DevtoolsSlotItemProps = Merge<HTMLStyleProps<'div', DevtoolsSlotItemStyles>, {
   slot: Slot<Slot>
 }>
 

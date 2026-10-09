@@ -1,7 +1,7 @@
 import { classes } from 'html-classes'
 
 import { type HTMLStyleProps, useStyles } from '../../../hooks'
-import type { ObservableProp } from '../../../types'
+import type { Merge, ObservableProp } from '../../../types'
 import type { LinkToParams } from '../../../utils'
 import { addCSS, inject, linkTo, locationURL, startViewTransition, SystemSlot, use } from '../../../utils'
 
@@ -22,13 +22,15 @@ function clearHref (url: string) {
   return url.replace(CLEAR_HREF, '')
 }
 
-export interface LinkProps extends HTMLStyleProps<HTMLAnchorElement, LinkStyles>, LinkToParams {
+export interface BaseLinkProps {
   target?: '_blank' | '_parent' | '_self' | '_top'
   exact?: boolean
   transition?: boolean
   disabled?: ObservableProp<boolean>
   children?: JSX.Element
 }
+
+export type LinkProps<S extends LinkStyles = LinkStyles> = Merge<HTMLStyleProps<'a', S>, LinkToParams & BaseLinkProps>
 
 export function LinkComponent (props: LinkProps) {
   const styles = useStyles(linkStyles, props.class)

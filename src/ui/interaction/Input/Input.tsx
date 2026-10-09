@@ -2,9 +2,9 @@ import { Slot } from 'rune-hub'
 import SyncTimer from 'sync-timer'
 
 import { Show } from '../../../components'
-import { useClear, useDebounceSlotEvent, useStyles } from '../../../hooks'
-import type { JSXElement, Merge, ObservableProp } from '../../../types'
-import { addCSS, getSlotEvent, inject, Ref } from '../../../utils'
+import { useClear, useDebounceSlotEvent, useEffect, useStyles } from '../../../hooks'
+import type { HTMLRef, JSXElement, Merge, ObservableProp } from '../../../types'
+import { addCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
 import type { FieldProps } from '../../block'
 import { Field } from '../../block'
 import { CloseIcon } from '../../icons'
@@ -44,7 +44,7 @@ export interface InputFocusOptions extends FocusOptions {
 
 export type InputProps<T extends string = string, S extends InputStyles = InputStyles> = Merge<FieldProps<'label', S>, {
   value?: ObservableProp<T>
-  inputRef?: Ref<HTMLInputElement>
+  inputRef?: HTMLRef<'input'>
   before?: JSXElement
   after?: JSXElement
   name?: ObservableProp<string>
@@ -57,7 +57,7 @@ export type InputProps<T extends string = string, S extends InputStyles = InputS
 
 function InputComponent<T extends string = '', S extends InputStyles = InputStyles> ({
   value = new Slot<T>(() => '' as T),
-  inputRef,
+  inputRef = new Ref<HTMLInputElement>(),
   before,
   after,
   name,
@@ -77,16 +77,18 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
   }
 
   if (autofocus) {
-    if (!inputRef) {
-      inputRef = new Ref<HTMLInputElement>()
-    }
-
     const timer = new SyncTimer(() => {
       inputRef!.value!.focus(typeof autofocus === 'object' ? autofocus : undefined)
     }, typeof autofocus === 'number' ? autofocus : typeof autofocus === 'object' ? autofocus.timeout ?? 0 : 0)
 
     useClear(() => timer.cancel())
   }
+
+  useEffect(() => {
+    new SystemSlot(() => {
+      inputRef!.value!.value = use(value)
+    }).on()
+  })
 
   const clearContent = inject(clearable, clearable => clearable
     ? (
@@ -111,7 +113,6 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
         name={name}
         class={styles.input}
         ref={inputRef}
-        _value={value}
         oninput={handleInput}
       />
       {clearContent}

@@ -1,16 +1,16 @@
 import type { HTMLProps, ObservableProp } from '../../../types'
-import { inject } from '../../../utils'
+import { inject, injectAsIs } from '../../../utils'
 
-export interface BaseIconProps extends HTMLProps<SVGSVGElement> {
-  size?: ObservableProp<number | string>
+export interface BaseIconProps extends HTMLProps<'svg'> {
+  size?: ObservableProp<number | string | undefined>
 }
 
 export function BaseIcon ({ size = '1em', ...props }: BaseIconProps) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width={inject(size, String)}
-      height={inject(size, String)}
+      width={injectAsIs(size)}
+      height={injectAsIs(size)}
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'

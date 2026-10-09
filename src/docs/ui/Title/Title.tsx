@@ -33,7 +33,7 @@ const updateTitleLinks = () => {
   })
 }
 
-export interface TitleProps extends HTMLStyleProps<HTMLHeadingElement, typeof $styles> {
+export interface TitleProps extends HTMLStyleProps<'h1', typeof $styles> {
   h?: 1 | 2 | 3 | 4 | 5 | 6
   title?: string
   subtitle?: ObservableProp<string>

@@ -23,7 +23,7 @@ export const devtoolsSlotPanelStyles = {
 
 export type DevtoolsSlotPanelStyles = typeof devtoolsSlotPanelStyles
 
-export type DevtoolsSlotPanelProps = HTMLStyleProps<HTMLDivElement, DevtoolsSlotPanelStyles>
+export type DevtoolsSlotPanelProps = HTMLStyleProps<'div', DevtoolsSlotPanelStyles>
 
 export function DevtoolsSlotPanelComponent (props: DevtoolsSlotPanelProps) {
   const styles = useStyles(devtoolsSlotPanelStyles, props.class)

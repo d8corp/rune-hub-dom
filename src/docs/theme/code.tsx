@@ -5,13 +5,11 @@ export function Code (props: CodeProps) {
   return (
     <CodeComponent
       {...props}
-      onclick={(e: PointerEvent) => {
+      onclick={(e) => {
         navigator.clipboard.writeText((e.target as HTMLDivElement).innerText)
 
         viewTransition(() => {
           message('Copied to clipboard')
-
-          // @ts-expect-error: this
           props.onclick?.(e)
         })
       }}

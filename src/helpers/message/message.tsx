@@ -67,7 +67,6 @@ export function message (text: string, { timeout = text.length / 13 + 1, type = 
   const handleMouseenter = timer instanceof Timer
     ? (e: MouseEvent) => {
         timer.pause()
-        // @ts-expect-error This
         props.onmouseenter?.(e)
       }
     : undefined
@@ -75,15 +74,13 @@ export function message (text: string, { timeout = text.length / 13 + 1, type = 
   const handleMouseleave = timer instanceof Timer
     ? (e: MouseEvent) => {
         timer.play()
-        // @ts-expect-error This
         props.onmouseleave?.(e)
       }
     : undefined
 
-  const handleClick = (e: PointerEvent) => {
+  const handleClick = (e: MouseEvent) => {
     viewTransition(() => {
       destroy()
-      // @ts-expect-error This
       props.onclick?.(e)
     })
   }

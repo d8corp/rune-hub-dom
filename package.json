@@ -80,6 +80,7 @@
     "typescript-plugin-css-modules": "^5.2.0"
   },
   "dependencies": {
+    "dom-types": "^1.1.5",
     "html-classes": "^2.0.2",
     "rune-hub": "^1.2.0",
     "sync-timer": "^1.0.1",

@@ -20,7 +20,7 @@ export const dividerStyles = {
 
 export type DividerStyle = typeof dividerStyles
 
-interface DividerPros extends HTMLStyleProps<HTMLHRElement, DividerStyle> {
+interface DividerPros extends HTMLStyleProps<'hr', DividerStyle> {
   size?: ObservableProp<RDSize>
   vertical?: ObservableProp<boolean>
   flush?: ObservableProp<boolean>

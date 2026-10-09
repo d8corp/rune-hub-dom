@@ -1,3 +1,4 @@
+import type { DOMAttributes } from 'dom-types/native'
 import type { Slot } from 'rune-hub'
 
 import type { Content, Ref } from './utils'
@@ -33,6 +34,11 @@ export interface IContent {
   _last?: Child
 }
 
+export type HTMLElementTagName = keyof HTMLElementTagNameMap
+export type SVGElementTagName = keyof SVGElementTagNameMap
+export type ElementTagName = HTMLElementTagName | SVGElementTagName
+export type SelfClosingElementTagName = 'area' | 'base' | 'br' | 'col' | 'embed' | 'hr' | 'img' | 'input' | 'link' | 'meta' | 'param' | 'source' | 'track' | 'wbr'
+
 type CamelToKebabCase<S extends string> = S extends `${infer T}${infer U}` ?
   `${T extends Capitalize<T> ? '-' : ''}${Lowercase<T>}${CamelToKebabCase<U>}` :
   S
@@ -52,23 +58,33 @@ export interface ChildrenProps {
   children?: JSXElement
 }
 
-export interface HTMLDefaultProps<E extends DomElement = HTMLElement> extends ChildrenProps {
-  class?: ObservableProp<string | undefined>
-  style?: HTMLStyleProp
-  ref?: Ref<E>
+export type GetTagNameElement<T extends ElementTagName = ElementTagName> = T extends HTMLElementTagName
+  ? HTMLElementTagNameMap[T]
+  : T extends SVGElementTagName ? SVGElementTagNameMap[T] : never
+
+export type HTMLRef<T extends ElementTagName = ElementTagName> = Ref<GetTagNameElement<T>>
+
+export interface HTMLRefProps<T extends ElementTagName = ElementTagName> {
+  ref?: HTMLRef<T>
 }
 
-export type HTMLDataProps = Record<`data-${string}`, ObservableProp<string>>
+export type BaseElementProps<T extends ElementTagName> = {
+  [A in keyof DOMAttributes<T>]?: A extends `on${string}`
+    ? DOMAttributes<T>[A]
+    : A extends 'style'
+      ? HTMLStyleProp
+      : ObservableProp<DOMAttributes<T>[A] | undefined>
+}
 
-type ExcludeKeys = symbol | keyof HTMLDefaultProps
+export interface ElementChildrenProps<T extends ElementTagName> {
+  children?: T extends SelfClosingElementTagName ? never : JSXElement
+}
 
-export type HTMLProps<E extends DomElement = HTMLElement> = {
-  [K in Extract<keyof E, `on${string}`>]?: E[K];
-} & {
-  [K in Exclude<keyof E, ExcludeKeys> as NonNullable<E[K]> extends Function ? never : K]?: ObservableProp<string | undefined | (E[K] extends number ? number : undefined)>;
-} & {
-  [K in Exclude<keyof E, ExcludeKeys> as NonNullable<E[K]> extends Function ? never : `${'_' | '$'}${K}`]?: ObservableProp<E[K] | undefined>;
-} & HTMLDefaultProps<E> & HTMLDataProps
+export type JSXIntrinsicElements = {
+  [T in ElementTagName]: BaseElementProps<T> & ElementChildrenProps<T> & HTMLRefProps<T>
+}
+
+export type HTMLProps<T extends ElementTagName = ElementTagName> = JSXIntrinsicElements[T]
 
 export class JSXNode <T extends JSXType = JSXType> {
   constructor (

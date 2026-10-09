@@ -2,7 +2,7 @@ import { Hub, Slot } from 'rune-hub'
 
 import { catchContext, parentContext } from './constants'
 import { useClear } from './hooks'
-import type { HTMLProps, JSXElement, JSXSource, ObservableProp, ReactiveProp } from './types'
+import type { JSXElement, JSXIntrinsicElements, JSXSource, ReactiveProp } from './types'
 import { JSXNode } from './types'
 import { append, Content, Context, observablePropToStaticOrReactive, remove, SystemSlot, use } from './utils'
 
@@ -120,12 +120,6 @@ export function runNode (target: JSXNode) {
         continue
       }
 
-      const bothSet = prop[0] === '$'
-      const fieldSet = bothSet || prop[0] === '_'
-      const attributeSet = bothSet || !fieldSet
-
-      const key = fieldSet ? prop.slice(1) : prop
-
       if (value instanceof Slot || typeof value === 'function') {
         let prev: unknown
 
@@ -135,18 +129,10 @@ export function runNode (target: JSXNode) {
           if (result === prev) return
           prev = result
 
-          // @ts-expect-error TODO: fix types
-          if (fieldSet && element[key] !== result) {
-            // @ts-expect-error TODO: fix types
-            element[key] = result
-          }
-
-          if (attributeSet) {
-            if (result === undefined || result === '') {
-              element.removeAttribute(prop)
-            } else {
-              element.setAttribute(prop, String(result))
-            }
+          if (result === undefined || result === '') {
+            element.removeAttribute(prop)
+          } else {
+            element.setAttribute(prop, result)
           }
         }
 
@@ -155,14 +141,8 @@ export function runNode (target: JSXNode) {
         continue
       }
 
-      // @ts-expect-error TODO: fix types
-      if (fieldSet && element[key] !== value) {
-        // @ts-expect-error TODO: fix types
-        element[key] = value
-      }
-
       if (value !== undefined && value !== '') {
-        element.setAttribute(prop, String(value))
+        element.setAttribute(prop, value)
       }
     }
 
@@ -277,23 +257,6 @@ declare global {
       children: {}
     }
 
-    type IntrinsicElements = {
-      [K in keyof HTMLElementTagNameMap]: HTMLProps<HTMLElementTagNameMap[K]>
-    } & {
-      [K in Exclude<keyof SVGElementTagNameMap, 'a'>]: HTMLProps<SVGElementTagNameMap[K]>
-    } & {
-      svg: {
-        xmlns?: string
-        fill?: string
-        stroke?: string
-      },
-      path: {
-        d?: string
-      },
-      circle: {
-        fill?: ObservableProp<string>
-        opacity?: ObservableProp<string>
-      },
-    }
+    type IntrinsicElements = JSXIntrinsicElements
   }
 }

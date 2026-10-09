@@ -13,7 +13,7 @@ export const typographyStyles = {
 
 export type TypographyStyles = typeof typographyStyles
 
-export interface TypographyProps extends HTMLStyleProps <HTMLDivElement, TypographyStyles> {
+export interface TypographyProps extends HTMLStyleProps <'div', TypographyStyles> {
   flex?: ObservableProp<number | boolean>
 }
 
