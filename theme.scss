@@ -470,13 +470,34 @@ body {
   cursor: pointer;
 }
 
-.window {
-  gap: 8px;
-  padding: 8px;
+.card {
   background: $color-secondary-bg;
   border: 1px solid $color-border;
-  border-radius: 16px;
 
+  &_s {
+    gap: 4px;
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  &_m {
+    gap: 8px;
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  &_l {
+    gap: 12px;
+    padding: 12px;
+    border-radius: 24px;
+  }
+
+  &_clickable {
+    cursor: pointer;
+  }
+}
+
+.window {
   &-header {
     color: $color-text-muted;
     font-size: 12px;

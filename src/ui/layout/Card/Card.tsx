@@ -28,7 +28,7 @@ export type CardProps<T extends FlexElement = 'div', S extends CardStyles = Card
 }>
 
 export function CardComponent<T extends FlexElement = 'div', S extends CardStyles = CardStyles> ({
-  size,
+  size = 'm',
   onclick,
   clickable = Boolean(onclick),
   width,

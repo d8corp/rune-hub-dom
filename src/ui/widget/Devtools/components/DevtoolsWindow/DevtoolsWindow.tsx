@@ -24,6 +24,10 @@ if (import.meta.env?.RD_THEME_DEVTOOLS_WINDOW) {
 
 export const devtoolsWindowStyles = {
   root: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__ROOT,
+  clickable: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__CLICKABLE,
+  m: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__M,
+  s: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__S,
+  l: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__L,
   filter: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__FILTER,
   content: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__CONTENT,
   list: import.meta.env?.RD_THEME_DEVTOOLS_WINDOW__LIST,
