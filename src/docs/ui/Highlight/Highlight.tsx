@@ -96,7 +96,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
               <Typography class={styles.titleText} flex>
                 <Markdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
-              <Button size='s' data-glow={glow} square color='secondary' onclick={copy(codeText)}>
+              <Button size='s' data-glow={glow} square view='bordered' onclick={copy(codeText)}>
                 <IconCopy />
               </Button>
             </Flex>
@@ -158,7 +158,7 @@ export function Highlight<T extends FlexElement = 'div'> ({
               ))}
             </Flex>
             <Show when={() => code.value && !code.value.startsWith('//>')}>
-              <Button data-glow={glow} square color='secondary' size='s' onclick={copy(code)}>
+              <Button data-glow={glow} square view='bordered' size='s' onclick={copy(code)}>
                 <IconCopy />
               </Button>
             </Show>

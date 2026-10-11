@@ -1,7 +1,7 @@
 import { classes } from 'html-classes'
 
 import { useStyles } from '../../../hooks'
-import type { GlobalCSSValue, HTMLStyleProp, Merge, ObservableProp, RDSize } from '../../../types'
+import type { GlobalCSSValue, HTMLStyleProp, Merge, ObservableProp, SMLSize } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
@@ -26,7 +26,7 @@ export type ScrollbarOverflow = ScrollbarOverflowBase | `${ScrollbarOverflowBase
 export type ScrollbarProps<T extends FlexElement = 'div', S extends ScrollbarStyles = ScrollbarStyles> = Merge<FlexProps<T, S>, {
   stable?: ObservableProp<boolean>
   overflow?: ObservableProp<ScrollbarOverflow>
-  size?: ObservableProp<RDSize>
+  size?: ObservableProp<SMLSize>
 }>
 
 export function ScrollbarComponent<T extends keyof HTMLElementTagNameMap = 'div', S extends ScrollbarStyles = ScrollbarStyles> ({

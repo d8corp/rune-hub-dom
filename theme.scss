@@ -1,4 +1,24 @@
 // colors
+$color-primary-10:  #090510;
+$color-primary-15:  #130925;
+$color-primary-20:  #200f3e;
+$color-primary-25:  #2c1358;
+$color-primary-30:  #3b1877;
+$color-primary-35:  #491d96;
+$color-primary-40:  #5921ba;
+$color-primary-45:  #6724db;
+$color-primary-50:  #7c3aed;
+$color-primary-55:  #894fee;
+$color-primary-60:  #8b5cf6;
+$color-primary-65:  #a06cf9;
+$color-primary-70:  #ac7efb;
+$color-primary-75:  #bc97fc;
+$color-primary-80:  #ccaffd;
+$color-primary-85:  #dcc8fe;
+$color-primary-90:  #e8dcff;
+$color-primary-95:  #f2ebff;
+$color-primary-100: #f9f5ff;
+
 $color-bg: var(--color-bg);
 $color-bg-deep: light-dark(#fff, #0B0B15);
 $color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
@@ -11,7 +31,7 @@ $color-primary-active: light-dark(#6c41c9, #7e56dc);
 $color-accent: light-dark(#DB2777, #F472B6);
 $color-border: light-dark(#7C3AED1F, #8B5CF61F);
 $color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
-$color-secondary: #8B5CF614;
+$color-secondary: light-dark(#efe9fc, #161226);
 $color-secondary-hover: #8B5CF626;
 $color-secondary-bg: light-dark(#d9d1f6, #332958);
 $color-secondary-active: rgb(116 66 229 / 0.3);
@@ -177,6 +197,7 @@ body {
 }
 
 .dot {
+  border: 1px solid transparent;
   border-radius: $size-infinite;
   transition: $transition;
   color: light-dark(white, black);
@@ -198,6 +219,8 @@ body {
   }
 
   &_secondary {
+    color: $color-primary;
+    border-color: $color-primary;
     background: $color-secondary;
   }
 
@@ -269,126 +292,174 @@ body {
   }
 }
 
-.block {
-  --block-color: white;
-
+.box {
+  --box-second-color: #fff;
   transition: $transition;
-  background-clip: border-box;
-  border: 1px solid $color-border;
-  font-weight: bold;
-  color: var(--block-color);
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  height: var(--box-size);
+  min-height: var(--box-size);
+  min-width: var(--box-size);
+  text-box: text alphabetic;
 
-  &:hover {
-    --block-color: white;
-    --rd-glow-bg: #{$color-border-hover};
-    border-color: $color-border-hover;
+  &_clickable {
+    cursor: pointer;
   }
 
-  &_l {
-    height: 56px;
-    min-height: 56px;
-    min-width: 56px;
-    font-size: 16px;
-    padding: 14px 28px;
-    border-radius: 12px;
-
-    &.block_square {
-      padding: 14px;
-    }
-
-    &.block_square-left {
-      padding-left: 14px;
-    }
-
-    &.block_square-right {
-      padding-right: 14px;
-    }
+  &_filled {
+    border: 1px solid var(--box-main-color);
+    background-color: var(--box-main-color);
+    color: var(--box-second-color);
   }
 
-  &_m {
-    height: 36px;
-    min-height: 36px;
-    min-width: 36px;
-    font-size: 14px;
-    padding: 8px 16px;
-    border-radius: 8px;
-
-    &.block_square {
-      padding: 8px;
-    }
-
-    &.block_square-left {
-      padding-left: 8px;
-    }
-
-    &.block_square-right {
-      padding-right: 8px;
-    }
+  &_bordered {
+    border: 1px solid var(--box-main-color);
+    background-color: var(--box-light-color);
+    color: var(--box-main-color);
   }
 
-  &_s {
-    height: 24px;
-    min-height: 24px;
-    min-width: 24px;
-    font-size: 10px;
-    padding: 6px 8px;
-    border-radius: 6px;
+  &_ghost {
+    color: var(--box-main-color);
+  }
 
-    &.block_square {
-      padding: 6px;
-    }
-
-    &.block_square-left {
-      padding-left: 6px;
-    }
-
-    &.block_square-right {
-      padding-right: 6px;
-    }
+  &_dashed {
+    border: 1px dashed var(--box-main-color);
+    color: var(--box-main-color);
   }
 
   &_primary {
-    background: $color-primary;
+    --box-main-color: light-dark(#{$color-primary-45}, #{$color-primary-50});
+    --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-20});
 
-    &:hover {
-      background: $color-primary-hover;
+    &:is(.box_hoverable, .box_clickable):hover {
+      --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-60});
+      --box-light-color: light-dark(#{$color-primary-90}, #{$color-primary-30});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
     }
 
-    &:active {
-      background: $color-primary-active;
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-primary-40}, #{$color-primary-50});
+      --box-light-color: light-dark(#{$color-primary-85}, #{$color-primary-40});
     }
   }
 
   &_accent {
-    background: $color-accent;
-  }
-
-  &_secondary {
-    --block-color: #{$color-primary-hover};
-    background: $color-secondary;
-    backdrop-filter: $filter-blur;
-
-    &:hover {
-      color: light-dark(#7C3AED, white);
-      background: $color-secondary-hover;
-    }
+    --box-main-color: #{$color-accent};
   }
 
   &_success {
-    background: $color-success;
+    --box-main-color: #{$color-success};
   }
 
   &_danger {
-    background: $color-danger;
+    --box-main-color: #{$color-danger};
   }
 
   &_warning {
-    background: $color-warning;
+    --box-main-color: #{$color-warning};
   }
 
   &_disabled {
-    background: $color-disabled;
+    --box-main-color: #{$color-disabled};
+  }
+
+  &_xxs {
+    --box-size: 8px;
+    font-size: 6px;
+    border-radius: 2px;
+  }
+
+  &_xs {
+    --box-size: 12px;
+    font-size: 10px;
+    padding: 1px;
+    border-radius: 4px;
+  }
+
+  &_s {
+    --box-size: 16px;
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 5px;
+  }
+
+  &_m {
+    --box-size: 24px;
+    font-size: 10px;
+    padding: 0 8px;
+    border-radius: 6px;
+
+    &.box_square {
+      padding: 6px;
+    }
+
+    &.box_square-left {
+      padding-left: 6px;
+    }
+
+    &.box_square-right {
+      padding-right: 6px;
+    }
+  }
+
+  &_l {
+    --box-size: 36px;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+
+    &.box_square {
+      padding: 8px;
+    }
+
+    &.box_square-left {
+      padding-left: 8px;
+    }
+
+    &.box_square-right {
+      padding-right: 8px;
+    }
+  }
+
+  &_xl {
+    --box-size: 56px;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+
+    &.box_square {
+      padding: 14px;
+    }
+
+    &.box_square-left {
+      padding-left: 14px;
+    }
+
+    &.box_square-right {
+      padding-right: 14px;
+    }
+  }
+
+  &_xxl {
+    --box-size: 64px;
+    font-size: 18px;
+    padding: 14px 28px;
+    border-radius: 12px;
+
+    &.box_square {
+      padding: 14px;
+    }
+
+    &.box_square-left {
+      padding-left: 14px;
+    }
+
+    &.box_square-right {
+      padding-right: 14px;
+    }
   }
 
   &_circle {
@@ -403,6 +474,10 @@ body {
   align-items: center;
   justify-content: center;
   display: inline-flex;
+  background-clip: border-box;
+  font-weight: bold;
+  gap: 8px;
+  user-select: none;
 
   &_loading {
     &, &:hover {
@@ -415,12 +490,8 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: var(--block-color);
+    color: var(--box-second-color);
     font-size: 1.43em;
-  }
-
-  &_l > .button_spin {
-    font-size: 28px;
   }
 
   &_accent {
@@ -438,20 +509,22 @@ body {
     }
   }
 
-  &_secondary {
-    &:after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      background: $gradient-shine;
-      transform: translateX(-100%);
-    }
+  &_bordered {
+    &.button_hoverable {
+      &:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: $gradient-shine;
+        transform: translateX(-100%);
+      }
 
-    &:hover:after {
-      transform: translateX(100%);
-      transition: transform .3s;
+      &:hover:after {
+        transform: translateX(100%);
+        transition: transform .3s;
+      }
     }
 
     &:active {

@@ -97,8 +97,8 @@ export const uiMenu: MenuItem[] = [
         children: '<Code>',
       },
       {
-        href: '/ui/dot',
-        children: '<Dot>',
+        href: '/ui/box',
+        children: '<Box>',
       },
       {
         href: '/ui/link',

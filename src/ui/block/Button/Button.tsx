@@ -3,10 +3,10 @@ import { Slot } from 'rune-hub'
 
 import { Show } from '../../../components'
 import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp } from '../../../types'
+import type { Merge, ObservableProp, SMLSize } from '../../../types'
 import { addCSS, inject, injectAll, SystemSlot } from '../../../utils'
-import type { BlockProps, FlexElement } from '../../primitive'
-import { Block, Spin } from '../../primitive'
+import type { BoxProps, BoxSize, BoxStyles, FlexElement } from '../../primitive'
+import { Box, Spin } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_BUTTON) {
   addCSS(import.meta.env.RD_THEME_BUTTON, 'button')
@@ -27,22 +27,39 @@ export const buttonStyles = {
   circle: import.meta.env?.RD_THEME_BUTTON__CIRCLE,
   loading: import.meta.env?.RD_THEME_BUTTON__LOADING,
   spin: import.meta.env?.RD_THEME_BUTTON__SPIN,
-  m: import.meta.env?.RD_THEME_BUTTON__M,
+  clickable: import.meta.env?.RD_THEME_BUTTON__CLICKABLE,
   s: import.meta.env?.RD_THEME_BUTTON__S,
+  m: import.meta.env?.RD_THEME_BUTTON__M,
   l: import.meta.env?.RD_THEME_BUTTON__L,
+  filled: import.meta.env?.RD_THEME_BUTTON__FILLED,
+  bordered: import.meta.env?.RD_THEME_BUTTON__BORDERED,
+  ghost: import.meta.env?.RD_THEME_BUTTON__GHOST,
+  dashed: import.meta.env?.RD_THEME_BUTTON__DASHED,
 }
+
+export const buttonSizeMap = {
+  s: 'm',
+  m: 'l',
+  l: 'xl',
+} as const satisfies Record<SMLSize, BoxSize>
 
 export type ButtonStyles = typeof buttonStyles
 
-export type ButtonProps<T extends FlexElement = 'button', S extends ButtonStyles = ButtonStyles> = Merge<BlockProps<T, S>, {
-  loading?: ObservableProp<boolean>;
-  onclick?: (e: PointerEvent) => void | Promise<void>;
+export type ButtonProps<T extends FlexElement = 'button', S extends ButtonStyles = ButtonStyles> = Merge<BoxProps<T, S & BoxStyles>, {
+  size?: ObservableProp<SMLSize>
+  loading?: ObservableProp<boolean>
+  disabled?: ObservableProp<boolean>
+  onclick?: (e: MouseEvent) => void | Promise<void>
 }>
 
 function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S extends ButtonStyles = ButtonStyles> ({
   loading = new SystemSlot(() => false),
   onclick,
   children,
+  color,
+  size = 'm',
+  disabled,
+  interact,
   ...props
 }: ButtonProps<T, S>) {
   const styles = useStyles(buttonStyles, props.class)
@@ -52,7 +69,7 @@ function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S ext
     inject(loading, loading => loading && styles.loading),
   ], classes)
 
-  function handleClick (e: PointerEvent) {
+  function handleClick (e: MouseEvent) {
     const result = onclick?.(e)
 
     if (result && result instanceof Promise && loading instanceof Slot) {
@@ -65,12 +82,20 @@ function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S ext
   }
 
   return (
-    <Block element='button' {...(props as BlockProps<T, S>)} class={{ ...styles, root }} onclick={handleClick}>
+    <Box
+      element='button'
+      {...(props as BoxProps<T, S & BoxStyles>)}
+      interact={injectAll([interact, disabled], ([interact, disabled]) => disabled ? undefined : interact)}
+      color={injectAll([color, disabled], ([color, disabled]) => disabled ? 'disabled' : color)}
+      size={inject(size, size => buttonSizeMap[size])}
+      class={{ ...styles, m: styles.s, l: styles.m, xl: styles.l, root }}
+      onclick={handleClick}
+    >
       {children}
       <Show when={loading}>
         <Spin class={styles.spin} />
       </Show>
-    </Block>
+    </Box>
   )
 }
 

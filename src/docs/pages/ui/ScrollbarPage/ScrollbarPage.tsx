@@ -40,10 +40,10 @@ export default function ScrollbarPage () {
     stable: (
       <Flex gap={8} vertical>
         <Flex gap={8} wrap>
-          <Button onclick={toggleStable} color={() => stable.value ? 'primary' : 'secondary'}>
+          <Button onclick={toggleStable} view={() => stable.value ? 'filled' : 'bordered'}>
             Stable
           </Button>
-          <Button onclick={toggleScrollbar} color={() => scrollbar.value ? 'primary' : 'secondary'}>
+          <Button onclick={toggleScrollbar} view={() => scrollbar.value ? 'filled' : 'bordered'}>
             Scrollbar
           </Button>
         </Flex>

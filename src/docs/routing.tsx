@@ -66,8 +66,8 @@ export const routing = createRouting([
           },
           {
             index: true,
-            path: 'dot',
-            component: lazy(() => import('./pages/ui/DotPage')),
+            path: 'box',
+            component: lazy(() => import('./pages/ui/BoxPage')),
           },
           {
             index: true,

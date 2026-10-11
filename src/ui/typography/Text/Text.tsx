@@ -8,6 +8,9 @@ export type TextDecoration = 'auto' | 'unset' | 'line-through' | 'overline' | 'u
 export type TextBreak = 'normal' | 'break-all' | 'keep-all' | 'break-word' | 'auto-phrase' | GlobalCSSValue
 export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty' | 'stable' | GlobalCSSValue
 export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | GlobalCSSValue | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+export type TextBoxTrim = 'none' | 'trim-start' | 'trim-end' | 'trim-both' | GlobalCSSValue
+export type TextBoxEdge = 'auto' | 'text' | 'text text' | 'text alphabetic' | 'cap alphabetic' | 'ex text' | GlobalCSSValue
+export type TextBox = `${TextBoxTrim} ${TextBoxEdge}` | TextBoxEdge | TextBoxTrim
 
 if (import.meta.env?.RD_THEME_TEXT) {
   addCSS(import.meta.env.RD_THEME_TEXT, 'text')
@@ -30,6 +33,7 @@ export interface TextProps extends HTMLStyleProps<'span', TextStyles> {
   size?: ObservableProp<number | string | undefined>
   weight?: ObservableProp<TextWeight | undefined>
   wrap?: ObservableProp<TextWrap | undefined>
+  box?: ObservableProp<TextBox | undefined>
 }
 
 export function TextComponent ({
@@ -43,6 +47,7 @@ export function TextComponent ({
   italic,
   nowrap,
   wrap,
+  box,
   ...props
 }: TextProps) {
   const styles = useStyles(textStyles, props.class)
@@ -59,6 +64,7 @@ export function TextComponent ({
         'text-align': injectAsIs(align),
         'text-decoration': injectAsIs(decoration),
         'text-wrap': injectAsIs(wrap),
+        'text-box': injectAsIs(box),
         'font-size': inject(size, size => typeof size === 'number' ? `${size}px` : size),
         'font-style': inject(italic, italic => italic ? 'italic' : undefined),
         '-webkit-line-clamp': inject(nowrap, nowrap => typeof nowrap === 'number' ? String(nowrap) : nowrap ? '1' : undefined),

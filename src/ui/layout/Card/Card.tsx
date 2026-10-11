@@ -1,7 +1,7 @@
 import { classes } from 'html-classes'
 
 import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp, RDSize } from '../../../types'
+import type { Merge, ObservableProp, SMLSize } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
@@ -21,7 +21,7 @@ export const cardStyles = {
 export type CardStyles = typeof cardStyles
 
 export type CardProps<T extends FlexElement = 'div', S extends CardStyles = CardStyles> = Merge<FlexProps<T, S>, {
-  size?: ObservableProp<RDSize | undefined>
+  size?: ObservableProp<SMLSize | undefined>
   clickable?: ObservableProp<boolean | undefined>
   width?: ObservableProp<string | number | undefined>
   height?: ObservableProp<string | number | undefined>

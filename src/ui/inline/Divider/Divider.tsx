@@ -2,7 +2,7 @@ import { classes } from 'html-classes'
 
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { ObservableProp, RDSize } from '../../../types'
+import type { ObservableProp, SMLSize } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_DIVIDER) {
@@ -21,7 +21,7 @@ export const dividerStyles = {
 export type DividerStyle = typeof dividerStyles
 
 interface DividerPros extends HTMLStyleProps<'hr', DividerStyle> {
-  size?: ObservableProp<RDSize>
+  size?: ObservableProp<SMLSize>
   vertical?: ObservableProp<boolean>
   flush?: ObservableProp<boolean>
 }

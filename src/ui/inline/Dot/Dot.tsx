@@ -1,7 +1,7 @@
 import { classes } from 'html-classes'
 
 import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp, RDColor, RDSize } from '../../../types'
+import type { Merge, ObservableProp, RDColor, SMLSize } from '../../../types'
 import { addCSS, inject, injectAll } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
@@ -30,10 +30,10 @@ export const dotStyles = {
 export type DotStyles = typeof dotStyles
 
 export type DotProps<T extends FlexElement = 'span', S extends DotStyles = DotStyles> = Merge<FlexProps<T, S>, {
-  size?: ObservableProp<RDSize>
+  size?: ObservableProp<SMLSize>
   color?: ObservableProp<RDColor>
-  hoverable?: ObservableProp<boolean>
   square?: ObservableProp<boolean>
+  hoverable?: ObservableProp<boolean>
   clickable?: ObservableProp<boolean>
 }>
 

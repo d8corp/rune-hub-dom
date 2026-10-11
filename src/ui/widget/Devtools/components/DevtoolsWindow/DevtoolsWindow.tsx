@@ -66,7 +66,7 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
   }
 
   const colorHandler = (slot: Slot<boolean | null>) => (): RDColor => {
-    return slot.value ? 'success' : slot.value === false ? 'danger' : 'secondary'
+    return slot.value ? 'success' : slot.value === false ? 'danger' : 'primary'
   }
 
   const handleExport = () => {
