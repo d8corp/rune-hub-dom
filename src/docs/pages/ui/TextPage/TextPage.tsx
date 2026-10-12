@@ -126,6 +126,28 @@ export default function TextPage () {
         <Text cursor='move'>Move cursor</Text>
       </Flex>
     ),
+    box: (
+      <Flex gap={8} vertical>
+        <Text box='none' size={24} style={{ border: '1px dashed #06f' }}>
+          none (default)
+        </Text>
+        <Text box='trim-start' size={24} style={{ border: '1px dashed #06f' }}>
+          trim-start
+        </Text>
+        <Text box='trim-end' size={24} style={{ border: '1px dashed #06f' }}>
+          trim-end
+        </Text>
+        <Text box='trim-both' size={24} style={{ border: '1px dashed #06f' }}>
+          trim-both
+        </Text>
+        <Text box='cap alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+          cap alphabetic
+        </Text>
+        <Text box='ex alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+          ex alphabetic
+        </Text>
+      </Flex>
+    ),
   }
 
   return (

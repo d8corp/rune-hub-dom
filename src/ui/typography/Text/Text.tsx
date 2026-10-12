@@ -9,7 +9,9 @@ export type TextBreak = 'normal' | 'break-all' | 'keep-all' | 'break-word' | 'au
 export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty' | 'stable' | GlobalCSSValue
 export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | GlobalCSSValue | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 export type TextBoxTrim = 'none' | 'trim-start' | 'trim-end' | 'trim-both' | GlobalCSSValue
-export type TextBoxEdge = 'auto' | 'text' | 'text text' | 'text alphabetic' | 'cap alphabetic' | 'ex text' | GlobalCSSValue
+export type TextBoxEdgeStart = 'text' | 'cap' | 'ex'
+export type TextBoxEdgeEnd = 'text' | 'alphabetic'
+export type TextBoxEdge = 'auto' | 'text' | `${TextBoxEdgeStart} ${TextBoxEdgeEnd}` | GlobalCSSValue
 export type TextBox = `${TextBoxTrim} ${TextBoxEdge}` | TextBoxEdge | TextBoxTrim
 
 if (import.meta.env?.RD_THEME_TEXT) {

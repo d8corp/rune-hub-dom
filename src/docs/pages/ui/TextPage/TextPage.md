@@ -6,6 +6,7 @@ It supports font size, weight, color, decoration, alignment, wrapping, word brea
 | Prop           | Type                                | Description                                                                                                                       |
 |----------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **align**      | `ObservableProp<TextAlign>`         | Sets the [text alignment](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align#values)                                     |
+| **box**        | `ObservableProp<TextBox>`           | Controls text box trimming and edge using [text-box](https://developer.mozilla.org/en-US/docs/Web/CSS/text-box)                   |
 | **break**      | `ObservableProp<TextBreak>`         | Controls how long words break across lines using [word-break](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break#values) |
 | **children**   | `JSX.Element`                       | Text content to render                                                                                                            |
 | **color**      | `ObservableProp<string>`            | Sets the text color using any CSS color value                                                                                     |
@@ -280,6 +281,41 @@ rundom(
     <Text cursor='wait'>Wait cursor</Text>
     <Text cursor='text'>Text cursor</Text>
     <Text cursor='move'>Move cursor</Text>
+  </Flex>
+)
+```
+
+## box
+---
+
+The `box` prop controls text box trimming and edge using [`text-box`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-box):
+
+```tsx
+//! View
+//> box
+//! Code
+import { rundom, Text, Flex } from 'rundom'
+
+rundom(
+  <Flex gap={8} vertical>
+    <Text box='none' size={24} style={{ border: '1px dashed #06f' }}>
+      none (default)
+    </Text>
+    <Text box='trim-start' size={24} style={{ border: '1px dashed #06f' }}>
+      trim-start
+    </Text>
+    <Text box='trim-end' size={24} style={{ border: '1px dashed #06f' }}>
+      trim-end
+    </Text>
+    <Text box='trim-both' size={24} style={{ border: '1px dashed #06f' }}>
+      trim-both
+    </Text>
+    <Text box='cap alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+      cap alphabetic
+    </Text>
+    <Text box='ex alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+      ex alphabetic
+    </Text>
   </Flex>
 )
 ```
