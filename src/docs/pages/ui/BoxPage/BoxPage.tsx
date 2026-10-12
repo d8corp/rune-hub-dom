@@ -120,6 +120,9 @@ export default function BoxPage () {
         <Box interact='clickable' view='bordered' square size='s'>
           <CheckIcon stroke-width='4' />
         </Box>
+        <Box interact='clickable' square size='s'>
+          <CheckIcon stroke-width='4' />
+        </Box>
       </Flex>
     ),
   }

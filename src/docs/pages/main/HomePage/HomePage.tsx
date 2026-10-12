@@ -40,6 +40,7 @@ export default function HomePage () {
             </Button>
             <Button
               data-glow
+              view='bordered'
               size='l'
               element='a'
               href='/ui'

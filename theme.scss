@@ -304,6 +304,7 @@ body {
 
   &_clickable {
     cursor: pointer;
+    user-select: none;
   }
 
   &_filled {
@@ -328,7 +329,7 @@ body {
   }
 
   &_primary {
-    --box-main-color: light-dark(#{$color-primary-45}, #{$color-primary-50});
+    --box-main-color: light-dark(#{$color-primary-60}, #{$color-primary-50});
     --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-20});
 
     @media (hover: hover) and (pointer: fine) {
@@ -478,7 +479,6 @@ body {
   background-clip: border-box;
   font-weight: bold;
   gap: 8px;
-  user-select: none;
 
   &_loading {
     &, &:hover {
