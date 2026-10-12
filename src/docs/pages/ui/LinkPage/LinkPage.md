@@ -1,4 +1,8 @@
-## Link
+# Link
+
+Use the `<Link>` component to create links.
+It behaves like an HTML `<a>` tag but uses the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) for internal navigation.
+For external links, it automatically adds `rel="noopener noreferrer nofollow"` and `target="_blank"` attributes.
 
 | Prop         | Type                                                 | Description                                                    |
 |--------------|------------------------------------------------------|----------------------------------------------------------------|
@@ -10,10 +14,6 @@
 | **exact**    | `boolean`                                            | Match the path exactly instead of by prefix                    |
 | **class**    | `string` \| `{ root: string, active: string }`       | CSS class(es) for the link and its active state                |
 | **children** | `JSX.Element`                                        | Content to render inside the link                              |
-
-Use the `Link` component to create links.
-It behaves like an HTML `<a>` tag but uses the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) for internal navigation.
-For external links, it automatically adds `rel="noopener noreferrer nofollow"` and `target="_blank"` attributes.
 
 ## href
 ---
