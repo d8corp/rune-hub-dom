@@ -1,4 +1,4 @@
-import { Button, Code, Divider, Dot, Flex, Typography } from '../../../../ui'
+import { Box, Button, Code, Divider, Flex, Typography } from '../../../../ui'
 import { Page, Title } from '../../../ui'
 import {
   ComponentsExample,
@@ -19,7 +19,11 @@ export default function HomePage () {
       <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
         <div class={styles.content}>
           <div data-glow class={styles.version}>
-            <Dot size='s' color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'} />
+            <Box
+              circle
+              size='xxs'
+              color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'}
+            />
             v{import.meta.env?.RD_PACKAGE_VERSION} is now available
           </div>
           <Typography>

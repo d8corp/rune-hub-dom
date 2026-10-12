@@ -331,12 +331,14 @@ body {
     --box-main-color: light-dark(#{$color-primary-45}, #{$color-primary-50});
     --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-20});
 
-    &:is(.box_hoverable, .box_clickable):hover {
-      --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-60});
-      --box-light-color: light-dark(#{$color-primary-90}, #{$color-primary-30});
+    @media (hover: hover) and (pointer: fine) {
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-60});
+        --box-light-color: light-dark(#{$color-primary-90}, #{$color-primary-30});
 
-      &.box_bordered {
-        color: light-dark(var(--box-main-color), white);
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
       }
     }
 
@@ -375,7 +377,6 @@ body {
   &_xs {
     --box-size: 12px;
     font-size: 10px;
-    padding: 1px;
     border-radius: 4px;
   }
 

@@ -9,13 +9,14 @@ import type { RDColor } from '../../../../../types'
 import { addCSS, Ref, viewTransition } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { SearchIcon } from '../../../../icons'
-import { Divider, Dot } from '../../../../inline'
+import { Divider } from '../../../../inline'
 import { Input } from '../../../../interaction'
 import { Scrollbar } from '../../../../layout'
 import type { WindowProps } from '../../../../popup'
 import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/WindowContent'
 import type { FlexElement } from '../../../../primitive'
+import { Box } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS_WINDOW) {
@@ -87,8 +88,8 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
   return (
     <Window {...props} class={styles.root}>
       <WindowHeader onClose={close}>
-        <Dot hoverable color='warning' />
-        <Dot hoverable color='success' />
+        <Box size='xs' color='warning' circle />
+        <Box size='xs' color='success' circle />
       </WindowHeader>
       <WindowContent data-glow>
         <div class={styles.aside}>

@@ -3,9 +3,8 @@ import { useStyles } from '../../../hooks'
 import type { Merge } from '../../../types'
 import { addCSS } from '../../../utils'
 import { CloseIcon } from '../../icons'
-import { Dot } from '../../inline'
 import type { FlexElement, FlexProps } from '../../primitive'
-import { Flex } from '../../primitive'
+import { Box, Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_WINDOW_HEADER) {
   addCSS(import.meta.env.RD_THEME_WINDOW_HEADER, 'window-header')
@@ -32,9 +31,9 @@ export function WindowHeader<T extends FlexElement = 'header', S extends WindowH
   return (
     <Flex<T, S> element='header' {...props as FlexProps<T, S>} class={styles.root}>
       <Show when={Boolean(onClose)}>
-        <Dot hoverable color='danger' class={styles.close} onclick={onClose}>
+        <Box interact='clickable' color='danger' size='xs' square circle class={styles.close} onclick={onClose}>
           <CloseIcon />
-        </Dot>
+        </Box>
       </Show>
       {children}
     </Flex>

@@ -1,10 +1,10 @@
 import type { Slot } from 'rune-hub'
 
-import type { DotProps } from '../../../../inline'
-import { Dot } from '../../../../inline'
+import type { BoxProps } from '../../../../primitive'
+import { Box } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 
-export interface SlotStatusProps extends Omit<DotProps, 'slot'> {
+export interface SlotStatusProps extends Omit<BoxProps, 'slot'> {
   slot: Slot<Slot | undefined>
 }
 
@@ -17,5 +17,5 @@ export function SlotStatus ({ slot, ...props }: SlotStatusProps) {
     return errors.value.get(slot.value) ? 'danger' : ups.value.get(slot.value) ? 'success' : 'disabled'
   }
 
-  return <Dot {...props} color={color} />
+  return <Box size='xxs' {...props} color={color} circle />
 }
