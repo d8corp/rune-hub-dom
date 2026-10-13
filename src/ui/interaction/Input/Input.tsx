@@ -106,7 +106,7 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
   )
 
   return (
-    <Field element='label' {...props} class={styles}>
+    <Field element='label' view='bordered' interact='hoverable' {...props} class={styles}>
       {before}
       <input
         placeholder={placeholder}
