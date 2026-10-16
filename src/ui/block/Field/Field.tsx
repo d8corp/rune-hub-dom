@@ -4,9 +4,6 @@ import { addCSS, inject } from '../../../utils'
 import type { BoxProps, BoxSize, BoxStyles, FlexElement } from '../../primitive'
 import { Box } from '../../primitive'
 
-const transform = import.meta.env?.RD_THEME__TRANSFORM__FIELD &&
-  import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__FIELD).default
-
 if (import.meta.env?.RD_THEME_FIELD) {
   addCSS(import.meta.env.RD_THEME_FIELD, 'field')
 }
@@ -57,6 +54,6 @@ function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S exten
   )
 }
 
-export const Field = transform
-  ? transform(FieldComponent) as typeof FieldComponent
+export const Field = import.meta.env?.RD_UI_FIELD
+  ? import.meta.require?.(import.meta.env.RD_UI_FIELD).Field as typeof FieldComponent
   : FieldComponent
