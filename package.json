@@ -1,5 +1,5 @@
 {
-  "name": "@rune-hub/dom",
+  "name": "rundom",
   "version": "0.0.1",
   "description": "Tools to build Web Site",
   "type": "module",
