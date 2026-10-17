@@ -2,12 +2,12 @@ import { Slot } from 'rune-hub'
 
 import type { ObservableProp } from '../../types'
 
-export function getSlotEvent<T> (
+export function getSlotEvent<T, TT extends T> (
   value: ObservableProp<T>,
-  slotEvent?: (value: T) => void,
+  slotEvent?: (value: TT) => void,
 ) {
   return value && value instanceof Slot
-    ? (val: T) => {
+    ? (val: TT) => {
         value.set(val)
         slotEvent?.(val)
       }
