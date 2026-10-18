@@ -129,7 +129,9 @@ export function runNode (target: JSXNode) {
           if (result === prev) return
           prev = result
 
-          if (result === undefined || result === '') {
+          if (typeof result === 'boolean') {
+            element.toggleAttribute(prop, result)
+          } else if (result === undefined || result === '') {
             element.removeAttribute(prop)
           } else {
             element.setAttribute(prop, result)
@@ -141,8 +143,12 @@ export function runNode (target: JSXNode) {
         continue
       }
 
-      if (value !== undefined && value !== '') {
-        element.setAttribute(prop, value)
+      if (value !== undefined && value !== '' && value !== false) {
+        if (value === true) {
+          element.toggleAttribute(prop, true)
+        } else {
+          element.setAttribute(prop, value)
+        }
       }
     }
 
