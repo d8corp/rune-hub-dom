@@ -79,6 +79,16 @@ export const routing = createRouting([
             path: 'text',
             component: lazy(() => import('./pages/ui/TextPage')),
           },
+          {
+            index: true,
+            path: 'check-box',
+            component: lazy(() => import('./pages/ui/CheckBoxPage')),
+          },
+          {
+            index: true,
+            path: 'radio-box',
+            component: lazy(() => import('./pages/ui/RadioBoxPage')),
+          },
         ],
       },
       {

@@ -84,6 +84,7 @@ function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S ext
   return (
     <Box
       element='button'
+      view='bordered'
       {...(props as BoxProps<T, S & BoxStyles>)}
       interact={injectAll([interact, disabled], ([interact, disabled]) => disabled ? undefined : interact)}
       color={injectAll([color, disabled], ([color, disabled]) => disabled ? 'disabled' : color)}

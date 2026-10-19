@@ -113,6 +113,14 @@ export const uiMenu: MenuItem[] = [
         href: '/ui/button',
         children: '<Button>',
       },
+      {
+        href: '/ui/check-box',
+        children: '<CheckBox>',
+      },
+      {
+        href: '/ui/radio-box',
+        children: '<RadioBox>',
+      },
     ],
   },
 ]

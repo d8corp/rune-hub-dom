@@ -51,7 +51,7 @@ export const messagesRef = new Ref<HTMLDivElement>()
 
 export const messageTimers: Set<Timer | symbol> = new Set()
 
-export function message (text: string, { timeout = text.length / 13 + 1, type = 'info', ...props }: MessageProps = {}) {
+export function baseMessage (text: string, { timeout = text.length / 13 + 1, type = 'info', ...props }: MessageProps = {}) {
   if (!messagesRef.value) {
     messagesRef.value = document.createElement('div')
     messagesRef.value.className = import.meta.env?.RD_THEME_MESSAGES__ROOT || 'rd_messages'
@@ -128,4 +128,8 @@ export function message (text: string, { timeout = text.length / 13 + 1, type = 
       }
     })
   }
+}
+
+export function message (text: string, props?: MessageProps) {
+  viewTransition(() => baseMessage(text, props))
 }

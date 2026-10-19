@@ -316,7 +316,7 @@ const readEnv = (path: string): Record<string, string> =>
 
 function writeEnv (path: string, vars: Record<string, string>): void {
   const content = Object.entries(vars)
-    .map(([key, value]) => `${key}='${value.replace(/'/g, "\\'")}'`)
+    .map(([key, value]) => `${key}='${value}'`)
     .join('\n')
 
   fs.writeFileSync(path, content, 'utf-8')

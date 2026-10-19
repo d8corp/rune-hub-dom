@@ -301,6 +301,7 @@ body {
   min-height: var(--box-size);
   min-width: var(--box-size);
   text-box: text alphabetic;
+  font-size: var(--box-font-size);
 
   &_clickable {
     cursor: pointer;
@@ -371,26 +372,26 @@ body {
 
   &_xxs {
     --box-size: 8px;
-    font-size: 6px;
+    --box-font-size: 6px;
     border-radius: 2px;
   }
 
   &_xs {
     --box-size: 12px;
-    font-size: 10px;
+    --box-font-size: 10px;
     border-radius: 4px;
   }
 
   &_s {
     --box-size: 16px;
-    font-size: 12px;
+    --box-font-size: 12px;
     padding: 1px;
     border-radius: 5px;
   }
 
   &_m {
     --box-size: 24px;
-    font-size: 10px;
+    --box-font-size: 10px;
     padding: 0 8px;
     border-radius: 6px;
 
@@ -409,7 +410,7 @@ body {
 
   &_l {
     --box-size: 36px;
-    font-size: 14px;
+    --box-font-size: 14px;
     padding: 8px 16px;
     border-radius: 8px;
 
@@ -428,7 +429,7 @@ body {
 
   &_xl {
     --box-size: 56px;
-    font-size: 16px;
+    --box-font-size: 16px;
     padding: 14px 28px;
     border-radius: 12px;
 
@@ -447,7 +448,7 @@ body {
 
   &_xxl {
     --box-size: 64px;
-    font-size: 18px;
+    --box-font-size: 18px;
     padding: 14px 28px;
     border-radius: 12px;
 
@@ -497,6 +498,7 @@ body {
 
   &_accent {
     border: none;
+    color: white;
     background: $color-primary linear-gradient(135deg, transparent, $color-accent) 0 0 / 100% 100%;
 
     &:hover {
@@ -531,6 +533,10 @@ body {
     &:active {
       background: $color-secondary-active;
     }
+  }
+
+  &_dashed {
+    background: transparent;
   }
 }
 
@@ -689,6 +695,91 @@ body {
     &:focus {
       outline: none;
     }
+  }
+}
+
+.check-box {
+  display: inline-flex;
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+
+  &:before {
+    content: '';
+    display: block;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    position: absolute;
+    background: var(--box-main-color);
+    border-radius: 50%;
+    transition: all .2s;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="4" stroke="%23fff"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>');
+    background-size: 1em;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+  }
+
+  &_indeterminate:before {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    opacity: 1;
+  }
+
+  &:has(.check-box_input:checked):before {
+    width: var(--box-size);
+    height: var(--box-size);
+    border-radius: inherit;
+    font-size: var(--box-font-size);
+    opacity: 1;
+  }
+
+  &:has(.check-box_input:focus-visible) {
+    outline-color: var(--box-main-color);
+  }
+
+  &_input {
+    position: absolute;
+    opacity: 0;
+    cursor: inherit;
+  }
+}
+
+.radio-box {
+  display: inline-flex;
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  border-radius: $size-infinite;
+
+  &:before {
+    content: '';
+    display: block;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    position: absolute;
+    background: var(--box-main-color);
+    border-radius: 50%;
+    transition: all .2s;
+    opacity: 0;
+  }
+
+  &:has(.radio-box_input:checked):before {
+    width: calc(var(--box-size) / 2);
+    height: calc(var(--box-size) / 2);
+    opacity: 1;
+  }
+
+  &:has(.radio-box_input:focus-visible) {
+    outline-color: var(--box-main-color);
+  }
+
+  &_input {
+    position: absolute;
+    opacity: 0;
+    cursor: inherit;
   }
 }
 

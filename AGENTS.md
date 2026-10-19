@@ -113,7 +113,7 @@ Contains only a re-export: `export * from './Box'`.
    - `layout/` (`Card`, `Scrollbar`)
    - `block/` (`Button`, `Field`)
    - `inline/` (`Code`, `Divider`)
-   - `interaction/` (`Input`, `Checkbox`)
+   - `interaction/` (`Input`, `CheckBox`, `RadioBox`)
    - `typography/` (`Text`, `Typography`, `Markdown`)
    - `popup/` (`Window`, `Message`, ...)
    - `widget/` (`Devtools`, ...)
