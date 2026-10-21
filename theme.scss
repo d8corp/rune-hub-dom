@@ -19,6 +19,126 @@ $color-primary-90:  #e8dcff;
 $color-primary-95:  #f2ebff;
 $color-primary-100: #f9f5ff;
 
+$color-secondary-10:  #070707;
+$color-secondary-15:  #101010;
+$color-secondary-20:  #1c1c1c;
+$color-secondary-25:  #272727;
+$color-secondary-30:  #343434;
+$color-secondary-35:  #424242;
+$color-secondary-40:  #515151;
+$color-secondary-45:  #5e5e5e;
+$color-secondary-50:  #6f6f6f;
+$color-secondary-55:  #7a7a7a;
+$color-secondary-60:  #828282;
+$color-secondary-65:  #8f8f8f;
+$color-secondary-70:  #9c9c9c;
+$color-secondary-75:  #aeaeae;
+$color-secondary-80:  #c0c0c0;
+$color-secondary-85:  #d3d3d3;
+$color-secondary-90:  #e3e3e3;
+$color-secondary-95:  #efefef;
+$color-secondary-100: #f7f7f7;
+
+$color-accent-10:  #0f0407;
+$color-accent-15:  #220610;
+$color-accent-20:  #390a1c;
+$color-accent-25:  #500b28;
+$color-accent-30:  #6b0b37;
+$color-accent-35:  #870a45;
+$color-accent-40:  #a70256;
+$color-accent-45:  #c20164;
+$color-accent-50:  #db2777;
+$color-accent-55:  #ea599b;
+$color-accent-60:  #f472b6;
+$color-accent-65:  #fa81bf;
+$color-accent-70:  #fc90c6;
+$color-accent-75:  #fea5d0;
+$color-accent-80:  #ffbada;
+$color-accent-85:  #ffcfe4;
+$color-accent-90:  #ffdfed;
+$color-accent-95:  #feecf4;
+$color-accent-100: #fdf4f8;
+
+$color-success-10:  #030906;
+$color-success-15:  #05150e;
+$color-success-20:  #062519;
+$color-success-25:  #033423;
+$color-success-30:  #00472f;
+$color-success-35:  #02593d;
+$color-success-40:  #016d4b;
+$color-success-45:  #008059;
+$color-success-50:  #059669;
+$color-success-55:  #31b987;
+$color-success-60:  #34d399;
+$color-success-65:  #52d9a3;
+$color-success-70:  #6cdead;
+$color-success-75:  #8de4bc;
+$color-success-80:  #a9e9ca;
+$color-success-85:  #c4efd9;
+$color-success-90:  #d8f4e6;
+$color-success-95:  #e8f7ef;
+$color-success-100: #f2f9f5;
+
+$color-danger-10:  #0f0404;
+$color-danger-15:  #230609;
+$color-danger-20:  #3a0910;
+$color-danger-25:  #520816;
+$color-danger-30:  #6f061e;
+$color-danger-35:  #8b0126;
+$color-danger-40:  #a90130;
+$color-danger-45:  #c50039;
+$color-danger-50:  #e11d48;
+$color-danger-55:  #f1576d;
+$color-danger-60:  #fb7185;
+$color-danger-65:  #ff8292;
+$color-danger-70:  #ff939f;
+$color-danger-75:  #ffa8b0;
+$color-danger-80:  #febdc2;
+$color-danger-85:  #ffd1d4;
+$color-danger-90:  #ffe0e2;
+$color-danger-95:  #ffeced;
+$color-danger-100: #fef4f5;
+
+$color-warning-10:  #0e0503;
+$color-warning-15:  #220b03;
+$color-warning-20:  #3b1404;
+$color-warning-25:  #531b02;
+$color-warning-30:  #702500;
+$color-warning-35:  #8d3000;
+$color-warning-40:  #ac3d01;
+$color-warning-45:  #c94800;
+$color-warning-50:  #ea580c;
+$color-warning-55:  #f57c30;
+$color-warning-60:  #fb923c;
+$color-warning-65:  #ff9e53;
+$color-warning-70:  #ffaa6c;
+$color-warning-75:  #ffba8a;
+$color-warning-80:  #ffcaa5;
+$color-warning-85:  #ffd9c0;
+$color-warning-90:  #ffe6d5;
+$color-warning-95:  #feefe6;
+$color-warning-100: #fdf6f1;
+
+$color-disabled-10:  #060709;
+$color-disabled-15:  #0e1114;
+$color-disabled-20:  #181d23;
+$color-disabled-25:  #222831;
+$color-disabled-30:  #2e3643;
+$color-disabled-35:  #3a4454;
+$color-disabled-40:  #475467;
+$color-disabled-45:  #536379;
+$color-disabled-50:  #64748b;
+$color-disabled-55:  #7a7f98;
+$color-disabled-60:  #8b85a0;
+$color-disabled-65:  #9892ac;
+$color-disabled-70:  #a39eb5;
+$color-disabled-75:  #b4b0c3;
+$color-disabled-80:  #c4c1d0;
+$color-disabled-85:  #d6d4de;
+$color-disabled-90:  #e4e3ea;
+$color-disabled-95:  #f0eff3;
+$color-disabled-100: #f7f7f9;
+
 $color-bg: var(--color-bg);
 $color-bg-deep: light-dark(#fff, #0B0B15);
 $color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
@@ -28,17 +148,17 @@ $color-primary: light-dark(#7C3AED, #8B5CF6);
 $color-primary-light: light-dark(#c9b3ff, #382574);
 $color-primary-hover: light-dark(#8B5CF6, #916dfc);
 $color-primary-active: light-dark(#6c41c9, #7e56dc);
-$color-accent: light-dark(#DB2777, #F472B6);
+$color-accent: light-dark($color-accent-50, $color-accent-60);
 $color-border: light-dark(#7C3AED1F, #8B5CF61F);
 $color-border-hover: light-dark(#7C3AED4D, #8B5CF64D);
 $color-secondary: light-dark(#efe9fc, #161226);
 $color-secondary-hover: #8B5CF626;
 $color-secondary-bg: light-dark(#d9d1f6, #332958);
 $color-secondary-active: rgb(116 66 229 / 0.3);
-$color-success: light-dark(#059669, #34D399);
-$color-danger: light-dark(#E11D48, #FB7185);
-$color-warning: light-dark(#EA580C, #FB923C);
-$color-disabled: light-dark(#8B85A0,#64748B);
+$color-success: light-dark($color-success-50, $color-success-60);
+$color-danger: light-dark($color-danger-50, $color-danger-60);
+$color-warning: light-dark($color-warning-50, $color-warning-60);
+$color-disabled: light-dark($color-disabled-60, $color-disabled-50);
 $color-shine: light-dark(#7C3AED1A, #FFFFFF1A);
 
 // gradients
@@ -196,102 +316,6 @@ body {
   }
 }
 
-.dot {
-  border: 1px solid transparent;
-  border-radius: $size-infinite;
-  transition: $transition;
-  color: light-dark(white, black);
-
-  &:has(> svg:first-child) {
-    padding-left: 0;
-  }
-
-  &:has(> svg:last-child) {
-    padding-right: 0;
-  }
-
-  &_primary {
-    background: $color-primary;
-  }
-
-  &_accent {
-    background: $color-accent;
-  }
-
-  &_secondary {
-    color: $color-primary;
-    border-color: $color-primary;
-    background: $color-secondary;
-  }
-
-  &_success {
-    background: $color-success;
-  }
-
-  &_success {
-    background: $color-success;
-  }
-
-  &_warning {
-    background: $color-warning;
-  }
-
-  &_danger {
-    background: $color-danger;
-  }
-
-  &_disabled {
-    cursor: default;
-    background: $color-disabled;
-  }
-
-  &_s {
-    height: 8px;
-    min-height: 8px;
-    min-width: 8px;
-    font-size: 6px;
-    padding: 0;
-
-    &.dot_square {
-      border-radius: 2px;
-    }
-  }
-
-  &_m {
-    height: 12px;
-    min-height: 12px;
-    min-width: 12px;
-    font-size: 10px;
-    padding: 1px;
-
-    &.dot_square {
-      border-radius: 4px;
-    }
-  }
-
-  &_l {
-    height: 16px;
-    min-height: 16px;
-    min-width: 16px;
-    font-size: 12px;
-    padding: 2px;
-
-    &.dot_square {
-      border-radius: 5px;
-    }
-  }
-
-  &_clickable {
-    cursor: pointer;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &_hoverable:not(:hover) {
-      color: transparent;
-    }
-  }
-}
-
 .box {
   --box-second-color: #fff;
   transition: $transition;
@@ -330,8 +354,8 @@ body {
   }
 
   &_primary {
-    --box-main-color: light-dark(#{$color-primary-60}, #{$color-primary-50});
-    --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-20});
+    --box-main-color: light-dark(#{$color-primary-60}, #{$color-primary-60});
+    --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-25});
 
     @media (hover: hover) and (pointer: fine) {
       &:is(.box_hoverable, .box_clickable):hover {

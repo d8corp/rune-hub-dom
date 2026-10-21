@@ -59,7 +59,7 @@ function ButtonComponent<T extends keyof HTMLElementTagNameMap = 'button', S ext
   color,
   size = 'm',
   disabled,
-  interact,
+  interact = 'clickable',
   ...props
 }: ButtonProps<T, S>) {
   const styles = useStyles(buttonStyles, props.class)
