@@ -12,7 +12,7 @@ export default function ButtonPage () {
   const toggle = () => isLoading.set(!isLoading.raw)
   const toggleDisabled = () => isDisabled.set(!isDisabled.raw)
 
-  const colors = ['primary', 'accent', 'success', 'warning', 'danger', 'disabled'] as const
+  const colors = ['primary', 'secondary', 'accent', 'success', 'warning', 'danger', 'disabled'] as const
 
   const handleSave = async () => {
     await new Promise(resolve => setTimeout(resolve, 5000))

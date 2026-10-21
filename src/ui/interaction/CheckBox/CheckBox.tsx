@@ -16,6 +16,7 @@ export const checkBoxStyles = {
   root: import.meta.env?.RD_THEME_CHECK_BOX__ROOT,
   primary: import.meta.env?.RD_THEME_CHECK_BOX__PRIMARY,
   accent: import.meta.env?.RD_THEME_CHECK_BOX__ACCENT,
+  secondary: import.meta.env?.RD_THEME_CHECK_BOX__SECONDARY,
   success: import.meta.env?.RD_THEME_CHECK_BOX__SUCCESS,
   warning: import.meta.env?.RD_THEME_CHECK_BOX__WARNING,
   danger: import.meta.env?.RD_THEME_CHECK_BOX__DANGER,

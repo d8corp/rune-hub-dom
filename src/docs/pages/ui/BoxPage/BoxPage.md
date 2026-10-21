@@ -6,7 +6,7 @@ It supports multiple semantic colors, sizes, views, shapes, and interactive stat
 | Prop         | Type                                           | Description                                                                                                          |
 |--------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | **class**    | `string \| BoxStyles`                          | Additional CSS class(es) to apply to the root element                                                                |
-| **color**    | `ObservableProp<RDColor>`                      | Sets the box color. Available: `'primary'` (default), `'accent'`, `'success'`, `'warning'`, `'danger'`, `'disabled'` |
+| **color**    | `ObservableProp<RDColor>`                      | Sets the box color. Available: `'primary'` (default), `'secondary'`, `'accent'`, `'success'`, `'warning'`, `'danger'`, `'disabled'` |
 | **size**     | `ObservableProp<BoxSize>`                      | Sets the box size. Available: `'xxs'`, `'xs'`, `'s'`, `'m'` (default), `'l'`, `'xl'`, `'xxl'`                        |
 | **view**     | `ObservableProp<BoxView>`                      | Sets the visual style. Available: `'filled'` (default), `'bordered'`, `'ghost'`, `'dashed'`                          |
 | **square**   | `ObservableProp<boolean \| 'left' \| 'right'>` | Renders a square instead of the default rounded shape. `'left'` or `'right'` rounds only one side                    |
@@ -104,6 +104,7 @@ rundom(
     <Flex gap={8} wrap>
       filled:
       <Box view='filled' interact='clickable' color='primary'>primary</Box>
+      <Box view='filled' interact='clickable' color='secondary'>secondary</Box>
       <Box view='filled' interact='clickable' color='accent'>accent</Box>
       <Box view='filled' interact='clickable' color='success'>success</Box>
       <Box view='filled' interact='clickable' color='warning'>warning</Box>
@@ -113,6 +114,7 @@ rundom(
     <Flex gap={8} wrap>
       bordered:
       <Box view='bordered' interact='clickable' color='primary'>primary</Box>
+      <Box view='bordered' interact='clickable' color='secondary'>secondary</Box>
       <Box view='bordered' interact='clickable' color='accent'>accent</Box>
       <Box view='bordered' interact='clickable' color='success'>success</Box>
       <Box view='bordered' interact='clickable' color='warning'>warning</Box>
@@ -122,6 +124,7 @@ rundom(
     <Flex gap={8} wrap>
       dashed:
       <Box view='dashed' interact='clickable' color='primary'>primary</Box>
+      <Box view='dashed' interact='clickable' color='secondary'>secondary</Box>
       <Box view='dashed' interact='clickable' color='accent'>accent</Box>
       <Box view='dashed' interact='clickable' color='success'>success</Box>
       <Box view='dashed' interact='clickable' color='warning'>warning</Box>
@@ -131,6 +134,7 @@ rundom(
     <Flex gap={8} wrap>
       ghost:
       <Box view='ghost' interact='clickable' color='primary'>primary</Box>
+      <Box view='ghost' interact='clickable' color='secondary'>secondary</Box>
       <Box view='ghost' interact='clickable' color='accent'>accent</Box>
       <Box view='ghost' interact='clickable' color='success'>success</Box>
       <Box view='ghost' interact='clickable' color='warning'>warning</Box>
@@ -271,6 +275,7 @@ The default styles of `<Box>` come from the theme and are configured with enviro
 | `RD_THEME_BOX`               | CSS of the component that is added to the page         |
 | `RD_THEME_BOX__ROOT`         | Class name(s) of the root element, always applied      |
 | `RD_THEME_BOX__PRIMARY`      | Class name(s) applied when `color` is `'primary'`      |
+| `RD_THEME_BOX__SECONDARY`    | Class name(s) applied when `color` is `'secondary'`    |
 | `RD_THEME_BOX__ACCENT`       | Class name(s) applied when `color` is `'accent'`       |
 | `RD_THEME_BOX__SUCCESS`      | Class name(s) applied when `color` is `'success'`      |
 | `RD_THEME_BOX__WARNING`      | Class name(s) applied when `color` is `'warning'`      |

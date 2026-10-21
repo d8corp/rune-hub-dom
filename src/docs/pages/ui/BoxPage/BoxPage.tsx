@@ -4,7 +4,7 @@ import { Box, CheckIcon, Flex } from '../../../../ui'
 import { MarkdownTemplate } from '../../../templates'
 import description from './BoxPage.md'
 
-const colors = ['primary', 'accent', 'success', 'warning', 'danger', 'disabled'] as const
+const colors = ['primary', 'secondary', 'accent', 'success', 'warning', 'danger', 'disabled'] as const
 
 export default function BoxPage () {
   const examples: HighlightExamples = {

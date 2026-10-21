@@ -148,6 +148,7 @@ export default function CheckBoxPage () {
       <Flex vertical gap={16}>
         <Flex gap={16} align='center' wrap>
           <Flex gap={8} align='center'><CheckBox checked color='primary' />primary</Flex>
+          <Flex gap={8} align='center'><CheckBox checked color='secondary' />secondary</Flex>
           <Flex gap={8} align='center'><CheckBox checked color='accent' />accent</Flex>
           <Flex gap={8} align='center'><CheckBox checked color='success' />success</Flex>
           <Flex gap={8} align='center'><CheckBox checked color='warning' />warning</Flex>

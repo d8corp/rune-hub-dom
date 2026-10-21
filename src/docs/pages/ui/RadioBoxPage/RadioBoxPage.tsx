@@ -107,15 +107,38 @@ export default function RadioBoxPage () {
     inherited: (
       <Flex vertical gap={16}>
         <Flex gap={16} align='center' wrap>
-          <Flex gap={8} align='center'><RadioBox checked color='primary' />primary</Flex>
-          <Flex gap={8} align='center'><RadioBox checked color='accent' />accent</Flex>
-          <Flex gap={8} align='center'><RadioBox checked color='success' />success</Flex>
-          <Flex gap={8} align='center'><RadioBox checked color='warning' />warning</Flex>
-          <Flex gap={8} align='center'><RadioBox checked color='danger' />danger</Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='primary' />
+            primary
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='secondary' />
+            secondary
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='accent' />
+            accent
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='success' />
+            success
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='warning' />
+            warning
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' color='danger' />
+            danger
+          </Flex>
         </Flex>
         <Flex gap={16} align='center' wrap>
-          <Flex gap={8} align='center'><RadioBox size='xs' />xs</Flex>
-          <Flex gap={8} align='center'><RadioBox view='dashed' />dashed</Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' size='xs' />xs
+          </Flex>
+          <Flex element='label' gap={8} align='center'>
+            <RadioBox name='inherited' view='dashed' />dashed
+          </Flex>
         </Flex>
       </Flex>
     ),

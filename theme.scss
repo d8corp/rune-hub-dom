@@ -358,6 +358,7 @@ body {
     --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-25});
 
     @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
       &:is(.box_hoverable, .box_clickable):hover {
         --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-60});
         --box-light-color: light-dark(#{$color-primary-90}, #{$color-primary-30});
@@ -371,6 +372,28 @@ body {
     &.box_clickable:active {
       --box-main-color: light-dark(#{$color-primary-40}, #{$color-primary-50});
       --box-light-color: light-dark(#{$color-primary-85}, #{$color-primary-40});
+    }
+  }
+
+  &_secondary {
+    --box-main-color: light-dark(#{$color-secondary-60}, #{$color-secondary-60});
+    --box-light-color: light-dark(#{$color-secondary-95}, #{$color-secondary-25});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-secondary-50}, #{$color-secondary-60});
+        --box-light-color: light-dark(#{$color-secondary-90}, #{$color-secondary-30});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-secondary-40}, #{$color-secondary-50});
+      --box-light-color: light-dark(#{$color-secondary-85}, #{$color-secondary-40});
     }
   }
 

@@ -12,6 +12,7 @@ export const radioBoxStyles = {
   root: import.meta.env?.RD_THEME_RADIO_BOX__ROOT,
   primary: import.meta.env?.RD_THEME_RADIO_BOX__PRIMARY,
   accent: import.meta.env?.RD_THEME_RADIO_BOX__ACCENT,
+  secondary: import.meta.env?.RD_THEME_RADIO_BOX__SECONDARY,
   success: import.meta.env?.RD_THEME_RADIO_BOX__SUCCESS,
   warning: import.meta.env?.RD_THEME_RADIO_BOX__WARNING,
   danger: import.meta.env?.RD_THEME_RADIO_BOX__DANGER,
