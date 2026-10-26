@@ -674,7 +674,7 @@ body {
   gap: 8px;
 
   &_loading {
-    &, &:hover {
+    &, &:hover, &:active {
       color: transparent;
     }
   }
@@ -684,11 +684,15 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: var(--box-second-color);
+    color: var(--box-main-color);
     font-size: 1.43em;
   }
 
-  &_accent {
+  &.button_filled &_spin {
+    color: var(--box-second-color);
+  }
+
+  &_accent:is(&_filled, &_bordered) {
     border: none;
     color: white;
     background: $color-primary linear-gradient(135deg, transparent, $color-accent) 0 0 / 100% 100%;
@@ -701,6 +705,16 @@ body {
     &:active {
       color: white;
       background-color: $color-primary-active;
+    }
+  }
+
+  &_accent:is(&_filled, &_bordered) &_spin {
+    color: var(--box-second-color);
+  }
+
+  &_accent:is(&_filled, &_bordered):not(&_disabled) {
+    &:hover, &:active {
+      color: white;
     }
   }
 
@@ -721,14 +735,16 @@ body {
         transition: transform .3s;
       }
     }
-
-    &:active {
-      background: $color-secondary-active;
-    }
   }
 
   &_dashed {
     background: transparent;
+  }
+
+  &_loading:is(&_filled, &_bordered):not(&_disabled) {
+    &, &:hover, &:active {
+      color: transparent;
+    }
   }
 }
 
