@@ -56,9 +56,9 @@ export default function ButtonPage () {
       <Flex vertical gap={8}>
         <Flex gap={8} wrap>
           {colors.map(color => (
-            <Button color={color}>{color}</Button>
+            <Button color={color} view='filled'>{color}</Button>
           ))}
-          <Button disabled>Disabled</Button>
+          <Button disabled view='filled'>Disabled</Button>
         </Flex>
         <Flex gap={8} wrap>
           {colors.map(color => (
@@ -71,6 +71,12 @@ export default function ButtonPage () {
             <Button view='dashed' color={color}>{color}</Button>
           ))}
           <Button view='dashed' disabled>Disabled</Button>
+        </Flex>
+        <Flex gap={8} wrap>
+          {colors.map(color => (
+            <Button view='ghost' color={color}>{color}</Button>
+          ))}
+          <Button view='ghost' disabled>Disabled</Button>
         </Flex>
       </Flex>
     ),
