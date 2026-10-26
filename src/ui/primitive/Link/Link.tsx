@@ -3,10 +3,10 @@ import { classes } from 'html-classes'
 import { type HTMLStyleProps, useStyles } from '../../../hooks'
 import type { Merge, ObservableProp } from '../../../types'
 import type { LinkToParams } from '../../../utils'
-import { addCSS, inject, linkTo, locationURL, startViewTransition, SystemSlot, use } from '../../../utils'
+import { addUiCSS, inject, linkTo, locationURL, startViewTransition, SystemSlot, use } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_LINK) {
-  addCSS(import.meta.env.RD_THEME_LINK, 'link')
+  addUiCSS(import.meta.env.RD_THEME_LINK, 'link')
 }
 
 export const linkStyles = {

@@ -12,3 +12,7 @@ export function addCSS (css: string, marker?: string): HTMLStyleElement | null {
 
   return style
 }
+
+export const addUiCSS = import.meta.env?.RD_UI_CSS
+  ? import.meta.require?.(import.meta.env.RD_UI_CSS).addCSS as typeof addCSS
+  : addCSS

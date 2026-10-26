@@ -1,13 +1,13 @@
 import { Show } from '../../../components'
 import { useStyles } from '../../../hooks'
 import type { Merge } from '../../../types'
-import { addCSS } from '../../../utils'
+import { addUiCSS } from '../../../utils'
 import { CloseIcon } from '../../icons'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Box, Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_WINDOW_HEADER) {
-  addCSS(import.meta.env.RD_THEME_WINDOW_HEADER, 'window-header')
+  addUiCSS(import.meta.env.RD_THEME_WINDOW_HEADER, 'window-header')
 }
 
 export const windowHeaderStyles = {

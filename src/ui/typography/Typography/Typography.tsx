@@ -1,10 +1,10 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { addCSS, inject } from '../../../utils'
+import { addUiCSS, inject } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_TYPOGRAPHY) {
-  addCSS(import.meta.env.RD_THEME_TYPOGRAPHY, 'typography')
+  addUiCSS(import.meta.env.RD_THEME_TYPOGRAPHY, 'typography')
 }
 
 export const typographyStyles = {

@@ -1,11 +1,11 @@
 import type { StyledProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import { addCSS } from '../../../utils'
+import { addUiCSS } from '../../../utils'
 import type { BaseIconProps } from '../../icons'
 import { BaseIcon } from '../../icons'
 
 if (import.meta.env?.RD_THEME_SPIN) {
-  addCSS(import.meta.env.RD_THEME_SPIN, 'spin')
+  addUiCSS(import.meta.env.RD_THEME_SPIN, 'spin')
 }
 
 export const spinStyles = {

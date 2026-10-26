@@ -1,7 +1,7 @@
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { GlobalCSSValue, ObservableProp } from '../../../types'
-import { addCSS, inject, injectAll, injectAsIs } from '../../../utils'
+import { addUiCSS, inject, injectAll, injectAsIs } from '../../../utils'
 
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | GlobalCSSValue
 export type TextDecoration = 'auto' | 'unset' | 'line-through' | 'overline' | 'underline' | GlobalCSSValue
@@ -15,7 +15,7 @@ export type TextBoxEdge = 'auto' | 'text' | `${TextBoxEdgeStart} ${TextBoxEdgeEn
 export type TextBox = `${TextBoxTrim} ${TextBoxEdge}` | TextBoxEdge | TextBoxTrim
 
 if (import.meta.env?.RD_THEME_TEXT) {
-  addCSS(import.meta.env.RD_THEME_TEXT, 'text')
+  addUiCSS(import.meta.env.RD_THEME_TEXT, 'text')
 }
 
 export const textStyles = {

@@ -14,7 +14,7 @@ import { Router, Try } from '../components'
 import { useUpdateHistory } from '../hooks'
 import { rundom } from '../rundom'
 import { Devtools } from '../ui'
-import { addCSS } from '../utils'
+import { addUiCSS } from '../utils'
 import { removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/system/ErrorPage'
 import { routing } from './routing'
@@ -43,7 +43,7 @@ function App () {
 }
 
 if (import.meta.env?.RD_THEME__ROOT) {
-  addCSS(import.meta.env.RD_THEME__ROOT, 'root')
+  addUiCSS(import.meta.env.RD_THEME__ROOT, 'root')
 }
 
 if (import.meta.env?.DEV) {

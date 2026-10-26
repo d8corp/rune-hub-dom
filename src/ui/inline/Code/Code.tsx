@@ -1,11 +1,11 @@
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
-import { addCSS } from '../../../utils'
+import { addUiCSS } from '../../../utils'
 import type { BoxProps, BoxStyles } from '../../primitive'
 import { Box } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_CODE) {
-  addCSS(import.meta.env.RD_THEME_CODE, 'code')
+  addUiCSS(import.meta.env.RD_THEME_CODE, 'code')
 }
 
 export const codeStyles = {

@@ -1,11 +1,11 @@
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, SMLSize } from '../../../types'
-import { addCSS, inject } from '../../../utils'
+import { addUiCSS, inject } from '../../../utils'
 import type { BoxProps, BoxSize, BoxStyles, FlexElement } from '../../primitive'
 import { Box } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_FIELD) {
-  addCSS(import.meta.env.RD_THEME_FIELD, 'field')
+  addUiCSS(import.meta.env.RD_THEME_FIELD, 'field')
 }
 
 export const fieldStyles = {

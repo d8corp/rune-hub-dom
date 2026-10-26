@@ -1,11 +1,11 @@
 import { useEffect, useStyles } from '../../../hooks'
 import type { HTMLRef, Merge, ObservableProp } from '../../../types'
-import { addCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
+import { addUiCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
 import type { BoxProps, BoxStyles, FlexElement } from '../../primitive'
 import { Box } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_RADIO_BOX) {
-  addCSS(import.meta.env.RD_THEME_RADIO_BOX, 'radio-box')
+  addUiCSS(import.meta.env.RD_THEME_RADIO_BOX, 'radio-box')
 }
 
 export const radioBoxStyles = {

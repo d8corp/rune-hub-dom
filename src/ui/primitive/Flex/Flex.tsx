@@ -9,10 +9,10 @@ import type {
   Merge,
   ObservableProp,
 } from '../../../types'
-import { addCSS, inject, injectAll, injectAsIs, type LinkToParams } from '../../../utils'
+import { addUiCSS, inject, injectAll, injectAsIs, type LinkToParams } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_FLEX) {
-  addCSS(import.meta.env.RD_THEME_FLEX, 'flex')
+  addUiCSS(import.meta.env.RD_THEME_FLEX, 'flex')
 }
 
 const flexStyles = {

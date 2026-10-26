@@ -4,7 +4,7 @@ import SyncTimer from 'sync-timer'
 import { Show } from '../../../components'
 import { useClear, useDebounceSlotEvent, useEffect, useStyles } from '../../../hooks'
 import type { HTMLRef, JSXElement, Merge, ObservableProp } from '../../../types'
-import { addCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
+import { addUiCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
 import type { FieldProps } from '../../block'
 import { Field } from '../../block'
 import { CloseIcon } from '../../icons'
@@ -13,7 +13,7 @@ const transform = import.meta.env?.RD_THEME__TRANSFORM__INPUT &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__INPUT).default
 
 if (import.meta.env?.RD_THEME_INPUT) {
-  addCSS(import.meta.env.RD_THEME_INPUT, 'input')
+  addUiCSS(import.meta.env.RD_THEME_INPUT, 'input')
 }
 
 export const inputStyles = {

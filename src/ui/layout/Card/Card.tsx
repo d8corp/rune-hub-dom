@@ -2,12 +2,12 @@ import { classes } from 'html-classes'
 
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, SMLSize } from '../../../types'
-import { addCSS, inject, injectAll } from '../../../utils'
+import { addUiCSS, inject, injectAll } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_CARD) {
-  addCSS(import.meta.env.RD_THEME_CARD, 'card')
+  addUiCSS(import.meta.env.RD_THEME_CARD, 'card')
 }
 
 export const cardStyles = {

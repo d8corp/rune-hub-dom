@@ -1,13 +1,13 @@
 import { useStyles } from '../../../hooks'
 import type { Merge } from '../../../types'
-import { addCSS, inject } from '../../../utils'
+import { addUiCSS, inject } from '../../../utils'
 import type { FlexElement, FlexProps } from '../../primitive'
 import { Flex } from '../../primitive'
 
 export type MessageType = 'success' | 'error' | 'warning' | 'info'
 
 if (import.meta.env?.RD_THEME_MESSAGE) {
-  addCSS(import.meta.env.RD_THEME_MESSAGE, 'message')
+  addUiCSS(import.meta.env.RD_THEME_MESSAGE, 'message')
 }
 
 export const messageStyles = {

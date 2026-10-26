@@ -6,11 +6,11 @@ import { SlotStatus } from '../SlotStatus'
 import type { HTMLStyleProps } from '../../../../../hooks'
 import { useStyles } from '../../../../../hooks'
 import type { Merge } from '../../../../../types'
-import { addCSS, stringify } from '../../../../../utils'
+import { addUiCSS, stringify } from '../../../../../utils'
 import { devtoolsStoreContext } from '../../hooks'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS_SLOT_ITEM) {
-  addCSS(import.meta.env.RD_THEME_DEVTOOLS_SLOT_ITEM, 'devtools-slot-item')
+  addUiCSS(import.meta.env.RD_THEME_DEVTOOLS_SLOT_ITEM, 'devtools-slot-item')
 }
 
 export const devtoolsSlotItemStyles = {

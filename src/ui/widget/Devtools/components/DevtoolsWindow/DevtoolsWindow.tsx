@@ -6,7 +6,7 @@ import { DevtoolsSlotPanel } from '../DevtoolsSlotPanel'
 import { For, Show } from '../../../../../components'
 import { useStyles, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
-import { addCSS, Ref, viewTransition } from '../../../../../utils'
+import { addUiCSS, Ref, viewTransition } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { SearchIcon } from '../../../../icons'
 import { Divider } from '../../../../inline'
@@ -20,7 +20,7 @@ import { Box } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS_WINDOW) {
-  addCSS(import.meta.env.RD_THEME_DEVTOOLS_WINDOW, 'devtools-window')
+  addUiCSS(import.meta.env.RD_THEME_DEVTOOLS_WINDOW, 'devtools-window')
 }
 
 export const devtoolsWindowStyles = {

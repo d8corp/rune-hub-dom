@@ -5,14 +5,14 @@ import { Flex } from '../Flex'
 
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, RDColor, SMLSize } from '../../../types'
-import { addCSS, inject, injectAll } from '../../../utils'
+import { addUiCSS, inject, injectAll } from '../../../utils'
 
 export type BoxSize = SMLSize | 'xs' | 'xxs' | 'xl' | 'xxl'
 export type BoxView = 'filled' | 'bordered' | 'ghost' | 'dashed'
 export type BoxInteract = 'hoverable' | 'clickable'
 
 if (import.meta.env?.RD_THEME_BOX) {
-  addCSS(import.meta.env.RD_THEME_BOX, 'box')
+  addUiCSS(import.meta.env.RD_THEME_BOX, 'box')
 }
 
 export const boxStyles = {

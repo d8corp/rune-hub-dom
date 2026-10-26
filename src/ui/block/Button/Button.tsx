@@ -4,12 +4,12 @@ import { Slot } from 'rune-hub'
 import { Show } from '../../../components'
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, SMLSize } from '../../../types'
-import { addCSS, inject, injectAll, SystemSlot } from '../../../utils'
+import { addUiCSS, inject, injectAll, SystemSlot } from '../../../utils'
 import type { BoxProps, BoxSize, BoxStyles, FlexElement } from '../../primitive'
 import { Box, Spin } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_BUTTON) {
-  addCSS(import.meta.env.RD_THEME_BUTTON, 'button')
+  addUiCSS(import.meta.env.RD_THEME_BUTTON, 'button')
 }
 
 export const buttonStyles = {

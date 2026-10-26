@@ -7,11 +7,11 @@ import { HubProvider } from '../../../components/HubProvider'
 import { Show } from '../../../components/Show'
 import type { StyledProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import { addCSS, Context, viewTransition } from '../../../utils'
+import { addUiCSS, Context, viewTransition } from '../../../utils'
 import { Button } from '../../block'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS) {
-  addCSS(import.meta.env.RD_THEME_DEVTOOLS, 'devtools')
+  addUiCSS(import.meta.env.RD_THEME_DEVTOOLS, 'devtools')
 }
 
 export const devtoolsStyles = {

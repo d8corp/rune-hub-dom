@@ -3,7 +3,7 @@ import { SlotStatus } from '../SlotStatus'
 import { Show } from '../../../../../components'
 import type { HTMLStyleProps } from '../../../../../hooks'
 import { useStyles } from '../../../../../hooks'
-import { addCSS, stringify, SystemSlot } from '../../../../../utils'
+import { addUiCSS, stringify, SystemSlot } from '../../../../../utils'
 import { Button } from '../../../../block'
 import { CloseIcon } from '../../../../icons'
 import { Code } from '../../../../inline'
@@ -11,7 +11,7 @@ import { Flex } from '../../../../primitive'
 import { devtoolsStoreContext } from '../../hooks'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS_SLOT_PANEL) {
-  addCSS(import.meta.env.RD_THEME_DEVTOOLS_SLOT_PANEL, 'devtools-slot-panel')
+  addUiCSS(import.meta.env.RD_THEME_DEVTOOLS_SLOT_PANEL, 'devtools-slot-panel')
 }
 
 export const devtoolsSlotPanelStyles = {

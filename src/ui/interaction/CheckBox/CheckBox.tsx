@@ -2,14 +2,14 @@ import { classes } from 'html-classes'
 
 import { useEffect, useStyles } from '../../../hooks'
 import type { HTMLRef, Merge, ObservableProp } from '../../../types'
-import { addCSS, getSlotEvent, inject, injectAll, Ref, SystemSlot, use } from '../../../utils'
+import { addUiCSS, getSlotEvent, inject, injectAll, Ref, SystemSlot, use } from '../../../utils'
 import type { BoxProps, BoxStyles, FlexElement } from '../../primitive'
 import { Box } from '../../primitive'
 
 export type CheckBoxChecked = boolean | null
 
 if (import.meta.env?.RD_THEME_CHECK_BOX) {
-  addCSS(import.meta.env.RD_THEME_CHECK_BOX, 'check-box')
+  addUiCSS(import.meta.env.RD_THEME_CHECK_BOX, 'check-box')
 }
 
 export const checkBoxStyles = {

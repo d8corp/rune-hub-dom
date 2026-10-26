@@ -1,5 +1,5 @@
 import { useStyles } from '../../../hooks'
-import { addCSS } from '../../../utils'
+import { addUiCSS } from '../../../utils'
 import type { CardProps } from '../../layout/Card'
 import { Card } from '../../layout/Card'
 import type { FlexElement } from '../../primitive'
@@ -8,7 +8,7 @@ const transform = import.meta.env?.RD_THEME__TRANSFORM__WINDOW &&
   import.meta.require?.(import.meta.env.RD_THEME__TRANSFORM__WINDOW).default
 
 if (import.meta.env?.RD_THEME_WINDOW) {
-  addCSS(import.meta.env.RD_THEME_WINDOW, 'window')
+  addUiCSS(import.meta.env.RD_THEME_WINDOW, 'window')
 }
 
 export const windowStyles = {

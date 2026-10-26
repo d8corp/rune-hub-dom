@@ -3,10 +3,10 @@ import { classes } from 'html-classes'
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp, SMLSize } from '../../../types'
-import { addCSS, inject, injectAll } from '../../../utils'
+import { addUiCSS, inject, injectAll } from '../../../utils'
 
 if (import.meta.env?.RD_THEME_DIVIDER) {
-  addCSS(import.meta.env.RD_THEME_DIVIDER, 'divider')
+  addUiCSS(import.meta.env.RD_THEME_DIVIDER, 'divider')
 }
 
 export const dividerStyles = {
