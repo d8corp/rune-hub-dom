@@ -692,7 +692,7 @@ body {
     color: var(--box-second-color);
   }
 
-  &_accent:is(&_filled, &_bordered) {
+  &_accent:is(&_filled) {
     border: none;
     color: white;
     background: $color-primary linear-gradient(135deg, transparent, $color-accent) 0 0 / 100% 100%;
@@ -715,6 +715,24 @@ body {
   &_accent:is(&_filled, &_bordered):not(&_disabled) {
     &:hover, &:active {
       color: white;
+    }
+  }
+
+  &_accent.button_bordered {
+    border: 1px solid transparent;
+    color: var(--box-main-color);
+    background:
+      linear-gradient(var(--box-light-color), var(--box-light-color)) padding-box,
+      light-dark(#{$color-primary-60}, #{$color-primary-40}) linear-gradient(135deg, transparent, light-dark(#{$color-accent-60}, #{$color-accent-40})) border-box;
+
+    & .button_spin {
+      color: var(--box-main-color);
+    }
+  }
+
+  &_accent.button_bordered:not(&_disabled) {
+    &:hover, &:active {
+      color: var(--box-main-color);
     }
   }
 
