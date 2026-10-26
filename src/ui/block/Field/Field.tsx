@@ -21,6 +21,7 @@ export const fieldStyles = {
   squareLeft: import.meta.env?.RD_THEME_FIELD__SQUARE_LEFT,
   squareRight: import.meta.env?.RD_THEME_FIELD__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_FIELD__CIRCLE,
+  label: import.meta.env?.RD_THEME_FIELD__LABEL,
   m: import.meta.env?.RD_THEME_FIELD__M,
   s: import.meta.env?.RD_THEME_FIELD__S,
   l: import.meta.env?.RD_THEME_FIELD__L,
@@ -36,10 +37,13 @@ export type FieldStyles = typeof fieldStyles
 
 export type FieldProps<T extends FlexElement = 'label', S extends FieldStyles = FieldStyles> = Merge<BoxProps<T, S & BoxStyles>, {
   size?: ObservableProp<SMLSize>
+  label?: ObservableProp<string>
 }>
 
 function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S extends FieldStyles = FieldStyles> ({
   size = 'm',
+  children,
+  label,
   ...props
 }: FieldProps<T, S>) {
   const styles = useStyles(fieldStyles, props.class)
@@ -50,7 +54,13 @@ function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S exten
       {...(props as BoxProps<T, S & BoxStyles>)}
       size={inject(size, size => fieldSizeMap[size])}
       class={{ ...styles, m: styles.s, l: styles.m, xl: styles.l }}
-    />
+    >
+      {children}
+      {inject(label, label => label
+        ? <span class={styles.label}>{label}</span>
+        : null,
+      )}
+    </Box>
   )
 }
 
