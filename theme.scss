@@ -139,6 +139,10 @@ $color-disabled-90:  #e4e3ea;
 $color-disabled-95:  #f0eff3;
 $color-disabled-100: #f7f7f9;
 
+$color-success: $color-success-50;
+$color-danger: $color-danger-50;
+$color-warning: $color-warning-50;
+
 $color-bg: var(--color-bg);
 $color-bg-deep: light-dark(#fff, #0B0B15);
 $color-bg-elevated: light-dark(#f1edfc, #1A1A2E);
@@ -155,9 +159,6 @@ $color-secondary: light-dark(#efe9fc, #161226);
 $color-secondary-hover: #8B5CF626;
 $color-secondary-bg: light-dark(#d9d1f6, #332958);
 $color-secondary-active: rgb(116 66 229 / 0.3);
-$color-success: light-dark($color-success-50, $color-success-60);
-$color-danger: light-dark($color-danger-50, $color-danger-60);
-$color-warning: light-dark($color-warning-50, $color-warning-60);
 $color-disabled: light-dark($color-disabled-60, $color-disabled-50);
 $color-shine: light-dark(#7C3AED1A, #FFFFFF1A);
 
@@ -321,11 +322,11 @@ body {
   transition: $transition;
   align-items: center;
   justify-content: center;
-  height: var(--box-size);
   min-height: var(--box-size);
   min-width: var(--box-size);
-  text-box: text alphabetic;
   font-size: var(--box-font-size);
+  line-height: var(--box-font-size);
+  background: transparent;
 
   &_clickable {
     cursor: pointer;
@@ -339,29 +340,45 @@ body {
   }
 
   &_bordered {
-    border: 1px solid var(--box-main-color);
+    border: 1px solid var(--box-border-color, var(--box-main-color));
     background-color: var(--box-light-color);
     color: var(--box-main-color);
   }
 
-  &_ghost {
+  &_dashed {
+    border: 1px dashed var(--box-border-color);
     color: var(--box-main-color);
+    background-color: transparent;
+
+    &:is(.box_hoverable, .box_clickable):hover {
+      @media (hover: hover) and (pointer: fine) {
+        border-color: var(--box-main-color);
+      }
+    }
   }
 
-  &_dashed {
-    border: 1px dashed var(--box-main-color);
+  &_ghost {
     color: var(--box-main-color);
+    border: 1px solid transparent;
+
+    &:is(.box_hoverable, .box_clickable):hover {
+      @media (hover: hover) and (pointer: fine) {
+        background-color: var(--box-light-color);
+      }
+    }
   }
 
   &_primary {
     --box-main-color: light-dark(#{$color-primary-60}, #{$color-primary-60});
     --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-25});
+    --box-border-color: light-dark(#{$color-primary-80}, #{$color-primary-40});
 
     @media (hover: hover) and (pointer: fine) {
       label:hover &:is(.box_hoverable, .box_clickable),
       &:is(.box_hoverable, .box_clickable):hover {
-        --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-60});
+        --box-main-color: light-dark(#{$color-primary-50}, #{$color-primary-65});
         --box-light-color: light-dark(#{$color-primary-90}, #{$color-primary-30});
+        --box-border-color: light-dark(#{$color-primary-70}, #{$color-primary-45});
 
         &.box_bordered {
           color: light-dark(var(--box-main-color), white);
@@ -372,18 +389,24 @@ body {
     &.box_clickable:active {
       --box-main-color: light-dark(#{$color-primary-40}, #{$color-primary-50});
       --box-light-color: light-dark(#{$color-primary-85}, #{$color-primary-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
     }
   }
 
   &_secondary {
     --box-main-color: light-dark(#{$color-secondary-60}, #{$color-secondary-60});
     --box-light-color: light-dark(#{$color-secondary-95}, #{$color-secondary-25});
+    --box-border-color: light-dark(#{$color-secondary-80}, #{$color-secondary-40});
 
     @media (hover: hover) and (pointer: fine) {
       label:hover &:is(.box_hoverable, .box_clickable),
       &:is(.box_hoverable, .box_clickable):hover {
-        --box-main-color: light-dark(#{$color-secondary-50}, #{$color-secondary-60});
+        --box-main-color: light-dark(#{$color-secondary-50}, #{$color-secondary-65});
         --box-light-color: light-dark(#{$color-secondary-90}, #{$color-secondary-30});
+        --box-border-color: light-dark(#{$color-secondary-70}, #{$color-secondary-45});
 
         &.box_bordered {
           color: light-dark(var(--box-main-color), white);
@@ -394,27 +417,151 @@ body {
     &.box_clickable:active {
       --box-main-color: light-dark(#{$color-secondary-40}, #{$color-secondary-50});
       --box-light-color: light-dark(#{$color-secondary-85}, #{$color-secondary-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
     }
   }
 
   &_accent {
     --box-main-color: #{$color-accent};
+    --box-light-color: light-dark(#{$color-accent-95}, #{$color-accent-25});
+    --box-border-color: light-dark(#{$color-accent-80}, #{$color-accent-40});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-accent-45}, #{$color-accent-65});
+        --box-light-color: light-dark(#{$color-accent-90}, #{$color-accent-30});
+        --box-border-color: light-dark(#{$color-accent-70}, #{$color-accent-45});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-accent-40}, #{$color-accent-50});
+      --box-light-color: light-dark(#{$color-accent-85}, #{$color-accent-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
+    }
   }
 
   &_success {
     --box-main-color: #{$color-success};
+    --box-light-color: light-dark(#{$color-success-95}, #{$color-success-25});
+    --box-border-color: light-dark(#{$color-success-80}, #{$color-success-40});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-success-45}, #{$color-success-55});
+        --box-light-color: light-dark(#{$color-success-90}, #{$color-success-30});
+        --box-border-color: light-dark(#{$color-success-70}, #{$color-success-45});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-success-40}, #{$color-success-45});
+      --box-light-color: light-dark(#{$color-success-85}, #{$color-success-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
+    }
   }
 
   &_danger {
     --box-main-color: #{$color-danger};
+    --box-light-color: light-dark(#{$color-danger-95}, #{$color-danger-25});
+    --box-border-color: light-dark(#{$color-danger-80}, #{$color-danger-40});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-danger-45}, #{$color-danger-55});
+        --box-light-color: light-dark(#{$color-danger-90}, #{$color-danger-30});
+        --box-border-color: light-dark(#{$color-danger-70}, #{$color-danger-45});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-danger-40}, #{$color-danger-45});
+      --box-light-color: light-dark(#{$color-danger-85}, #{$color-danger-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
+    }
   }
 
   &_warning {
     --box-main-color: #{$color-warning};
+    --box-light-color: light-dark(#{$color-warning-95}, #{$color-warning-25});
+    --box-border-color: light-dark(#{$color-warning-80}, #{$color-warning-40});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-warning-45}, #{$color-warning-55});
+        --box-light-color: light-dark(#{$color-warning-90}, #{$color-warning-30});
+        --box-border-color: light-dark(#{$color-warning-70}, #{$color-warning-45});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-warning-40}, #{$color-warning-45});
+      --box-light-color: light-dark(#{$color-warning-85}, #{$color-warning-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
+    }
   }
 
   &_disabled {
     --box-main-color: #{$color-disabled};
+    --box-light-color: light-dark(#{$color-disabled-95}, #{$color-disabled-25});
+    --box-border-color: light-dark(#{$color-disabled-80}, #{$color-disabled-40});
+
+    @media (hover: hover) and (pointer: fine) {
+      label:hover &:is(.box_hoverable, .box_clickable),
+      &:is(.box_hoverable, .box_clickable):hover {
+        --box-main-color: light-dark(#{$color-disabled-55}, #{$color-disabled-55});
+        --box-light-color: light-dark(#{$color-disabled-90}, #{$color-disabled-30});
+        --box-border-color: light-dark(#{$color-disabled-70}, #{$color-disabled-45});
+
+        &.box_bordered {
+          color: light-dark(var(--box-main-color), white);
+        }
+      }
+    }
+
+    &.box_clickable:active {
+      --box-main-color: light-dark(#{$color-disabled-50}, #{$color-disabled-45});
+      --box-light-color: light-dark(#{$color-disabled-85}, #{$color-disabled-40});
+
+      &.box_bordered {
+        color: light-dark(var(--box-main-color), white);
+      }
+    }
   }
 
   &_xxs {
@@ -588,11 +735,8 @@ body {
 }
 
 .code {
-  background: $color-secondary;
-  border: 1px solid $color-border;
-  color: $color-primary-hover;
+  display: inline;
   padding: 2px 4px;
-  border-radius: 4px;
   font-size: 0.8em;
   cursor: pointer;
 }

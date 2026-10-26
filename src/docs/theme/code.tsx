@@ -4,6 +4,7 @@ import { CodeComponent, message, viewTransition } from '../..'
 export function Code (props: CodeProps) {
   return (
     <CodeComponent
+      interact='clickable'
       {...props}
       onclick={(e) => {
         navigator.clipboard.writeText((e.target as HTMLDivElement).innerText)

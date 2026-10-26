@@ -1,7 +1,8 @@
-import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { ObservableProp } from '../../../types'
 import { addCSS } from '../../../utils'
+import type { BoxProps, BoxStyles } from '../../primitive'
+import { Box } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_CODE) {
   addCSS(import.meta.env.RD_THEME_CODE, 'code')
@@ -13,14 +14,14 @@ export const codeStyles = {
 
 export type CodeStyles = typeof codeStyles
 
-export interface CodeProps extends HTMLStyleProps<'code', CodeStyles> {
+export interface CodeProps<S extends CodeStyles = CodeStyles> extends BoxProps<'code', S & BoxStyles> {
   children?: ObservableProp<string | undefined>
 }
 
-export function CodeComponent (props: CodeProps) {
+export function CodeComponent<S extends CodeStyles> (props: CodeProps<S>) {
   const styles = useStyles(codeStyles, props.class)
 
-  return <code {...props} class={styles.root} />
+  return <Box element='code' view='bordered' {...props} class={styles} />
 }
 
 export const Code = import.meta.env?.RD_UI_CODE
