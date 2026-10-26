@@ -45,10 +45,10 @@ export function Side () {
         <div class={styles.background} onclick={hideSide} />
       </Show>
       <Input
-        padding={0}
         circle
         clearable
         debounce
+        square='left'
         view='ghost'
         value={slot(sideSearch)}
         placeholder='Search'

@@ -1,5 +1,5 @@
 import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp, SMLSize } from '../../../types'
+import type { JSXElement, Merge, ObservableProp, SMLSize } from '../../../types'
 import { addUiCSS, inject } from '../../../utils'
 import type { BoxProps, BoxSize, BoxStyles, FlexElement } from '../../primitive'
 import { Box } from '../../primitive'
@@ -22,6 +22,7 @@ export const fieldStyles = {
   squareRight: import.meta.env?.RD_THEME_FIELD__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_FIELD__CIRCLE,
   label: import.meta.env?.RD_THEME_FIELD__LABEL,
+  content: import.meta.env?.RD_THEME_FIELD__CONTENT,
   m: import.meta.env?.RD_THEME_FIELD__M,
   s: import.meta.env?.RD_THEME_FIELD__S,
   l: import.meta.env?.RD_THEME_FIELD__L,
@@ -38,12 +39,16 @@ export type FieldStyles = typeof fieldStyles
 export type FieldProps<T extends FlexElement = 'label', S extends FieldStyles = FieldStyles> = Merge<BoxProps<T, S & BoxStyles>, {
   size?: ObservableProp<SMLSize>
   label?: ObservableProp<string>
+  before?: JSXElement
+  after?: JSXElement
 }>
 
 function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S extends FieldStyles = FieldStyles> ({
   size = 'm',
   children,
   label,
+  before,
+  after,
   ...props
 }: FieldProps<T, S>) {
   const styles = useStyles(fieldStyles, props.class)
@@ -55,11 +60,15 @@ function FieldComponent<T extends keyof HTMLElementTagNameMap = 'label', S exten
       size={inject(size, size => fieldSizeMap[size])}
       class={{ ...styles, m: styles.s, l: styles.m, xl: styles.l }}
     >
-      {children}
-      {inject(label, label => label
-        ? <span class={styles.label}>{label}</span>
-        : null,
-      )}
+      {before}
+      <span class={styles.content}>
+        {children}
+        {inject(label, label => label
+          ? <span class={styles.label}>{label}</span>
+          : null,
+        )}
+      </span>
+      {after}
     </Box>
   )
 }

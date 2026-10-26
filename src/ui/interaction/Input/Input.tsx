@@ -3,9 +3,9 @@ import SyncTimer from 'sync-timer'
 
 import { Show } from '../../../components'
 import { useClear, useDebounceSlotEvent, useEffect, useStyles } from '../../../hooks'
-import type { HTMLRef, JSXElement, Merge, ObservableProp } from '../../../types'
+import type { HTMLRef, Merge, ObservableProp } from '../../../types'
 import { addUiCSS, getSlotEvent, inject, Ref, SystemSlot, use } from '../../../utils'
-import type { FieldProps } from '../../block'
+import type { FieldProps, FieldStyles } from '../../block'
 import { Field } from '../../block'
 import { CloseIcon } from '../../icons'
 
@@ -29,6 +29,7 @@ export const inputStyles = {
   squareLeft: import.meta.env?.RD_THEME_INPUT__SQUARE_LEFT,
   squareRight: import.meta.env?.RD_THEME_INPUT__SQUARE_RIGHT,
   circle: import.meta.env?.RD_THEME_INPUT__CIRCLE,
+  label: import.meta.env?.RD_THEME_INPUT__LABEL,
   m: import.meta.env?.RD_THEME_INPUT__M,
   s: import.meta.env?.RD_THEME_INPUT__S,
   l: import.meta.env?.RD_THEME_INPUT__L,
@@ -42,11 +43,9 @@ export interface InputFocusOptions extends FocusOptions {
   timeout?: number
 }
 
-export type InputProps<T extends string = string, S extends InputStyles = InputStyles> = Merge<FieldProps<'label', S>, {
+export type InputProps<T extends string = string, S extends InputStyles = InputStyles> = Merge<FieldProps<'label', S & FieldStyles>, {
   value?: ObservableProp<T>
   inputRef?: HTMLRef<'input'>
-  before?: JSXElement
-  after?: JSXElement
   name?: ObservableProp<string>
   placeholder?: ObservableProp<string>
   clearable?: ObservableProp<boolean>
@@ -58,8 +57,6 @@ export type InputProps<T extends string = string, S extends InputStyles = InputS
 function InputComponent<T extends string = '', S extends InputStyles = InputStyles> ({
   value = new Slot<T>(() => '' as T),
   inputRef = new Ref<HTMLInputElement>(),
-  before,
-  after,
   name,
   placeholder,
   autofocus,
@@ -106,8 +103,7 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
   )
 
   return (
-    <Field element='label' view='bordered' interact='hoverable' {...props} class={styles}>
-      {before}
+    <Field element='label' view='bordered' interact='hoverable' {...props} after={[clearContent, props.after]} class={styles}>
       <input
         placeholder={placeholder}
         name={name}
@@ -115,8 +111,6 @@ function InputComponent<T extends string = '', S extends InputStyles = InputStyl
         ref={inputRef}
         oninput={handleInput}
       />
-      {clearContent}
-      {after}
     </Field>
   )
 }
