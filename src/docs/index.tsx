@@ -15,7 +15,7 @@ import { useUpdateHistory } from '../hooks'
 import { rundom } from '../rundom'
 import { Devtools } from '../ui'
 import { addUiCSS } from '../utils'
-import { removeLoading, scrollToHash } from './helpers'
+import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/system/ErrorPage'
 import { routing } from './routing'
 import { applyThemeEffect } from './state'
@@ -23,7 +23,7 @@ import { applyThemeEffect } from './state'
 
 removeLoading()
 scrollToHash()
-// listenCursorPosition()
+listenCursorPosition()
 // listenScrolling()
 
 Hub.root.on('error', (slot) => {
