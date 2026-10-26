@@ -21,7 +21,7 @@ export interface CodeProps<S extends CodeStyles = CodeStyles> extends BoxProps<'
 export function CodeComponent<S extends CodeStyles> (props: CodeProps<S>) {
   const styles = useStyles(codeStyles, props.class)
 
-  return <Box element='code' view='bordered' {...props} class={styles} />
+  return <Box element='code' square view='bordered' {...props} class={styles} />
 }
 
 export const Code = import.meta.env?.RD_UI_CODE

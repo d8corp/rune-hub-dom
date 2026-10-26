@@ -325,7 +325,6 @@ body {
   min-height: var(--box-size);
   min-width: var(--box-size);
   font-size: var(--box-font-size);
-  line-height: var(--box-font-size);
   background: transparent;
 
   &_clickable {
@@ -566,20 +565,20 @@ body {
 
   &_xxs {
     --box-size: 8px;
-    --box-font-size: 6px;
+    --box-font-size: 4px;
     border-radius: 2px;
   }
 
   &_xs {
     --box-size: 12px;
-    --box-font-size: 10px;
+    --box-font-size: 6px;
     border-radius: 4px;
   }
 
   &_s {
     --box-size: 16px;
-    --box-font-size: 12px;
-    padding: 1px;
+    --box-font-size: 7px;
+    padding: 0 1px;
     border-radius: 5px;
   }
 
@@ -590,7 +589,7 @@ body {
     border-radius: 6px;
 
     &.box_square {
-      padding: 6px;
+      padding: 0 6px;
     }
 
     &.box_square-left {
@@ -605,11 +604,11 @@ body {
   &_l {
     --box-size: 36px;
     --box-font-size: 14px;
-    padding: 8px 16px;
+    padding: 0 16px;
     border-radius: 8px;
 
     &.box_square {
-      padding: 8px;
+      padding: 0 8px;
     }
 
     &.box_square-left {
@@ -624,11 +623,11 @@ body {
   &_xl {
     --box-size: 56px;
     --box-font-size: 16px;
-    padding: 14px 28px;
+    padding: 0 28px;
     border-radius: 12px;
 
     &.box_square {
-      padding: 14px;
+      padding: 0 14px;
     }
 
     &.box_square-left {
@@ -643,11 +642,11 @@ body {
   &_xxl {
     --box-size: 64px;
     --box-font-size: 18px;
-    padding: 14px 28px;
+    padding: 0 28px;
     border-radius: 12px;
 
     &.box_square {
-      padding: 14px;
+      padding: 0 14px;
     }
 
     &.box_square-left {
@@ -735,8 +734,7 @@ body {
 }
 
 .code {
-  display: inline;
-  padding: 2px 4px;
+  display: inline-flex;
   font-size: 0.8em;
   cursor: pointer;
 }
