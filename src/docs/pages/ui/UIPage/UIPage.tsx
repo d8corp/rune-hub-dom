@@ -24,7 +24,7 @@ export default function UIPage () {
             </p>
           </Typography>
           <div class={styles.buttons}>
-            <Button color='accent' style={{ width: '175px' }} element='a' size='l' href='/ui/introduction'>
+            <Button view='filled' color='accent' style={{ width: '175px' }} element='a' size='l' href='/ui/introduction'>
               Get Started
             </Button>
           </div>

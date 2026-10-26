@@ -10,10 +10,10 @@ import { rundom, Button, Flex } from 'rundom'
 rundom(
   <Flex gap={8}>
     <Button>Button</Button>
-    <Button color='primary'>
+    <Button view='filled'>
       Button
     </Button>
-    <Button color='accent'>
+    <Button view='filled' color='accent'>
       Button
     </Button>
   </Flex>

@@ -35,7 +35,7 @@ export default function HomePage () {
             </p>
           </Typography>
           <div class={styles.buttons}>
-            <Button color='accent' style={{ width: '182px' }} element='a' size='l' href='/quick-start'>
+            <Button color='accent' view='filled' style={{ width: '182px' }} element='a' size='l' href='/quick-start'>
               Get Started
             </Button>
             <Button
