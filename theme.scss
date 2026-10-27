@@ -720,7 +720,6 @@ body {
 
   &_accent.button_bordered {
     border: 1px solid transparent;
-    color: var(--box-main-color);
     background:
       linear-gradient(var(--box-light-color), var(--box-light-color)) padding-box,
       light-dark(#{$color-primary-60}, #{$color-primary-40}) linear-gradient(135deg, transparent, light-dark(#{$color-accent-60}, #{$color-accent-40})) border-box;
@@ -909,8 +908,16 @@ body {
     font-size: .6em;
   }
 
+  &_s {
+    padding: 7px;
+  }
+
   &_m {
     padding: 10px;
+  }
+
+  &_l {
+    padding: 20px;
   }
 }
 
@@ -936,6 +943,7 @@ body {
     font: inherit;
     height: 1em;
     max-height: 1em;
+    width: 100%;
 
     &:focus {
       outline: none;

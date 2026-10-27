@@ -17,6 +17,7 @@ import { Window, WindowHeader } from '../../../../popup'
 import { WindowContent } from '../../../../popup/WindowContent'
 import type { FlexElement } from '../../../../primitive'
 import { Box } from '../../../../primitive'
+import { Text } from '../../../../typography'
 import { devtoolsStoreContext } from '../../hooks'
 
 if (import.meta.env?.RD_THEME_DEVTOOLS_WINDOW) {
@@ -105,7 +106,7 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
               value={search}
               name='search'
               before={<SearchIcon />}
-              after={() => `${searchSlots.value.length} / ${slots.value.size}`}
+              after={<Text lineHeight='1em'>{() => `${searchSlots.value.length} / ${slots.value.size}`}</Text>}
             />
           </div>
           <Scrollbar class={styles.list} ref={list}>

@@ -33,6 +33,7 @@ export interface TextProps extends HTMLStyleProps<'span', TextStyles> {
   italic?: ObservableProp<boolean | undefined>
   nowrap?: ObservableProp<boolean | number | undefined>
   size?: ObservableProp<number | string | undefined>
+  lineHeight?: ObservableProp<number | string | undefined>
   weight?: ObservableProp<TextWeight | undefined>
   wrap?: ObservableProp<TextWrap | undefined>
   box?: ObservableProp<TextBox | undefined>
@@ -46,6 +47,7 @@ export function TextComponent ({
   break: propsBreak,
   align,
   decoration,
+  lineHeight,
   italic,
   nowrap,
   wrap,
@@ -68,6 +70,7 @@ export function TextComponent ({
         'text-wrap': injectAsIs(wrap),
         'text-box': injectAsIs(box),
         'font-size': inject(size, size => typeof size === 'number' ? `${size}px` : size),
+        'line-height': inject(lineHeight, lineHeight => typeof lineHeight === 'number' ? `${lineHeight}px` : lineHeight),
         'font-style': inject(italic, italic => italic ? 'italic' : undefined),
         '-webkit-line-clamp': inject(nowrap, nowrap => typeof nowrap === 'number' ? String(nowrap) : nowrap ? '1' : undefined),
         display: inject(nowrap, nowrap => nowrap ? '-webkit-box' : undefined),
