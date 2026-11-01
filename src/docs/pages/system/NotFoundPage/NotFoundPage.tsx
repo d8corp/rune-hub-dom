@@ -11,7 +11,7 @@ export default function NotFoundPage () {
         <p>
           The page you're looking for doesn't exist.
         </p>
-        <Button color='accent' size='l' element='a' href='/'>
+        <Button color='accent' view='filled' size='l' element='a' href='/'>
           Go Home
         </Button>
       </Typography>
