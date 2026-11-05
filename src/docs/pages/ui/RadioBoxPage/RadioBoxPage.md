@@ -57,13 +57,13 @@ import { rundom, RadioBox, Flex, Text } from 'rundom'
 rundom(
   <Flex gap={8} wrap align='center'>
     <Flex element='label' gap={8} align='center'>
-      <RadioBox />
+      <RadioBox name='label' />
       <Text cursor='pointer'>
         Unchecked
       </Text>
     </Flex>
     <Flex element='label' gap={8} align='center'>
-      <RadioBox checked />
+      <RadioBox name='label' checked />
       <Text cursor='pointer'>
         Checked
       </Text>
