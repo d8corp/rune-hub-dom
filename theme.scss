@@ -1,4 +1,5 @@
 @use 'src/docs/styles/colors.scss' as *;
+@use 'src/docs/styles/var' as *;
 
 // gradients
 $gradient-shine: linear-gradient(135deg, transparent, $color-shine, transparent);
@@ -593,7 +594,7 @@ body {
 
 .card {
   overflow: hidden;
-  background: var(--rd-card-background, transparent);
+  background: light-dark(#FFF, $color-primary-10);
   border: 1px solid $color-border;
   padding: 0;
 
@@ -630,6 +631,28 @@ body {
       outline-offset: 2px;
     }
   }
+
+  &-header {
+    color: $color-text-dim;
+    font-weight: 600;
+    font-size: 12px;
+    gap: 12px;
+    align-items: center;
+    background: light-dark($color-secondary-100, $color-secondary-a0);
+    padding: 12px 16px;
+    border-bottom: $border;
+  }
+
+  &-content {
+    flex: 1;
+    min-height: 0;
+    padding: 12px 16px;
+    gap: 12px;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
 }
 
 .card-preview {
@@ -648,16 +671,6 @@ body {
   @include transition;
 }
 
-.card-info {
-  flex: 1;
-  padding: 12px 16px 16px;
-  border-top: 1px solid light-dark(#7C3AED14, #8B5CF614);
-
-  &:first-child {
-    border-top: 0;
-  }
-}
-
 .card-title {
   color: var(--rd__root_color, #{$color-text});
   font-size: 15px;
@@ -674,30 +687,6 @@ body {
 
 .card_interactive:hover .card-preview {
   color: $color-primary;
-}
-
-.window {
-  gap: 8px;
-  padding: 8px;
-  background: $color-secondary-bg;
-
-  &-header {
-    color: $color-text-muted;
-    font-size: 12px;
-    gap: 8px;
-    align-items: center;
-  }
-
-  &-content {
-    font-size: 14px;
-    gap: 8px;
-    background: $color-bg-elevated;
-    flex: 1;
-    min-height: 0;
-    padding: 8px;
-    border: 1px solid $color-border;
-    border-radius: 8px;
-  }
 }
 
 .typography {

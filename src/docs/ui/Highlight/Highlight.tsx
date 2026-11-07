@@ -6,7 +6,7 @@ import { Show } from '../../../components'
 import { message } from '../../../helpers'
 import { useEffect, useStyles } from '../../../hooks'
 import type { JSXElement, ObservableProp } from '../../../types'
-import type { FlexElement, FlexProps, FlexStyles } from '../../../ui'
+import type { BaseIconProps, FlexElement, FlexProps, FlexStyles } from '../../../ui'
 import { Button, CopyIcon, Flex, HtmlIcon, JsonIcon, Markdown, SuccessIcon, TerminalIcon, TypeScriptIcon, Typography } from '../../../ui'
 import { inject, injectAll, Ref, use, viewTransition } from '../../../utils'
 import $styles from './Highlight.module.scss'
@@ -72,8 +72,8 @@ export function Highlight<T extends FlexElement = 'div'> ({
     }, 1000)
   }
 
-  const IconCopy = () => () => {
-    return copied.value ? <SuccessIcon /> : <CopyIcon />
+  const IconCopy = (props: BaseIconProps) => () => {
+    return copied.value ? <SuccessIcon {...props} /> : <CopyIcon {...props} />
   }
 
   const Content = () => {
@@ -96,8 +96,8 @@ export function Highlight<T extends FlexElement = 'div'> ({
               <Typography class={styles.titleText} flex>
                 <Markdown text={tabs.length === 1 ? tabs[0][0] : tabs[1][0]} />
               </Typography>
-              <Button size='s' data-glow={glow} square view='bordered' onclick={copy(codeText)}>
-                <IconCopy />
+              <Button size='s' square view='ghost' onclick={copy(codeText)}>
+                <IconCopy size={12} />
               </Button>
             </Flex>
           </Flex>
@@ -158,8 +158,8 @@ export function Highlight<T extends FlexElement = 'div'> ({
               ))}
             </Flex>
             <Show when={() => code.value && !code.value.startsWith('//>')}>
-              <Button data-glow={glow} square view='bordered' size='s' onclick={copy(code)}>
-                <IconCopy />
+              <Button square view='ghost' size='s' onclick={copy(code)}>
+                <IconCopy size={12} />
               </Button>
             </Show>
           </Flex>

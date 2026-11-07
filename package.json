@@ -57,7 +57,6 @@
   "devDependencies": {
     "@rune-hub/utils": "^1.2.0",
     "@textlint/ast-node-types": "^13.3.2",
-    "@textlint/markdown-to-ast": "^13.3.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.2.1",
     "@types/prismjs": "^1.26.6",
@@ -84,6 +83,7 @@
   },
   "dependencies": {
     "dom-types": "^1.1.7",
+    "@textlint/markdown-to-ast": "^13.3.2",
     "html-classes": "^2.0.2",
     "rune-hub": "^1.2.0",
     "sync-timer": "^1.0.1",

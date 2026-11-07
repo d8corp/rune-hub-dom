@@ -5,8 +5,8 @@ import {
   Box,
   Button,
   Card,
+  CardContent,
   CardDescription,
-  CardInfo,
   CardPreview,
   CardTitle,
   CheckBox,
@@ -193,7 +193,7 @@ export default function UIPage () {
                 </Flex>
               </Flex>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Controls
                 <span class={styles.atlasArrow}>↗</span>
@@ -207,7 +207,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>CheckBox</span>
                 <span class={styles.atlasTag}>RadioBox</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
 
           <Card
@@ -227,7 +227,7 @@ export default function UIPage () {
                 <div class={styles.layoutPanel} />
               </Flex>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Layout
                 <span class={styles.atlasArrow}>↗</span>
@@ -240,7 +240,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>Box</span>
                 <span class={styles.atlasTag}>Divider</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
 
           <Card
@@ -256,7 +256,7 @@ export default function UIPage () {
                 <p>A quiet rhythm for loud ideas.</p>
               </Typography>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Typography
                 <span class={styles.atlasArrow}>↗</span>
@@ -269,7 +269,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>Text</span>
                 <span class={styles.atlasTag}>Markdown</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
 
           <Card
@@ -289,7 +289,7 @@ export default function UIPage () {
                 <span class={styles.iconTile}><TerminalIcon size={20} /></span>
               </Flex>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Icons
                 <span class={styles.atlasArrow}>↗</span>
@@ -302,7 +302,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>BaseIcon</span>
                 <span class={styles.atlasTag}>Reactive size</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
 
           <Card
@@ -328,7 +328,7 @@ export default function UIPage () {
                 </Box>
               </Flex>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Surfaces
                 <span class={styles.atlasArrow}>↗</span>
@@ -341,7 +341,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>Card</span>
                 <span class={styles.atlasTag}>Theme</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
 
           <Card
@@ -359,7 +359,7 @@ export default function UIPage () {
                 </Typography>
               </Flex>
             </CardPreview>
-            <CardInfo class={styles.atlasInfo}>
+            <CardContent class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Content
                 <span class={styles.atlasArrow}>↗</span>
@@ -372,7 +372,7 @@ export default function UIPage () {
                 <span class={styles.atlasTag}>Markdown</span>
                 <span class={styles.atlasTag}>Link</span>
               </div>
-            </CardInfo>
+            </CardContent>
           </Card>
         </div>
       </section>

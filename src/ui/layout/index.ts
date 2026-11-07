@@ -1,6 +1,6 @@
 export * from './Card'
+export * from './CardContent'
 export * from './CardDescription'
-export * from './CardInfo'
 export * from './CardPreview'
 export * from './CardTitle'
 export * from './Scrollbar'

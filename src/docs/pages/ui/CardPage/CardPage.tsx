@@ -2,8 +2,8 @@ import type { HighlightExamples } from '@docs/ui'
 
 import {
   Card,
+  CardContent,
   CardDescription,
-  CardInfo,
   CardPreview,
   CardTitle,
   CopyIcon,
@@ -18,10 +18,10 @@ export default function CardPage () {
   const examples: HighlightExamples = {
     basic: (
       <Card style={{ width: '220px' }}>
-        <CardInfo>
+        <CardContent>
           <CardTitle>Card title</CardTitle>
           <CardDescription>Card content goes here.</CardDescription>
-        </CardInfo>
+        </CardContent>
       </Card>
     ),
     preview: (
@@ -29,10 +29,10 @@ export default function CardPage () {
         <CardPreview>
           <SearchIcon size={24} />
         </CardPreview>
-        <CardInfo>
+        <CardContent>
           <CardTitle>Search</CardTitle>
           <CardDescription>Find anything in the documentation.</CardDescription>
-        </CardInfo>
+        </CardContent>
       </Card>
     ),
     sizes: (
@@ -41,25 +41,25 @@ export default function CardPage () {
           <CardPreview>
             <SunIcon size={20} />
           </CardPreview>
-          <CardInfo>
+          <CardContent>
             <CardTitle>Small</CardTitle>
-          </CardInfo>
+          </CardContent>
         </Card>
         <Card size='m' style={{ width: '220px' }}>
           <CardPreview>
             <CopyIcon size={24} />
           </CardPreview>
-          <CardInfo>
+          <CardContent>
             <CardTitle>Medium</CardTitle>
-          </CardInfo>
+          </CardContent>
         </Card>
         <Card size='l' style={{ width: '260px' }}>
           <CardPreview>
             <SearchIcon size={28} />
           </CardPreview>
-          <CardInfo>
+          <CardContent>
             <CardTitle>Large</CardTitle>
-          </CardInfo>
+          </CardContent>
         </Card>
       </Flex>
     ),
@@ -68,10 +68,10 @@ export default function CardPage () {
         <CardPreview>
           <SunIcon size={24} />
         </CardPreview>
-        <CardInfo>
+        <CardContent>
           <CardTitle>Interactive</CardTitle>
           <CardDescription>Hover or focus the card to see the state.</CardDescription>
-        </CardInfo>
+        </CardContent>
       </Card>
     ),
     link: (
@@ -79,10 +79,10 @@ export default function CardPage () {
         <CardPreview>
           <SearchIcon size={24} />
         </CardPreview>
-        <CardInfo>
+        <CardContent>
           <CardTitle>Overview</CardTitle>
           <CardDescription>Browse all components from a single page.</CardDescription>
-        </CardInfo>
+        </CardContent>
       </Card>
     ),
   }

@@ -8,13 +8,12 @@ import { useStyles, useVirtualList } from '../../../../../hooks'
 import type { RDColor } from '../../../../../types'
 import { addUiCSS, Ref, viewTransition } from '../../../../../utils'
 import { Button } from '../../../../block'
-import { SearchIcon } from '../../../../icons'
+import { CloseIcon, SearchIcon } from '../../../../icons'
 import { Divider } from '../../../../inline'
 import { Input } from '../../../../interaction'
-import { Scrollbar } from '../../../../layout'
-import type { WindowProps } from '../../../../popup'
-import { Window, WindowHeader } from '../../../../popup'
-import { WindowContent } from '../../../../popup/WindowContent'
+import type { CardProps } from '../../../../layout'
+import { Card, CardContent, Scrollbar } from '../../../../layout'
+import { CardHeader } from '../../../../popup'
 import type { FlexElement } from '../../../../primitive'
 import { Box } from '../../../../primitive'
 import { Text } from '../../../../typography'
@@ -43,7 +42,7 @@ export const devtoolsWindowStyles = {
 
 export type DevtoolsWindowStyles = typeof devtoolsWindowStyles
 
-export type DevtoolsWindowProps<T extends FlexElement = 'div', S extends DevtoolsWindowStyles = DevtoolsWindowStyles> = WindowProps<T, S>
+export type DevtoolsWindowProps<T extends FlexElement = 'div', S extends DevtoolsWindowStyles = DevtoolsWindowStyles> = CardProps<T, S>
 
 export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends DevtoolsWindowStyles = DevtoolsWindowStyles> (props: DevtoolsWindowProps<T, S>) {
   const list = new Ref<HTMLDivElement>()
@@ -87,12 +86,15 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
   }
 
   return (
-    <Window {...props} class={styles.root}>
-      <WindowHeader onClose={close}>
+    <Card {...props} class={styles.root}>
+      <CardHeader gap={6}>
+        <Box size='xs' color='danger' circle interact='clickable' onclick={close}>
+          <CloseIcon size={8} />
+        </Box>
         <Box size='xs' color='warning' circle />
         <Box size='xs' color='success' circle />
-      </WindowHeader>
-      <WindowContent data-glow>
+      </CardHeader>
+      <CardContent>
         <div class={styles.aside}>
           <div class={styles.asideHeader}>
             <Input
@@ -163,8 +165,8 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
           </div>
           <DevtoolsSlotPanel />
         </div>
-      </WindowContent>
-    </Window>
+      </CardContent>
+    </Card>
   )
 }
 

@@ -1,5 +1,5 @@
 import { CardDescription } from '../CardDescription'
-import { CardInfo } from '../CardInfo'
+import { CardContent } from '../CardInfo'
 import { CardPreview } from '../CardPreview'
 import { CardTitle } from '../CardTitle'
 import { Card } from './Card'
@@ -23,10 +23,10 @@ describe('Card', () => {
         <CardPreview>
           <span>Preview</span>
         </CardPreview>
-        <CardInfo>
+        <CardContent>
           <CardTitle>Title</CardTitle>
           <CardDescription>Description</CardDescription>
-        </CardInfo>
+        </CardContent>
       </Card>,
     )
 

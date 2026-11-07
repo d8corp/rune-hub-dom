@@ -8,7 +8,7 @@ import {
   BurgerIcon,
   Card,
   CardDescription,
-  CardInfo,
+  CardContent,
   CardPreview,
   CardTitle,
   CheckIcon,
@@ -231,10 +231,10 @@ export default function IconsPage () {
                       <CardPreview class={styles.preview}>
                         {() => item.value.icon}
                       </CardPreview>
-                      <CardInfo class={styles.info}>
+                      <CardContent class={styles.info}>
                         <CardTitle class={styles.name}>{() => item.value.name}</CardTitle>
                         <CardDescription>{() => item.value.description}</CardDescription>
-                      </CardInfo>
+                      </CardContent>
                     </Card>
                   )}
                 </For>

@@ -6,8 +6,8 @@ import {
   Box,
   Button,
   Card,
+  CardContent,
   CardDescription,
-  CardInfo,
   CardPreview,
   CardTitle,
   CheckBox,
@@ -122,10 +122,10 @@ export default function OverviewPage () {
           keywords: 'card surface preview title description container',
           preview: (
             <Card size='s' style={{ width: '130px' }}>
-              <CardInfo>
+              <CardContent>
                 <CardTitle>Card</CardTitle>
                 <CardDescription>Preview and body</CardDescription>
-              </CardInfo>
+              </CardContent>
             </Card>
           ),
         },
@@ -278,13 +278,13 @@ export default function OverviewPage () {
                       element='a'
                       href={() => item.value.href}
                       size='m'
-                      interactive
+                      clickable
                     >
                       <CardPreview>{() => item.value.preview}</CardPreview>
-                      <CardInfo>
+                      <CardContent>
                         <CardTitle>{() => item.value.title}</CardTitle>
                         <CardDescription>{() => item.value.description}</CardDescription>
-                      </CardInfo>
+                      </CardContent>
                     </Card>
                   )}
                 </For>
