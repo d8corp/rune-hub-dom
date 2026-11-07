@@ -7,3 +7,9 @@
 
 $heroInAnimation: heroIn .75s cubic-bezier(.2, .7, .2, 1) both;
 $heroInAnimation2: heroIn .85s cubic-bezier(.2, .7, .2, 1) both;
+
+@mixin animation ($animation) {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: $animation;
+  }
+}

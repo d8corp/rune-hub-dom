@@ -101,35 +101,29 @@ $max-width: 1280px;
   box-sizing: border-box;
 }
 
-.heroCopy {
-  animation: $heroInAnimation;
+.bannerDescription {
+  @include animation($heroInAnimation);
 
   @media (max-width: 1000px) {
     text-align: center;
+    align-items: center;
     margin: 0 auto;
+  }
+}
+
+.bannerButtons {
+  @media (max-width: 1000px) {
+    justify-content: center;
   }
 }
 
 .lead {
   max-width: 550px;
-  margin: 0 0 28px;
   color: $color-text-muted;
-  line-height: 1.7;
-}
-
-.heroActions {
-  margin-top: 12px;
 }
 
 .meta {
-  margin-top: 28px;
-  color: var(--rd__root_color-dim);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.metaIcon {
-  color: $color-primary;
+  margin-top: 16px;
 }
 
 .stage {
@@ -773,10 +767,6 @@ $max-width: 1280px;
     padding-top: clamp(56px, 9vh, 96px);
   }
 
-  .heroCopy {
-    max-width: 760px;
-  }
-
   .stage {
     max-width: 460px;
   }
@@ -857,30 +847,5 @@ $max-width: 1280px;
   .controlLabel {
     width: auto;
     padding-top: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroCopy,
-  .stage,
-  .stageHalo,
-  .floatChip,
-  .marqueeTrack,
-  .ctaGlow {
-    animation: none;
-  }
-
-  .window,
-  .atlasCard,
-  .atlasArrow {
-    transition: none;
-  }
-
-  .atlasCard:hover {
-    transform: none;
-  }
-
-  .reveal {
-    animation: none;
   }
 }

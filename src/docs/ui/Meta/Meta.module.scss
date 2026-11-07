@@ -1,0 +1,14 @@
+@use 'src/docs/styles/colors' as *;
+
+.root {
+  color: $color-text-dim;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 6px;
+  align-items: center;
+
+  svg {
+    font-size: 14px;
+    color: $color-primary;
+  }
+}

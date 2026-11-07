@@ -866,6 +866,10 @@ body {
     opacity: 0;
     cursor: inherit;
   }
+
+  label:has(&:not(&_disabled)) {
+    cursor: pointer;
+  }
 }
 
 .radio-box {

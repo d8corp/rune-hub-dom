@@ -1,5 +1,5 @@
-import { Box, Button, Code, Divider, Flex, Typography } from '../../../../ui'
-import { Page, Title } from '../../../ui'
+import { Box, Button, Code, Divider, Flex, TypeScriptIcon, Typography } from '../../../../ui'
+import { Meta, Page, Title } from '../../../ui'
 import {
   ComponentsExample,
   ControlFlowExample,
@@ -51,6 +51,9 @@ export default function HomePage () {
               View Rundom UI
             </Button>
           </div>
+          <Flex gap={18} wrap justify='center' padding={[28, 0, 0]}>
+            <Meta><TypeScriptIcon />TypeScript</Meta>
+          </Flex>
         </div>
       </Flex>
       <Flex vertical>

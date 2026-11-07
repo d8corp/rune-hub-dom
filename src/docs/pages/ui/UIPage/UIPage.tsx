@@ -26,7 +26,7 @@ import {
   TypeScriptIcon,
   Typography,
 } from '../../../../ui'
-import { Page, Title } from '../../../ui'
+import { Meta, Page, Title } from '../../../ui'
 import styles from './UIPage.scss'
 
 type UIColor = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
@@ -53,17 +53,17 @@ export default function UIPage () {
     <Page>
       <section class={styles.hero}>
         <div class={styles.heroInner}>
-          <div class={styles.heroCopy}>
+          <Flex vertical gap={12} class={styles.bannerDescription}>
             <Typography>
               <Title title='Rundom UI'>
-                Interface<br />
-                with a pulse
+                Rundom UI
               </Title>
               <p class={styles.lead}>
-                A component kit built into Rundom. Every prop is reactive, every surface is themeable, and updates touch only the DOM that changed.
+                A component kit built into Rundom.
+                Reactive props, surface is themeable, and updates touch only the DOM that changed.
               </p>
             </Typography>
-            <Flex gap={12} wrap class={styles.heroActions}>
+            <Flex gap={12} wrap class={styles.bannerButtons}>
               <Button element='a' href='/ui/introduction' size='l' view='filled' color='accent'>
                 Start building
               </Button>
@@ -72,20 +72,11 @@ export default function UIPage () {
               </Button>
             </Flex>
             <Flex gap={18} wrap class={styles.meta}>
-              <Flex gap={6} align='center'>
-                <SuccessIcon class={styles.metaIcon} size={14} />
-                Signal-first
-              </Flex>
-              <Flex gap={6} align='center'>
-                <SunIcon class={styles.metaIcon} size={14} />
-                Your theme tokens
-              </Flex>
-              <Flex gap={6} align='center'>
-                <TypeScriptIcon class={styles.metaIcon} size={14} />
-                TypeScript
-              </Flex>
+              <Meta><SuccessIcon />Signal-first</Meta>
+              <Meta><SunIcon />Your theme tokens</Meta>
+              <Meta><TypeScriptIcon />TypeScript</Meta>
             </Flex>
-          </div>
+          </Flex>
           <div class={styles.stage}>
             <div class={styles.stageHalo} aria-hidden='true' />
             <div class={`${styles.floatChip} ${styles.floatChipTop}`}>

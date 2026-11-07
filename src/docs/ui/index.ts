@@ -1,5 +1,6 @@
 export * from './DocMarkdown'
 export * from './Highlight'
+export * from './Meta'
 export * from './Page'
 export * from './Title'
 export * from './View'
