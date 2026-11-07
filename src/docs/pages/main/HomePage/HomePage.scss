@@ -1,6 +1,7 @@
 @use "src/docs/styles/animations" as *;
+@use "src/docs/styles/colors" as *;
 
-.banner {
+.hero {
   text-align: center;
   height: calc(100vh - var(--header-size));
   max-height: 1024px;
@@ -13,10 +14,6 @@
           var(--rd-color-bg-deep);
 
   &::before {
-    animation-timeline: view(block 0 calc(100% - var(--header-size)));
-    animation-timing-function: linear;
-    animation-name: banner;
-
     content: '';
     position: absolute;
     inset: 0;
@@ -57,11 +54,7 @@
 }
 
 .description {
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--rd__root_color-muted);
-  line-height: 1.6;
   max-width: 600px;
-  margin: 0 auto 36px;
 }
 
 .buttons {
@@ -69,5 +62,5 @@
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 12px;
 }

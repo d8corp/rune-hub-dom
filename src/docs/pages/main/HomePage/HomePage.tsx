@@ -1,4 +1,4 @@
-import { Box, Button, Code, Divider, Flex, TypeScriptIcon, Typography } from '../../../../ui'
+import { Box, Button, Divider, Flex, HtmlIcon, TypeScriptIcon, Typography } from '../../../../ui'
 import { Meta, Page, Title } from '../../../ui'
 import {
   ComponentsExample,
@@ -16,7 +16,7 @@ export default function HomePage () {
 
   return (
     <Page class={styles.root}>
-      <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.banner}>
+      <Flex padding={[40, 24]} align='center' justify='center' vertical class={styles.hero}>
         <div class={styles.content}>
           <div data-glow class={styles.version}>
             <Box
@@ -34,7 +34,7 @@ export default function HomePage () {
               Welcome to Rundom
             </Title>
             <p class={styles.description}>
-              <Code data-glow class={styles.code}>rundom</Code> is a lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
+              Lightweight frontend framework with fine-grained reactivity, JSX, and direct DOM manipulation.
             </p>
           </Typography>
           <div class={styles.buttons}>
@@ -53,6 +53,7 @@ export default function HomePage () {
           </div>
           <Flex gap={18} wrap justify='center' padding={[28, 0, 0]}>
             <Meta><TypeScriptIcon />TypeScript</Meta>
+            <Meta><HtmlIcon />JSX</Meta>
           </Flex>
         </div>
       </Flex>

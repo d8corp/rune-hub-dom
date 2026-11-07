@@ -101,7 +101,7 @@ $max-width: 1280px;
   box-sizing: border-box;
 }
 
-.bannerDescription {
+.heroText {
   @include animation($heroInAnimation);
 
   @media (max-width: 1000px) {
@@ -111,7 +111,7 @@ $max-width: 1280px;
   }
 }
 
-.bannerButtons {
+.heroButtons {
   @media (max-width: 1000px) {
     justify-content: center;
   }

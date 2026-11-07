@@ -53,7 +53,7 @@ export default function UIPage () {
     <Page>
       <section class={styles.hero}>
         <div class={styles.heroInner}>
-          <Flex vertical gap={12} class={styles.bannerDescription}>
+          <Flex vertical gap={12} class={styles.heroText}>
             <Typography>
               <Title title='Rundom UI'>
                 Rundom UI
@@ -63,7 +63,7 @@ export default function UIPage () {
                 Reactive props, surface is themeable, and updates touch only the DOM that changed.
               </p>
             </Typography>
-            <Flex gap={12} wrap class={styles.bannerButtons}>
+            <Flex gap={12} wrap class={styles.heroButtons}>
               <Button element='a' href='/ui/introduction' size='l' view='filled' color='accent'>
                 Start building
               </Button>
