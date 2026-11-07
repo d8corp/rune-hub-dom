@@ -510,7 +510,7 @@ export default function UIPage () {
             </Button>
           </Flex>
           <Flex align='center' gap={6} class={styles.install}>
-            <Code class={styles.installCode}>npm i rundom</Code>
+            <Code class={styles.installCode}>npm init rundom</Code>
             <Button
               size='s'
               square

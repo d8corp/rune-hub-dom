@@ -575,6 +575,14 @@ body {
       color: transparent;
     }
   }
+
+  outline: 1px solid transparent;
+  outline-offset: 0;
+
+  &:focus-visible {
+    outline: 1px solid var(--box-main-color);
+    outline-offset: 2px;
+  }
 }
 
 .code {
