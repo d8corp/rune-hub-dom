@@ -5,7 +5,7 @@ import styles from './NotFoundPage.scss'
 export default function NotFoundPage () {
   return (
     <Page justify='center' align='center' class={styles.root}>
-      <Typography>
+      <Typography class={styles.content}>
         <Title class={styles.h1}>404</Title>
         <h2>Page Not Found</h2>
         <p>

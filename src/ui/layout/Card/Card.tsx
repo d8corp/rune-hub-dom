@@ -1,9 +1,10 @@
 import { classes } from 'html-classes'
 
+import type { HTMLClassProp } from '../../../hooks'
 import { useStyles } from '../../../hooks'
 import type { Merge, ObservableProp, SMLSize } from '../../../types'
 import { addUiCSS, inject, injectAll } from '../../../utils'
-import type { FlexElement, FlexProps } from '../../primitive'
+import type { FlexElement, FlexProps, FlexStyles } from '../../primitive'
 import { Flex } from '../../primitive'
 
 if (import.meta.env?.RD_THEME_CARD) {
@@ -13,6 +14,7 @@ if (import.meta.env?.RD_THEME_CARD) {
 export const cardStyles = {
   root: import.meta.env?.RD_THEME_CARD__ROOT,
   clickable: import.meta.env?.RD_THEME_CARD__CLICKABLE,
+  hoverable: import.meta.env?.RD_THEME_CARD__HOVERABLE,
   m: import.meta.env?.RD_THEME_CARD__M,
   s: import.meta.env?.RD_THEME_CARD__S,
   l: import.meta.env?.RD_THEME_CARD__L,
@@ -20,33 +22,38 @@ export const cardStyles = {
 
 export type CardStyles = typeof cardStyles
 
-export type CardProps<T extends FlexElement = 'div', S extends CardStyles = CardStyles> = Merge<FlexProps<T, S>, {
+export type CardProps<T extends FlexElement = 'div', S extends FlexStyles = CardStyles> = Merge<FlexProps<T, S>, {
   size?: ObservableProp<SMLSize | undefined>
   clickable?: ObservableProp<boolean | undefined>
+  hoverable?: ObservableProp<boolean | undefined>
   width?: ObservableProp<string | number | undefined>
   height?: ObservableProp<string | number | undefined>
 }>
 
-export function CardComponent<T extends FlexElement = 'div', S extends CardStyles = CardStyles> ({
+export function CardComponent<T extends FlexElement = 'div', S extends FlexStyles = CardStyles> ({
   size = 'm',
   onclick,
   clickable = Boolean(onclick),
+  hoverable = clickable,
   width,
   height,
   style,
+  vertical = true,
   ...props
 }: CardProps<T, S>) {
-  const styles = useStyles(cardStyles, props.class)
+  const styles = useStyles(cardStyles, props.class as HTMLClassProp<CardStyles>)
 
   const root = injectAll([
     styles.root,
     inject(size, size => size && styles[size]),
     inject(clickable, clickable => clickable && styles.clickable),
+    inject(hoverable, hoverable => hoverable && styles.hoverable),
   ], classes)
 
   return (
     <Flex
       {...props as FlexProps<T, S>}
+      vertical={vertical}
       class={root}
       onclick={onclick}
       style={{

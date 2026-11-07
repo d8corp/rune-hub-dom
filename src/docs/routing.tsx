@@ -36,6 +36,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'icons',
+            component: lazy(() => import('./pages/ui/IconsPage')),
+          },
+          {
+            index: true,
             path: 'typography',
             component: lazy(() => import('./pages/ui/TypographyPage')),
           },
@@ -68,6 +73,11 @@ export const routing = createRouting([
             index: true,
             path: 'scrollbar',
             component: lazy(() => import('./pages/ui/ScrollbarPage')),
+          },
+          {
+            index: true,
+            path: 'card',
+            component: lazy(() => import('./pages/ui/CardPage')),
           },
           {
             index: true,

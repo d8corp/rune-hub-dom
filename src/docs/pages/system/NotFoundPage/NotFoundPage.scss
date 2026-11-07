@@ -1,7 +1,13 @@
+@use 'src/docs/styles/animations' as *;
+
 .root {
   text-align: center;
   padding: 100px 20px;
   min-height: calc(100vh - var(--header-size));
+}
+
+.content {
+  animation: $heroInAnimation;
 }
 
 .h1 {

@@ -47,6 +47,10 @@ export const uiMenu: MenuItem[] = [
         children: '<Scrollbar>',
       },
       {
+        href: '/ui/card',
+        children: '<Card>',
+      },
+      {
         href: '/ui/section',
         children: '<Section>',
       },

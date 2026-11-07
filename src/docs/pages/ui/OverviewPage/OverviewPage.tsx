@@ -5,12 +5,16 @@ import type { JSXElement } from '../../../../types'
 import {
   Box,
   Button,
+  Card,
+  CardDescription,
+  CardInfo,
+  CardPreview,
+  CardTitle,
   CheckBox,
   Code,
   Divider,
   Flex,
   Input,
-  Link,
   Markdown,
   RadioBox,
   Scrollbar,
@@ -109,6 +113,20 @@ export default function OverviewPage () {
                 <div class={styles.scrollItem}>{fruit}</div>
               ))}
             </Scrollbar>
+          ),
+        },
+        {
+          title: 'Card',
+          href: '/ui/card',
+          description: 'Groups content into a preview and a body.',
+          keywords: 'card surface preview title description container',
+          preview: (
+            <Card size='s' style={{ width: '130px' }}>
+              <CardInfo>
+                <CardTitle>Card</CardTitle>
+                <CardDescription>Preview and body</CardDescription>
+              </CardInfo>
+            </Card>
           ),
         },
         {
@@ -256,15 +274,18 @@ export default function OverviewPage () {
               <div class={styles.grid}>
                 <For of={() => group.value.items} key='href'>
                   {item => (
-                    <Link href={() => item.value.href} class={styles.card}>
-                      <div class={styles.preview}>
-                        {() => item.value.preview}
-                      </div>
-                      <div class={styles.info}>
-                        <div class={styles.name}>{() => item.value.title}</div>
-                        <div class={styles.description}>{() => item.value.description}</div>
-                      </div>
-                    </Link>
+                    <Card
+                      element='a'
+                      href={() => item.value.href}
+                      size='m'
+                      interactive
+                    >
+                      <CardPreview>{() => item.value.preview}</CardPreview>
+                      <CardInfo>
+                        <CardTitle>{() => item.value.title}</CardTitle>
+                        <CardDescription>{() => item.value.description}</CardDescription>
+                      </CardInfo>
+                    </Card>
                   )}
                 </For>
               </div>

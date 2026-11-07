@@ -22,9 +22,12 @@ export default function HomePage () {
             <Box
               circle
               size='xxs'
+              data-live
               color={version.includes('alpha') ? 'danger' : version.includes('beta') ? 'warning' : 'success'}
             />
-            v{import.meta.env?.RD_PACKAGE_VERSION} is now available
+            Rundom
+            <Divider vertical />
+            v{import.meta.env?.RD_PACKAGE_VERSION}
           </div>
           <Typography>
             <Title title='Rundom — Frontend Framework' class={styles.title}>

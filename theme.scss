@@ -15,6 +15,12 @@ $transition: all .2s;
 // breakpoints
 $laptop: 1024px;
 
+@mixin transition() {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: $transition;
+  }
+}
+
 // base
 
 * {
@@ -50,41 +56,6 @@ $laptop: 1024px;
   syntax: '<color>';
   initial-value: $color-primary;
   inherits: true;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  @supports (mask-composite: exclude) {
-    .devtools-window,
-    [data-glow] {
-      --rd-glow-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
-      --rd-glow-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
-
-      position: var(--rd-position);
-      border: none !important;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        pointer-events: none;
-        inset: 0;
-        border-radius: inherit;
-        padding: var(--rd-glow-padding);
-        -webkit-mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
-        mask-image: linear-gradient(#fff, #fff), linear-gradient(#000, #000);
-        -webkit-mask-clip: content-box, padding-box;
-        mask-clip: content-box, padding-box;
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        background: var(--rd-glow-bg) radial-gradient(
-                circle 100px at var(--rd-glow-x) var(--rd-glow-y),
-                $color-primary 0%,
-                $color-primary 30%,
-                transparent 100%
-        ) fixed;
-      }
-    }
-  }
 }
 
 html, body {
@@ -124,9 +95,10 @@ body {
 }
 
 .divider {
+  --rd-divider-offset: 4px;
+  --rd-divider-size: 1px;
   align-self: stretch;
   border: 0 solid $color-border;
-  --rd-divider-offset: 4px;
 
   &_flush {
     --rd-divider-offset: 0;
@@ -141,23 +113,10 @@ body {
     margin: var(--rd-divider-offset) 0;
     border-left-width: var(--rd-divider-size);
   }
-
-  &_s {
-    --rd-divider-size: 1px;
-  }
-
-  &_m {
-    --rd-divider-size: 2px;
-  }
-
-  &_l {
-    --rd-divider-size: 3px;
-  }
 }
 
 .box {
   --box-second-color: #fff;
-  transition: $transition;
   align-items: center;
   justify-content: center;
   min-height: var(--box-size);
@@ -165,9 +124,10 @@ body {
   font-size: var(--box-font-size);
   background: transparent;
 
+  @include transition;
+
   &_clickable {
     cursor: pointer;
-    user-select: none;
   }
 
   &_filled {
@@ -207,7 +167,7 @@ body {
 
   &_primary {
     --box-main-color: light-dark(#{$color-primary-60}, #{$color-primary-60});
-    --box-light-color: light-dark(#{$color-primary-95}, #{$color-primary-25});
+    --box-light-color: #{$color-primary-a5};
     --box-border-color: light-dark(#{$color-primary-80}, #{$color-primary-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -235,7 +195,7 @@ body {
 
   &_secondary {
     --box-main-color: light-dark(#{$color-secondary-60}, #{$color-secondary-60});
-    --box-light-color: light-dark(#{$color-secondary-95}, #{$color-secondary-25});
+    --box-light-color: #{$color-secondary-a5};
     --box-border-color: light-dark(#{$color-secondary-80}, #{$color-secondary-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -263,7 +223,7 @@ body {
 
   &_accent {
     --box-main-color: #{$color-accent};
-    --box-light-color: light-dark(#{$color-accent-95}, #{$color-accent-25});
+    --box-light-color: #{$color-accent-a5};
     --box-border-color: light-dark(#{$color-accent-80}, #{$color-accent-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -291,7 +251,7 @@ body {
 
   &_success {
     --box-main-color: #{$color-success};
-    --box-light-color: light-dark(#{$color-success-95}, #{$color-success-25});
+    --box-light-color: #{$color-success-a5};
     --box-border-color: light-dark(#{$color-success-80}, #{$color-success-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -319,7 +279,7 @@ body {
 
   &_danger {
     --box-main-color: #{$color-danger};
-    --box-light-color: light-dark(#{$color-danger-95}, #{$color-danger-25});
+    --box-light-color: #{$color-danger-a5};
     --box-border-color: light-dark(#{$color-danger-80}, #{$color-danger-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -347,7 +307,7 @@ body {
 
   &_warning {
     --box-main-color: #{$color-warning};
-    --box-light-color: light-dark(#{$color-warning-95}, #{$color-warning-25});
+    --box-light-color: #{$color-warning-a5};
     --box-border-color: light-dark(#{$color-warning-80}, #{$color-warning-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -375,7 +335,7 @@ body {
 
   &_disabled {
     --box-main-color: #{$color-disabled};
-    --box-light-color: light-dark(#{$color-disabled-95}, #{$color-disabled-25});
+    --box-light-color: #{$color-disabled-a5};
     --box-border-color: light-dark(#{$color-disabled-80}, #{$color-disabled-40});
 
     @media (hover: hover) and (pointer: fine) {
@@ -405,6 +365,10 @@ body {
     --box-size: 8px;
     --box-font-size: 4px;
     border-radius: 2px;
+
+    &[data-live] {
+      --box-size: 6px;
+    }
   }
 
   &_xs {
@@ -497,7 +461,11 @@ body {
   }
 
   &_circle {
-    border-radius: $size-infinite;
+    border-radius: calc(var(--box-size) / 2);
+  }
+
+  &[data-live] {
+    outline: 3px solid var(--box-light-color);
   }
 }
 
@@ -610,33 +578,95 @@ body {
 }
 
 .card {
-  background: $color-secondary-bg;
+  overflow: hidden;
+  background: var(--rd-card-background, transparent);
   border: 1px solid $color-border;
+  padding: 0;
 
   &_s {
-    gap: 4px;
-    padding: 4px;
-    border-radius: 8px;
+    border-radius: 14px;
   }
 
   &_m {
-    gap: 8px;
-    padding: 8px;
     border-radius: 16px;
   }
 
   &_l {
-    gap: 12px;
-    padding: 12px;
-    border-radius: 24px;
+    border-radius: 20px;
   }
 
   &_clickable {
     cursor: pointer;
   }
+
+  &_hoverable {
+    @include transition;
+
+    &:hover {
+      border-color: $color-border-hover;
+      box-shadow: 0 10px 28px light-dark(#7C3AED1A, #00000040);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transform: translateY(-2px);
+      }
+    }
+
+    &:focus-visible {
+      outline: var(--rd__root_outline_focus, 2px solid #{$color-primary});
+      outline-offset: 2px;
+    }
+  }
+}
+
+.card-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 116px;
+  padding: 16px;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, light-dark(#7C3AED14, #FFFFFF0A) 1px, transparent 1px),
+    var(--rd-color-bg-contrast, #{$color-bg-elevated});
+  background-size: 12px 12px;
+
+  @include transition;
+}
+
+.card-info {
+  flex: 1;
+  padding: 12px 16px 16px;
+  border-top: 1px solid light-dark(#7C3AED14, #8B5CF614);
+
+  &:first-child {
+    border-top: 0;
+  }
+}
+
+.card-title {
+  color: var(--rd__root_color, #{$color-text});
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card-description {
+  margin-top: 4px;
+  color: var(--rd__root_color-muted, #{$color-text-muted});
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.card_interactive:hover .card-preview {
+  color: $color-primary;
 }
 
 .window {
+  gap: 8px;
+  padding: 8px;
+  background: $color-secondary-bg;
+
   &-header {
     color: $color-text-muted;
     font-size: 12px;

@@ -15,16 +15,13 @@ import { useUpdateHistory } from '../hooks'
 import { rundom } from '../rundom'
 import { Devtools } from '../ui'
 import { addUiCSS } from '../utils'
-import { listenCursorPosition, removeLoading, scrollToHash } from './helpers'
+import { removeLoading, scrollToHash } from './helpers'
 import { ErrorPage } from './pages/system/ErrorPage'
 import { routing } from './routing'
 import { applyThemeEffect } from './state'
-// import { listenScrolling } from './state'
 
 removeLoading()
 scrollToHash()
-listenCursorPosition()
-// listenScrolling()
 
 Hub.root.on('error', (slot) => {
   // eslint-disable-next-line no-console

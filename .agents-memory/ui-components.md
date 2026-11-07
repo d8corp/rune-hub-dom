@@ -1,6 +1,6 @@
 ---
 description: component folder layout, theme styles, props typing, implementation pattern, env overrides. Read before adding or changing a UI component.
-updated: 2026-10-22
+updated: 2026-11-06
 ---
 
 # UI Component Architecture (using `Box` as an example)
@@ -81,3 +81,7 @@ export const Box = import.meta.env?.RD_UI_BOX
 ## 5. `index.ts`
 
 Contains only a re-export: `export * from './Box'`.
+
+## 6. Card composition
+
+`Card` is only the surface: border, background, radius, clickable/interactive states. Its content is composed from separate components: `CardPreview`, `CardInfo`, `CardTitle` and `CardDescription`. `Card` sizes change only the corner radius. `--rd-card-background` overrides the card background.

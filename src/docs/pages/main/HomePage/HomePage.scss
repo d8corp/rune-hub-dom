@@ -1,13 +1,4 @@
-@use "src/docs/styles/proximityGlow" as *;
-
-@keyframes banner {
-  from {
-    --rd-glow-y-offset: calc(0vh + var(--header-size));
-  }
-  to {
-    --rd-glow-y-offset: -100vh;
-  }
-}
+@use "src/docs/styles/animations" as *;
 
 .banner {
   text-align: center;
@@ -22,9 +13,6 @@
           var(--rd-color-bg-deep);
 
   &::before {
-    --rd-proximity-x: calc(var(--cursor-x, -999px) - var(--rd-glow-x-offset, 0px));
-    --rd-proximity-y: calc(var(--cursor-y, -999px) - var(--rd-glow-y-offset, 0px));
-
     animation-timeline: view(block 0 calc(100% - var(--header-size)));
     animation-timing-function: linear;
     animation-name: banner;
@@ -37,22 +25,13 @@
     background-size: 60px 60px;
     pointer-events: none;
     mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%);
-
-    @supports (animation-timeline: view()) {
-      mask-image: radial-gradient(ellipse at center, #00000009 30%, transparent 80%),
-      radial-gradient(
-              circle 100px at var(--rd-proximity-x) var(--rd-proximity-y),
-              black 0%,
-              #0007 30%,
-              transparent 100%
-      );
-    }
   }
 }
 
 .content {
   max-width: 800px;
   position: relative;
+  animation: heroIn .75s cubic-bezier(.2, .7, .2, 1) both;
 }
 
 .version {
@@ -62,7 +41,8 @@
   background: var(--rd--alpha-color);
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--rd__primary_background_hover);
   margin-bottom: 24px;
   backdrop-filter: blur(4px);
