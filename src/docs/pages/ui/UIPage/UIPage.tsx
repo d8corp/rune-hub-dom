@@ -193,7 +193,7 @@ export default function UIPage () {
                 </Flex>
               </Flex>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Controls
                 <span class={styles.atlasArrow}>↗</span>
@@ -227,7 +227,7 @@ export default function UIPage () {
                 <div class={styles.layoutPanel} />
               </Flex>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Layout
                 <span class={styles.atlasArrow}>↗</span>
@@ -256,7 +256,7 @@ export default function UIPage () {
                 <p>A quiet rhythm for loud ideas.</p>
               </Typography>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Typography
                 <span class={styles.atlasArrow}>↗</span>
@@ -289,7 +289,7 @@ export default function UIPage () {
                 <span class={styles.iconTile}><TerminalIcon size={20} /></span>
               </Flex>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Icons
                 <span class={styles.atlasArrow}>↗</span>
@@ -328,7 +328,7 @@ export default function UIPage () {
                 </Box>
               </Flex>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Surfaces
                 <span class={styles.atlasArrow}>↗</span>
@@ -359,7 +359,7 @@ export default function UIPage () {
                 </Typography>
               </Flex>
             </CardPreview>
-            <CardContent class={styles.atlasInfo}>
+            <CardContent vertical class={styles.atlasInfo}>
               <CardTitle class={styles.atlasTitle} justify='space-between' align='center'>
                 Content
                 <span class={styles.atlasArrow}>↗</span>

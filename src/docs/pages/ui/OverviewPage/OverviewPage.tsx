@@ -281,7 +281,7 @@ export default function OverviewPage () {
                       clickable
                     >
                       <CardPreview>{() => item.value.preview}</CardPreview>
-                      <CardContent>
+                      <CardContent vertical>
                         <CardTitle>{() => item.value.title}</CardTitle>
                         <CardDescription>{() => item.value.description}</CardDescription>
                       </CardContent>
