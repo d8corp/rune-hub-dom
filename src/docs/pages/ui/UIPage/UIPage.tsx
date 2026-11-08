@@ -45,7 +45,7 @@ const disabled = () => false
 
 export default function UIPage () {
   const copyInstall = () => {
-    navigator.clipboard.writeText('npm i rundom')
+    navigator.clipboard.writeText('npx init rundom my-app')
     message('Copied to clipboard')
   }
 
@@ -510,7 +510,7 @@ export default function UIPage () {
             </Button>
           </Flex>
           <Flex align='center' gap={6} class={styles.install}>
-            <Code class={styles.installCode}>npm init rundom</Code>
+            <Code class={styles.installCode}>npx init rundom my-app</Code>
             <Button
               size='s'
               square

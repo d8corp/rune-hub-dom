@@ -51,45 +51,8 @@ export const uiMenu: MenuItem[] = [
         children: '<Card>',
       },
       {
-        href: '/ui/section',
-        children: '<Section>',
-      },
-      {
-        href: '/ui/title',
-        children: '<Title>',
-      },
-      {
-        href: '/ui/details',
-        children: '<Details>',
-      },
-      {
         href: '/ui/flex',
         children: '<Flex>',
-      },
-      {
-        href: '/ui/image',
-        children: '<Image>',
-      },
-      {
-        href: '/ui/layout',
-        children: '<Layout>',
-      },
-      {
-        href: '/ui/space',
-        children: '<Space>',
-      },
-    ],
-  },
-  {
-    title: 'Popups',
-    children: [
-      {
-        href: '/ui/alert',
-        children: '<Alert>',
-      },
-      {
-        href: '/ui/notifications',
-        children: '<Notifications>',
       },
     ],
   },

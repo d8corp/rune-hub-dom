@@ -477,6 +477,41 @@ rundom(
 )
 ```
 
+### Async Components
+
+Components can also be `async` functions that return `Promise<BaseJSXElement>`. An async component can `await` data before producing JSX, and `<Suspense>` keeps showing the fallback until the component resolves:
+
+```tsx
+//! Async Component with Suspense
+import { rundom, Suspense } from 'rundom'
+
+interface User {
+  name: string
+  email: string
+}
+
+async function UserProfile () {
+  const response = await fetch('/api/user')
+  const user: User = await response.json()
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+    </div>
+  )
+}
+
+rundom(
+  <Suspense fallback={<p>Loading profile...</p>}>
+    <UserProfile />
+  </Suspense>
+)
+```
+
+Unlike a component that renders a pending promise, an async component suspends before it returns any JSX.
+`<Suspense>` tracks async components at any depth, so a parent async component can safely render child async components as well.
+
 ## What's Next?
 ---
 

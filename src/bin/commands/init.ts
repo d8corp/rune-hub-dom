@@ -9,6 +9,11 @@ import readline from 'readline'
 
 const basePkg = {
   private: true,
+  scripts: {
+    start: 'rundom start',
+    build: 'rundom build',
+    preview: 'rundom preview',
+  },
   dependencies: {
     rundom: `^${import.meta.env.RD_PACKAGE_VERSION}`,
   },

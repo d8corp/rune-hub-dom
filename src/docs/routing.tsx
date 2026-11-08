@@ -136,6 +136,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'changelog',
+            component: lazy(() => import('./pages/main/ChangelogPage')),
+          },
+          {
+            index: true,
             path: 'routing',
             component: lazy(() => import('./pages/main/RoutingPage')),
           },
