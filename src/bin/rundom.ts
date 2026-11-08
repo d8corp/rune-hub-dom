@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander'
 
-import { build, init, start } from '../commands'
+import { build, init, preview, start } from '../commands'
 
 program
   .name('rundom')
@@ -9,7 +9,7 @@ program
   .version(import.meta.env.INNETJS__PACKAGE_VERSION, '-v, --version')
 
 program
-  .command('init <app-name>')
+  .command('init [app-path]')
   .description('create an app folder with rundom project template')
   .action(init)
 
@@ -22,6 +22,11 @@ program
   .command('build [app-path]')
   .description('build the app for production')
   .action(build)
+
+program
+  .command('preview [app-path]')
+  .description('starts a local static web server for your build app')
+  .action(preview)
 
 try {
   await program.parseAsync()

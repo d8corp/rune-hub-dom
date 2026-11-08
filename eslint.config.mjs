@@ -101,4 +101,10 @@ export default defineConfig([
       'import/no-named-as-default-member': 'off',
     },
   },
+  {
+    files: ['src/commands/*.ts'],
+    rules: {
+      'import/no-nodejs-modules': 'off',
+    },
+  },
 ])
