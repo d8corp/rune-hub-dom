@@ -12,6 +12,9 @@ const basePkg = {
   dependencies: {
     rundom: `^${import.meta.env.INNETJS__PACKAGE_VERSION}`,
   },
+  devDependencies: {
+    typescript: '^6.0.3',
+  },
 }
 
 const indexScript = `import { rundom } from 'rundom'
@@ -35,12 +38,41 @@ const indexHTML = `<!doctype html>
 </html>
 `
 
+const tsc = {
+  compilerOptions: {
+    rootDir: 'src',
+    target: 'ES2018',
+    lib: [
+      'dom',
+      'dom.iterable',
+      'esnext',
+    ],
+    types: ['node'],
+    allowJs: true,
+    skipLibCheck: true,
+    esModuleInterop: true,
+    allowSyntheticDefaultImports: true,
+    forceConsistentCasingInFileNames: true,
+    module: 'ESNext',
+    moduleResolution: 'bundler',
+    resolveJsonModule: true,
+    strict: true,
+    declaration: true,
+    jsx: 'react-jsx',
+    jsxImportSource: 'rundom',
+  },
+  include: [
+    'src',
+  ],
+}
+
 export async function init (path = '.') {
   const appPath = resolve(path)
   const pkgPath = resolve(appPath, 'package.json')
   const htmlPath = resolve(appPath, 'index.html')
   const srcPath = resolve(appPath, 'src')
   const indexPath = resolve(srcPath, 'index.ts')
+  const tscPath = resolve(srcPath, 'tsconfig.json')
   const name = basename(appPath)
 
   await logger.start('Check the target folder is exist', async () => {
@@ -70,6 +102,7 @@ export async function init (path = '.') {
 
     await Promise.all([
       writeFile(pkgPath, JSON.stringify({ name, ...basePkg }, null, 2) + '\n'),
+      writeFile(tscPath, JSON.stringify(tsc, null, 2) + '\n'),
       writeFile(indexPath, indexScript),
       writeFile(htmlPath, indexHTML),
     ])
