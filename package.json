@@ -55,7 +55,6 @@
   },
   "homepage": "https://github.com/d8corp/rune-hub-dom",
   "devDependencies": {
-    "@cantinc/logger": "^1.2.0",
     "@rune-hub/utils": "^1.2.0",
     "@textlint/ast-node-types": "^13.3.2",
     "@types/cross-spawn": "^6.0.6",
@@ -63,11 +62,7 @@
     "@types/node": "^20.2.1",
     "@types/prismjs": "^1.26.6",
     "@types/qs": "^6.9.7",
-    "chalk": "^6.0.1",
-    "cli-select": "^1.1.2",
-    "commander": "^15.1.0",
     "core-js": "^3.30.2",
-    "cross-spawn": "^7.0.6",
     "envfile": "^7.1.0",
     "eslint": "^9.39.5",
     "eslint-import-resolver-typescript": "^4.4.5",
@@ -88,11 +83,23 @@
     "typescript-plugin-css-modules": "^5.2.0"
   },
   "dependencies": {
+    "@cantinc/logger": "^1.2.0",
     "@textlint/markdown-to-ast": "^13.3.2",
+    "chalk": "^6.0.1",
+    "cli-select": "^1.1.2",
+    "commander": "^15.1.0",
+    "cross-spawn": "^7.0.6",
+    "cssnano": "^5.1.15",
     "dom-types": "^1.1.7",
+    "dotenv": "^17.4.2",
+    "dotenv-expand": "^13.0.0",
     "html-classes": "^2.0.2",
+    "postcss": "^8.5.32",
+    "postcss-selector-parser": "^6.1.5",
     "rune-hub": "^1.2.0",
+    "sass": "^1.108.1",
     "sync-timer": "^1.0.1",
+    "vite": "^8.3.6",
     "web-scroll": "^1.1.0"
   }
 }

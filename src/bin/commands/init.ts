@@ -10,7 +10,7 @@ import readline from 'readline'
 const basePkg = {
   private: true,
   dependencies: {
-    rundom: `^${import.meta.env.INNETJS__PACKAGE_VERSION}`,
+    rundom: `^${import.meta.env.RD_PACKAGE_VERSION}`,
   },
   devDependencies: {
     typescript: '^6.0.3',

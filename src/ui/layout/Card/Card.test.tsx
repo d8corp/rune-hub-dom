@@ -1,5 +1,5 @@
+import { CardContent } from '../CardContent'
 import { CardDescription } from '../CardDescription'
-import { CardContent } from '../CardInfo'
 import { CardPreview } from '../CardPreview'
 import { CardTitle } from '../CardTitle'
 import { Card } from './Card'

@@ -1,10 +1,11 @@
 ---
 description: built-in components, UI layers, hooks, utils, docs and theme. Read when adding files or locating code.
-updated: 2026-10-22
+updated: 2026-11-08
 ---
 
 # Repository Structure
 
+- `src/bin/`: CLI entry (`rundom.ts`), commands (`commands/init`, `start`, `build`, `preview`), plus `helpers.ts` (env and Vite config) and `theme.ts` (compiles `theme.scss`; start and build use the result in memory, while `buildEnv.ts` / `npm run build:theme` writes it to `.env.theme`). `preview` only serves `<app>/build` and ignores project env/config.
 - `src/rundom.ts`: the core runtime for mounting JSX into the DOM (`rundom()`).
 - `src/jsx-runtime.ts` and `src/jsx-dev-runtime.ts`: custom JSX runtime.
 - `src/components/`: built-in control components:

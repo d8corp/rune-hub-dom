@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 import { program } from 'commander'
 
-import { build, init, preview, start } from '../commands'
+import { build, init, preview, start } from './commands'
 
 program
   .name('rundom')
   .description('CLI that builds and runs rundom apps')
-  .version(import.meta.env.INNETJS__PACKAGE_VERSION, '-v, --version')
+  .version(import.meta.env.RD_PACKAGE_VERSION, '-v, --version')
 
 program
   .command('init [app-path]')
