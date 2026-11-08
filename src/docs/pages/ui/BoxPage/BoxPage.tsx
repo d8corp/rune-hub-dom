@@ -125,6 +125,34 @@ export default function BoxPage () {
         </Box>
       </Flex>
     ),
+    toggle: (
+      <Flex gap={8} align='center' wrap>
+        <Box circle interact='clickable' view='bordered' size='s'>
+          <Box size='xs' circle />
+          <Box size='xs' view='ghost' />
+        </Box>
+        <Box circle interact='clickable' size='s'>
+          <Box size='xs' view='ghost' />
+          <Box size='xs' circle style={{ background: '#fff' }} />
+        </Box>
+        <Box circle color='danger' interact='clickable' view='bordered' size='s'>
+          <Box size='xs' circle color='danger' />
+          <Box size='xs' view='ghost' />
+        </Box>
+        <Box circle color='danger' interact='clickable' size='s'>
+          <Box size='xs' view='ghost' />
+          <Box size='xs' circle color='danger' style={{ background: '#fff' }} />
+        </Box>
+        <Box circle interact='clickable' view='bordered' square>
+          <Box size='s' circle />
+          <Box size='s' view='ghost' />
+        </Box>
+        <Box circle interact='clickable' square>
+          <Box size='s' view='ghost' />
+          <Box size='s' circle style={{ background: '#fff' }} />
+        </Box>
+      </Flex>
+    ),
   }
 
   return (

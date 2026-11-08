@@ -15,7 +15,7 @@ import type { CardProps } from '../../../../layout'
 import { Card, CardContent, Scrollbar } from '../../../../layout'
 import { CardHeader } from '../../../../popup'
 import type { FlexElement } from '../../../../primitive'
-import { Box } from '../../../../primitive'
+import { Box, Flex } from '../../../../primitive'
 import { Text } from '../../../../typography'
 import { devtoolsStoreContext } from '../../hooks'
 
@@ -87,12 +87,13 @@ export function DevtoolsWindowComponent<T extends FlexElement = 'div', S extends
 
   return (
     <Card {...props} class={styles.root}>
-      <CardHeader gap={6}>
+      <CardHeader>
         <Box size='xs' color='danger' circle interact='clickable' onclick={close}>
           <CloseIcon size={8} />
         </Box>
-        <Box size='xs' color='warning' circle />
-        <Box size='xs' color='success' circle />
+        <Flex flex justify='center' padding={[0, 24, 0, 0]}>
+          Devtools
+        </Flex>
       </CardHeader>
       <CardContent>
         <div class={styles.aside}>
