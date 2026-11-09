@@ -33,6 +33,10 @@ export const uiMenu: MenuItem[] = [
         href: '/ui/text',
         children: '<Text>',
       },
+      {
+        href: '/ui/eyebrow',
+        children: '<Eyebrow>',
+      },
     ],
   },
   {

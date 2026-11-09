@@ -1,6 +1,6 @@
 ---
 description: built-in components, UI layers, hooks, utils, docs and theme. Read when adding files or locating code.
-updated: 2026-11-08
+updated: 2026-11-09
 ---
 
 # Repository Structure
@@ -21,7 +21,7 @@ updated: 2026-11-08
   - `block/` (`Button`, `Field`)
   - `inline/` (`Code`, `Divider`)
   - `interaction/` (`Input`, `CheckBox`, `RadioBox`)
-  - `typography/` (`Text`, `Typography`, `Markdown`)
+  - `typography/` (`Eyebrow`, `Text`, `Typography`, `Markdown`)
   - `popup/` (`Window`, `Message`, ...)
   - `widget/` (`Devtools`, ...)
   - `icons/`

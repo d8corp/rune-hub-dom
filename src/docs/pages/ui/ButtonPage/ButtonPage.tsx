@@ -28,7 +28,7 @@ export default function ButtonPage () {
         </Button>
         <Button vertical gap={0}>
           <SearchIcon />
-          <Text size={10}>
+          <Text size='xxs'>
             Vertical
           </Text>
         </Button>

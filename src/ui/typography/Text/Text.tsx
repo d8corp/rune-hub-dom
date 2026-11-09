@@ -1,6 +1,8 @@
+import { classes } from 'html-classes'
+
 import type { HTMLStyleProps } from '../../../hooks'
 import { useStyles } from '../../../hooks'
-import type { GlobalCSSValue, ObservableProp } from '../../../types'
+import type { GlobalCSSValue, ObservableProp, RDColor, XSMLSize } from '../../../types'
 import { addUiCSS, inject, injectAll, injectAsIs } from '../../../utils'
 
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent' | '-moz-center' | '-webkit-center' | GlobalCSSValue
@@ -11,8 +13,11 @@ export type TextWeight = 'bold' | 'normal' | 'lighter' | 'bolder' | GlobalCSSVal
 export type TextBoxTrim = 'none' | 'trim-start' | 'trim-end' | 'trim-both' | GlobalCSSValue
 export type TextBoxEdgeStart = 'text' | 'cap' | 'ex'
 export type TextBoxEdgeEnd = 'text' | 'alphabetic'
+export type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'math-auto' | GlobalCSSValue
 export type TextBoxEdge = 'auto' | 'text' | `${TextBoxEdgeStart} ${TextBoxEdgeEnd}` | GlobalCSSValue
 export type TextBox = `${TextBoxTrim} ${TextBoxEdge}` | TextBoxEdge | TextBoxTrim
+export type TextColor = RDColor | 'text' | 'muted' | 'dim'
+export type TextSize = XSMLSize
 
 if (import.meta.env?.RD_THEME_TEXT) {
   addUiCSS(import.meta.env.RD_THEME_TEXT, 'text')
@@ -20,6 +25,23 @@ if (import.meta.env?.RD_THEME_TEXT) {
 
 export const textStyles = {
   root: import.meta.env?.RD_THEME_TEXT__ROOT,
+  primary: import.meta.env?.RD_THEME_TEXT__PRIMARY,
+  accent: import.meta.env?.RD_THEME_TEXT__ACCENT,
+  secondary: import.meta.env?.RD_THEME_TEXT__SECONDARY,
+  success: import.meta.env?.RD_THEME_TEXT__SUCCESS,
+  warning: import.meta.env?.RD_THEME_TEXT__WARNING,
+  danger: import.meta.env?.RD_THEME_TEXT__DANGER,
+  disabled: import.meta.env?.RD_THEME_TEXT__DISABLED,
+  text: import.meta.env?.RD_THEME_TEXT__TEXT,
+  muted: import.meta.env?.RD_THEME_TEXT__MUTED,
+  dim: import.meta.env?.RD_THEME_TEXT__DIM,
+  xxs: import.meta.env?.RD_THEME_TEXT__XXS,
+  xs: import.meta.env?.RD_THEME_TEXT__XS,
+  s: import.meta.env?.RD_THEME_TEXT__S,
+  m: import.meta.env?.RD_THEME_TEXT__M,
+  l: import.meta.env?.RD_THEME_TEXT__L,
+  xl: import.meta.env?.RD_THEME_TEXT__XL,
+  xxl: import.meta.env?.RD_THEME_TEXT__XXL,
 }
 
 export type TextStyles = typeof textStyles
@@ -27,16 +49,17 @@ export type TextStyles = typeof textStyles
 export interface TextProps extends HTMLStyleProps<'span', TextStyles> {
   align?: ObservableProp<TextAlign | undefined>
   break?: ObservableProp<TextBreak | undefined>
-  color?: ObservableProp<string | undefined>
+  color?: ObservableProp<TextColor | undefined>
   cursor?: ObservableProp<string | undefined>
   decoration?: ObservableProp<TextDecoration | undefined>
   italic?: ObservableProp<boolean | undefined>
   nowrap?: ObservableProp<boolean | number | undefined>
-  size?: ObservableProp<number | string | undefined>
+  size?: ObservableProp<TextSize | undefined>
   lineHeight?: ObservableProp<number | string | undefined>
   weight?: ObservableProp<TextWeight | undefined>
   wrap?: ObservableProp<TextWrap | undefined>
   box?: ObservableProp<TextBox | undefined>
+  transform?: ObservableProp<TextTransform | undefined>
 }
 
 export function TextComponent ({
@@ -52,16 +75,22 @@ export function TextComponent ({
   nowrap,
   wrap,
   box,
+  transform,
   ...props
 }: TextProps) {
   const styles = useStyles(textStyles, props.class)
 
+  const root = injectAll([
+    styles.root,
+    inject(color, color => color && styles[color]),
+    inject(size, size => size && styles[size]),
+  ], classes)
+
   return (
     <span
       {...props}
-      class={styles.root}
+      class={root}
       style={{
-        color: injectAsIs(color),
         cursor: injectAsIs(cursor),
         'font-weight': injectAsIs(weight),
         'word-break': injectAsIs(propsBreak),
@@ -69,7 +98,7 @@ export function TextComponent ({
         'text-decoration': injectAsIs(decoration),
         'text-wrap': injectAsIs(wrap),
         'text-box': injectAsIs(box),
-        'font-size': inject(size, size => typeof size === 'number' ? `${size}px` : size),
+        'text-transform': injectAsIs(transform),
         'line-height': inject(lineHeight, lineHeight => typeof lineHeight === 'number' ? `${lineHeight}px` : lineHeight),
         'font-style': inject(italic, italic => italic ? 'italic' : undefined),
         '-webkit-line-clamp': inject(nowrap, nowrap => typeof nowrap === 'number' ? String(nowrap) : nowrap ? '1' : undefined),

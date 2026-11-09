@@ -13,6 +13,7 @@ import {
   CheckBox,
   Code,
   Divider,
+  Eyebrow,
   Flex,
   Input,
   Markdown,
@@ -75,8 +76,20 @@ export default function OverviewPage () {
           keywords: 'font size weight color wrap span inline',
           preview: (
             <Flex vertical gap={2}>
-              <Text size={20} weight='700'>Large text</Text>
-              <Text size={12} color='var(--rd__root_color-muted)'>Muted text</Text>
+              <Text size='xl' weight='700'>Large text</Text>
+              <Text size='s' color='muted'>Muted text</Text>
+            </Flex>
+          ),
+        },
+        {
+          title: 'Eyebrow',
+          href: '/ui/eyebrow',
+          description: 'Adds a small uppercase label above a heading or section.',
+          keywords: 'label kicker overline uppercase caption heading',
+          preview: (
+            <Flex vertical gap={2} align='center'>
+              <Eyebrow>Eyebrow</Eyebrow>
+              <Text size='m' weight='700'>Heading</Text>
             </Flex>
           ),
         },
@@ -93,12 +106,12 @@ export default function OverviewPage () {
           preview: (
             <Flex align='center' vertical gap={10} flex>
               <Flex gap={10}>
-                <Text size={12} color='var(--rd__root_color-muted)'>Before</Text>
+                <Text size='s' color='muted'>Before</Text>
                 <Divider vertical />
-                <Text size={12} color='var(--rd__root_color-muted)'>divider</Text>
+                <Text size='s' color='muted'>divider</Text>
               </Flex>
               <Divider />
-              <Text size={12} color='var(--rd__root_color-muted)'>After divider</Text>
+              <Text size='s' color='muted'>After divider</Text>
             </Flex>
           ),
         },
@@ -185,7 +198,7 @@ export default function OverviewPage () {
           description: 'Navigates between pages of the application.',
           keywords: 'anchor href navigation route url',
           preview: (
-            <Text color='var(--rd__primary_background)' decoration='underline'>
+            <Text color='primary' decoration='underline'>
               Open the page
             </Text>
           ),

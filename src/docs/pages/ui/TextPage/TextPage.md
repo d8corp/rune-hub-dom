@@ -9,12 +9,12 @@ It supports font size, weight, color, decoration, alignment, wrapping, word brea
 | **box**        | `ObservableProp<TextBox>`           | Controls text box trimming and edge using [text-box](https://developer.mozilla.org/en-US/docs/Web/CSS/text-box)                   |
 | **break**      | `ObservableProp<TextBreak>`         | Controls how long words break across lines using [word-break](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break#values) |
 | **children**   | `JSX.Element`                       | Text content to render                                                                                                            |
-| **color**      | `ObservableProp<string>`            | Sets the text color using any CSS color value                                                                                     |
+| **color**      | `ObservableProp<TextColor>`         | Sets the text color. Available values: `primary`, `accent`, `secondary`, `success`, `warning`, `danger`, `disabled`, `text`, `muted`, `dim` |
 | **cursor**     | `ObservableProp<string>`            | Sets the CSS cursor style for the text                                                                                            |
 | **decoration** | `ObservableProp<TextDecoration>`    | Sets the [text decoration](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line#values) style                    |
 | **italic**     | `ObservableProp<boolean>`           | Applies `font-style: italic` when `true`                                                                                          |
 | **nowrap**     | `ObservableProp<boolean \| number>` | Clamps the text to a single line (`true`) or to a specified number of lines                                                       |
-| **size**       | `ObservableProp<number \| string>`  | Sets the font size. Pass a number for pixels or a string for any CSS unit                                                         |
+| **size**       | `ObservableProp<TextSize>`          | Sets the font size. Available values: `xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`. Exact sizes depend on the theme |
 | **weight**     | `ObservableProp<TextWeight>`        | Sets the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#common_weight_name_keywords)                  |
 | **wrap**       | `ObservableProp<TextWrap>`          | Controls the [text wrapping](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap#values) behavior                          |
 
@@ -23,8 +23,14 @@ In addition to the props listed above, `<Text>` accepts all standard `<span>` el
 ## size
 ---
 
-The `size` prop sets the font size.
-Pass a number for pixels or a string for any CSS unit:
+The `size` prop sets the font size using one of seven named values: `xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`.
+Exact sizes depend on the theme.
+
+For a custom size, pass it through `style`:
+
+```tsx
+<Text style={{ 'font-size': '1.5em' }}>Custom size</Text>
+```
 
 ```tsx
 //! View
@@ -34,12 +40,13 @@ import { rundom, Text, Flex } from 'rundom'
 
 rundom(
   <Flex gap={8} align='center' wrap>
-    <Text size={10}>Size 10</Text>
-    <Text size={14}>Size 14</Text>
-    <Text size={16}>Size 16</Text>
-    <Text size={20}>Size 20</Text>
-    <Text size={24}>Size 24</Text>
-    <Text size='1.5em'>Size 1.5em</Text>
+    <Text size='xxs'>xxs</Text>
+    <Text size='xs'>xs</Text>
+    <Text size='s'>s</Text>
+    <Text size='m'>m</Text>
+    <Text size='l'>l</Text>
+    <Text size='xl'>xl</Text>
+    <Text size='xxl'>xxl</Text>
   </Flex>
 )
 ```
@@ -77,7 +84,7 @@ rundom(
 ## color
 ---
 
-The `color` prop sets the text color using any CSS color value:
+The `color` prop sets the text color using one of the theme color variants:
 
 ```tsx
 //! View
@@ -87,11 +94,24 @@ import { rundom, Text, Flex } from 'rundom'
 
 rundom(
   <Flex gap={8} wrap>
-    <Text color='#f06'>Red</Text>
-    <Text color='#06f'>Blue</Text>
-    <Text color='green'>Green</Text>
+    <Text color='primary'>Primary</Text>
+    <Text color='accent'>Accent</Text>
+    <Text color='secondary'>Secondary</Text>
+    <Text color='success'>Success</Text>
+    <Text color='warning'>Warning</Text>
+    <Text color='danger'>Danger</Text>
+    <Text color='disabled'>Disabled</Text>
+    <Text color='text'>Text</Text>
+    <Text color='muted'>Muted</Text>
+    <Text color='dim'>Dim</Text>
   </Flex>
 )
+```
+
+For a custom color, pass it through `style`:
+
+```tsx
+<Text style={{ color: '#f06' }}>Custom color</Text>
 ```
 
 ## italic
@@ -298,22 +318,22 @@ import { rundom, Text, Flex } from 'rundom'
 
 rundom(
   <Flex gap={8} vertical>
-    <Text box='none' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='none' size='xxl' style={{ border: '1px dashed #06f' }}>
       none (default)
     </Text>
-    <Text box='trim-start' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='trim-start' size='xxl' style={{ border: '1px dashed #06f' }}>
       trim-start
     </Text>
-    <Text box='trim-end' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='trim-end' size='xxl' style={{ border: '1px dashed #06f' }}>
       trim-end
     </Text>
-    <Text box='trim-both' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='trim-both' size='xxl' style={{ border: '1px dashed #06f' }}>
       trim-both
     </Text>
-    <Text box='cap alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='cap alphabetic' size='xxl' style={{ border: '1px dashed #06f' }}>
       cap alphabetic
     </Text>
-    <Text box='ex alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+    <Text box='ex alphabetic' size='xxl' style={{ border: '1px dashed #06f' }}>
       ex alphabetic
     </Text>
   </Flex>
@@ -325,10 +345,27 @@ rundom(
 
 The default styles of `<Text>` come from the theme and are configured with environment variables:
 
-| Variable              | Description                                       |
-|-----------------------|---------------------------------------------------|
-| `RD_THEME_TEXT`       | CSS of the component that is added to the page    |
-| `RD_THEME_TEXT__ROOT` | Class name(s) of the text element, always applied |
+| Variable                     | Description                                          |
+|------------------------------|------------------------------------------------------|
+| `RD_THEME_TEXT`              | CSS of the component that is added to the page       |
+| `RD_THEME_TEXT__ROOT`        | Class name(s) of the text element, always applied    |
+| `RD_THEME_TEXT__PRIMARY`     | Class name(s) applied when `color` is `'primary'`    |
+| `RD_THEME_TEXT__ACCENT`      | Class name(s) applied when `color` is `'accent'`     |
+| `RD_THEME_TEXT__SECONDARY`   | Class name(s) applied when `color` is `'secondary'`  |
+| `RD_THEME_TEXT__SUCCESS`     | Class name(s) applied when `color` is `'success'`    |
+| `RD_THEME_TEXT__WARNING`     | Class name(s) applied when `color` is `'warning'`    |
+| `RD_THEME_TEXT__DANGER`      | Class name(s) applied when `color` is `'danger'`     |
+| `RD_THEME_TEXT__DISABLED`    | Class name(s) applied when `color` is `'disabled'`   |
+| `RD_THEME_TEXT__TEXT`        | Class name(s) applied when `color` is `'text'`       |
+| `RD_THEME_TEXT__MUTED`       | Class name(s) applied when `color` is `'muted'`      |
+| `RD_THEME_TEXT__DIM`         | Class name(s) applied when `color` is `'dim'`        |
+| `RD_THEME_TEXT__XXS`         | Class name(s) applied when `size` is `'xxs'`         |
+| `RD_THEME_TEXT__XS`          | Class name(s) applied when `size` is `'xs'`          |
+| `RD_THEME_TEXT__S`           | Class name(s) applied when `size` is `'s'`           |
+| `RD_THEME_TEXT__M`           | Class name(s) applied when `size` is `'m'`           |
+| `RD_THEME_TEXT__L`           | Class name(s) applied when `size` is `'l'`           |
+| `RD_THEME_TEXT__XL`          | Class name(s) applied when `size` is `'xl'`          |
+| `RD_THEME_TEXT__XXL`         | Class name(s) applied when `size` is `'xxl'`         |
 
 ### Replacing the component
 

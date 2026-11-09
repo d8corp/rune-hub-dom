@@ -67,8 +67,8 @@ function Card () {
   return (
     <div style={{
       color: textColor.get(),
-      backgroundColor: bgColor.get(),
-      fontSize: `${fontSize.get()}px`,
+      'background-color': bgColor.get(),
+      'font-size': `${fontSize.get()}px`,
       padding: '20px'
     }}>
       Styled Card

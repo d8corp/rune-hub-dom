@@ -16,12 +16,13 @@ export default function TextPage () {
   const examples: HighlightExamples = {
     size: (
       <Flex gap={8} align='center' wrap>
-        <Text size={10}>Size 10</Text>
-        <Text size={14}>Size 14</Text>
-        <Text size={16}>Size 16</Text>
-        <Text size={20}>Size 20</Text>
-        <Text size={24}>Size 24</Text>
-        <Text size='1.5em'>Size 1.5em</Text>
+        <Text size='xxs'>xxs</Text>
+        <Text size='xs'>xs</Text>
+        <Text size='s'>s</Text>
+        <Text size='m'>m</Text>
+        <Text size='l'>l</Text>
+        <Text size='xl'>xl</Text>
+        <Text size='xxl'>xxl</Text>
       </Flex>
     ),
     weight: (
@@ -43,9 +44,16 @@ export default function TextPage () {
     ),
     color: (
       <Flex gap={8} wrap>
-        <Text color='#f06'>Red</Text>
-        <Text color='#06f'>Blue</Text>
-        <Text color='green'>Green</Text>
+        <Text color='primary'>Primary</Text>
+        <Text color='accent'>Accent</Text>
+        <Text color='secondary'>Secondary</Text>
+        <Text color='success'>Success</Text>
+        <Text color='warning'>Warning</Text>
+        <Text color='danger'>Danger</Text>
+        <Text color='disabled'>Disabled</Text>
+        <Text color='text'>Text</Text>
+        <Text color='muted'>Muted</Text>
+        <Text color='dim'>Dim</Text>
       </Flex>
     ),
     italic: (
@@ -128,22 +136,22 @@ export default function TextPage () {
     ),
     box: (
       <Flex gap={8} vertical>
-        <Text box='none' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='none' size='xxl' style={{ border: '1px dashed #06f' }}>
           none (default)
         </Text>
-        <Text box='trim-start' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='trim-start' size='xxl' style={{ border: '1px dashed #06f' }}>
           trim-start
         </Text>
-        <Text box='trim-end' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='trim-end' size='xxl' style={{ border: '1px dashed #06f' }}>
           trim-end
         </Text>
-        <Text box='trim-both' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='trim-both' size='xxl' style={{ border: '1px dashed #06f' }}>
           trim-both
         </Text>
-        <Text box='cap alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='cap alphabetic' size='xxl' style={{ border: '1px dashed #06f' }}>
           cap alphabetic
         </Text>
-        <Text box='ex alphabetic' size={24} style={{ border: '1px dashed #06f' }}>
+        <Text box='ex alphabetic' size='xxl' style={{ border: '1px dashed #06f' }}>
           ex alphabetic
         </Text>
       </Flex>

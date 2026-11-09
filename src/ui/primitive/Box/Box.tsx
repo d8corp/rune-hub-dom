@@ -4,10 +4,10 @@ import type { FlexElement, FlexProps } from '../Flex'
 import { Flex } from '../Flex'
 
 import { useStyles } from '../../../hooks'
-import type { Merge, ObservableProp, RDColor, SMLSize } from '../../../types'
+import type { Merge, ObservableProp, RDColor, XSMLSize } from '../../../types'
 import { addUiCSS, inject, injectAll } from '../../../utils'
 
-export type BoxSize = SMLSize | 'xs' | 'xxs' | 'xl' | 'xxl'
+export type BoxSize = XSMLSize
 export type BoxView = 'filled' | 'bordered' | 'ghost' | 'dashed'
 export type BoxInteract = 'hoverable' | 'clickable'
 

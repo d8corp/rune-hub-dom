@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardHeader,
   CardPreview,
   CardTitle,
   CheckBox,
@@ -14,6 +15,7 @@ import {
   Code,
   CopyIcon,
   Divider,
+  Eyebrow,
   Flex,
   Input,
   MoonIcon,
@@ -42,6 +44,7 @@ const view = (): UIView => 'filled'
 const size = (): UISize => 'l'
 const circle = () => false
 const disabled = () => false
+const kickerStyle = { 'margin-bottom': '10px' }
 
 export default function UIPage () {
   const copyInstall = () => {
@@ -88,19 +91,19 @@ export default function UIPage () {
               <span>0 VDOM</span>
             </div>
             <Card size='l' class={styles.window}>
-              <div class={styles.windowBar}>
+              <CardHeader>
                 <Flex gap={6} align='center'>
                   <Box color='danger' circle size='xs' />
                   <Box color='warning' circle size='xs' />
                   <Box color='success' circle size='xs' />
                 </Flex>
-                <Text size={11} weight='600' color='var(--rd__root_color-dim)' class={styles.windowName}>ui-kit.tsx</Text>
+                <Flex flex justify='center'>ui-kit.tsx</Flex>
                 <MoonIcon size={13} />
-              </div>
-              <div class={styles.windowBody}>
+              </CardHeader>
+              <CardContent vertical gap={14}>
                 <Flex justify='space-between' align='center' gap={12}>
                   <div>
-                    <span class={styles.windowKicker}>Playground</span>
+                    <Eyebrow size='s' color='dim'>Playground</Eyebrow>
                     <div class={styles.windowTitle}>New project</div>
                   </div>
                   <Button size='s' view='filled' color='accent'>
@@ -111,15 +114,15 @@ export default function UIPage () {
                 <Flex gap={16} wrap>
                   <Flex align='center' gap={6}>
                     <CheckBox checked />
-                    <Text size={11}>Reactive</Text>
+                    <Text size='xs'>Reactive</Text>
                   </Flex>
                   <Flex align='center' gap={6}>
                     <RadioBox checked />
-                    <Text size={11}>Themed</Text>
+                    <Text size='xs'>Themed</Text>
                   </Flex>
                   <Flex align='center' gap={6}>
                     <CheckBox checked={null} />
-                    <Text size={11}>Async</Text>
+                    <Text size='xs'>Async</Text>
                   </Flex>
                 </Flex>
                 <Divider />
@@ -135,9 +138,9 @@ export default function UIPage () {
                       <MoonIcon size={13} />
                     </Button>
                   </Flex>
-                  <Text size={10} weight='600' color='var(--rd__root_color-dim)'>NO VDOM</Text>
+                  <Text size='xxs' weight='600' color='dim'>NO VDOM</Text>
                 </Flex>
-              </div>
+              </CardContent>
             </Card>
           </div>
         </div>
@@ -166,7 +169,7 @@ export default function UIPage () {
 
       <section id='components' class={styles.section}>
         <div class={`${styles.sectionHead} ${styles.reveal}`}>
-          <span class={styles.kicker}>Component atlas</span>
+          <Eyebrow style={kickerStyle}>Component atlas</Eyebrow>
           <h2 class={styles.sectionTitle}>Small pieces. Serious range.</h2>
           <p class={styles.sectionLead}>
             Compose full interfaces from focused building blocks. Every component follows the same reactive model and shares the same design tokens.
@@ -380,7 +383,7 @@ export default function UIPage () {
       <section class={styles.liveSection}>
         <div class={styles.liveInner}>
           <div class={`${styles.liveCopy} ${styles.reveal}`}>
-            <span class={styles.kicker}>Live playground</span>
+            <Eyebrow style={kickerStyle}>Live playground</Eyebrow>
             <h2 class={styles.sectionTitle}>Every prop is a signal.</h2>
             <p class={styles.sectionLead}>
               Change a control and watch the preview update at the source. No virtual DOM, no re-render pass — just the node that changed.
@@ -405,9 +408,9 @@ export default function UIPage () {
             <Flex justify='space-between' align='center' class={styles.playgroundHead}>
               <Flex align='center' gap={8}>
                 <Box color='success' size='xxs' circle data-live />
-                <Text size={10} weight='700' color='var(--rd__root_color-dim)'>LIVE PREVIEW</Text>
+                <Text size='xxs' weight='700' color='dim'>LIVE PREVIEW</Text>
               </Flex>
-              <Text size={10} weight='600' color='var(--rd__root_color-dim)'>@rundom/ui</Text>
+              <Text size='xxs' weight='600' color='dim'>@rundom/ui</Text>
             </Flex>
 
             <Flex align='center' justify='center' class={styles.previewCanvas}>
@@ -434,7 +437,7 @@ export default function UIPage () {
 
             <Flex vertical gap={12} class={styles.controls}>
               <div class={styles.controlRow}>
-                <Text size={10} weight='700' color='var(--rd__root_color-dim)' class={styles.controlLabel}>COLOR</Text>
+                <Text size='xxs' weight='700' color='dim' class={styles.controlLabel}>COLOR</Text>
                 <Flex gap={6} wrap flex>
                   {colorOptions.map(option => (
                     <Button
@@ -449,7 +452,7 @@ export default function UIPage () {
                 </Flex>
               </div>
               <div class={styles.controlRow}>
-                <Text size={10} weight='700' color='var(--rd__root_color-dim)' class={styles.controlLabel}>VIEW</Text>
+                <Text size='xxs' weight='700' color='dim' class={styles.controlLabel}>VIEW</Text>
                 <Flex gap={6} wrap flex>
                   {viewOptions.map(option => (
                     <Button
@@ -464,7 +467,7 @@ export default function UIPage () {
                 </Flex>
               </div>
               <div class={styles.controlRow}>
-                <Text size={10} weight='700' color='var(--rd__root_color-dim)' class={styles.controlLabel}>SIZE</Text>
+                <Text size='xxs' weight='700' color='dim' class={styles.controlLabel}>SIZE</Text>
                 <Flex gap={6} wrap flex>
                   {sizeOptions.map(option => (
                     <Button
@@ -481,11 +484,11 @@ export default function UIPage () {
               <Flex gap={18} wrap align='center' class={styles.toggles}>
                 <Flex element='label' align='center' gap={6}>
                   <CheckBox checked={slot(circle)} />
-                  <Text size={12}>Circle</Text>
+                  <Text size='s'>Circle</Text>
                 </Flex>
                 <Flex element='label' align='center' gap={6}>
                   <CheckBox checked={slot(disabled)} />
-                  <Text size={12}>Disabled</Text>
+                  <Text size='s'>Disabled</Text>
                 </Flex>
               </Flex>
             </Flex>
@@ -496,7 +499,7 @@ export default function UIPage () {
       <section class={styles.ctaSection}>
         <Card size='l' class={styles.cta}>
           <div class={styles.ctaGlow} aria-hidden='true' />
-          <span class={styles.kicker}>Ready when you are</span>
+          <Eyebrow style={kickerStyle}>Ready when you are</Eyebrow>
           <h2 class={styles.ctaTitle}>Build the next screen with Rundom UI.</h2>
           <p class={styles.ctaText}>
             Start with the introduction, then jump into the component reference or copy the install command and go.

@@ -96,6 +96,11 @@ export const routing = createRouting([
           },
           {
             index: true,
+            path: 'eyebrow',
+            component: lazy(() => import('./pages/ui/EyebrowPage')),
+          },
+          {
+            index: true,
             path: 'check-box',
             component: lazy(() => import('./pages/ui/CheckBoxPage')),
           },

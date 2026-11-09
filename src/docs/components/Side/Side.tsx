@@ -1,7 +1,7 @@
 import { get, Slot, slot } from 'rune-hub'
 
 import { For, Show } from '../../../components'
-import { Flex, Input, Link, Scrollbar, SearchIcon } from '../../../ui'
+import { Eyebrow, Flex, Input, Link, Scrollbar, SearchIcon } from '../../../ui'
 import { menuContext } from '../../constants'
 import { hideSide, isMobile } from '../../state'
 import type { MenuItem } from '../../types'
@@ -58,7 +58,7 @@ export function Side () {
         <For of={filteredMenu} key='title'>
           {group => (
             <Flex vertical gap={10}>
-              <div class={styles.group}>{() => group.value.title}</div>
+              <Eyebrow color='text'>{() => group.value.title}</Eyebrow>
               <Flex vertical gap={4}>
                 <For of={() => group.value.children} key='href'>
                   {item => <Link {...item.value} onclick={hideSide} class={itemClass} />}

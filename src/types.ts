@@ -98,6 +98,7 @@ export type Merge<A, B> = B & Omit<A, keyof B>
 
 export type RDColor = 'primary' | 'accent' | 'secondary' | 'success' | 'warning' | 'danger' | 'disabled'
 export type SMLSize = 's' | 'm' | 'l'
+export type XSMLSize = SMLSize | 'xs' | 'xxs' | 'xl' | 'xxl'
 export type GlobalCSSValue = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'
 
 declare global {

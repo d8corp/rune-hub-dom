@@ -1,6 +1,6 @@
 ---
 description: npm scripts and development rules (comments, JSDoc, styles, verification). Read before running commands or finishing a change.
-updated: 2026-10-22
+updated: 2026-11-09
 ---
 
 # Commands and Scripts
@@ -15,5 +15,7 @@ updated: 2026-10-22
 
 - **No unnecessary comments** in code unless the user explicitly asks for them.
 - Try to add JSDoc comments to public APIs.
+- Inline `style` objects use kebab-case CSS property names (`'font-size'`, `'background-color'`), never camelCase (`fontSize`).
+- Documentation must not hardcode exact theme values (px sizes, colors, etc.). Describe variants only, because the values depend on the theme.
 - Component library styles are written in `theme.scss` following the BEM-like convention (`.component_modifier`), not in local CSS files.
 - Always verify changes at the end of a response (except for changes to .md files or similar) by running `npm run lint` and `npm test`.

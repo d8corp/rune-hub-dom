@@ -1,6 +1,6 @@
 ---
 description: component folder layout, theme styles, props typing, implementation pattern, env overrides. Read before adding or changing a UI component.
-updated: 2026-11-06
+updated: 2026-11-09
 ---
 
 # UI Component Architecture (using `Box` as an example)
@@ -85,3 +85,19 @@ Contains only a re-export: `export * from './Box'`.
 ## 6. Card composition
 
 `Card` is only the surface: border, background, radius, clickable/interactive states. Its content is composed from separate components: `CardPreview`, `CardInfo`, `CardTitle` and `CardDescription`. `Card` sizes change only the corner radius. `--rd-card-background` overrides the card background.
+
+## 7. Inheriting another component
+
+A component can extend another component's props and render it. `Eyebrow` extends `TextProps`, keeps only its own root class in `eyebrowStyles`, and renders `<Text>`:
+
+```tsx
+export interface EyebrowProps extends TextProps {}
+
+export function EyebrowComponent ({ color = 'primary', size = 'xs', ...props }: EyebrowProps) {
+  const styles = useStyles(eyebrowStyles, props.class)
+
+  return <Text {...props} color={color} size={size} class={styles} />
+}
+```
+
+`Text` owns the color and size variant classes, so the child component does not duplicate them in its own theme block.
