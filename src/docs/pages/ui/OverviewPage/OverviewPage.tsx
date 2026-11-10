@@ -21,6 +21,7 @@ import {
   Scrollbar,
   SearchIcon,
   Text,
+  Toggle,
   Typography,
 } from '../../../../ui'
 import { Page, Title } from '../../../ui'
@@ -242,6 +243,18 @@ export default function OverviewPage () {
             <Flex gap={8} align='center'>
               <RadioBox />
               <RadioBox checked />
+            </Flex>
+          ),
+        },
+        {
+          title: 'Toggle',
+          href: '/ui/toggle',
+          description: 'Turns a single option on or off.',
+          keywords: 'toggle switch boolean on off setting',
+          preview: (
+            <Flex gap={8} align='center'>
+              <Toggle />
+              <Toggle checked />
             </Flex>
           ),
         },

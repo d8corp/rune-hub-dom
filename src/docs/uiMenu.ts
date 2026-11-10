@@ -92,6 +92,10 @@ export const uiMenu: MenuItem[] = [
         href: '/ui/radio-box',
         children: '<RadioBox>',
       },
+      {
+        href: '/ui/toggle',
+        children: '<Toggle>',
+      },
     ],
   },
 ]

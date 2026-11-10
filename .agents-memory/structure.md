@@ -20,7 +20,7 @@ updated: 2026-11-09
   - `layout/` (`Card`, `Scrollbar`)
   - `block/` (`Button`, `Field`)
   - `inline/` (`Code`, `Divider`)
-  - `interaction/` (`Input`, `CheckBox`, `RadioBox`)
+  - `interaction/` (`Input`, `CheckBox`, `RadioBox`, `Toggle`)
   - `typography/` (`Eyebrow`, `Text`, `Typography`, `Markdown`)
   - `popup/` (`Window`, `Message`, ...)
   - `widget/` (`Devtools`, ...)

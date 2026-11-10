@@ -988,6 +988,52 @@ body {
   }
 }
 
+.toggle {
+  display: inline-flex;
+  position: relative;
+  width: calc(var(--box-size) * 1.75);
+  height: var(--box-size);
+  min-height: var(--box-size);
+  padding: 0;
+  border-radius: $size-infinite;
+  background: var(--box-light-color);
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: calc(var(--box-size) - 6px);
+    height: calc(var(--box-size) - 6px);
+    background: var(--box-main-color);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: $transition;
+  }
+
+  &:has(.toggle_input:checked) {
+    border-color: var(--box-main-color);
+    background: var(--box-main-color);
+
+    &:before {
+      left: calc(100% - var(--box-size) + 4px);
+      background: var(--box-second-color);
+    }
+  }
+
+  &:has(.toggle_input:focus-visible) {
+    outline-color: var(--box-main-color);
+  }
+
+  &_input {
+    position: absolute;
+    opacity: 0;
+    cursor: inherit;
+  }
+}
+
 ::view-transition-group(messages) {
   z-index: 3;
 }

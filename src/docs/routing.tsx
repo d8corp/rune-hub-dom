@@ -109,6 +109,11 @@ export const routing = createRouting([
             path: 'radio-box',
             component: lazy(() => import('./pages/ui/RadioBoxPage')),
           },
+          {
+            index: true,
+            path: 'toggle',
+            component: lazy(() => import('./pages/ui/TogglePage')),
+          },
         ],
       },
       {
